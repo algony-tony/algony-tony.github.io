@@ -50,5 +50,6 @@ assertEquals(7, a);
 
 ### 参考
 [Understanding the & 0xff Value in Java](https://www.baeldung.com/java-and-0xff)
+
 [Signed number representations](https://en.wikipedia.org/wiki/Signed_number_representations)
 
