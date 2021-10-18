@@ -18,7 +18,7 @@ avatar: https://raw.githubusercontent.com/algony-tony/algony-tony.github.io/mast
 # Includes an icon in the footer for each username you enter
 footer-links:
   dribbble:
-  email: txzhu1010邮@箱gmail.com
+  email:
   facebook:
   flickr:
   github: algony-tony
@@ -37,7 +37,10 @@ footer-links:
 disqus: https-algony-tony-github-io
 
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
-google_analytics:
+google_analytics: G-QHD5V4HSLX
+
+# Enter your Google Adsense client id
+Adsense: ca-pub-3291441471504209
 
 # Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
 # Used for Sitemap.xml and your RSS feed
