@@ -31,6 +31,8 @@ permalink: /WebMap/
 
 #### 国务院直属事业单位
 
+中央广播电视总台 @ {[中国中央电视台(央视网)](https://www.cctv.com/) @ { [新闻联播](https://tv.cctv.com/lm/xwlb/index.shtml) } * [中央人民广播电台(央广网)](http://www.cnr.cn/) * [中国国际广播电台(国际在线)](http://www.cri.cn/) }
+
 [中国银行保险监督管理委员会](https://www.cbirc.gov.cn/cn/view/pages/index/index.html) @ { [统计信息](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=953&itemId=954&itemUrl=ItemListRightList.html&itemName=%E7%BB%9F%E8%AE%A1%E4%BF%A1%E6%81%AF) }
 
 [中国证券监督管理委员会](http://www.csrc.gov.cn/pub/newsite/) @ { [信息披露](http://eid.csrc.gov.cn/) * [监管对象](http://www.csrc.gov.cn/pub/newsite/zjjg/hfjgml/xqhfjgml/) }
