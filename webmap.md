@@ -41,12 +41,16 @@ permalink: /WebMap/
 
 [中国证券投资基金业协会](https://www.amac.org.cn/) @ { [研究与统计](https://www.amac.org.cn/researchstatistics/datastatistics/comprehensive/) }
 
-## 网站快链
-
-[云媒体](https://laosheng.top/fly/) 中国333个地级市的报纸电子版和电视直播网址
-
 ### 数据
 
 [东方财富数据中心](http://data.eastmoney.com/) @ { [经济数据](http://data.eastmoney.com/cjsj/cpi.html) * [新股数据](http://data.eastmoney.com/xg/) @ { [可转债](https://data.eastmoney.com/kzz/default.html) } * [研究报告](http://data.eastmoney.com/report/) }
 
 [天天基金网](https://www.1234567.com.cn/)
+
+## 网站快链
+
+[书享家](https://shuxiangjia.cn/) 书籍导航网站
+
+[z-library](https://z-lib.org/)
+
+[云媒体](https://laosheng.top/fly/) 中国333个地级市的报纸电子版和电视直播网址
