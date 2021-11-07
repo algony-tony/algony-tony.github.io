@@ -1,0 +1,77 @@
+<script async type="text/javascript" src="/assets/js/md5.js"></script>
+<script>
+    function isEmpty(obj) {
+        if (typeof obj == "undefined" || obj == null || obj == "") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function MyMD5(k) {
+        var button_name = k;
+        var txtInput = document.getElementById("input").value;
+
+        if (isEmpty(txtInput)) {
+            alert("输入框是空的");
+            return;
+        }
+        var arry = txtInput.trim().split('\n');
+        var output = [];
+        for (var i = 0; i < arry.length; i++) {
+            if (isEmpty(arry[i])) {
+                output.push("");
+            } else {
+                var temp_md5 = CryptoJS.MD5(arry[i]).toString();
+                if (button_name == "16lower") {
+                    output.push(temp_md5.substring(8, 24));
+                }
+                else if (button_name == "16upper") {
+                    output.push(temp_md5.substring(8, 24).toUpperCase());
+                }
+                else if (button_name == "32lower") {
+                    output.push(temp_md5);
+                }
+                else if (button_name == "32upper") {
+                    output.push(temp_md5.toUpperCase());
+                }
+            }
+
+        }
+        document.getElementById('output').value = output.join("\n");
+    };
+
+</script>
+
+<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+
+<h1>MD5</h1>
+
+<div>
+
+    <div class="row" style="margin-top:20px;margin-bottom:10px">
+        <div class="col-md-12">
+            <textarea id="input" class="form-control" rows="10" placeholder="待加密区域，一行一个分别加密"></textarea>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <button class="btn btn-danger" id="32lower" type="submit" style="margin:5px;"
+                onclick="MyMD5('32lower')">32位MD5加密(小写)</button>
+            <button class="btn btn-danger" id="32upper" type="submit" style="margin:5px;"
+                onclick="MyMD5('32upper')">32位MD5加密(大写)</button>
+            <button class="btn btn-danger" id="16lower" type="submit" style="margin:5px;"
+                onclick="MyMD5('16lower')">16位MD5加密(小写)</button>
+            <button class="btn btn-danger" id="16upper" type="submit" style="margin:5px;"
+                onclick="MyMD5('16upper')">16位MD5加密(大写)</button>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:20px">
+        <div class="col-md-12">
+            <textarea id="output" class="form-control" rows="10" placeholder="结果区域"></textarea>
+        </div>
+    </div>
+
+</div>
