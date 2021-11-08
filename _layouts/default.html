@@ -11,7 +11,7 @@
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
     <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
 
     {% include ads.html %}
@@ -30,12 +30,8 @@
             <p class="site-description">{{ site.description }}</p>
           </div>
 
-          <nav>
-            <!-- <a href="{{ site.baseurl }}/">Blog</a> -->
-            <a href="{{ site.baseurl }}/WebMap">导航</a>
-            <a href="{{ site.baseurl }}/tools">工具</a>
-            <a href="{{ site.baseurl }}/about">关于</a>
-          </nav>
+          {% include navigation.html %}
+          
         </header>
       </div>
     </div>

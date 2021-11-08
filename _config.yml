@@ -17,16 +17,16 @@ avatar: /assets/img/sys/jekyll-logo.png
 
 # Includes an icon in the footer for each username you enter
 footer-links:
+  rss: feed
+  email: txzhu1010@gmail.com
+  github: algony-tony
+  twitter: zhu_tony
   dribbble:
-  email:
   facebook:
   flickr:
-  github: algony-tony
   instagram:
   linkedin:
   pinterest:
-  rss: # just type anything here for a working RSS icon
-  twitter: zhu_tony
   stackoverflow: # your stackoverflow profile, e.g. "users/50476/bart-kiers"
   youtube: # channel/<your_long_string> or user/<user-name>
   googleplus: # anything in your profile username that comes after plus.google.com/
