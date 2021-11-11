@@ -18,9 +18,9 @@ avatar: /assets/img/sys/jekyll-logo.png
 # Includes an icon in the footer for each username you enter
 footer-links:
   rss: feed
-  email: txzhu1010@gmail.com
-  github: algony-tony
-  twitter: zhu_tony
+  email: # txzhu1010@gmail.com
+  github: # algony-tony
+  twitter: # zhu_tony
   dribbble:
   facebook:
   flickr:
@@ -79,6 +79,7 @@ sass:
 gems:
   - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
   - jekyll-feed # Create an Atom feed using the official Jekyll feed gem
+  - jekyll-seo-tag
 
 # Exclude these files from your production _site
 exclude:
