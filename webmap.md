@@ -25,7 +25,11 @@ permalink: /WebMap/
 
 [中华人民共和国商务部](http://www.mofcom.gov.cn/) @ { ["走出去"公共服务平台](http://fec.mofcom.gov.cn/) @ { [国别（地区）指南](http://fec.mofcom.gov.cn/article/gbdqzn/index.shtml) } }
 
+[中华人民共和国工业和信息化部](https://www.miit.gov.cn/) @ { [工信数据](https://www.miit.gov.cn/gxsj/index.html) }
+
 #### 国务院直属机构
+
+[国家市场监督管理总局](https://www.nmpa.gov.cn/)
 
 [国家统计局](http://www.stats.gov.cn/) @ { [年度统计公报(经济 人口 农业 R&D 普查公报等其他)](http://www.stats.gov.cn/tjsj/tjgb/ndtjgb/) * [国家数据](https://data.stats.gov.cn/index.htm) }
 
@@ -37,11 +41,16 @@ permalink: /WebMap/
 
 [中国证券监督管理委员会](http://www.csrc.gov.cn/pub/newsite/) @ { [信息披露](http://eid.csrc.gov.cn/) * [监管对象](http://www.csrc.gov.cn/pub/newsite/zjjg/hfjgml/xqhfjgml/) }
 
+#### 国务院部委管理的国家局
+
+[国家药品监督管理局(由国家市场监督管理总局管理)](https://www.nmpa.gov.cn/) @ { [数据查询(药品、医疗器械、化妆品和其他)](https://www.nmpa.gov.cn/datasearch/home-index.html#category=yp) }
+
+
 ## 行业协会
 
 [中国证券投资基金业协会](https://www.amac.org.cn/) @ { [研究与统计](https://www.amac.org.cn/researchstatistics/datastatistics/comprehensive/) }
 
-### 数据
+## 数据
 
 [东方财富数据中心](http://data.eastmoney.com/) @ { [经济数据](http://data.eastmoney.com/cjsj/cpi.html) * [新股数据](http://data.eastmoney.com/xg/) @ { [可转债](https://data.eastmoney.com/kzz/default.html) } * [研究报告](http://data.eastmoney.com/report/) }
 
