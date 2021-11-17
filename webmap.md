@@ -63,3 +63,7 @@ permalink: /WebMap/
 [z-library](https://z-lib.org/)
 
 [云媒体](https://laosheng.top/fly/) 中国333个地级市的报纸电子版和电视直播网址
+
+[湾区日报](https://wanqu.co/issues/)
+
+[阮一峰](http://www.ruanyifeng.com/blog/)

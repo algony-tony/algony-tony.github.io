@@ -6,6 +6,5 @@ _site
 .bundle
 .sass-cache
 .vscode
-Gemfile.lock
 node_modules
 package.json

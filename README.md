@@ -6,3 +6,5 @@ Blog address: [Algony Tony](https://algony-tony.github.io/)
 [Jekyll Now](https://github.com/barryclark/jekyll-now)
 
 [Beautiful Jekyll](https://github.com/daattali/beautiful-jekyll)
+
+[bytedude.com](https://github.com/m-cat/bytedude.com)

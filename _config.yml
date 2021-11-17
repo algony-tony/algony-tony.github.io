@@ -52,14 +52,9 @@ url: https://algony-tony.github.io
 # then add in the baseurl here, like this: "/repository-name"
 baseurl: ""
 
-#
-# !! You don't need to change any of the configuration flags below !!
-#
 
 permalink: /:title/
 
-# The release of Jekyll Now that you're using
-version: v1.2.0
 
 # Jekyll 3 now only supports Kramdown for Markdown
 kramdown:
@@ -68,8 +63,9 @@ kramdown:
   # Jekyll 3 and GitHub Pages now only support rouge for syntax highlighting
   syntax_highlighter: rouge
   syntax_highlighter_opts:
-    # Use existing pygments syntax highlighting css
+  # Use existing pygments syntax highlighting css
     css_class: 'highlight'
+highlighter: rouge
 
 # Set the Sass partials directory, as we're using @imports
 sass:
