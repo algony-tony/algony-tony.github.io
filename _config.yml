@@ -56,6 +56,13 @@ baseurl: ""
 permalink: /:title/
 
 
+defaults:
+  -
+    scope:
+      path:            "assets/file/*.pdf"
+    values:
+      sitemap:         false
+
 # Jekyll 3 now only supports Kramdown for Markdown
 kramdown:
   # Use GitHub flavored markdown, including triple backtick fenced code blocks
