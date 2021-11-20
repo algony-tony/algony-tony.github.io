@@ -1,5 +1,10 @@
+---
+layout: compress
+published: true
+---
+
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
   <head>
     {% include analytics.html %}
 
@@ -14,6 +19,12 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
     <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
 
+    {% if site.mathjax %}
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    {% endif %}
+
     {% include ads.html %}
 
     {% feed_meta %}
@@ -25,7 +36,7 @@
     <div class="wrapper-masthead">
       <div class="container">
         <header class="masthead clearfix">
-          <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.avatar }}" /></a>
+          <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.avatar }}" alt="site-avatar" /></a>
 
           <div class="site-info">
             <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>

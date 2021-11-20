@@ -7,3 +7,7 @@ group :jekyll_plugins do
   gem 'jekyll-feed'
   gem 'jekyll-seo-tag'
 end
+
+gem 'html-proofer'
+gem 'tzinfo'
+gem 'tzinfo-data'
