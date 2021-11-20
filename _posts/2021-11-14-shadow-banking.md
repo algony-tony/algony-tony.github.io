@@ -2,7 +2,7 @@
 layout: post
 title: 银保监会工作论文《中国影子银行报告》摘要
 ---
-在20年12月中国银保监会工作论文[2020年第9期](https://www.cbirc.gov.cn/cn/view/pages/ItemDetail.html?docId=947343&itemId=934&generaltype=0)发布了[《中国影子银行报告》](https://www.cbirc.gov.cn/chinese/docfile/2020/500801a0d5764eefb2eb43fc5c50470b.pdf)，[备份地址](/assets/file/中国影子银行报告.pdf)。
+在20年12月中国银保监会工作论文[2020年第9期](https://www.cbirc.gov.cn/cn/view/pages/ItemDetail.html?docId=947343&itemId=934&generaltype=0)发布了[《中国影子银行报告》(PDF, 746KB)](https://www.cbirc.gov.cn/chinese/docfile/2020/500801a0d5764eefb2eb43fc5c50470b.pdf)，[备份地址](/assets/file/中国影子银行报告.pdf)。
 
 > 本报告详细描述了影子银行的起源和发展演变，中国影子银行的判别标准、范围和规模，
 > 以及影子银行三年治理的背景、过程和成效等，并提出相应的监管建议。
@@ -42,7 +42,7 @@ title: 银保监会工作论文《中国影子银行报告》摘要
 > 年末的 0.84 万亿元，同业特定目的载体投资从 23.05 万亿元降至 15.98 万亿元。
 
 
-国盛证券的[简评](/assets/file/国盛证券-银保监会《中国影子银行报告》说了什么.pdf)
+国盛证券的[简评(PDF, 1.5MB)](/assets/file/国盛证券-银保监会《中国影子银行报告》说了什么.pdf)
 
 > 我国影子银行的主要特点：
 >
