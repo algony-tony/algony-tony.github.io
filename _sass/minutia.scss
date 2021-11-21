@@ -2,13 +2,13 @@
 
 // Font stacks
 $helvetica: Helvetica,Arial,sans-serif;
-$helveticaNeue: "Helvetica Neue",Helvetica,Arial,sans-serif;
+$helveticaNeue: 'Biaodian Pro Sans GB',"Helvetica Neue",Helvetica,Arial,"pingfang sc","Hiragino Sans GB","Microsoft YaHei","微软雅黑",STHeiti,SimSun,sans-serif;
 $georgia: Georgia,serif;
 $monaco: Monaco,Menlo;
 
 // Define defaults for each variable.
 
-$base-font-family: $helvetica !default;
+$base-font-family: $helveticaNeue !default;
 $logo-font-family: $helveticaNeue !default;
 $code-font-family: $monaco !default;
 

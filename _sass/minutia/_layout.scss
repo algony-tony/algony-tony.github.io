@@ -57,7 +57,6 @@
     a:hover {
         text-decoration: none;
         color: $white;
-        background-color: $black;
     }
     a:active {
         text-decoration: none;
@@ -74,9 +73,6 @@
     align-items: stretch;
 
     height: $base-font-size * 3;
-
-    // padding-top: $spacing-unit / 6;
-    // padding-bottom: $spacing-unit / 6;
 }
 
 .header-left {
@@ -87,7 +83,6 @@
     
     font-family: $logo-font-family;
     padding-right: $spacing-unit * 2;
-
 }
 
 .header-right {
@@ -99,29 +94,24 @@
     .page-link {
         font-family: $logo-font-family;
         font-size: $large-font-size;
-
         color: $mild-gray;
-        // background-color: $blue;
 
         padding: 0px 7px 0px 7px;
-        // border: 1px solid $text-color;
-        // border-radius: 5px;
-        // margin-right: 5px;
 
         display: flex;
         align-items: center;
-
-        // &:hover {
-        //     text-decoration: none;
-        //     opacity: $hover-opacity;
-        //     backface-visibility: hidden;
-        // }
     }
+
     .active {
         text-decoration: none;
         color: $white;
         background-color: $black;
     }
+
+    a:hover {
+        background-color: $black;
+    }
+
 }
 
 /* Site footer */
