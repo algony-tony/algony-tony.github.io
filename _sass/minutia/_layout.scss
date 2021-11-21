@@ -1,0 +1,233 @@
+/* Site header */
+.site-avatar {
+    float: left;
+    margin-right: $spacing-unit / 2;
+
+    @include media-query($on-palm) {
+        float: none;
+        display: block;
+        margin: 0 auto;
+    }
+
+    img {
+        border-radius: 15px;
+        width: $avatar-unit;
+        height: $avatar-unit;
+    }
+}
+
+.site-info {
+    float: left;
+    border-bottom: 0px;
+
+    @include media-query($on-palm) {
+        float: none;
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+.site-name {
+    margin: 0;
+    color: $mild-gray;
+    cursor: pointer;
+    font-family: $base-font-family;
+    font-weight: 300;
+    font-size: 28px;
+    letter-spacing: 1px;
+    border-bottom: 0px;
+}
+
+.site-description {
+    margin: -5px 0 0 0;
+    color: $mild-gray;
+    font-size: 16px;
+    border-bottom: 0px;
+
+    @include media-query($on-palm) {
+        margin: 3px 0;
+    }
+}
+
+.site-header {
+    // border-bottom: 1px solid $header-border;
+    background-color: $header-background;
+    box-shadow: 0 2px 4px 1px rgba(0,0,0,0.5);
+    
+    a:hover {
+        text-decoration: none;
+        color: $white;
+        background-color: $black;
+    }
+    a:active {
+        text-decoration: none;
+        background-color: $header-background;
+    }
+    a:visited {
+        text-decoration: none;
+    }
+}
+
+.wrapper-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+
+    height: $base-font-size * 3;
+
+    // padding-top: $spacing-unit / 6;
+    // padding-bottom: $spacing-unit / 6;
+}
+
+.header-left {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    flex: 1 1 auto;
+    
+    font-family: $logo-font-family;
+    padding-right: $spacing-unit * 2;
+
+}
+
+.header-right {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    flex: 0 1 auto;
+
+    .page-link {
+        font-family: $logo-font-family;
+        font-size: $large-font-size;
+
+        color: $mild-gray;
+        // background-color: $blue;
+
+        padding: 0px 7px 0px 7px;
+        // border: 1px solid $text-color;
+        // border-radius: 5px;
+        // margin-right: 5px;
+
+        display: flex;
+        align-items: center;
+
+        // &:hover {
+        //     text-decoration: none;
+        //     opacity: $hover-opacity;
+        //     backface-visibility: hidden;
+        // }
+    }
+    .active {
+        text-decoration: none;
+        color: $white;
+        background-color: $black;
+    }
+}
+
+/* Site footer */
+
+.site-footer {
+    padding-top: $spacing-unit / 2;
+    padding-bottom: $spacing-unit / 2;
+    text-align: center;
+    font-size: $smaller-font-size;
+    color: $gray;
+}
+
+.footer-heading {
+    @include relative-font-size(9/8);
+    margin-bottom: $spacing-unit / 2;
+}
+
+/* Default */
+
+.default-content {
+    padding-top: $spacing-unit;
+    padding-bottom: $spacing-unit / 2;
+
+    flex: 1;
+
+    font-size: $content-font-size;
+}
+
+section {
+    margin: 0 auto 50px auto;
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            margin: 25px 0;
+
+            .title {
+                max-width: 100%;
+                //overflow: hidden !important;
+                //text-overflow: ellipsis !important;
+                //white-space: nowrap !important;
+                word-wrap: normal !important;
+            }
+
+            a {
+                text-decoration: none;
+                border: 0;
+                color: $black;
+                box-sizing: border-box;
+            }
+
+            .post-date {
+                float: left;
+                margin: 0 20px 0 5px;
+            }
+
+            span {
+                display: inline-block;
+                color: $gray;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+            }
+
+            @media (min-width: 992px) {
+                a {
+                    border-bottom: 1px solid transparent;
+                    background-image: linear-gradient($yellow, $yellow);
+                    background-repeat: no-repeat;
+                    background-size: 0px 100%;
+                    background-position: 0px 100%;
+                    transition: background-size .3s ease-out;
+
+                    &:hover {
+                        border-color: transparent;
+                        color: $black;
+                        background-size: 100% 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Posts */
+
+.posts>.post {
+    padding-bottom: 2em;
+    border-bottom: 1px solid $light-gray;
+}
+
+.posts>.post:last-child {
+    padding-bottom: 1em;
+    border-bottom: none;
+}
+
+.post {
+
+    .comments {
+        margin-top: 10px;
+    }
+
+    .date {
+        font-style: italic;
+        color: $gray;
+    }
+}

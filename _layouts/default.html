@@ -16,7 +16,7 @@ published: true
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
     <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
 
     {% if site.mathjax %}
@@ -33,37 +33,16 @@ published: true
   </head>
 
   <body>
-    <div class="wrapper-masthead">
-      <div class="container">
-        <header class="masthead clearfix">
-          <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.avatar }}" alt="site-avatar" /></a>
 
-          <div class="site-info">
-            <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
-            <p class="site-description">{{ site.description }}</p>
-          </div>
+    {% include header.html %}
 
-          {% include navigation.html %}
-          
-        </header>
+    <main class="default-content" aria-label="Content">
+      <div class="wrapper-content">
+        {{ content }}
       </div>
-    </div>
+    </main>
 
-    <div id="main" role="main" class="container">
-      {{ content }}
-    </div>
-
-    <div class="wrapper-footer">
-        <footer class="footer">
-          <div class="social-wrapper">
-            {% include svg-icons.html %}
-          </div>
-          <div>
-            {% include license.html %}
-          </div>
-        </footer>
-    </div>
-
+    {% include footer.html %}
 
   </body>
 </html>

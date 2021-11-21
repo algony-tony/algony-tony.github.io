@@ -1,0 +1,25 @@
+<header class="site-header">
+
+    <div class="wrapper-header">
+      <div class="header-left">
+        <!-- <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.avatar }}" alt="avatar" /></a> -->
+
+        <a class="site-info" href="{{ site.baseurl }}/">
+          <span class="site-name">{{ site.name }}</span>
+          <span class="site-description">{{ site.description }}</span>
+        </a>
+
+      </div>
+      
+      <nav class="header-right">
+        {% for item in site.data.navigation %}
+        <a href="{{ item.link | prepend: site.baseurl }}" {% if page.url == item.link %} class="page-link active" {% else %} class="page-link" {% endif %} 
+          alt="{{ page.url | json }}_{{ item.link | json }}">
+          {{ item.name }}
+        </a>
+        {% endfor %}
+      </nav>
+    </div>
+    
+</header>
+  

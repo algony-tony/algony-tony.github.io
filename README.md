@@ -10,3 +10,5 @@ Blog address: [Algony Tony](https://algony-tony.github.io/)
 [bytedude.com](https://github.com/m-cat/bytedude.com)
 
 [The Plain](https://github.com/heiswayi/the-plain)
+
+[HyG](https://github.com/Gaohaoyang/gaohaoyang.github.io)
