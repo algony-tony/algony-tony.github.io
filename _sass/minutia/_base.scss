@@ -88,6 +88,19 @@ button {
   }
 }
 
+button.btn-try {
+  color: $text-color;
+  background-color: $lighter-green;
+  text-align: center;
+  font-size: $bold-font-weight;
+  padding: $spacing-unit/6 $spacing-unit/4;
+  &:hover {
+    color: $white;
+    background-color: $green;
+    border-color: $dark-green;
+  }
+}
+
 *::placeholder {
   opacity: 1;
   color: $gray;

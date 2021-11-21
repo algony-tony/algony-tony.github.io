@@ -43,36 +43,28 @@
 
 </script>
 
-<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-
-<h1>MD5</h1>
+<h2>MD5</h2>
 
 <h4>MD5批量加密，每行分别加密</h4>
-<div>
+<div class="tool-md5">
 
-    <div class="row" style="margin-top:20px;margin-bottom:10px">
-        <div class="col-md-12">
-            <textarea id="input" class="form-control" rows="10" placeholder="待加密区域，一行一个分别加密"></textarea>
-        </div>
+    <div class="row">
+        <textarea id="input" class="form-control" placeholder="待加密区域，一行一个分别加密"></textarea>
     </div>
 
     <div class="row">
-        <div class="col-md-12 text-center">
-            <button class="btn btn-danger" id="32lower" type="submit" style="margin:5px;"
-                onclick="MyMD5('32lower')">32位MD5加密(小写)</button>
-            <button class="btn btn-danger" id="32upper" type="submit" style="margin:5px;"
-                onclick="MyMD5('32upper')">32位MD5加密(大写)</button>
-            <button class="btn btn-danger" id="16lower" type="submit" style="margin:5px;"
-                onclick="MyMD5('16lower')">16位MD5加密(小写)</button>
-            <button class="btn btn-danger" id="16upper" type="submit" style="margin:5px;"
-                onclick="MyMD5('16upper')">16位MD5加密(大写)</button>
-        </div>
+        <button class="btn-try" id="32lower" type="submit"
+            onclick="MyMD5('32lower')">32位MD5加密(小写)</button>
+        <button class="btn-try" id="32upper" type="submit"
+            onclick="MyMD5('32upper')">32位MD5加密(大写)</button>
+        <button class="btn-try" id="16lower" type="submit"
+            onclick="MyMD5('16lower')">16位MD5加密(小写)</button>
+        <button class="btn-try" id="16upper" type="submit"
+            onclick="MyMD5('16upper')">16位MD5加密(大写)</button>
     </div>
 
-    <div class="row" style="margin-top:20px">
-        <div class="col-md-12">
-            <textarea id="output" class="form-control" rows="10" placeholder="结果区域"></textarea>
-        </div>
+    <div class="row">
+        <textarea id="output" class="form-control" placeholder="结果区域"></textarea>
     </div>
 
 </div>

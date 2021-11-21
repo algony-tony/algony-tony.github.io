@@ -140,6 +140,50 @@
     font-size: $content-font-size;
 }
 
+/* Page */
+
+.page-content {
+    text-align: justify;
+
+    @include media-query($on-palm) {
+        text-align: left;
+    }
+}
+
+.page-title {
+    border-bottom: 0px;
+}
+
+.page-header {
+    margin-bottom: $spacing-unit / 2;
+}
+
+/* Posts */
+
+.posts>.post {
+    padding-bottom: 2em;
+    border-bottom: 1px solid $light-gray;
+}
+
+.posts>.post:last-child {
+    padding-bottom: 1em;
+    border-bottom: none;
+}
+
+.post {
+
+    .comments {
+        margin-top: 10px;
+    }
+
+    .date {
+        font-style: italic;
+        color: $gray;
+    }
+}
+
+/* home page */
+
 section {
     margin: 0 auto 50px auto;
 
@@ -178,9 +222,8 @@ section {
                 text-transform: uppercase;
             }
 
-            @media (min-width: 992px) {
+            @media (min-width: $content-width) {
                 a {
-                    border-bottom: 1px solid transparent;
                     background-image: linear-gradient($yellow, $yellow);
                     background-repeat: no-repeat;
                     background-size: 0px 100%;
@@ -188,7 +231,7 @@ section {
                     transition: background-size .3s ease-out;
 
                     &:hover {
-                        border-color: transparent;
+                        text-decoration: none;
                         color: $black;
                         background-size: 100% 100%;
                     }
@@ -198,26 +241,28 @@ section {
     }
 }
 
-/* Posts */
+/* tools page*/
 
-.posts>.post {
-    padding-bottom: 2em;
-    border-bottom: 1px solid $light-gray;
-}
-
-.posts>.post:last-child {
-    padding-bottom: 1em;
-    border-bottom: none;
-}
-
-.post {
-
-    .comments {
-        margin-top: 10px;
+div.tool-md5 {
+    width: 100%;
+    .row {
+        padding-top: $spacing-unit / 2;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        flex: 1 1 auto;
+        justify-content: space-around;
     }
-
-    .date {
-        font-style: italic;
-        color: $gray;
+    textarea.form-control {
+        height: $base-font-size * 15;
+        padding: $spacing-unit/6 $spacing-unit/3;
+        width: 100%;
+        display: block;
+        background-color: $white;
+        background-image: none;
+        border: 1px solid $gray;
+        border-radius: 4px;
+        box-shadow: 0 1px 1px $lighter-gray;
     }
+    
 }
