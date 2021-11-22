@@ -1,6 +1,8 @@
 ---
 layout: post
 title: 银保监会工作论文《中国影子银行报告》摘要
+categories: 金融
+tags: 银行 影子银行 名称解释
 ---
 在20年12月中国银保监会工作论文[2020年第9期](https://www.cbirc.gov.cn/cn/view/pages/ItemDetail.html?docId=947343&itemId=934&generaltype=0)发布了[《中国影子银行报告》(PDF, 746KB)](https://www.cbirc.gov.cn/chinese/docfile/2020/500801a0d5764eefb2eb43fc5c50470b.pdf)，[备份地址](/assets/file/中国影子银行报告.pdf)。
 

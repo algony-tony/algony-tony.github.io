@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Java 中 0xff 的使用
+categories: 软件技术
+tags: Java
 ---
 
 0xff 是十六进制的表示, 转成二进制表示是 1111 1111, 对于 int 类型, 0xff 的高位用 0 补齐, 其对应数值为 255, 对于 byte 类型, byte 是 8 bits 长度, 高位会补齐 1, 这样转成的 int 类型值为 -1 (因为现在计算机一般用补码表示法(Two's complement), 二进制下32位都是1对应的就是十进制下的 -1 ).

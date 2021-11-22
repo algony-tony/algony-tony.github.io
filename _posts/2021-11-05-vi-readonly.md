@@ -1,6 +1,8 @@
 ---
 layout: post
 title: 用 Vim 以只读模式打开文件的几种方式
+categories: 软件技术
+tags: Vim
 ---
 为了避免误操作，有时需要用 vim 以只读方式打开文件。
 
