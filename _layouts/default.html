@@ -1,6 +1,7 @@
 ---
 layout: compress
 published: true
+show_footer: true
 ---
 
 <!DOCTYPE html>
@@ -42,7 +43,9 @@ published: true
       </div>
     </main>
 
-    {% include footer.html %}
+    {% if page.show_footer %}
+      {% include footer.html %}
+    {% endif %}
 
   </body>
 </html>

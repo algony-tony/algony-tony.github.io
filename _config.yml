@@ -55,6 +55,21 @@ defaults:
       path: "assets/file/*.pdf"
     values:
       sitemap: false
+  -
+    scope:
+      path: "_posts"
+    values:
+      show_footer: true
+  -
+    scope:
+      path: "_drafts"
+    values:
+      show_footer: true
+  -
+    scope:
+      path: "_pages"
+    values:
+      show_footer: false
 
 # Jekyll 3 now only supports Kramdown for Markdown
 kramdown:

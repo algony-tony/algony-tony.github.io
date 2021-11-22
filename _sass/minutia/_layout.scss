@@ -185,7 +185,7 @@
 /* home page */
 
 section {
-    margin: 0 auto 50px auto;
+    margin: 0 auto $spacing-unit auto;
 
     ul {
         list-style: none;
@@ -193,7 +193,7 @@ section {
         padding: 0;
 
         li {
-            margin: 25px 0;
+            margin: $spacing-unit/1.5 0;
 
             .title {
                 max-width: 100%;
@@ -212,7 +212,7 @@ section {
 
             .post-date {
                 float: left;
-                margin: 0 20px 0 5px;
+                margin: 0 $spacing-unit/2 0 $spacing-unit/6;
             }
 
             span {
@@ -236,6 +236,10 @@ section {
                         background-size: 100% 100%;
                     }
                 }
+            }
+            
+            &::before {
+                content: none;
             }
         }
     }
