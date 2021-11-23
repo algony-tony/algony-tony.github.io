@@ -1,0 +1,13 @@
+
+<div class="categories-cloud">
+
+  {% for category in site.categories %}
+  {% assign site_category_name = category[0] | escape %}
+  {% assign category_posts = category[1] | size %}
+
+  <a class="category-link" href="{{ site.url | append: '/category' | append: '/#' | append: site_category_name }}">
+    {{ site_category_name }}</a>
+    <span class="category-count">({{ category_posts }})</span>
+
+  {% endfor %}
+</div>

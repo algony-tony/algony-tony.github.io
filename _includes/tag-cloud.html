@@ -1,0 +1,12 @@
+<div class="tags-cloud">
+
+  {% for tag in site.tags %}
+  {% assign site_tag_name = tag[0] | escape %}
+  {% assign tag_posts = tag[1] | size %}
+
+  <a class="tag-link" href="{{ site.url | append: '/tag' | append: '/#' | append: site_tag_name }}">
+    {{ site_tag_name }}</a>
+    <span class="tag-count">({{ tag_posts }})</span>
+
+  {% endfor %}
+</div>
