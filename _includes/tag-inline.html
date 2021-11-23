@@ -1,0 +1,6 @@
+<span >标签:</span>
+{% for tag in page.tags %}
+<a class="tag-link" href="{{ site.url | append: '/tag' | append: '/#' | append: tag }}" title="Tag: {{ tag }}">
+  {{ tag }}
+</a>
+{% endfor %}

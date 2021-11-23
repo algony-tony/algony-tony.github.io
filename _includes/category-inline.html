@@ -1,0 +1,6 @@
+<span >类别:</span>
+{% for category in page.categories %}
+<a class="category-link" href="{{ site.url | append: '/category' | append: '/#' | append: category }}" title="Category: {{ category }}">
+  {{ category | escape }}
+</a>
+{% endfor %}
