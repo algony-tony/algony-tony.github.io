@@ -1,0 +1,26 @@
+---
+layout: page
+title: 标签
+permalink: /tag/
+show_page_header: false
+---
+
+<div class="tags">
+    {% for tag in site.tags %}
+    <h1 id="{{tag | first}}">{{tag | first}}</h1>
+    <ul>
+        {% for posts in tag %}
+        {% for post in posts %}
+        {% if post.url %}
+        <li>
+                <a href="{{ site.baseurl }}{{ post.url }}">
+                    <span class="post-date code">{{ post.date | date: "%F" }}</span>
+                    <span class="title">{{ post.title }}</span>
+                </a>
+        </li>
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</div>

@@ -1,0 +1,26 @@
+---
+layout: page
+title: 类目
+permalink: /category/
+show_page_header: false
+---
+
+<div class="categories">
+    {% for category in site.categories %}
+    <h1 id="{{category | first}}">{{category | first}}</h1>
+    <ul>
+        {% for posts in category %}
+        {% for post in posts %}
+        {% if post.url %}
+        <li>
+                <a href="{{ site.baseurl }}{{ post.url }}">
+                    <span class="post-date code">{{ post.date | date: "%F" }}</span>
+                    <span class="title">{{ post.title }}</span>
+                </a>
+        </li>
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</div>

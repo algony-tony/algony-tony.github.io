@@ -70,6 +70,7 @@ defaults:
       path: "_pages"
     values:
       show_footer: false
+      show_page_header: true
 
 # Jekyll 3 now only supports Kramdown for Markdown
 kramdown:
