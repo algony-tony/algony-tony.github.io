@@ -306,24 +306,3 @@ blockquote {
     padding-left: $spacing-unit / 2;
   }
 }
-
-/* Icons */
-
-.icon>svg {
-  display: inline-block;
-  vertical-align: middle;
-
-  path {
-    fill: $gray;
-  }
-}
-
-/* Misc */
-
-// Prevent superscripts from affecting line height.
-
-sup {
-  vertical-align: top;
-  position: relative;
-  top: -0.3em;
-}
