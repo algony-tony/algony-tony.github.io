@@ -5,12 +5,13 @@ $helvetica: Helvetica,Arial,sans-serif;
 $helveticaNeue: 'Biaodian Pro Sans GB',"Helvetica Neue",Helvetica,Arial,"pingfang sc","Hiragino Sans GB","Microsoft YaHei","微软雅黑",STHeiti,SimSun,sans-serif;
 $georgia: Georgia,serif;
 $monaco: Monaco,Menlo;
+$menlo: "SFMono-Regular", Menlo, Consolas, Monospace;
 
 // Define defaults for each variable.
 
 $base-font-family: $helveticaNeue !default;
 $logo-font-family: $helveticaNeue !default;
-$code-font-family: $monaco !default;
+$code-font-family: $menlo !default;
 
 $base-font-size: 16px !default;
 $code-font-size: 13px !default;

@@ -197,6 +197,9 @@ section {
                 color: $black;
                 box-sizing: border-box;
             }
+            a:visited {
+                color: $black;
+            }
 
             .post-date {
                 float: left;
@@ -223,6 +226,15 @@ section {
                         color: $black;
                         background-size: 100% 100%;
                     }
+                }
+            }
+
+            @include media-query($on-laptop) {
+                a {
+                    color: $blue;
+                }
+                a:visited {
+                    color: $blue;
                 }
             }
             
