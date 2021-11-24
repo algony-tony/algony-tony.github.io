@@ -6,7 +6,7 @@ tags: Vim
 ---
 为了避免误操作，有时需要用 vim 以只读方式打开文件。
 
-有几种方式可以实现，第一种 {% ihighlight shell %} view filename {% endihighlight %}，可以在命令行用，也可以打开 vim 后在命令模式输入，这种方式打开后可以编辑，如果写入 `:w` 会报错如下
+有几种方式可以实现，第一种 `view filename`，可以在命令行用，也可以打开 vim 后在命令模式输入，这种方式打开后可以编辑，如果写入 `:w` 会报错如下
 
 {% highlight Vim %}
 E45: 'readonly' option is set (add ! to override)
