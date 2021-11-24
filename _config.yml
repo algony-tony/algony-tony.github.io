@@ -87,6 +87,10 @@ highlighter: rouge
 sass:
   style: :compressed # :expanded
 
+compress_html:
+  ignore:
+    envs: all
+
 # Use the following plug-ins
 gems:
   - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
