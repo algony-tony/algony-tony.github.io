@@ -6,64 +6,126 @@ permalink: /WebMap/
 
 ## 政府网站
 
-[中华人民共和国中央人民政府](http://www.gov.cn/index.htm)
+[中华人民共和国中央人民政府]({{ site.data.links["gov"].link }}) 
+    @ {
+        [政府网站基本信息数据库]({{ site.data.links["govwebdb"].link }})
+    }
 
-[全国人民代表大会](http://www.npc.gov.cn/ "中华人民共和国最高国家权力机关，是中华人民共和国最高立法机关")
+[全国人民代表大会]({{ site.data.links["npc"].link }} "{{ site.data.links["npc"].desc }}")
 
 ### 国务院
-[国务院](http://www.gov.cn/guowuyuan/index.htm "即中央人民政府，是最高国家权力机关的执行机关，是最高国家行政机关") @ { [常务会议](http://www.gov.cn/guowuyuan/gwy_cwh.htm) * [全体会议](http://www.gov.cn/guowuyuan/quantihui.htm) * [政府工作报告](http://www.gov.cn/guowuyuan/zfgzbg.htm) * [组织机构](http://www.gov.cn/guowuyuan/zuzhi.htm) * [国务院任免](http://www.gov.cn/xinwen/guowuyuanrenmian.htm) }
-
-[全国政府网站基本信息数据库](https://zfwzzc.www.gov.cn/check_web/databaseInfo/index)
+[国务院]({{ site.data.links["gwy"].link }} "{{ site.data.links["gwy"].desc }}") 
+    @ { 
+        [常务会议]({{ site.data.links["gwycwhy"].link }}) 
+        * [全体会议]({{ site.data.links["gwyqthy"].link }}) 
+        * [政府工作报告]({{ site.data.links["gwygzbg"].link }}) 
+        * [组织机构]({{ site.data.links["gwyzzjg"].link }}) 
+        * [国务院任免]({{ site.data.links["gwyrm"].link }}) 
+    }
 
 #### 国务院组成部门
 
-[中华人民共和国自然资源部](http://www.mnr.gov.cn/) # [天地图](https://www.tianditu.gov.cn/ "国家地理信息公共服务平台")
+[中华人民共和国自然资源部]({{ site.data.links["mnr"].link }}) # [天地图]({{ site.data.links["tianditu"].link }} "{{ site.data.links["tianditu"].desc }}")
 
-[中国人民银行](http://www.pbc.gov.cn/) @ { [统计数据](http://www.pbc.gov.cn/diaochatongjisi/116219/116319/index.html "社会融资规模,货币统计概览,金融业机构资产负债统计,金融机构信贷收支统计,金融市场统计,企业商品价格（CGPI）指数") }
+[中国人民银行]({{ site.data.links["pbc"].link }}) 
+    @ {
+         [统计数据]({{ site.data.links["pbctj"].link }} "{{ site.data.links["pbctj"].desc }}") 
+    }
 
-[中华人民共和国商务部](http://www.mofcom.gov.cn/) @ { ["走出去"公共服务平台](http://fec.mofcom.gov.cn/) @ { [国别（地区）指南](http://fec.mofcom.gov.cn/article/gbdqzn/index.shtml) } }
+[中华人民共和国商务部]({{ site.data.links["mofcom"].link }}) 
+    @ {
+        ["走出去"公共服务平台]({{ site.data.links["mofcomzcq"].link }}) 
+            @ {
+                 [国别（地区）指南]({{ site.data.links["mofcomgb"].link }}) 
+            } 
+    }
 
-[中华人民共和国工业和信息化部](https://www.miit.gov.cn/) @ { [工信数据](https://www.miit.gov.cn/gxsj/index.html) }
+[中华人民共和国工业和信息化部]({{ site.data.links["miit"].link }})
+    @ {
+        [工信数据]({{ site.data.links["miittj"].link }} "{{ site.data.links["miittj"].desc }}")
+    }
 
-[中华人民共和国财政部](http://www.mof.gov.cn/index.htm) @ { [国库司](http://gks.mof.gov.cn/ "组织预算执行、监控及分析预测") @ { [统计数据](http://gks.mof.gov.cn/tongjishuju/ "财政收支情况，政府采购情况，中央政府收支及融资数据") [中国政府采购网](http://www.ccgp.gov.cn/) } }
+[中华人民共和国财政部]({{ site.data.links["mof"].link }}) 
+    @ {
+        [国库司]({{ site.data.links["mofgks"].link }} "{{ site.data.links["mofgks"].desc }}") 
+            @ {
+                [统计数据]({{ site.data.links["mofgkstj"].link }} "{{ site.data.links["mofgkstj"].desc }}")
+                * [中国政府采购网]({{ site.data.links["ccgp"].link }})
+            }
+    }
 
 #### 国务院直属机构
 
-[国家市场监督管理总局](https://www.nmpa.gov.cn/)
+[国家市场监督管理总局]({{ site.data.links["samr"].link }})
 
-[国家统计局](http://www.stats.gov.cn/) @ { [年度统计公报](http://www.stats.gov.cn/tjsj/tjgb/ndtjgb/ "经济 人口 农业 R&D 普查公报等其他") * [国家数据](https://data.stats.gov.cn/index.htm) }
+[国家统计局]({{ site.data.links["stats"].link }})
+    @ {
+        [年度统计公报]({{ site.data.links["statsndtj"].link }} "{{ site.data.links["statsndtj"].desc }}")
+        * [国家数据]({{ site.data.links["statsgjsj"].link }})
+    }
 
 #### 国务院直属事业单位
 
-中央广播电视总台 @ {[中国中央电视台](https://www.cctv.com/ "央视网") @ { [新闻联播](https://tv.cctv.com/lm/xwlb/index.shtml) } * [中央人民广播电台](http://www.cnr.cn/ "央广网") * [中国国际广播电台](http://www.cri.cn/ "国际在线") }
+中央广播电视总台
+    @ {
+        [中国中央电视台]({{ site.data.links["cctv"].link }} "{{ site.data.links["cctv"].desc }}")
+            @ {
+                [新闻联播]({{ site.data.links["xwlb"].link }})
+            } 
+            * [中央人民广播电台]({{ site.data.links["cnr"].link }} "{{ site.data.links["cnr"].desc }}")
+            * [中国国际广播电台]({{ site.data.links["cri"].link }} "{{ site.data.links["cri"].desc }}") 
+    }
 
-[中国银行保险监督管理委员会](https://www.cbirc.gov.cn/cn/view/pages/index/index.html) @ { [统计信息](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=953&itemId=954&itemUrl=ItemListRightList.html&itemName=%E7%BB%9F%E8%AE%A1%E4%BF%A1%E6%81%AF) * [工作论文](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=923&itemId=934&itemUrl=ItemListRightList.html&itemName=%E3%80%8A%E5%B7%A5%E4%BD%9C%E8%AE%BA%E6%96%87%E3%80%8B) * [金融监管研究](https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=923&itemId=935&itemUrl=ItemListRightList.html&itemName=%E9%87%91%E8%9E%8D%E7%9B%91%E7%AE%A1%E7%A0%94%E7%A9%B6) }
+[中国银行保险监督管理委员会]({{ site.data.links["cbirc"].link }})
+    @ {
+        [统计信息]({{ site.data.links["cbirctj"].link }})
+        * [工作论文]({{ site.data.links["cbircgzlw"].link }})
+        * [金融监管研究]({{ site.data.links["cbircjrjg"].link }})
+    }
 
-[中国证券监督管理委员会](http://www.csrc.gov.cn/pub/newsite/) @ { [信息披露](http://eid.csrc.gov.cn/) * [监管对象](http://www.csrc.gov.cn/pub/newsite/zjjg/hfjgml/xqhfjgml/) }
+[中国证券监督管理委员会]({{ site.data.links["csrc"].link }})
+    @ {
+        [信息披露]({{ site.data.links["csrcpl"].link }})
+        * [监管对象]({{ site.data.links["csrcjgdx"].link }})
+    }
 
 #### 国务院部委管理的国家局
 
-[国家药品监督管理局](https://www.nmpa.gov.cn/ "由国家市场监督管理总局管理") @ { [数据查询](https://www.nmpa.gov.cn/datasearch/home-index.html#category=yp "药品、医疗器械、化妆品和其他") }
+[国家药品监督管理局]({{ site.data.links["nmpa"].link }} "{{ site.data.links["nmpa"].desc }}")
+    @ {
+        [数据查询]({{ site.data.links["nmpasjcx"].link }} "{{ site.data.links["nmpasjcx"].desc }}")
+    }
 
 
 ## 行业协会
 
-[中国证券投资基金业协会](https://www.amac.org.cn/) @ { [研究与统计](https://www.amac.org.cn/researchstatistics/datastatistics/comprehensive/) }
+[中国证券投资基金业协会]({{ site.data.links["amac"].link }})
+    @ {
+        [研究与统计]({{ site.data.links["amacyjtj"].link }})
+    }
 
 ## 数据
 
-[东方财富数据中心](http://data.eastmoney.com/) @ { [经济数据](http://data.eastmoney.com/cjsj/cpi.html) * [新股数据](http://data.eastmoney.com/xg/) @ { [可转债](https://data.eastmoney.com/kzz/default.html) } * [研究报告](http://data.eastmoney.com/report/) }
+[东方财富数据中心]({{ site.data.links["eastm"].link }})
+    @ {
+        [经济数据]({{ site.data.links["eastmjj"].link }})
+        * [新股数据]({{ site.data.links["eastmxg"].link }})
+            @ {
+                [可转债]({{ site.data.links["eastmkzz"].link }})
+            }
+        * [研究报告]({{ site.data.links["eastmyjbg"].link }})
+    }
 
-[天天基金网](https://www.1234567.com.cn/)
+[天天基金网]({{ site.data.links["ttjj"].link }})
 
 ## 网站快链
 
-[书享家](https://shuxiangjia.cn/ "书籍导航网站")
+[书享家]({{ site.data.links["sxj"].link }} "{{ site.data.links["sxj"].desc }}")
 
-[z-library](https://z-lib.org/)
+[z-library]({{ site.data.links["zlib"].link }})
 
-[云媒体](https://laosheng.top/fly/ "中国333个地级市的报纸电子版和电视直播网址") 
+[云媒体]({{ site.data.links["laosheng"].link }} "{{ site.data.links["laosheng"].desc }}") 
 
-[湾区日报](https://wanqu.co/issues/)
+[湾区日报]({{ site.data.links["wanqu"].link }})
 
-[阮一峰](http://www.ruanyifeng.com/blog/)
+[阮一峰]({{ site.data.links["ruanyifeng"].link }})
