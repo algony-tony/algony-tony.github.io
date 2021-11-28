@@ -1,0 +1,225 @@
+{
+    "gov": {
+        "name": "中华人民共和国中央人民政府",
+        "link": "http://www.gov.cn/index.htm"
+    },
+    "npc": {
+        "name": "全国人民代表大会",
+        "link": "http://www.npc.gov.cn",
+        "desc": "中华人民共和国最高国家权力机关，是中华人民共和国最高立法机关"
+    },
+    "gwy": {
+        "name": "国务院",
+        "link": "http://www.gov.cn/guowuyuan/index.htm",
+        "desc": "即中央人民政府，是最高国家权力机关的执行机关，是最高国家行政机关"
+    },
+    "gwycwhy": {
+        "name": "国务院-常务会议",
+        "link": "http://www.gov.cn/guowuyuan/gwy_cwh.htm"
+    },
+    "gwyqthy": {
+        "name": "国务院-全体会议",
+        "link": "http://www.gov.cn/guowuyuan/quantihui.htm"
+    },
+    "gwygzbg": {
+        "name": "国务院-政府工作报告",
+        "link": "http://www.gov.cn/guowuyuan/zfgzbg.htm"
+    },
+    "gwyzzjg": {
+        "name": "国务院-组织机构",
+        "link": "http://www.gov.cn/guowuyuan/zuzhi.htm"
+    },
+    "gwyrm": {
+        "name": "国务院-国务院任免",
+        "link": "http://www.gov.cn/xinwen/guowuyuanrenmian.htm"
+    },
+    "govwebdb": {
+        "name": "全国政府网站基本信息数据库",
+        "link": "https://zfwzzc.www.gov.cn/check_web/databaseInfo/index"
+    },
+    "mnr": {
+        "name": "中华人民共和国自然资源部",
+        "link": "http://www.mnr.gov.cn"
+    },
+    "tianditu": {
+        "name": "天地图",
+        "link": "http://www.gov.cn/guowuyuan/quantihui.htm",
+        "desc": "国家地理信息公共服务平台"
+    },
+    "pbc": {
+        "name": "中国人民银行",
+        "link": "http://www.pbc.gov.cn/"
+    },
+    "pbctj": {
+        "name": "统计数据",
+        "link": "http://www.pbc.gov.cn/diaochatongjisi/116219/116319/index.html",
+        "desc": "社会融资规模,货币统计概览,金融业机构资产负债统计,金融机构信贷收支统计,金融市场统计,企业商品价格（CGPI）指数"
+    },
+    "mofcom": {
+        "name": "中华人民共和国商务部",
+        "link": "http://www.mofcom.gov.cn/"
+    },
+    "mofcomzcq": {
+        "name": "走出去公共服务平台",
+        "link": "http://fec.mofcom.gov.cn/"
+    },
+    "mofcomgb": {
+        "name": "国别（地区）指南",
+        "link": "http://fec.mofcom.gov.cn/article/gbdqzn/index.shtml"
+    },
+    "miit": {
+        "name": "中华人民共和国工业和信息化部",
+        "link": "https://www.miit.gov.cn/"
+    },
+    "miittj": {
+        "name": "工信数据",
+        "link": "https://www.miit.gov.cn/gxsj/index.html",
+        "desc": "原材料工业（钢铁，有色，石化化工，建材，稀土），装备工业（机械，汽车，民用船舶，民用航天工业），消费品工业（轻工，纺织，食品，家电），通信业，电子信息制造业，软件业，互联网，网络安全"
+    },
+    "mof": {
+        "name": "中华人民共和国财政部",
+        "link": "http://www.mof.gov.cn/index.htm"
+    },
+    "mofgks": {
+        "name": "国库司",
+        "link": "http://gks.mof.gov.cn/",
+        "desc": "组织预算执行、监控及分析预测"
+    },
+    "mofgkstj": {
+        "name": "国库司统计数据",
+        "link": "http://gks.mof.gov.cn/tongjishuju/",
+        "desc": "财政收支情况，政府采购情况，中央政府收支及融资数据"
+    },
+    "ccgp": {
+        "name": "中国政府采购网",
+        "link": "http://www.ccgp.gov.cn/"
+    },
+    "samr": {
+        "name": "国家市场监督管理总局",
+        "link": "http://www.samr.gov.cn/"
+    },
+    "stats": {
+        "name": "国家统计局",
+        "link": "http://www.stats.gov.cn/"
+    },
+    "statsndtj": {
+        "name": "年度统计公报",
+        "link": "http://www.stats.gov.cn/tjsj/tjgb/ndtjgb/",
+        "desc": "经济 人口 农业 R&D 普查公报等其他"
+    },
+    "statsgjsj": {
+        "name": "国家数据",
+        "link": "https://data.stats.gov.cn/index.htm"
+    },
+    "cctv": {
+        "name": "中国中央电视台",
+        "link": "https://www.cctv.com/",
+        "desc": "央视网"
+    },
+    "xwlb": {
+        "name": "新闻联播",
+        "link": "https://tv.cctv.com/lm/xwlb/index.shtml"
+    },
+    "cnr": {
+        "name": "中央人民广播电台",
+        "link": "http://www.cnr.cn/",
+        "desc": "央广网"
+    },
+    "cri": {
+        "name": "中国国际广播电台",
+        "link": "http://www.cri.cn/",
+        "desc": "国际在线"
+    },
+    "cbirc": {
+        "name": "中国银行保险监督管理委员会",
+        "link": "https://www.cbirc.gov.cn/cn/view/pages/index/index.html"
+    },
+    "cbirctj": {
+        "name": "银保监会统计信息",
+        "link": "https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=953&itemId=954&itemUrl=ItemListRightList.html&itemName=%E7%BB%9F%E8%AE%A1%E4%BF%A1%E6%81%AF"
+    },
+    "cbircgzlw": {
+        "name": "银保监会工作论文",
+        "link": "https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=923&itemId=934&itemUrl=ItemListRightList.html&itemName=%E3%80%8A%E5%B7%A5%E4%BD%9C%E8%AE%BA%E6%96%87%E3%80%8B"
+    },
+    "cbircjrjg": {
+        "name": "银保监会金融监管研究",
+        "link": "https://www.cbirc.gov.cn/cn/view/pages/ItemList.html?itemPId=923&itemId=935&itemUrl=ItemListRightList.html&itemName=%E9%87%91%E8%9E%8D%E7%9B%91%E7%AE%A1%E7%A0%94%E7%A9%B6"
+    },
+    "csrc": {
+        "name": "中国证券监督管理委员会",
+        "link": "http://www.csrc.gov.cn/pub/newsite/"
+    },
+    "csrcpl": {
+        "name": "证监会信息披露",
+        "link": "http://eid.csrc.gov.cn/"
+    },
+    "csrcjgdx": {
+        "name": "证监会监管对象",
+        "link": "http://www.csrc.gov.cn/pub/newsite/zjjg/hfjgml/xqhfjgml/"
+    },
+    "nmpa": {
+        "name": "国家药品监督管理局",
+        "link": "https://www.nmpa.gov.cn/",
+        "desc": "由国家市场监督管理总局管理"
+    },
+    "nmpasjcx": {
+        "name": "药监局数据查询",
+        "link": "https://www.nmpa.gov.cn/datasearch/home-index.html#category=yp",
+        "desc": "药品、医疗器械、化妆品和其他"
+    },
+    "amac": {
+        "name": "中国证券投资基金业协会",
+        "link": "https://www.amac.org.cn/"
+    },
+    "amacyjtj": {
+        "name": "基金协会研究与统计",
+        "link": "https://www.amac.org.cn/researchstatistics/datastatistics/comprehensive/"
+    },
+    "eastm": {
+        "name": "东方财富数据中心",
+        "link": "http://data.eastmoney.com/"
+    },
+    "eastmjj": {
+        "name": "东方财富数据中心经济数据",
+        "link": "http://data.eastmoney.com/cjsj/cpi.html"
+    },
+    "eastmxg": {
+        "name": "东方财富数据中心新股数据",
+        "link": "http://data.eastmoney.com/xg/"
+    },
+    "eastmkzz": {
+        "name": "东方财富数据中心可转债",
+        "link": "https://data.eastmoney.com/kzz/default.html"
+    },
+    "eastmyjbg": {
+        "name": "东方财富数据中心研究报告",
+        "link": "http://data.eastmoney.com/report/"
+    },
+    "ttjj": {
+        "name": "天天基金网",
+        "link": "https://www.1234567.com.cn/"
+    },
+    "sxj": {
+        "name": "书享家",
+        "link": "https://shuxiangjia.cn/",
+        "desc": "书籍导航网站"
+    },
+    "zlib": {
+        "name": "z-lib",
+        "link": "https://z-lib.org/"
+    },
+    "laosheng": {
+        "name": "云媒体",
+        "link": "https://laosheng.top/fly/",
+        "desc": "中国333个地级市的报纸电子版和电视直播网址"
+    },
+    "wanqu": {
+        "name": "湾区日报",
+        "link": "https://wanqu.co/issues/"
+    },
+    "ruanyifeng": {
+        "name": "阮一峰博客",
+        "link": "http://www.ruanyifeng.com/blog/"
+    }
+}
