@@ -25,6 +25,8 @@ permalink: /WebMap/
 
 [中华人民共和国工业和信息化部](https://www.miit.gov.cn/) @ { [工信数据](https://www.miit.gov.cn/gxsj/index.html) }
 
+[中华人民共和国财政部](http://www.mof.gov.cn/index.htm) @ { [国库司](http://gks.mof.gov.cn/ "组织预算执行、监控及分析预测") @ { [统计数据](http://gks.mof.gov.cn/tongjishuju/ "财政收支情况，政府采购情况，中央政府收支及融资数据") [中国政府采购网](http://www.ccgp.gov.cn/) } }
+
 #### 国务院直属机构
 
 [国家市场监督管理总局](https://www.nmpa.gov.cn/)
