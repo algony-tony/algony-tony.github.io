@@ -56,7 +56,13 @@ permalink: /WebMap/
 
 #### 国务院直属机构
 
-[国家市场监督管理总局]({{ site.data.links["samr"].link }})
+[国家市场监督管理总局]({{ site.data.links["samr"].link }} "{{ site.data.links["samr"].desc }}")
+    @ {
+        [国家标准化管理委员会]({{ site.data.links["sac"].link }})
+            @{
+                [全国标准信息公共服务平台]({{ site.data.links["samrstd"].link}})
+            }
+    }
 
 [国家统计局]({{ site.data.links["stats"].link }})
     @ {

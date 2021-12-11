@@ -96,7 +96,16 @@
     },
     "samr": {
         "name": "国家市场监督管理总局",
-        "link": "http://www.samr.gov.cn/"
+        "link": "http://www.samr.gov.cn/",
+        "desc": "国家市场监督管理总局对外保留国家认证认可监督管理委员会、国家标准化管理委员会牌子"
+    },
+    "sac": {
+        "name": "国家标准化管理委员会",
+        "link": "http://www.sac.gov.cn/"
+    },  
+    "samrstd": {
+        "name": "全国标准信息公共服务平台",
+        "link": "http://std.samr.gov.cn/"
     },
     "stats": {
         "name": "国家统计局",
