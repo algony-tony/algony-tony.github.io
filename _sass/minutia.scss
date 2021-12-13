@@ -28,6 +28,7 @@ $base-line-height: 1.5 !default;
 
 $spacing-unit: 30px !default;
 $avatar-unit: $base-font-size * 2 !important;
+$table-border-width: 1px !default;
 
 /* Define color palette */
 
@@ -58,6 +59,7 @@ $yellow: #ffd900 !default;
 
 $text-color: $black !default;
 $background-color: $white !default;
+$table-border-color: $light-gray !default;
 
 // $darkerGray: #222;
 // $darkGray: #333;
