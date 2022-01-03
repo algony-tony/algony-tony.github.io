@@ -1,0 +1,69 @@
+<script>
+    function pwd_generator() {
+        const chars_upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        const chars_lower = "abcdefghijklmnopqrstuvwxyz"
+        const chars_digital = "0123456789"
+        const chars_special = "!@#$%^&*"
+        let pwd_length = document.getElementById("pwd_length");
+        let final_string = "";
+        let password = "";
+
+        if (document.getElementById("str_upper").checked) {
+            final_string += chars_upper;
+        }
+
+        if (document.getElementById("str_lower").checked) {
+            final_string += chars_lower;
+        }
+
+        if (document.getElementById("str_digital").checked) {
+            final_string += chars_digital;
+        }
+
+        if (document.getElementById("str_special").checked) {
+            final_string += chars_special;
+        }
+
+        let base_length = final_string.length;
+
+        if (base_length == 0) {
+            alert("没有选择字符");
+            return;
+        }
+
+        for (var i = 0; i < pwd_length.value; i++) {
+            let pwd = final_string[Math.floor(Math.random() * base_length)];
+            password += pwd;
+        }
+
+        const op = document.getElementById('pwd-output');
+        op.value = password;
+        op.focus();
+        op.select();
+    }
+</script>
+
+<h2>随机密码生成器</h2>
+
+<div class="tool-pwd">
+
+    <div class="row">
+        <label>选择字符 </label>
+        <span><input type="checkbox" id="str_upper" checked="checked"> A-Z</span>
+        <span><input type="checkbox" id="str_lower" checked="checked"> a-z</span>
+        <span><input type="checkbox" id="str_digital" checked="checked"> 0-9</span>
+        <span><input type="checkbox" id="str_special" checked="checked"> !@#$%^&*</span>
+
+    </div>
+
+    <div class="row">
+        <label for="tentacles">密码长度 (1-100) </label>
+        <span><input type="number" id="pwd_length" min="1" max="100" value="16"></span>
+    </div>
+
+    <div class="row">
+        <button class="btn-try" id="pwd_btn" type="submit" onclick="pwd_generator()">生成随机密码</button>
+        <span><input id="pwd-output" type="text" class="form-control" readonly="readonly" placeholder="随机密码"></span>
+    </div>
+
+</div>

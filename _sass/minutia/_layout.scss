@@ -268,5 +268,29 @@ div.tool-md5 {
         border-radius: 4px;
         box-shadow: 0 1px 1px $lighter-gray;
     }
-    
+}
+
+div.tool-pwd {
+    width: 100%;
+
+    .row {
+        padding-top: $spacing-unit / 2;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        flex: 1 1 auto;
+        justify-content: center;
+
+            span,
+            button,
+            label {
+                padding-left: $spacing-unit / 6;
+                padding-right: $spacing-unit / 6;
+                @include media-query($on-palm) {
+                    padding-left: none;
+                    padding-right: none;
+                }
+            }
+
+    }
 }
