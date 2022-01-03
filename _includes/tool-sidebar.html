@@ -1,0 +1,15 @@
+<div class="tool-sidebar">
+
+  <div class="col">
+    <ul class="menu">
+      {% for item in site.data.tool-sidebar %}
+      <li>
+        <a href="{{ item.link | prepend: site.baseurl }}" {% if page.url == item.link %} class="page-link active"
+          {% else %} class="page-link" {% endif %}>
+          {{ item.name }}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>

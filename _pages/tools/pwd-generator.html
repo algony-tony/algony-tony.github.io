@@ -1,3 +1,10 @@
+---
+layout: tool
+title: 随机密码生成工具
+permalink: /tools/pwd-generator.html
+show_page_header: false
+---
+
 <script>
     function pwd_generator() {
         const chars_upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -62,7 +69,7 @@
     </div>
 
     <div class="row">
-        <button class="btn-try" id="pwd_btn" type="submit" onclick="pwd_generator()">生成随机密码</button>
+        <span><button class="btn-try" id="pwd_btn" type="submit" onclick="pwd_generator()">生成随机密码</button></span>
         <span><input id="pwd-output" type="text" class="form-control" readonly="readonly" placeholder="随机密码"></span>
     </div>
 

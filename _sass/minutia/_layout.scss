@@ -246,8 +246,37 @@ section {
 }
 
 /* tools page*/
+.tool-sidebar {
+    float: left;
+    width: $base-font-size * 8;
+    padding-right: $spacing-unit / 2;
 
-div.tool-md5 {
+    a {
+        color: $gray;
+    }
+
+    a:hover {
+        text-decoration: underline;
+        color: $blue;
+    }
+
+    a.active {
+        text-decoration: underline;
+        color: $text-color;
+        // background-color: $header-background;
+    }
+}
+
+.tool-content {
+    float: left;
+    min-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2) - (#{$base-font-size} * 8) - (#{$spacing-unit} / 2));
+    min-width: calc(#{$content-width} - (#{$spacing-unit} * 2) - (#{$base-font-size} * 8) - (#{$spacing-unit} / 2));
+    @include media-query($on-palm) {
+        min-width: inherit;
+      }
+}
+
+.tool-md5 {
     width: 100%;
     .row {
         padding-top: $spacing-unit / 2;
@@ -270,7 +299,7 @@ div.tool-md5 {
     }
 }
 
-div.tool-pwd {
+.tool-pwd {
     width: 100%;
 
     .row {
@@ -282,7 +311,6 @@ div.tool-pwd {
         justify-content: center;
 
             span,
-            button,
             label {
                 padding-left: $spacing-unit / 6;
                 padding-right: $spacing-unit / 6;

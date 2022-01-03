@@ -1,3 +1,10 @@
+---
+layout: tool
+title: MD5
+permalink: /tools/md5.html
+show_page_header: false
+---
+
 <script async type="text/javascript" src="/assets/js/md5.js"></script>
 <script>
     function isEmpty(obj) {
@@ -53,14 +60,14 @@
     </div>
 
     <div class="row">
-        <button class="btn-try" id="32lower" type="submit"
-            onclick="MyMD5('32lower')">32位MD5加密(小写)</button>
-        <button class="btn-try" id="32upper" type="submit"
-            onclick="MyMD5('32upper')">32位MD5加密(大写)</button>
-        <button class="btn-try" id="16lower" type="submit"
-            onclick="MyMD5('16lower')">16位MD5加密(小写)</button>
-        <button class="btn-try" id="16upper" type="submit"
-            onclick="MyMD5('16upper')">16位MD5加密(大写)</button>
+        <span><button class="btn-try" id="32lower" type="submit"
+            onclick="MyMD5('32lower')">32位小写</button></span>
+            <span><button class="btn-try" id="32upper" type="submit"
+            onclick="MyMD5('32upper')">32位大写</button></span>
+            <span><button class="btn-try" id="16lower" type="submit"
+            onclick="MyMD5('16lower')">16位小写</button></span>
+            <span><button class="btn-try" id="16upper" type="submit"
+            onclick="MyMD5('16upper')">16位大写</button></span>
     </div>
 
     <div class="row">
