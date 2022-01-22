@@ -126,6 +126,11 @@ permalink: /WebMap/
 
 ## 网站快链
 
+数据和文档
+    @ {
+        [社会融资规模]({{ site.data.links["docqq_afre"].link }})
+    }
+
 [书享家]({{ site.data.links["sxj"].link }} "{{ site.data.links["sxj"].desc }}")
 
 [z-library]({{ site.data.links["zlib"].link }})
