@@ -6,11 +6,11 @@ tags: git
 ---
 
 Git 是一个快速高效并免费开源的分布式版本管理系统。
-Linus Torvalds 原来使用 BitKeeper 做 Linux 的内核源码管理，因为中间出现了一些矛盾，Linus 觉得不能再用 BK 了，
-但是也不能回到使用 BK 之前的状态，所以在就动手写 git，用了一天让 git 可以自我管理，后续就用 git 管理上了 git 的源码，git 从无到有用了差不多 10 天。
 
-Git 命令主要分为高级（“瓷器”）命令和低级（“管道”）命令。日常中使用较多的是瓷器命令，瓷器命令最早是通过脚本将管道命令拼接使用的，现在也都可以通过管道命令组合出来。
-管道命令也会更稳定一些。
+Linus Torvalds 原来使用 BitKeeper 做 Linux 的内核源码管理，2005 年因为中间出现了一些矛盾，团队不能再用 BK，
+但是也不想回到没有 BK 辅助管理源码的混乱状态，于是 Linus 打算自己写个代码版本管理软件，用了一天时间让 git 可以完成基本工作，后续就用 git 管理上了 git 的源码，他一个人把 git 从无到有开发差不多只用了 10 天时间。
+
+
 
 ## 配置 git config
 
@@ -32,22 +32,22 @@ git branch -a # 查看本地及远端的所有分支
 git switch -c [branch-name] # 切换分支
 git checkout [branch-name] # 切换分支，同上命令
 git checkout -b [branch-name] # 创建分支，并切换到新分支上
-git merge [branch] # 将指定分支合并到当前分支
-git branch -f [branch-name] [commit-id] 在指定的 patch 上建立分支（若 branch 已经存在就切过去）
+git merge [branch-name] # 将指定分支合并到当前分支
+git branch -f [branch-name] [commit-id] # 在指定的 commit 上建立分支（若 branch 已经存在就切过去）
 git branch -d [branch-name] # 删除某个分支
 {% endhighlight %}
 
-可以新建一个和主分支没有任何关联的孤儿分支，可以单独放文档，或者存放一些页面，比如 Github Pages 功能就是用的 gh-pages 孤儿分支
+可以新建一个和主分支没有任何关联的孤儿分支，比如可以拿来放文档，或者存放一些页面，比如 Github Pages 功能就是用的 gh-pages 孤儿分支。
 
 {% highlight bash linedivs %}
-git checkout --orphan gh-pages # 创建孤儿分支 gh-pages，并切换到分支上，如果只是切换到 gh-pages 上就用 git checkout 即可
+git checkout --orphan gh-pages # 创建孤儿分支 gh-pages，并切换到分支上
 {% endhighlight %}
 
 
 ## 提交 git commit
 
 {% highlight bash linedivs %}
-git add [file] # 将文件进行快照处理用于版本控制
+git add [path-to-file] # 将文件加入暂存区
 git status # 展示工作区的状态
 git status --short --ignored # 简明展示工作区的状态，包含显示已忽略文件
 {% endhighlight %}
@@ -63,16 +63,16 @@ git commit --author="Bruce Wayne <wayne@example.com>" # 指定提交的作者
 用 git diff 显示变更内容
 
 {% highlight bash linedivs %}
-git diff [filename] # 显示工作目录和暂存区的差异
-git diff [commit-name] [filename] # 显示工作目录和指定提交的差异
-git diff HEAD [filename] # 显示工作目录和当前分支的最新提交记录的差异
-git diff --cached [commit-name] [filename] # 显示暂存区和指定提交的差异
-git diff --staged HEAD [filename] # 显示暂存区和当前分支的最新提交记录的差异，staged 和 cached 效果一样
+git diff [path-to-file] # 显示工作目录和暂存区的差异
+git diff [commit-id] [path-to-file] # 显示工作目录和指定提交的差异
+git diff HEAD [path-to-file] # 显示工作目录和当前分支的最新提交记录的差异
+git diff --cached [commit-id] [path-to-file] # 显示暂存区和指定提交的差异
+git diff --staged HEAD [path-to-file] # 显示暂存区和当前分支的最新提交记录的差异，staged 和 cached 效果一样
 {% endhighlight %}
 
 ![Git diff](/assets/img/post/git-diff.png "git diff")
 
-保存未提交变更到本地堆栈中
+保存未提交变更到本地堆栈中，一般用于中断本地开发临时切换到其他分支，后续切换分支回来再恢复变更继续开发。
 
 {% highlight bash linedivs %}
 git stash # 保存变更到本地堆栈中
@@ -84,7 +84,7 @@ git stash pop # 恢复最近一次入栈记录内容
 放弃修改，从某次提交中恢复历史版本
 
 {% highlight bash linedivs %}
-git checkout c5f567 -- file1/to/restore file2/to/restore
+git checkout [commit-id] -- [path-to-file1] [path-to-file2]
 {% endhighlight %}
 
 
@@ -96,8 +96,8 @@ Git 有两种类型的标签，一个是轻量标签（lightweight tag，也叫 
 
 {% highlight bash linedivs %}
 git tag -l # 列出当前所有标签
-git tag [tag-name] [commit-sha1] # 把无标注标签打在指定的 commit 上
-git tag [tag-name] [commit-sha1] -a -m [tag-annotation] # 把标注标签打在指定 commit 上，如果有多行标注就使用多个 -m， 或者不写 -m 会打开默认编辑器编辑
+git tag [tag-name] [commit-id] # 把无标注标签打在指定的 commit 上
+git tag [tag-name] [commit-id] -a -m [tag-annotation] # 把标注标签打在指定 commit 上，如果有多行标注就使用多个 -m， 或者不写 -m 会打开默认编辑器编辑
 git tag -d [tag-name] # 删除指定标签
 {% endhighlight %}
 
@@ -106,7 +106,7 @@ git tag -d [tag-name] # 删除指定标签
 
 {% highlight bash linedivs %}
 git init # 本地初始化 git 仓库
-git init --bare project.git # 初始化裸版本库，裸版本库一般用 .git 扩展名，裸版本库没有工作目录
+git init --bare project.git # 初始化裸版本库，裸版本库一般用 .git 扩展名，且没有工作目录
 git remote add origin [url] # 配置本地仓库的远端仓库地址，名字叫 origin
 git clone [url] # 将指定地址的仓库下载到本地
 git remote -v # 显示远端仓库及地址
@@ -148,49 +148,64 @@ git log --author="John Smith" # 显示某个指定 author 的提交记录
 git log --committer="John\|Mary" # 显示指定某几个 committer 的提交记录
 git log --after="2019-3-2" # 显示某天后的提交记录
 git log --before="yesterday" # 显示某天前的提交记录
-git log --follow [file] # 显示某个文件的提交记录
-git log -- [file] # 显示某个文件的提交记录，为避免文件名和分支名等重名，任何在 -- 后的字符串都将被当作文件名，在其之前的选项被当作分支名或者其他选项。
+git log --follow [path-to-file] # 显示某个文件的提交记录
+git log -- [path-to-file] # 显示某个文件的提交记录，为避免文件名和分支名等重名，任何在 -- 后的字符串都将被当作文件名，在其之前的选项被当作分支名或者其他选项。
 git log --grep="feat:" # 在提交记录中搜索关键词
 git log --no-merges # 不显示合并的提交记录
 git log --merges # 只显示合并的提交记录
 git log --format=fuller # 显示提交记录的 author 和 committer
 {% endhighlight %}
 
-Git 提供了一个 ```git show``` 命令来查看任意类型的对象，可以是某个提交的具体的信息及变更内容，或者是标签的具体信息，还可以用来显示目录（tree 对象）和文件内容（blob 对象）。
-
-{% highlight bash linedivs %}
-git show HEAD^^ # 查看当前提交的前第二次提交的具体信息和内容
-git show v0.1 # 查看标签
-git show [tag-name]:src/rand.c # 查看文件内容
-git show [commit-name]:src # 查看目录
-{% endhighlight %}
-
 
 ## 撤销提交 git reset
 
 {% highlight bash linedivs %}
-git reset [commit] # 撤销所有 [commit] 后的的提交，在本地保存更改
-git reset --hard [commit] # 放弃所有历史，改回指定提交。
+git reset [commit-id] # 撤销所有 [commit] 后的的提交，在本地保存更改
+git reset --hard [commit-id] # 放弃所有历史，改回指定提交。
 {% endhighlight %}
+
+取消提交到暂存区的变更，不改变工作目录的变更
+
+{% highlight bash linedivs %}
+git reset HEAD -- [path-to-file] # 取消暂存区某个文件的变更
+git reset HEAD -- . # 取消改文件夹下在暂存区的所有变更
+{% endhighlight %}
+
 
 ## 其他命令
 
-获取命令的帮助文档
+Git 命令主要分为高级（“瓷器”）命令和低级（“管道”）命令。日常中使用较多的是瓷器命令，瓷器命令最早是通过脚本将管道命令拼接使用的。
+管道命令会更稳定一些。
+
+获取命令的帮助文档。
+
 {% highlight bash linedivs %}
 git help [command]
 {% endhighlight %}
 
-获取 git 版本号
+获取 git 版本号。
+
 {% highlight bash linedivs %}
 git version
 {% endhighlight %}
 
-查看引用的全名，包含 .git/refs 文件夹下的内容，本地和远端的 refs 以及 tags
+Git 提供了一个 ```git show``` 命令来查看任意类型的对象，可以是某个提交的具体的信息及变更内容，或者是标签的具体信息，还可以用来显示目录（tree 对象）和文件内容（blob 对象）。
+
+{% highlight bash linedivs %}
+git show HEAD^^ # 查看当前提交往前数第二次提交的具体信息和内容
+git show v0.1 # 查看标签
+git show [tag-name]:src/rand.c # 查看指定标签版本下的文件内容
+git show [commit-id]:src # 查看指定提交下的目录内容
+{% endhighlight %}
+
+查看引用的全名，包含 .git/refs 文件夹下的内容，本地和远端的 refs 以及 tags。
+
 {% highlight bash linedivs %}
 git show-ref
 {% endhighlight %}
 
-查看 git 对象命令
+查看 git 对象命令。
+
 {% highlight bash linedivs %}
 git cat-file -p [sha1-id] # 打印 git 对象内容
 git cat-file -t [sha1-id] # 显示 git 对象类型
@@ -199,9 +214,13 @@ git cat-file -t [sha1-id] # 显示 git 对象类型
 
 ### 父引用的快捷写法
 
-在修订名后面紧接着输入 ^ 符号表示该修订的第一个父对象。例如，HEAD^ 代表 HEAD 的父对象（节点），即上一个提交。对于合并提交来说，会拥有多个父对象，为了查询多个父对象中的某一个，你需要在 ^ 字符后指定它的数字代号，使用 ```^<n>``` 意味着查看修订的第 n 个父对象。我们可以将 ^ 理解为 ^1 的快捷方式。一个比较特殊的情况是，```^0``` 指代的是该提交自身。其重要性只有在使用分支名作为参数和使用其他修订标识符产生歧义时才会体现出来。它还可以用来获取提交中包含附注（签名）的标签指针，```git show v0.9``` 会显示标签标注信息和提交的相关信息，而 ```git show v0.9^0``` 只会显示标签附着的提交的相关信息。这种后缀语法还可以组合使用。用户可以使用 HEAD^^ 来指向 HEAD 的祖父对象，即 HEAD^ 的父对象。
+在修订名后面紧接着输入 ^ 符号表示该修订的第一个父对象。例如，HEAD^ 代表 HEAD 的父对象（节点），即上一个提交。对于合并提交来说，会拥有多个父对象，为了查询多个父对象中的某一个，你需要在 ^ 字符后指定它的数字代号，使用 ```^<n>``` 意味着查看修订的第 n 个父对象。我们可以将 ^ 理解为 ^1 的快捷方式。
 
-还有另外一种声明父对象的链式表达。除了输入 n 个 ^ 后缀，例如 ^^…^ 或 ^1^1…^1，用户还可以使用 ```~<n>```。有一个特殊情况是 ~ 和 ~1 是等价的，例如 HEAD~ 和 HEAD^ 是等价的。HEAD~2 代表其第一个父对象的第一个父对象，即祖父对象，而且和 HEAD^^ 是等价的。
+一个比较特殊的情况是，```^0``` 指代的是该提交自身。它还可以用来获取提交中包含附注（签名）的标签指针，```git show v0.9``` 会显示标签标注信息和提交的相关信息，而 ```git show v0.9^0``` 只会显示标签附着的提交的相关信息。
+
+这种后缀语法还可以组合使用。用户可以使用 HEAD^^ 来指向 HEAD 的祖父对象，即 HEAD^ 的父对象。
+
+除了输入 n 个 ^ 后缀，例如 ^^…^ 或 ^1^1…^1，用户还可以使用 ```~<n>```。这样 ~ 和 ~1 是等价的，HEAD~ 和 HEAD^ 也是等价的。HEAD~2 代表其第一个父对象的第一个父对象，即祖父对象，和 HEAD^^ 是等价的。
 
 
 ### 引用日志 git reflog
