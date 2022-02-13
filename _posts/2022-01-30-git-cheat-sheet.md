@@ -82,6 +82,8 @@ git merge --no-ff feature-branch # 效果同上
 > 
 > **如果提交存在于你的仓库之外，而别人可能基于这些提交进行开发，那么不要执行变基。**
 
+`cherry-pick` 是挑选一个或几个提交选择性的变基。
+
 {% highlight bash linedivs %}
 git checkout topic
 
@@ -92,13 +94,19 @@ git checkout topic
 
 git rebase master
 git rebase master topic # 效果同上
-
 # 变基后
 #                             A'--B'--C' topic
 #                            /
 #               D---E---F---G master
 
+git cherry-pick G
+# 在变基前的基础上做挑选
+#                     A---B---C---G' topic
+#                    /
+#               D---E---F---G master
+
 {% endhighlight %}
+
 
 可以新建一个和主分支没有任何关联的**孤儿分支**，比如可以拿来放文档，或者存放一些页面，比如 Github Pages 功能就是用的 gh-pages 孤儿分支。
 
