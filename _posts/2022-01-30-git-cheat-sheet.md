@@ -37,12 +37,74 @@ git branch -f [branch-name] [commit-id] # 在指定的 commit 上建立分支（
 git branch -d [branch-name] # 删除某个分支
 {% endhighlight %}
 
-可以新建一个和主分支没有任何关联的孤儿分支，比如可以拿来放文档，或者存放一些页面，比如 Github Pages 功能就是用的 gh-pages 孤儿分支。
+整合不同的分支主要有两种方法：合并（merge）和变基（rebase）。
+
+**快进合并（fast-forward）**指的是合并操作中没有需要解决的分歧，这样在合并两者时只是简单的将指针向前推进（指针右移），对于是否使用快进有三个选项。
+
+1. 选项 merge --ff，也是 merge 的默认选项，能快进合并的时候会选择快进；
+2. 选项 merge --no-ff，能快进合并的时候也不快进，会额外再创建一个合并提交；
+3. 选项 merge --ff-only，能快进合并的时候会快进，无需合并操作的时候也会成功，其他情况都会拒绝合并并非 0 退出；
+
+{% highlight bash linedivs %}
+git checkout master
+
+# 不使用快进合并，会出现一个额外的“耳朵”
+#                           master
+# C0◄───C1◄───────────────────C5
+#       ▲                     │
+#       └────C2◄───C3◄───C4◄──┘
+#                            feature-branch
+git merge --no-ff feature-branch
+
+# 快进合并，指针右移
+#                      master
+# C0◄───C1◄──C2◄───C3◄───C4
+#            │-----------│
+#        feature branch commits
+git merge --ff feature-branch
+git merge --ff-only feature-branch # 效果同上
+
+# 无法快进合并，因为有 C5 提交的存在
+#                           master
+# C0◄───C1◄────────C5─────────C6
+#       ▲                     │
+#       └────C2◄───C3◄───C4◄──┘
+#                            feature-branch
+git merge --ff feature-branch
+git merge --no-ff feature-branch # 效果同上
+{% endhighlight %}
+
+**变基（rebase）**是将提交到某一分支上的所有修改都移至另一分支上，就好像“重新播放”一样。
+
+> 一般我们这样做的目的是为了确保在向远程分支推送时能保持提交历史的整洁——例如向某个其他人维护的项目贡献代码时。 在这种情况下，你首先在自己的分支里进行开发，当开发完成时你需要先将你的代码变基到 origin/master 上，然后再向主项目提交修改。 这样的话，该项目的维护者就不再需要进行整合工作，只需要快进合并便可。
+
+> 奇妙的变基也并非完美无缺，要用它得遵守一条准则：
+> 
+> **如果提交存在于你的仓库之外，而别人可能基于这些提交进行开发，那么不要执行变基。**
+
+{% highlight bash linedivs %}
+git checkout topic
+
+# 变基前
+#                     A---B---C topic
+#                    /
+#               D---E---F---G master
+
+git rebase master
+git rebase master topic # 效果同上
+
+# 变基后
+#                             A'--B'--C' topic
+#                            /
+#               D---E---F---G master
+
+{% endhighlight %}
+
+可以新建一个和主分支没有任何关联的**孤儿分支**，比如可以拿来放文档，或者存放一些页面，比如 Github Pages 功能就是用的 gh-pages 孤儿分支。
 
 {% highlight bash linedivs %}
 git checkout --orphan gh-pages # 创建孤儿分支 gh-pages，并切换到分支上
 {% endhighlight %}
-
 
 ## 提交 git commit
 
@@ -174,8 +236,8 @@ git reset HEAD -- . # 取消改文件夹下在暂存区的所有变更
 
 ## 其他命令
 
-Git 命令主要分为高级（“瓷器”）命令和低级（“管道”）命令。日常中使用较多的是瓷器命令，瓷器命令最早是通过脚本将管道命令拼接使用的。
-管道命令会更稳定一些。
+Git 命令主要分为上层（瓷器 porcelain）命令和底层（管道 plumbing）命令。日常中使用较多的是上层命令，上层命令最早是通过脚本将底层命令拼接使用的。
+底层命令会更稳定一些。
 
 获取命令的帮助文档。
 
@@ -212,7 +274,7 @@ git cat-file -t [sha1-id] # 显示 git 对象类型
 {% endhighlight %}
 
 
-### 父引用的快捷写法
+## 父引用的快捷写法
 
 在修订名后面紧接着输入 ^ 符号表示该修订的第一个父对象。例如，HEAD^ 代表 HEAD 的父对象（节点），即上一个提交。对于合并提交来说，会拥有多个父对象，为了查询多个父对象中的某一个，你需要在 ^ 字符后指定它的数字代号，使用 ```^<n>``` 意味着查看修订的第 n 个父对象。我们可以将 ^ 理解为 ^1 的快捷方式。
 
@@ -223,7 +285,7 @@ git cat-file -t [sha1-id] # 显示 git 对象类型
 除了输入 n 个 ^ 后缀，例如 ^^…^ 或 ^1^1…^1，用户还可以使用 ```~<n>```。这样 ~ 和 ~1 是等价的，HEAD~ 和 HEAD^ 也是等价的。HEAD~2 代表其第一个父对象的第一个父对象，即祖父对象，和 HEAD^^ 是等价的。
 
 
-### 引用日志 git reflog
+## 引用日志 git reflog
 每次更新 HEAD 或者更新分支首部时，git 会将这些信息记录在引用日志（reflog）中，这是以一种本地的临时日志，命令 ```git reflog``` 的输出中会用 HEAD@{n} 来表示 HEAD 之前的第 n 个值。
 
 如果是用分支名，如 master@{n}，它代表的是该分支之前的第 n 个值，@{n} 是个特例，它表示当前分支之前的第 n 个值。
