@@ -221,6 +221,43 @@ git log --format=fuller # 显示提交记录的 author 和 committer
 
 ## 撤销提交 git reset
 
+官网这篇[7.7 Git 工具 - 重置揭密](https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E7%BD%AE%E6%8F%AD%E5%AF%86)关于 reset 和 checkout 介绍很详细。
+
+git reset 会根据不同的参数来重置不同的区域
+
+1. 移动 HEAD 分支到指定的 commit（若指定了参数 --soft，则到此停止）
+2. 将指定的 commit 恢复到暂存区（若指定了参数 --mixed，则到此停止，也是 git reset 的默认参数）
+3. 将指定的 commit 恢复到工作目录（若指定了参数 --hard，就一直执行到这第 3 步）
+
+若 reset 命令中指定了路径，会跳过上面第一步，直接恢复指定的文件或者目录。
+
+`git reset --hard [branch]` 和 `git checkout [branch]` 非常类似，有两点不同，第一是 checkout 对工作目录会更安全些，第二是 reset 是移动 HEAD 所指向分支的指向，而 checkout 是移动 HEAD 指向的分支。
+
+{% highlight bash linedivs %}
+         HEAD    HEAD                    HEAD
+           |       |                       | 
+           V       V                       V 
+master    dev    master    dev    master  dev
+  |        |       |        |       |    /     
+  V        V       V        V       V  /      
+  C1 <--- C2       C1 <--- C2       C1 <--- C2 
+   初始状态         checkout 后       reset 后  
+{% endhighlight %}
+
+
+下面的表格整理出来各命令的相关影响区域。“HEAD” 一列中的 “REF” 表示该命令移动了 HEAD 指向的分支引用，而 “HEAD” 则表示只移动了 HEAD 自身。
+
+|                             | HEAD  | Index | WordDir | WD Safe? |
+| :-------------------------- | :---: | :---: | :-----: | :------: |
+| **Commit Level**            |       |       |         |          |
+| `reset --soft [commit]`     |  REF  |  No   |   No    |   Yes    |
+| `reset [commit]`            |  REF  |  Yes  |   No    |   Yes    |
+| `reset --hard [commit]`     |  REF  |  Yes  |   Yes   |    No    |
+| `checkout [commit]`         | HEAD  |  Yes  |   Yes   |   Yes    |
+| **Commit Level**            |       |       |         |          |
+| `reset [commit] <paths>`    |  No   |  Yes  |   No    |   Yes    |
+| `checkout [commit] <paths>` |  No   |  Yes  |   Yes   |    No    |
+
 {% highlight bash linedivs %}
 git reset [commit-id] # 撤销所有 [commit] 后的的提交，在本地保存更改
 git reset --hard [commit-id] # 放弃所有历史，改回指定提交。
@@ -230,7 +267,7 @@ git reset --hard [commit-id] # 放弃所有历史，改回指定提交。
 
 {% highlight bash linedivs %}
 git reset HEAD -- [path-to-file] # 取消暂存区某个文件的变更
-git reset HEAD -- . # 取消改文件夹下在暂存区的所有变更
+git reset HEAD -- . # 取消当前文件夹下在暂存区的所有变更
 {% endhighlight %}
 
 
@@ -332,7 +369,7 @@ Git 的工作目录中的文件主要分为下面几种状态
   * 已忽略文件
   * 未跟踪文件
 
-还有另一种状态，在使用 ```git add``` 命令后 git 会对其索引（index），存储将要提交信息的暂存区。这样上面的已修改文件和未跟踪文件都要再区分下是否已进入暂存区。
+还有另一种状态，在使用 ```git add``` 命令后 git 会对其索引（index），存储将要提交信息的暂存区，索引是预期的下一次提交。这样上面的已修改文件和未跟踪文件都要再区分下是否已进入暂存区。
 
 ![Git index](/assets/img/post/git-index.png "git index")
 
