@@ -216,7 +216,8 @@
     },
     "zlib": {
         "name": "z-lib",
-        "link": "https://z-lib.org/"
+        "link": "https://z-lib.org/",
+        "desc": "免费电子书网站"
     },
     "laosheng": {
         "name": "云媒体",
@@ -225,14 +226,22 @@
     },
     "wanqu": {
         "name": "湾区日报",
-        "link": "https://wanqu.co/issues/"
+        "link": "https://wanqu.co/issues/",
+        "desc": "湾区日报：关注创业与技术"
     },
     "ruanyifeng": {
         "name": "阮一峰博客",
-        "link": "http://www.ruanyifeng.com/blog/"
+        "link": "http://www.ruanyifeng.com/blog/",
+        "desc": "阮一峰的网络日志"
     },
     "docqq_afre": {
         "name": "社会融资规模",
-        "link": "https://docs.qq.com/sheet/DV3NRdUV1allyT2RL"
+        "link": "https://docs.qq.com/sheet/DV3NRdUV1allyT2RL",
+        "desc": "社会融资规模表格-腾讯文档"
+    },
+    "visualping": {
+        "name": "visualping",
+        "link": "https://visualping.io/",
+        "desc": "监控网站的变化并通知"
     }
 }
