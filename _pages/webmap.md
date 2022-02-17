@@ -4,6 +4,121 @@ title: 网站导航
 permalink: /WebMap/
 ---
 
+## 新闻网站
+
+纽约时报 @ {
+    [中文]({{ site.data.links["nytimescn"].link }})
+    * [英文]({{ site.data.links["nytimes"].link }})
+    * [英文翻译]({{ site.data.links["nytimes2cn"].link }})
+}
+华尔街日报 @{
+    [中文]({{ site.data.links["wsjcn"].link }})
+    * [英文]({{ site.data.links["wsj"].link }})
+    * [英文翻译]({{ site.data.links["wsj2cn"].link }})
+}
+
+华盛顿邮报 @ {
+    [英文]({{ site.data.links["washingtonpost"].link }})
+    * [英文翻译]({{ site.data.links["washingtonpost2cn"].link }})
+}
+福克斯新闻频道 @ {
+    [英文]({{ site.data.links["foxnews"].link }})
+    * [英文翻译]({{ site.data.links["foxnews2cn"].link }})
+}
+
+美国有线电视新闻网 @ {
+    [英文]({{ site.data.links["cnn"].link }})
+    * [英文翻译]({{ site.data.links["cnn2cn"].link }})
+} 
+金融时报 @ {
+    [英文]({{ site.data.links["ft"].link }})
+    * [英文翻译]({{ site.data.links["ft2cn"].link }})
+}
+
+泰晤士报 @ {
+    [英文]({{ site.data.links["thetimes"].link }})
+    * [英文翻译]({{ site.data.links["thetimes2cn"].link }})
+}
+路透社 @ {
+    [中文]({{ site.data.links["reuterscn"].link }})
+    * [英文]({{ site.data.links["reuters"].link }})
+    * [英文翻译]({{ site.data.links["reuters2cn"].link }})
+}
+
+世界新闻报道（俄罗斯）@ {
+    [英文]({{ site.data.links["einnews"].link }})
+}
+
+朝日新闻 @ {
+    [日语]({{ site.data.links["asahi"].link }})
+    * [日语翻译]({{ site.data.links["asahi2cn"].link }})
+}
+读卖新闻 @ {
+    [日语]({{ site.data.links["yomiuri"].link }})
+    * [日语翻译]({{ site.data.links["yomiuri"].link }})
+}
+
+
+约旦时报 @ {
+    [英文]({{ site.data.links["jordantimes"].link }})
+    * [英文翻译]({{ site.data.links["jordantimes2cn"].link }})
+}
+世界报 @ {
+    [中文]({{ site.data.links["rficn"].link }})
+    * [法语]({{ site.data.links["rfi"].link }})
+    * [法语翻译]({{ site.data.links["rfi2cn"].link }})
+}
+
+费加罗报 @ {
+    [法语]({{ site.data.links["lefigaro"].link }} "{{ site.data.links["lefigaro"].desc }}")
+    * [法语翻译]({{ site.data.links["lefigaro2cn"].link }} "{{ site.data.links["lefigaro"].desc }}")
+}
+明镜周刊 @ {
+    [德语]({{ site.data.links["spiegel"].link }})
+    * [德语翻译]({{ site.data.links["spiegel2cn"].link }})
+}
+
+世界报 @ {
+    [德语]({{ site.data.links["welt"].link }})
+    * [德语翻译]({{ site.data.links["welt2cn"].link }})
+}
+法兰克福汇报 @ {
+    [英文]({{ site.data.links["faz"].link }})
+    * [英文翻译]({{ site.data.links["faz2cn"].link }})
+}
+
+[环球时报]({{ site.data.links["huanqiu"].link }})
+[人民日报]({{ site.data.links["people"].link }})
+
+
+### 金融
+
+经济学人 @ {
+    [英文]({{ site.data.links["economist"].link }})
+    * [英文翻译]({{ site.data.links["economist2cn"].link }})
+    * [杂志]({{ site.data.links["economistpdf"].link }})
+}
+日本经济新闻 @ {
+    [英文]({{ site.data.links["nikkei"].link }})
+    * [英文翻译]({{ site.data.links["nikkei2cn"].link }})
+}
+
+美国消费者新闻与商业频道 @ {
+    [英文]({{ site.data.links["cnbc"].link }})
+    * [英文翻译]({{ site.data.links["cnbc2cn"].link }})
+}
+
+[Financial Visualizations]({{ site.data.links["finviz"].link }})
+
+[财新网]({{ site.data.links["caixin"].link }})
+
+### 房地产
+
+LoopNet @ {
+    [英文]({{ site.data.links["loopnet"].link }})
+    * [英文翻译]({{ site.data.links["loopnet"].link }})
+}
+
 ## 政府网站
 
 [中华人民共和国中央人民政府]({{ site.data.links["gov"].link }}) 
