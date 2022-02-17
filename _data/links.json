@@ -243,5 +243,207 @@
         "name": "visualping",
         "link": "https://visualping.io/",
         "desc": "监控网站的变化并通知"
+    },
+    "nytimescn": {
+        "name": "纽约时报中文网",
+        "link": "https://cn.nytimes.com/"
+    },
+    "nytimes": {
+        "name": "纽约时报",
+        "link": "https://www.nytimes.com/"
+    },
+    "nytimes2cn": {
+        "name": "纽约时报翻译",
+        "link": "https://www-nytimes-com.translate.goog/?_x_tr_sl=auto&_x_tr_tl=zh-CN&_x_tr_hl=zh-CN"
+    },
+    "caixin": {
+        "name": "财新网",
+        "link": "https://www.caixin.com/"
+    },
+    "washingtonpost": {
+        "name": "华盛顿邮报",
+        "link": "https://www.washingtonpost.com/"
+    },
+    "washingtonpost2cn": {
+        "name": "纽约时报翻译",
+        "link": "https://www-washingtonpost-com.translate.goog/?_x_tr_sl=auto&_x_tr_tl=zh-CN&_x_tr_hl=zh-CN"
+    },
+    "wsjcn": {
+        "name": "华盛顿日报中文版",
+        "link": "https://cn.wsj.com/"
+    },
+    "wsj": {
+        "name": "华盛顿日报",
+        "link": "https://www.wsj.com/"
+    },
+    "wsj2cn": {
+        "name": "华盛顿日报翻译",
+        "link": "https://www-wsj-com.translate.goog/?_x_tr_sl=auto&_x_tr_tl=zh-CN&_x_tr_hl=zh-CN"
+    },
+    "foxnews": {
+        "name": "福克斯新闻频道",
+        "link": "https://www.foxnews.com/"
+    },
+    "foxnews2cn": {
+        "name": "福克斯新闻频道翻译",
+        "link": "https://www-foxnews-com.translate.goog/?_x_tr_sl=auto&_x_tr_tl=zh-CN&_x_tr_hl=zh-CN"
+    },
+    "cnn": {
+        "name": "美国有线电视新闻网",
+        "link": "https://edition.cnn.com/"
+    },
+    "cnn2cn": {
+        "name": "美国有线电视新闻网翻译",
+        "link": "https://edition-cnn-com.translate.goog/?_x_tr_sl=auto&_x_tr_tl=zh-CN&_x_tr_hl=zh-CN"
+    },
+    "ft": {
+        "name": "金融时报",
+        "link": "https://www.ft.com/"
+    },
+    "ft2cn": {
+        "name": "金融时报翻译",
+        "link": "https://www-ft-com.translate.goog/?_x_tr_sl=auto&_x_tr_tl=zh-CN&_x_tr_hl=zh-CN"
+    },
+    "thetimes": {
+        "name": "泰晤士报",
+        "link": "https://www.thetimes.co.uk/"
+    },
+    "thetimes2cn": {
+        "name": "泰晤士报翻译",
+        "link": "https://www-thetimes-co-uk.translate.goog/?_x_tr_sl=auto&_x_tr_tl=zh-CN&_x_tr_hl=zh-CN"
+    },
+    "reuterscn": {
+        "name": "路透社中文版",
+        "link": "https://cn.reuters.com/"
+    },
+    "reuters": {
+        "name": "路透社",
+        "link": "https://www.reuters.com/"
+    },
+    "reuters2cn": {
+        "name": "路透社翻译",
+        "link": "https://www-reuters-com.translate.goog/?_x_tr_sl=auto&_x_tr_tl=zh-CN&_x_tr_hl=zh-CN"
+    },
+    "einnews": {
+        "name": "世界新闻报道(俄罗斯)",
+        "link": "https://world.einnews.com/country/russia"
+    },
+    "asahi": {
+        "name": "朝日新闻",
+        "link": "https://www.asahi.com/"
+    },
+    "asahi2cn": {
+        "name": "朝日新闻翻译",
+        "link": "https://www-asahi-com.translate.goog/?_x_tr_sl=auto&_x_tr_tl=zh-CN&_x_tr_hl=zh-CN"
+    },
+    "yomiuri": {
+        "name": "读卖新闻",
+        "link": "https://www.yomiuri.co.jp/"
+    },
+    "yomiuri2cn": {
+        "name": "读卖新闻翻译",
+        "link": "https://www-yomiuri-co-jp.translate.goog/?_x_tr_sl=auto&_x_tr_tl=zh-CN&_x_tr_hl=zh-CN"
+    },
+    "nikkei": {
+        "name": "日本经济新闻",
+        "link": "https://www.nikkei.com/"
+    },
+    "nikkei2cn": {
+        "name": "日本经济新闻翻译",
+        "link": "https://www-nikkei-com.translate.goog/?_x_tr_sl=auto&_x_tr_tl=zh-CN&_x_tr_hl=zh-CN"
+    },
+    "jordantimes": {
+        "name": "约旦时报",
+        "link": "https://www.jordantimes.com/"
+    },
+    "jordantimes2cn": {
+        "name": "约旦时报翻译",
+        "link": "https://www-jordantimes-com.translate.goog/?_x_tr_sl=auto&_x_tr_tl=zh-CN&_x_tr_hl=zh-CN"
+    },
+    "rficn": {
+        "name": "世界报中文版",
+        "link": "https://www.rfi.fr/cn/"
+    },
+    "rfi": {
+        "name": "世界报",
+        "link": "https://www.rfi.fr/fr/"
+    },
+    "rfi2cn": {
+        "name": "世界报翻译",
+        "link": "https://www-rfi-fr.translate.goog/fr/?_x_tr_sl=auto&_x_tr_tl=zh-CN&_x_tr_hl=zh-CN"
+    },
+    "lefigaro": {
+        "name": "费加罗报",
+        "link": "https://www.lefigaro.fr/",
+        "desc": "该报的报头和座右铭“倘若批评不自由，则赞美亦无意义"
+    },
+    "lefigaro2cn": {
+        "name": "费加罗报翻译",
+        "link": "https://www-lefigaro-fr.translate.goog/?_x_tr_sl=auto&_x_tr_tl=zh-CN&_x_tr_hl=zh-CN"
+    },
+    "spiegel": {
+        "name": "明镜周刊",
+        "link": "https://www.spiegel.de/"
+    },
+    "spiegel2cn": {
+        "name": "明镜周刊翻译",
+        "link": "https://www-spiegel-de.translate.goog/?_x_tr_sl=auto&_x_tr_tl=zh-CN&_x_tr_hl=zh-CN"
+    },
+    "welt": {
+        "name": "世界报",
+        "link": "https://www.welt.de/"
+    },
+    "welt2cn": {
+        "name": "世界报翻译",
+        "link": "https://www-welt-de.translate.goog/?_x_tr_sl=auto&_x_tr_tl=zh-CN&_x_tr_hl=zh-CN"
+    },
+    "faz": {
+        "name": "法兰克福汇报",
+        "link": "https://www.faz.net/aktuell/"
+    },
+    "faz2cn": {
+        "name": "法兰克福汇报翻译",
+        "link": "https://www-faz-net.translate.goog/aktuell/?_x_tr_sl=auto&_x_tr_tl=zh-CN&_x_tr_hl=zh-CN"
+    },
+    "huanqiu": {
+        "name": "环球时报",
+        "link": "https://www.huanqiu.com/"
+    },
+    "people": {
+        "name": "人民日报",
+        "link": "http://www.people.com.cn/"
+    },
+    "economist": {
+        "name": "经济学人",
+        "link": "https://www.economist.com/"
+    },
+    "economist2cn": {
+        "name": "经济学人翻译",
+        "link": "https://www-economist-com.translate.goog/?_x_tr_sl=auto&_x_tr_tl=zh-CN&_x_tr_hl=zh-CN"
+    },
+    "economistpdf": {
+        "name": "经济学人杂志",
+        "link": "https://getmyte.com/current-issue/"
+    },
+    "cnbc": {
+        "name": "美国消费者新闻与商业频道",
+        "link": "https://www.cnbc.com/world/?region=world"
+    },
+    "cnbc2cn": {
+        "name": "美国消费者新闻与商业频道翻译",
+        "link": "https://www-cnbc-com.translate.goog/world/?region=world&_x_tr_sl=auto&_x_tr_tl=zh-CN&_x_tr_hl=zh-CN"
+    },
+    "finviz": {
+        "name": "Financial Visualizations",
+        "link": "https://finviz.com/"
+    },
+    "loopnet": {
+        "name": "LoopNet",
+        "link": "https://www.loopnet.com/",
+        "desc": "美国最大的商用房地产交易网站"
+    },
+    "loopnet2cn": {
+        "name": "LoopNet 翻译",
+        "link": "https://www-loopnet-com.translate.goog/?_x_tr_sl=auto&_x_tr_tl=zh-CN&_x_tr_hl=zh-CN"
     }
 }
