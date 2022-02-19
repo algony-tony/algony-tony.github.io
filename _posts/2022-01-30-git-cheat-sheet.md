@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Git 使用手册
+excerpt: Git 基本概念解释及命令查询手册
+image: /assets/img/post/git-diff.png
 categories: 软件技术
 tags: git
 ---
