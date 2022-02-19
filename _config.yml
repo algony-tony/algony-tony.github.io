@@ -97,6 +97,13 @@ gems:
   - jekyll-feed # Create an Atom feed using the official Jekyll feed gem
   - jekyll-seo-tag
 
+# jekyll-feed settings
+feed:
+  posts_limit: 20
+  excerpt_only: true
+  tags: false
+
+
 include:
  - _pages
 

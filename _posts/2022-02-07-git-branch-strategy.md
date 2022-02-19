@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Git 分支使用策略
+excerpt: 介绍 git-flow 的分支策略模型。
+image: /assets/img/post/Git-branching-model.png
 categories: 软件技术
 tags: git
 ---
