@@ -55,7 +55,7 @@ permalink: /WebMap/
 }
 读卖新闻 @ {
     [日语]({{ site.data.links["yomiuri"].link }})
-    * [日语翻译]({{ site.data.links["yomiuri"].link }})
+    * [日语翻译]({{ site.data.links["yomiuri2cn"].link }})
 }
 
 
