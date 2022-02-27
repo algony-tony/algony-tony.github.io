@@ -445,5 +445,21 @@
     "loopnet2cn": {
         "name": "LoopNet 翻译",
         "link": "https://www-loopnet-com.translate.goog/?_x_tr_sl=auto&_x_tr_tl=zh-CN&_x_tr_hl=zh-CN"
+    },
+    "m0data": {
+        "name": "m0data",
+        "link": "https://tradingeconomics.com/china/money-supply-m0"
+    },
+    "m1data": {
+        "name": "m1data",
+        "link": "https://tradingeconomics.com/china/money-supply-m1"
+    },
+    "m2data": {
+        "name": "m2data",
+        "link": "https://tradingeconomics.com/china/money-supply-m2"
+    },
+    "eastmoneym012": {
+        "name": "东方财富货币供应量",
+        "link": "https://data.eastmoney.com/cjsj/hbgyl.html"
     }
 }
