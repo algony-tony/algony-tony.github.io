@@ -100,7 +100,7 @@ gems:
 # jekyll-feed settings
 feed:
   posts_limit: 20
-  excerpt_only: true
+  excerpt_only: false
   tags: false
 
 
