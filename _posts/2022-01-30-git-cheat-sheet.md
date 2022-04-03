@@ -194,6 +194,13 @@ git push # 将所有本地分支提交上传到远端
 git push [remote-name] [local-branch-name]:[remote-branch-name] # 将本地的分支推送到远端，如果分支名一样可以省略冒号及之后的内容
 {% endhighlight %}
 
+在本地的分支做了 reset 回退操作后，推到远端时需要加上 `-f` 选项，否则会提示本地分支落后远端。
+{% highlight bash linedivs %}
+git checkout master
+git reset --hard [commit-id]
+git push -f origin master
+{% endhighlight %}
+
 默认情况下，git push 命令并不会传送标签到远端仓库服务器上。 在创建完标签后你必须显式地推送标签到共享服务器上。
 
 {% highlight bash linedivs %}
