@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 在 Linux Shell 中如果只允许同时最多一个程序运行
+title: 在 Linux Shell 中如何只允许同时最多一个程序运行
 excerpt: 主要介绍两种方案，使用 flock 命令，或者使用 pid 文件。
 categories: 软件技术
 tags: Linux shell
