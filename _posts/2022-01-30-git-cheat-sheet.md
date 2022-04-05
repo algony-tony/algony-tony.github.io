@@ -190,9 +190,25 @@ git fetch # 下载远端跟踪分支的所有历史
 git merge # 将远端跟踪分支合并到当前本地分支
 git pull # 使用来自对应远端分支的所有新提交更新你当前的本地工作分支。git pull 是 git fetch 和 git merge 的结合
 git fetch [remote-name] [remote-branch-name]:[local-branch-name] # 同步远端分支到本地指定分支，本地分支如果不存在会创建指定分支名的分支
-git push # 将所有本地分支提交上传到远端
+{% endhighlight %}
+
+设置推送的默认行为 `push.default` 的几个选项，[参考链接](https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushdefault)：
+* nothing：不做任何推送；
+* matching：只推送两端同名分支，Git 2.0 之前的默认设置；
+* upstream：只推送当前分支到它设置好的上游分支，tracking 是相同意义的旧用法；
+* current：只推送当前分支到它的同名分支上；
+* simple：Git 2.0 后的默认行为，只推送当前分支到它的上游同名分支上，等于 upstream + current；
+{% highlight bash linedivs %}
+git push # 不加任何参数的推送行为由 push.default 设置
+git config push.default # 查看 push 的默认行为
+git config push.default simple # 设置 push 的默认行为
+
+# --all 会将路径 refs/heads 下的所有分支都推送
+# -u 是将推送成功的分支都加上上游跟踪引用
+git push --all -u # 将所有本地分支提交上传到远端
 git push [remote-name] [local-branch-name]:[remote-branch-name] # 将本地的分支推送到远端，如果分支名一样可以省略冒号及之后的内容
 {% endhighlight %}
+
 
 在本地的分支做了 reset 回退操作后，推到远端时需要加上 `-f` 选项，否则会提示本地分支落后远端。
 {% highlight bash linedivs %}
