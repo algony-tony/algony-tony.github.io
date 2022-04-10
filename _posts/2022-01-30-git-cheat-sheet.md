@@ -19,6 +19,7 @@ git config --global user.name "[name]"
 git config --global user.email "[email address]"
 git config --list # 列出配置项
 git config --global color.ui auto # 使用 Git 命令行配色
+git config --global core.editor "vim" # 使用 vim 作为 git 的默认编辑器
 {% endhighlight %}
 
 
