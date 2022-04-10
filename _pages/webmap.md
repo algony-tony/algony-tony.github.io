@@ -239,6 +239,8 @@ LoopNet @ {
 
 [天天基金网]({{ site.data.links["ttjj"].link }})
 
+[美国10Y-2Y国债收益率]({{ site.data.links["10-2spread"].link }} "{{ site.data.links["10-2spread"].desc }}")
+
 ## 网站快链
 
 数据和文档

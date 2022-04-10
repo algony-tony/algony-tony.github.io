@@ -461,5 +461,10 @@
     "eastmoneym012": {
         "name": "东方财富货币供应量",
         "link": "https://data.eastmoney.com/cjsj/hbgyl.html"
+    },
+    "10-2spread": {
+        "name": "美国10年期-2年期国债利率",
+        "link": "https://www.cnbc.com/quotes/10Y2YS",
+        "desc": "出现负值，即国债收益率倒挂 (yield curve inversion) 是传说中最可靠的 recession 先行指标"
     }
 }
