@@ -40,8 +40,7 @@ permalink: /WebMap/
     * [英文翻译]({{ site.data.links["thetimes2cn"].link }})
 }
 路透社 @ {
-    [中文]({{ site.data.links["reuterscn"].link }})
-    * [英文]({{ site.data.links["reuters"].link }})
+    [英文]({{ site.data.links["reuters"].link }})
     * [英文翻译]({{ site.data.links["reuters2cn"].link }})
 }
 
