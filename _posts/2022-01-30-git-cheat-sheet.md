@@ -36,9 +36,16 @@ git checkout -b [branch-name] # 创建分支，并切换到新分支上
 git merge [branch-name] # 将指定分支合并到当前分支
 git branch -f [branch-name] [commit-id] # 在指定的 commit 上建立分支（若 branch 已经存在就切过去）
 git branch -d [branch-name] # 删除某个分支
+
+git branch -m [oldname] [newname] # 重命名分支
+git branch -m [newname] # 将当前分支重命名
+# 如果在 Windows 这种大小写不敏感的系统中，并且分支改名只是改了大小写字母，那要用大写 -M 参数，否则会报错分支已存在
+
 {% endhighlight %}
 
 整合不同的分支主要有两种方法：合并（merge）和变基（rebase）。
+
+### 合并分支 merge
 
 **快进合并（fast-forward）**指的是合并操作中没有需要解决的分歧，这样在合并两者时只是简单的将指针向前推进（指针右移），对于是否使用快进有三个选项。
 
@@ -74,6 +81,8 @@ git merge --ff-only feature-branch # 效果同上
 git merge --ff feature-branch
 git merge --no-ff feature-branch # 效果同上
 {% endhighlight %}
+
+### 变基操作 rebase
 
 **变基（rebase）**是将提交到某一分支上的所有修改都移至另一分支上，就好像“重新播放”一样。
 
