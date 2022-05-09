@@ -62,10 +62,6 @@ $text-color: $black !default;
 $background-color: $white !default;
 $table-border-color: $light-gray !default;
 
-// $darkerGray: #222;
-// $darkGray: #333;
-// $lightGray: #eee;
-
 /* Define some common color variables */
 
 $link: $dark-blue !default;
@@ -82,8 +78,10 @@ $header-border: $gray !default;
 
 // Width of the content area
 $content-width: 880px !default;
+$wide-content-width: 1200px !default;
 $on-palm: 600px !default;
 $on-laptop: 880px !default;
+$sidebar-width: 250px !default;
 
 // Use media queries like this:
 // @include media-query($on-palm) {

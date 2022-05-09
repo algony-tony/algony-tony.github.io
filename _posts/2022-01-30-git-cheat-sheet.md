@@ -5,7 +5,11 @@ excerpt: Git 基本概念解释及命令查询手册
 image: /assets/img/post/git-diff.png
 categories: 软件技术
 tags: git
+toc: true
 ---
+
+* TOC
+{:toc}
 
 Git 是一个快速高效并免费开源的分布式版本管理系统。
 
