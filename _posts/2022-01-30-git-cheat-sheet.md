@@ -38,9 +38,16 @@ git checkout -b [branch-name] # 创建分支，并切换到新分支上
 git merge [branch-name] # 将指定分支合并到当前分支
 git branch -f [branch-name] [commit-id] # 在指定的 commit 上建立分支（若 branch 已经存在就切过去）
 git branch -d [branch-name] # 删除某个分支
+
+git branch -m [oldname] [newname] # 重命名分支
+git branch -m [newname] # 将当前分支重命名
+# 如果在 Windows 这种大小写不敏感的系统中，并且分支改名只是改了大小写字母，那要用大写 -M 参数，否则会报错分支已存在
+
 {% endhighlight %}
 
 整合不同的分支主要有两种方法：合并（merge）和变基（rebase）。
+
+### 合并分支 merge
 
 **快进合并（fast-forward）**指的是合并操作中没有需要解决的分歧，这样在合并两者时只是简单的将指针向前推进（指针右移），对于是否使用快进有三个选项。
 
@@ -76,6 +83,8 @@ git merge --ff-only feature-branch # 效果同上
 git merge --ff feature-branch
 git merge --no-ff feature-branch # 效果同上
 {% endhighlight %}
+
+### 变基操作 rebase
 
 **变基（rebase）**是将提交到某一分支上的所有修改都移至另一分支上，就好像“重新播放”一样。
 
@@ -407,8 +416,112 @@ Git 的工作目录中的文件主要分为下面几种状态
 
 ![Git index](/assets/img/post/git-index.png "git index")
 
+## 实战操作
 
-### 参考
+这部分内容就是应用上面介绍的基础知识应用到具体的操作上，里面的内容主要来自 Stackoverflow 网友的回答。
+
+### 如何把一些提交从一个 Git 仓库拷贝到另一个 Git 仓库中
+
+[How to copy commits from one Git repo to another?](https://stackoverflow.com/questions/37471740/how-to-copy-commits-from-one-git-repo-to-another)
+
+在新仓库中添加远程仓库的地址，然后挑选出远程仓库需要的提交在新仓库中重播，步骤代码如下
+
+{% highlight bash linedivs %}
+# add the old repo as a remote repository 
+git remote add oldrepo https://github.com/path/to/oldrepo
+
+# get the old repo commits
+git remote update
+
+# examine the whole tree
+git log --all --oneline --graph --decorate
+
+# copy (cherry-pick) the commits from the old repo into your new local one
+git cherry-pick sha-of-commit-one
+git cherry-pick sha-of-commit-two
+git cherry-pick sha-of-commit-three
+
+# check your local repo is correct
+git log
+
+# remove the now-unneeded reference to oldrepo
+git remote remove oldrepo
+{% endhighlight %}
+
+### 如何合并提交
+[How can I merge two commits into one if I already started rebase?](https://stackoverflow.com/questions/2563632/how-can-i-merge-two-commits-into-one-if-i-already-started-rebase)
+
+[squashing commits with rebase](https://gitready.com/advanced/2009/02/10/squashing-commits-with-rebase.html)
+
+假设 git 的历史如下，c 是最近一次提交，a 是较早的一次提交，我们想把 b 和 c 合并成一个提交，最后只留下 a 和 bc 两个提交。
+
+{% highlight bash linedivs %}
+git log -n 3 --pretty=oneline
+b64ec63ade24acf985972549e9a6e756a887cd13 c
+e993be87563a6f7b23251d56df0410e38c530e4e b
+b109737d9e52538129fb50b3263bae594120c008 a
+{% endhighlight %}
+
+可以使用 rebase 的交互模式（`--interactive` 或者 `-i`），`git rebase --interactive HEAD~2` 会进入如下编辑模式，里面包含了很清晰的解释，注意此处提交的顺序和上面不同，是最早的提交记录在上面。
+
+{% highlight bash linedivs %}
+pick e993be8 b
+pick b64ec63 c
+
+# Rebase b109737..b64ec63 onto b109737 (2 commands)
+#
+# Commands:
+# p, pick <commit> = use commit
+# r, reword <commit> = use commit, but edit the commit message
+# e, edit <commit> = use commit, but stop for amending
+# s, squash <commit> = use commit, but meld into previous commit
+# f, fixup <commit> = like "squash", but discard this commit's log message
+# x, exec <command> = run command (the rest of the line) using shell
+# b, break = stop here (continue rebase later with 'git rebase --continue')
+# d, drop <commit> = remove commit
+# l, label <label> = label current HEAD with a name
+# t, reset <label> = reset HEAD to a label
+# m, merge [-C <commit> | -c <commit>] <label> [# <oneline>]
+# .       create a merge commit using the original merge commit's
+# .       message (or the oneline, if no original merge commit was
+# .       specified). Use -c <commit> to reword the commit message.
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+# However, if you remove everything, the rebase will be aborted.
+#
+{% endhighlight %}
+
+把上面第二行的提交 c 前面的 `pick` 改成 `squash`，也即把新的提交压入上一次提交中，"squashing upward"。
+
+{% highlight bash linedivs %}
+pick e993be8 b
+squash b64ec63 c
+{% endhighlight %}
+
+修改如上，保存后会进入合并提交消息的编辑窗口，修改后保存即可。
+
+### 如何在仓库中删除某位作者的所有提交
+[Remove all commits by author](https://stackoverflow.com/questions/39232800/remove-all-commits-by-author)
+
+基本思想是挑选出需要的提交，在新的分支上重播一遍。
+
+{% highlight bash linedivs %}
+# 从某个节点开始创建新分支
+git checkout -b <branch-name> <base-commit>
+
+# 从 master 分支中挑选出提交并在当前分支上重播
+# --author "<name>" 过滤出作者，如果过滤 committer 用参数 --committer
+# --invert-grep 反选上面的筛选结果，在此处即选出非指定作者的提交
+# --reverse 结果用逆向排序，即满足条件的最早提交在第一行
+# --format="format:%H" 指定只显示 commit hash 值
+git log --author "<name>" --invert-grep --reverse --format="format:%H" HEAD..master | xargs git cherry-pick
+{% endhighlight %}
+
+
+## 参考链接
 [Pro Git](https://git-scm.com/book/zh/v2)
 
 [Git Reference](https://git-scm.com/docs)
