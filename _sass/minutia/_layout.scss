@@ -15,23 +15,27 @@
 }
 
 .site-info {
-    float: left;
-    border: none;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-end;
+    overflow-x: hidden;
+    color: $mild-gray;
 }
 
 .site-name {
-    color: $mild-gray;
     cursor: pointer;
     font-weight: $base-font-weight;
     font-size: $base-font-size * 2;
-    border: none;
-    text-decoration: none;
 }
 
 .site-description {
-    color: $mild-gray;
     font-size: $base-font-size;
-    border: none;
+
+    @include media-query($on-palm) {
+        display: none;
+    }
 }
 
 .site-header {
@@ -52,12 +56,11 @@
     }
 }
 
-.wrapper-header {
+.wrapper-header,
+.wrapper-header-with-side {
     display: flex;
     flex-wrap: wrap;
     align-items: stretch;
-
-    // height: $base-font-size * 3;
 }
 
 .header-left {
@@ -65,9 +68,10 @@
     flex-wrap: wrap;
     align-items: stretch;
     flex: 1 1 auto;
-    height: $base-font-size * 3;
-
+    
     padding-right: $spacing-unit;
+    border: none;
+    text-decoration: none;
 }
 
 .header-right {
@@ -112,9 +116,17 @@
     color: $gray;
 }
 
-.footer-heading {
-    @include relative-font-size(9/8);
-    margin-bottom: $spacing-unit / 2;
+.wrapper-footer,
+.wrapper-footer-with-side {
+    display: flex;
+    flex-direction: column;
+}
+
+.social-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 /* Default */
@@ -159,16 +171,67 @@
 }
 
 .post {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    align-items: flex-start;
 
-    .comments {
-        margin-top: 10px;
+    .left {
+        min-width: 0;
+
+        .comments {
+            margin-top: 10px;
+        }
+
+        .date {
+            font-style: italic;
+            color: $gray;
+        }
     }
 
-    .date {
-        font-style: italic;
-        color: $gray;
+    .right {
+        @include media-query($on-laptop) {
+            display: none;
+        }
+
+        position: sticky;
+        top: $spacing-unit / 2;
+        margin-left: $spacing-unit / 2;
+
+        // .side-wrap {
+        //     overflow-x: hidden;
+        // }
+
+        nav {
+            background: $lightest-gray;
+            font-size: $small-font-size;
+            width: $sidebar-width;
+            border: 1px solid #AAAAAA;
+            border-radius: 8px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+
+            // padding: 1em;
+            // transform: translateX(1em);
+            // transition: 0.2s transform;
+            
+            // position: relative;
+            // right: 100%;
+            // overflow-x: hidden;
+        }
+
+        // nav:hover,
+        // nav:focus-within {
+        //     transform: translateX(100%);
+        // }
+
     }
 }
+
+// 去掉自动生成的 content
+#markdown-toc {
+    display: none;
+  }
 
 /* home page */
 

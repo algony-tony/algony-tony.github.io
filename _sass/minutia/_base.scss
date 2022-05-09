@@ -13,8 +13,6 @@ pre,
 hr,
 dl,
 dd,
-ol,
-ul,
 figure {
   margin: 0;
   padding: 0;
@@ -36,20 +34,18 @@ body {
   }
 
   -webkit-text-size-adjust: 100%;
-  -webkit-font-feature-settings: "kern"1;
-  -moz-font-feature-settings: "kern"1;
-  -o-font-feature-settings: "kern"1;
-  font-feature-settings: "kern"1;
+  font-feature-settings: normal;
   font-kerning: normal;
 
   display: flex;
   min-height: 100.1vh;
   flex-direction: column;
+  overflow-x: hidden;
 
   background: url($background-corner-img) bottom right no-repeat fixed;
   background-size: 200px 200px;
 
-  @include media-query($on-palm) {
+  @include media-query($on-laptop) {
     background: none;
   }
 }
@@ -125,8 +121,6 @@ h6,
 p,
 blockquote,
 hr,
-ul,
-ol,
 dl,
 figure,
 %vertical-rhythm {
@@ -189,37 +183,6 @@ figcaption {
   font-size: $small-font-size;
 }
 
-/* Lists */
-
-ul,
-ol {
-  margin-left: $spacing-unit;
-}
-
-ul {
-  list-style: none;
-  // padding: 0px;
-}
-
-li {
-
-  >ul,
-  >ol {
-    margin-bottom: 0;
-  }
-}
-
-ul li {
-  /* handle multiline */
-  position: relative;
-  overflow: visible;
-}
-
-ul li::before {
-  position: absolute;
-  content: '\203A';
-  left: -$spacing-unit / 2;
-}
 
 /* Links */
 
@@ -345,4 +308,14 @@ blockquote {
     padding-right: $spacing-unit / 2;
     padding-left: $spacing-unit / 2;
   }
+}
+
+.wrapper-header-with-side,
+.wrapper-content-with-side,
+.wrapper-footer-with-side {
+  max-width: -webkit-calc(#{$content-width} + #{$sidebar-width} - (#{$spacing-unit} * 2));
+  max-width: calc(#{$content-width} + #{$sidebar-width} - (#{$spacing-unit} * 2));
+  padding-right: $spacing-unit;
+  padding-left: $spacing-unit;
+  margin: 0 auto;
 }

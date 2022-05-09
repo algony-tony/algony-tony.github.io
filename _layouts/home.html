@@ -2,30 +2,36 @@
 layout: default
 ---
 
-<section>
+<main class="default-content" aria-label="内容区">
+	<div class="wrapper-content">
+		
+		<section>
 
-	{% for post in site.posts %}
-		{% unless post.next %}
+			{% for post in site.posts %}
+			{% unless post.next %}
 			<h3 class="code">{{ post.date | date: '%Y' }}</h3>
-		{% else %}
+			{% else %}
 			{% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
 			{% capture nyear %}{{ post.next.date | date: '%Y' }}{% endcapture %}
 			{% if year != nyear %}
-				<h3 class="code">{{ post.date | date: '%Y' }}</h3>
+			<h3 class="code">{{ post.date | date: '%Y' }}</h3>
 			{% endif %}
-		{% endunless %}
+			{% endunless %}
 
-		<ul>
-			<li>
-				<div class="post-date code">
-					<span>{{ post.date | date: "%m月%d日" }}</span>
-				</div>
-				<div class="title">
-					<a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
-				</div>
-			</li>
-		</ul>
+			<ul>
+				<li>
+					<div class="post-date code">
+						<span>{{ post.date | date: "%m月%d日" }}</span>
+					</div>
+					<div class="title">
+						<a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+					</div>
+				</li>
+			</ul>
 
-	{% endfor %}
+			{% endfor %}
 
-</section>
+		</section>
+
+	</div>
+</main>

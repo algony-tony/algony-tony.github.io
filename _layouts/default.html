@@ -37,11 +37,7 @@ show_footer: true
 
     {% include header.html %}
 
-    <main class="default-content" aria-label="Content">
-      <div class="wrapper-content">
-        {{ content }}
-      </div>
-    </main>
+    {{ content }}
 
     {% if page.show_footer %}
       {% include footer.html %}
