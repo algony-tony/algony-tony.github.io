@@ -5,7 +5,12 @@ excerpt: 介绍 git-flow 的分支策略模型。
 image: /assets/img/post/Git-branching-model.png
 categories: 软件技术
 tags: git
+toc: true
 ---
+
+* TOC
+{:toc}
+
 本文介绍一种 git-flow 的分支策略模型，主要参考下文。
 
 ## 中心库
@@ -171,5 +176,5 @@ git branch -d hotfix-1.2.1
 
 ![git branching model](/assets/img/post/Git-branching-model.png "git branching model")
 
-### 参考
+## 参考
 [A successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)
