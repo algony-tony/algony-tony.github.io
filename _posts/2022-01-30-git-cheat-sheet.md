@@ -17,8 +17,18 @@ Linus Torvalds 原来使用 BitKeeper 做 Linux 的内核源码管理，2005 年
 但是也不想回到没有 BK 辅助管理源码的混乱状态，于是 Linus 打算自己写个代码版本管理软件，用了一天时间让 git 可以完成基本工作，后续就用 git 管理上了 git 的源码，他一个人把 git 从无到有开发差不多只用了 10 天时间。
 
 
+## 仓库操作
 
-## 配置 git config
+{% highlight bash linedivs %}
+git init # 本地初始化 git 仓库
+git init --bare project.git # 初始化裸版本库，裸版本库一般用 .git 扩展名，且没有工作目录
+git remote add origin [url] # 配置本地仓库的远端仓库地址，名字叫 origin
+git clone [url] # 将指定地址的仓库下载到本地
+git remote -v # 显示远端仓库及地址
+{% endhighlight %}
+
+
+### 配置 git config
 
 {% highlight bash linedivs %}
 git config --global user.name "[name]"
@@ -26,6 +36,42 @@ git config --global user.email "[email address]"
 git config --list # 列出配置项
 git config --global color.ui auto # 使用 Git 命令行配色
 git config --global core.editor "vim" # 使用 vim 作为 git 的默认编辑器
+{% endhighlight %}
+
+
+
+### 同步操作
+
+{% highlight bash linedivs %}
+git fetch # 下载远端跟踪分支的所有历史
+git merge # 将远端跟踪分支合并到当前本地分支
+git pull # 使用来自对应远端分支的所有新提交更新你当前的本地工作分支。git pull 是 git fetch 和 git merge 的结合
+git fetch [remote-name] [remote-branch-name]:[local-branch-name] # 同步远端分支到本地指定分支，本地分支如果不存在会创建指定分支名的分支
+{% endhighlight %}
+
+设置推送的默认行为 `push.default` 的几个选项，[参考链接](https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushdefault)：
+* nothing：不做任何推送；
+* matching：只推送两端同名分支，Git 2.0 之前的默认设置；
+* upstream：只推送当前分支到它设置好的上游分支，tracking 是相同意义的旧用法；
+* current：只推送当前分支到它的同名分支上；
+* simple：Git 2.0 后的默认行为，只推送当前分支到它的上游同名分支上，等于 upstream + current；
+{% highlight bash linedivs %}
+git push # 不加任何参数的推送行为由 push.default 设置
+git config push.default # 查看 push 的默认行为
+git config push.default simple # 设置 push 的默认行为
+
+# --all 会将路径 refs/heads 下的所有分支都推送
+# -u 是将推送成功的分支都加上上游跟踪引用
+git push --all -u # 将所有本地分支提交上传到远端
+git push [remote-name] [local-branch-name]:[remote-branch-name] # 将本地的分支推送到远端，如果分支名一样可以省略冒号及之后的内容
+{% endhighlight %}
+
+
+在本地的分支做了 reset 回退操作后，推到远端时需要加上 `-f` 选项，否则会提示本地分支落后远端。
+{% highlight bash linedivs %}
+git checkout master
+git reset --hard [commit-id]
+git push -f origin master
 {% endhighlight %}
 
 
@@ -174,7 +220,7 @@ git checkout [commit-id] -- [path-to-file1] [path-to-file2]
 {% endhighlight %}
 
 
-## 标签 git tag
+### 标签 git tag
 
 Git 有两种类型的标签，一个是轻量标签（lightweight tag，也叫 unannotated tag），一种是标注标签（annotated tag）,它们的区别就是标注标签加了一段注释信息，官方文档对这两个的用途解释如下。
 
@@ -188,51 +234,6 @@ git tag -d [tag-name] # 删除指定标签
 {% endhighlight %}
 
 
-## 仓库操作
-
-{% highlight bash linedivs %}
-git init # 本地初始化 git 仓库
-git init --bare project.git # 初始化裸版本库，裸版本库一般用 .git 扩展名，且没有工作目录
-git remote add origin [url] # 配置本地仓库的远端仓库地址，名字叫 origin
-git clone [url] # 将指定地址的仓库下载到本地
-git remote -v # 显示远端仓库及地址
-{% endhighlight %}
-
-
-## 同步操作
-
-{% highlight bash linedivs %}
-git fetch # 下载远端跟踪分支的所有历史
-git merge # 将远端跟踪分支合并到当前本地分支
-git pull # 使用来自对应远端分支的所有新提交更新你当前的本地工作分支。git pull 是 git fetch 和 git merge 的结合
-git fetch [remote-name] [remote-branch-name]:[local-branch-name] # 同步远端分支到本地指定分支，本地分支如果不存在会创建指定分支名的分支
-{% endhighlight %}
-
-设置推送的默认行为 `push.default` 的几个选项，[参考链接](https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushdefault)：
-* nothing：不做任何推送；
-* matching：只推送两端同名分支，Git 2.0 之前的默认设置；
-* upstream：只推送当前分支到它设置好的上游分支，tracking 是相同意义的旧用法；
-* current：只推送当前分支到它的同名分支上；
-* simple：Git 2.0 后的默认行为，只推送当前分支到它的上游同名分支上，等于 upstream + current；
-{% highlight bash linedivs %}
-git push # 不加任何参数的推送行为由 push.default 设置
-git config push.default # 查看 push 的默认行为
-git config push.default simple # 设置 push 的默认行为
-
-# --all 会将路径 refs/heads 下的所有分支都推送
-# -u 是将推送成功的分支都加上上游跟踪引用
-git push --all -u # 将所有本地分支提交上传到远端
-git push [remote-name] [local-branch-name]:[remote-branch-name] # 将本地的分支推送到远端，如果分支名一样可以省略冒号及之后的内容
-{% endhighlight %}
-
-
-在本地的分支做了 reset 回退操作后，推到远端时需要加上 `-f` 选项，否则会提示本地分支落后远端。
-{% highlight bash linedivs %}
-git checkout master
-git reset --hard [commit-id]
-git push -f origin master
-{% endhighlight %}
-
 默认情况下，git push 命令并不会传送标签到远端仓库服务器上。 在创建完标签后你必须显式地推送标签到共享服务器上。
 
 {% highlight bash linedivs %}
@@ -241,8 +242,7 @@ git push [remote-name] --tags # 把不在远端服务器上的标签都推到那
 {% endhighlight %}
 
 
-
-## 日志 git log
+### 日志 git log
 命令行下显示 git log graph，记忆法是 "A Dog" = git log --**a**ll --**d**ecorate --**o**neline --**g**raph
 
 {% highlight bash linedivs %}
@@ -266,7 +266,7 @@ git log --format=fuller # 显示提交记录的 author 和 committer
 {% endhighlight %}
 
 
-## 撤销提交 git reset
+### 撤销提交 git reset
 
 官网这篇[7.7 Git 工具 - 重置揭密](https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E7%BD%AE%E6%8F%AD%E5%AF%86)关于 reset 和 checkout 介绍很详细。
 
@@ -358,7 +358,7 @@ git cat-file -t [sha1-id] # 显示 git 对象类型
 {% endhighlight %}
 
 
-## 父引用的快捷写法
+### 父引用的快捷写法
 
 在修订名后面紧接着输入 ^ 符号表示该修订的第一个父对象。例如，HEAD^ 代表 HEAD 的父对象（节点），即上一个提交。对于合并提交来说，会拥有多个父对象，为了查询多个父对象中的某一个，你需要在 ^ 字符后指定它的数字代号，使用 ```^<n>``` 意味着查看修订的第 n 个父对象。我们可以将 ^ 理解为 ^1 的快捷方式。
 
@@ -369,7 +369,7 @@ git cat-file -t [sha1-id] # 显示 git 对象类型
 除了输入 n 个 ^ 后缀，例如 ^^…^ 或 ^1^1…^1，用户还可以使用 ```~<n>```。这样 ~ 和 ~1 是等价的，HEAD~ 和 HEAD^ 也是等价的。HEAD~2 代表其第一个父对象的第一个父对象，即祖父对象，和 HEAD^^ 是等价的。
 
 
-## 引用日志 git reflog
+### 引用日志 git reflog
 每次更新 HEAD 或者更新分支首部时，git 会将这些信息记录在引用日志（reflog）中，这是以一种本地的临时日志，命令 ```git reflog``` 的输出中会用 HEAD@{n} 来表示 HEAD 之前的第 n 个值。
 
 如果是用分支名，如 master@{n}，它代表的是该分支之前的第 n 个值，@{n} 是个特例，它表示当前分支之前的第 n 个值。
