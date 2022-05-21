@@ -377,6 +377,26 @@ git cat-file -t [sha1-id] # 显示 git 对象类型
 
 ## Git 原理简介
 
+Git 是一个内容寻址文件系统。一个 git 对象对应一个 40 位的散列值。
+
+> Git is a content-addressable filesystem. 
+
+> It means that at the core of Git is a simple key-value data store. 
+
+{% highlight bash linedivs %}
+# 用 hash-object 生成 'test content' 的散列值
+$ echo 'test content' | git hash-object -w --stdin
+d670460b4b4aece5915caf5c68d12f560a9fe3e4
+
+# 从散列值中检索出内容
+$ git cat-file -p d670460b4b4aece5915caf5c68d12f560a9fe3e4
+test content
+{% endhighlight %}
+
+StackOverflow 上有关于 40 位散列值碰撞的[讨论](https://stackoverflow.com/questions/10434326/hash-collision-in-git)。
+
+> 40 位 16 进制的散列值有 160 bits，大约 10<sup>48</sup> 个值，一个月球上大约有 10<sup>47</sup> 个原子，这样 40 位散列值大致可以表示 10 个月球的原子。
+
 ### 存储
 简单地说，git 对象是存储成对象的有向无环图（DAG），它们都是压缩存储，用 40 个字符的 SHA-1 散列唯一标识（不是它们内容的 SHA-1 散列，而且它们在 git 中呈现内容的 SHA-1 散列）。
 
