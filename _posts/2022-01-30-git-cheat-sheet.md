@@ -75,6 +75,41 @@ git push -f origin master
 {% endhighlight %}
 
 
+### 子模块 submodule
+
+如果需要在项目里引入另一个独立的 git 库，这时候就可以用到子模块（submodule）。子模块允许你将一个 git 仓库作为另一个仓库的子目录。
+
+{% highlight bash linedivs %}
+# 在当前路径下会创建和项目同名的子模块目录
+git submodule add https://github.com/chaconinc/DbConnector
+
+# 会发现在外部项目的顶层多了一个 .gitmodules 文件，以及刚才加入的子模块目录 DbConnector 等待提交
+# .gitmodules 文件保存了子模块项目的 URL 和本地目录之间的映射关系
+git status
+
+# 此时可以切换子模块的分支或者某个提交上再将变更提交，就可以锁定子模块的分支和版本
+cd DbConnector
+git checkout -b dev_branch origin/dev_branch
+
+git add .gitmodules DbConnector
+git commit -m "add submodule DbConnector"
+
+{% endhighlight %}
+
+克隆包含子模块的项目
+
+{% highlight bash linedivs %}
+# 1. 先克隆父项目，此时子模块文件夹内是空的
+git clone https://github.com/chaconinc/MainProject
+# 2. 更新子模块项目
+git submodule init
+git submodule update
+
+# 克隆父项目的时候加上参数 --recurse-submodules 一步到位
+git clone --recurse-submodules https://github.com/chaconinc/MainProject
+
+{% endhighlight %}
+
 ## 分支 git branch
 
 下面是一些常用的分支操作相关命令。
@@ -320,6 +355,8 @@ git reset HEAD -- . # 取消当前文件夹下在暂存区的所有变更
 
 ## 其他命令
 
+### 底层命令
+
 Git 命令主要分为上层（瓷器 porcelain）命令和底层（管道 plumbing）命令。日常中使用较多的是上层命令，上层命令最早是通过脚本将底层命令拼接使用的。
 底层命令会更稳定一些。
 
@@ -353,10 +390,29 @@ git show-ref
 查看 git 对象命令。
 
 {% highlight bash linedivs %}
-git cat-file -p [sha1-id] # 打印 git 对象内容
-git cat-file -t [sha1-id] # 显示 git 对象类型
+git cat-file -p [git-hash-id] # 打印 git 对象内容
+git cat-file -t [git-hash-id] # 显示 git 对象类型
 {% endhighlight %}
 
+[查看文件的 git hash 值](https://stackoverflow.com/questions/460297/git-finding-the-sha1-of-an-individual-file-in-the-index)
+
+{% highlight bash linedivs %}
+# git 对文件做的 hash 值不完全等于文件的 SHA1 值
+# 假设 ${file} 变量指向我们操作的文件
+
+# get the Git hash of the file in index
+# -s show file mode, hash and stage number
+git ls-files -s $file
+
+# get the Git hash of any file on your filesystem
+git hash-object $file
+
+# get the Git hash of any file on your filesystem and you don't have Git installed
+(echo -ne "blob `wc -c < $file`\0"; cat $file) | sha1sum
+# 此处就展示出了 git 的 hash 值是怎么计算出来的，主要是对 "blob SIZE\0CONTENT" 做的 sha1 sum
+# 其中 SIZE 是文件的 file size in bytes，CONTENT 是文件实际内容
+
+{% endhighlight %}
 
 ### 父引用的快捷写法
 
