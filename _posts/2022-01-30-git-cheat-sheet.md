@@ -298,6 +298,10 @@ git log --grep="feat:" # 在提交记录中搜索关键词
 git log --no-merges # 不显示合并的提交记录
 git log --merges # 只显示合并的提交记录
 git log --format=fuller # 显示提交记录的 author 和 committer
+git log --patch # 显示提交内文件变化的具体内容
+git log --stat # 显示提交的文件及变化统计数据
+
+git show [commit-id] # 显示某个提交的具体内容
 {% endhighlight %}
 
 
