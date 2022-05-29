@@ -246,6 +246,8 @@ git diff --staged HEAD [path-to-file] # 显示暂存区和当前分支的最新�
 
 ![Git diff](/assets/img/post/git-diff.png "git diff")
 
+### 暂存 git stash
+
 保存未提交变更到本地堆栈中，一般用于中断本地开发临时切换到其他分支，后续切换分支回来再恢复变更继续开发。
 
 {% highlight bash linedivs %}
@@ -261,6 +263,19 @@ git stash pop # 恢复最近一次入栈记录内容
 git checkout [commit-id] -- [path-to-file1] [path-to-file2]
 {% endhighlight %}
 
+如果只想暂存指定文件有两种办法
+
+{% highlight bash linedivs %}
+# 用 git stash push
+git stash push -m [message] path/to/file
+
+# 用交互方式确认哪些需要加入 stash
+# 交互模式下会遍历文件询问是否需要加入 stash
+git stash --patch
+git stash -p # 效果同上
+# Stash this hunk [y,n,q,a,d,j,J,g,/,e,?]?
+# ? 显示帮助；y 暂存此改动；n 不暂存此改动；q 从此处退出，后续改动都未暂存；a 暂存此改动，后续改动都暂存；
+{% endhighlight %}
 
 ### 标签 git tag
 
