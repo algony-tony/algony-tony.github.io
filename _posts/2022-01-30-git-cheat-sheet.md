@@ -132,6 +132,9 @@ git branch -m [oldname] [newname] # 重命名分支
 git branch -m [newname] # 将当前分支重命名
 # 如果在 Windows 这种大小写不敏感的系统中，并且分支改名只是改了大小写字母，那要用大写 -M 参数，否则会报错分支已存在
 
+# 在 git merge 后发现有冲突 conflict，可以修正冲突后再提交，也可以放弃 merge
+git merge --abort
+
 {% endhighlight %}
 
 整合不同的分支主要有两种方法：合并（merge）和变基（rebase）。
