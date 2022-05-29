@@ -92,10 +92,11 @@ compress_html:
     envs: all
 
 # Use the following plug-ins
-gems:
+plugins:
   - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
   - jekyll-feed # Create an Atom feed using the official Jekyll feed gem
   - jekyll-seo-tag
+  - jemoji
 
 # jekyll-feed settings
 feed:
