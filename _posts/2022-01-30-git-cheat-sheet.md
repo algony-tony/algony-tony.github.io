@@ -36,6 +36,10 @@ git config --global user.email "[email address]"
 git config --list # 列出配置项
 git config --global color.ui auto # 使用 Git 命令行配色
 git config --global core.editor "vim" # 使用 vim 作为 git 的默认编辑器
+
+git config http.proxy http://proxy.mycompany:80
+# 取消设置用 unset
+git config --unset http.proxy
 {% endhighlight %}
 
 
@@ -127,6 +131,9 @@ git branch -d [branch-name] # 删除某个分支
 git branch -m [oldname] [newname] # 重命名分支
 git branch -m [newname] # 将当前分支重命名
 # 如果在 Windows 这种大小写不敏感的系统中，并且分支改名只是改了大小写字母，那要用大写 -M 参数，否则会报错分支已存在
+
+# 在 git merge 后发现有冲突 conflict，可以修正冲突后再提交，也可以放弃 merge
+git merge --abort
 
 {% endhighlight %}
 
@@ -239,6 +246,8 @@ git diff --staged HEAD [path-to-file] # 显示暂存区和当前分支的最新�
 
 ![Git diff](/assets/img/post/git-diff.png "git diff")
 
+### 暂存 git stash
+
 保存未提交变更到本地堆栈中，一般用于中断本地开发临时切换到其他分支，后续切换分支回来再恢复变更继续开发。
 
 {% highlight bash linedivs %}
@@ -254,6 +263,19 @@ git stash pop # 恢复最近一次入栈记录内容
 git checkout [commit-id] -- [path-to-file1] [path-to-file2]
 {% endhighlight %}
 
+如果只想暂存指定文件有两种办法
+
+{% highlight bash linedivs %}
+# 用 git stash push
+git stash push -m [message] path/to/file
+
+# 用交互方式确认哪些需要加入 stash
+# 交互模式下会遍历文件询问是否需要加入 stash
+git stash --patch
+git stash -p # 效果同上
+# Stash this hunk [y,n,q,a,d,j,J,g,/,e,?]?
+# ? 显示帮助；y 暂存此改动；n 不暂存此改动；q 从此处退出，后续改动都未暂存；a 暂存此改动，后续改动都暂存；
+{% endhighlight %}
 
 ### 标签 git tag
 
