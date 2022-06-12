@@ -137,9 +137,48 @@ git merge --abort
 
 {% endhighlight %}
 
-整合不同的分支主要有两种方法：合并（merge）和变基（rebase）。
+### 删除分支 delete
+
+主要涉及三种分支：
+* 本地分支 X；
+* 远端（如 origin）分支 X；
+* 本地跟踪远端 X 的分支 origin/X；
+ 
+X  ---  origin/X | X
+local repo       | remote origin repo
+
+删除本地分支
+{% highlight bash linedivs %}
+# -d 是 --delete 的别名
+git branch -d [branch-name]
+# -D 是 --delete --force 的别名
+git branch -D [branch-name]
+{% endhighlight %}
+
+删除远端分支，会同时删除本地跟踪远端的分支。如果远端分支已经被删除了执行此命令会直接删除本地跟踪分支。
+{% highlight bash linedivs %}
+git push [remote-name] --delete [branch-name]
+# 旧版本 git 的写法如下
+git push [remote_name] :[branch_name]
+
+# 从所有远端拉取变化，本地自动删除远端已删除的分支和标签
+git fetch --all --prune
+{% endhighlight %}
+
+单独删除本地跟踪远端的分支
+
+{% highlight bash linedivs %}
+# -dr 是 --delete --remotes 的别名
+git branch --delete --remotes [remote-name]/[branch-name]
+
+# 同步删除远端已经删除的分支
+git fetch [remote-name] --prune
+{% endhighlight %}
+
 
 ### 合并分支 merge
+
+整合不同的分支主要有两种方法：合并（merge）和变基（rebase）。
 
 **快进合并（fast-forward）**指的是合并操作中没有需要解决的分歧，这样在合并两者时只是简单的将指针向前推进（指针右移），对于是否使用快进有三个选项。
 
