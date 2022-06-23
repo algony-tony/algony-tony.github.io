@@ -19,13 +19,67 @@ Spark 由五个主要模块组成：
 * **MLlib**（机器学习库）：一组可扩展的机器学习算法库，还包含用于特征选择和构建 ML 管道的工具。MLlib 中跨语言主要 API 是 DataFrames；
 * **GraphX**： 支持交互式构建、修改和分析可扩展的图形结构数据的计算引擎；
 
+## SparkSession
+
+`SparkSession` 是 Spark 在 2.0 之后引入的统一入口，之前是 `SparkContext`，`SQLContext`，`HiveContext` 等，`SparkSession` 内部会创建 `SparkConfig` 和 `SparkContext`，
+通过设置 `val sc = spark.sparkContext` 可以继续使用 `SparkContext`。一个应用内也可以创建多个 `SparkSession`，如下。
+
+{% highlight scala linedivs %}
+import org.apache.spark.sql.SparkSession
+
+val spark:SparkSession = SparkSession
+  .builder()
+  .appName("HelloWorld")
+  .master("local[3]")
+  .config("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
+  .enableHiveSupport()
+  .getOrCreate()
+
+// 可以比较 print(spark2) 和 print(spark) 发现是一样的
+val spark2 = SparkSession
+  .builder
+  .getOrCreate
+
+// spark3 是新的 SparkSession
+val spark3 = spark.newSession
+
+{% endhighlight %}
+
 ## RDD 编程
 
 RDD 操作分为行动 **Action** 和转换 **Transformation** 两类。转换操作输入 RDD 返回 RDD，行动操作输入 RDD 返回非 RDD，RDD 采用的是惰性计算，真正的运算发生在碰到行动操作时，
-在次之前的转换操作 Spark 只是记录下基础数据集及 RDD 的生成轨迹，即相互之间的依赖关系，而不会触发真正的计算。RDD 中的依赖关系分为窄依赖（Narrow Dependency）和宽依赖（Wide Dependency）,
-区分在于是否包含 shuffle，shuffle 过程涉及数据的重新分发，会产生大量的磁盘 I/O 和网络开销。
+在次之前的转换操作 Spark 只是记录下基础数据集及 RDD 的生成轨迹，即相互之间的血缘关系（lineage），而不会触发真正的计算。
+
+RDD 中的依赖关系分为窄依赖（Narrow Dependency）和宽依赖（Wide Dependency）,
+区分在于是否包含 shuffle，shuffle 过程涉及数据的重新分发，会产生大量的磁盘 I/O 和网络开销，[窄依赖的官方接口文档](https://spark.apache.org/docs/2.4.7/api/scala/index.html#org.apache.spark.NarrowDependency)，[宽依赖的官方接口文档](https://spark.apache.org/docs/2.4.7/api/scala/index.html#org.apache.spark.ShuffleDependency)。
+如果父级 RDD 的每个分区被最多一个子级 RDD 的分区使用可以简单判断为是窄依赖，但是笛卡尔积不满足上面条件也是一种窄依赖。
+
+> `abstract class NarrowDependency[T] extends Dependency[T]`
+> 
+> Base class for dependencies where each partition of the child RDD depends on a small number of partitions of the parent RDD. Narrow dependencies allow for pipelined execution. 
+> 
+> `class ShuffleDependency[K, V, C] extends Dependency[Product2[K, V]]`
+> 
+> Represents a dependency on the output of a shuffle stage. Note that in the case of shuffle, the RDD is transient since we don't need it on the executor side. 
+
+![宽依赖和窄依赖](/assets/img/post/spark-dependency.png "宽依赖和窄依赖")
 
 一个转换操作就是一个 fork/join 的过程，（将分区数据 fork 到不同的节点上，计算结束后再 join 到相应分区上），Spark 会把多个转换操作合并 fork/join 过程，称为流水线优化。
+
+### RDD 创建
+
+RDD 可以从现有的 collection 中转换生成，也可以从其他存储系统（如 HDFS，S3 等）的数据集中创建生成，从其他 RDD 生成或者从 Dataframe 中转换出来。
+
+{% highlight scala linedivs %}
+val dataSeq = Seq(("Java", 20000), ("Python", 100000), ("Scala", 3000))   
+val rdd1 = spark.sparkContext.parallelize(dataSeq)
+
+val rdd2 = spark.sparkContext.textFile("/path/to/file.txt")
+
+val rdd3 = rdd1.map(row=>{(row._1,row._2+100)})
+
+val rdd4 = spark.range(20).toDF().rdd
+{% endhighlight %}
 
 ### RDD Transformation
 
@@ -123,3 +177,7 @@ Spark 官方各版本的[文档地址](https://spark.apache.org/documentation.ht
 [A Tale of Three Apache Spark APIs: RDDs vs DataFrames and Datasets](https://databricks.com/blog/2016/07/14/a-tale-of-three-apache-spark-apis-rdds-dataframes-and-datasets.html)
 
 [RDDs vs. Dataframes vs. Datasets – What is the Difference and Why Should Data Engineers Care?](https://www.analyticsvidhya.com/blog/2020/11/what-is-the-difference-between-rdds-dataframes-and-datasets/)
+
+[深入解读 Spark 宽依赖和窄依赖（ShuffleDependency & NarrowDependency）](https://blog.csdn.net/Colton_Null/article/details/112299969)
+
+[Wide vs Narrow Dependencies](https://untitled-life.github.io/blog/2018/12/27/wide-vs-narrow-dependencies/)
