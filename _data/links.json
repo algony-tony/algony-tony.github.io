@@ -462,5 +462,9 @@
         "name": "美国10年期-2年期国债利率",
         "link": "https://www.cnbc.com/quotes/10Y2YS",
         "desc": "出现负值，即国债收益率倒挂 (yield curve inversion) 是传说中最可靠的 recession 先行指标"
+    },
+    "cont12315": {
+        "name": "合同示范文本库",
+        "link": "https://cont.12315.cn/"
     }
 }

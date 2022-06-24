@@ -176,6 +176,7 @@ LoopNet @ {
             @{
                 [全国标准信息公共服务平台]({{ site.data.links["samrstd"].link}})
             }
+        * [合同示范文本库]({{ site.data.links["cont12315"].link }})
     }
 
 [国家统计局]({{ site.data.links["stats"].link }})
