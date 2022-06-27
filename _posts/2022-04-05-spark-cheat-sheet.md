@@ -66,9 +66,9 @@ RDD 中的依赖关系分为窄依赖（Narrow Dependency）和宽依赖（Wide 
 
 一个转换操作就是一个 fork/join 的过程，（将分区数据 fork 到不同的节点上，计算结束后再 join 到相应分区上），Spark 会把多个转换操作合并 fork/join 过程，称为流水线优化。
 
-### RDD 创建
+### RDD 的创建
 
-RDD 可以从现有的 collection 中转换生成，也可以从其他存储系统（如 HDFS，S3 等）的数据集中创建生成，从其他 RDD 生成或者从 Dataframe 中转换出来。
+RDD 可以从现有的 collection 中转换生成，也可以从其他存储系统（如 HDFS，S3 等）的数据集中创建生成，从其他 RDD 生成或者从 Dataframe 中转换出来。[SparkContext 接口文档](https://spark.apache.org/docs/2.4.7/api/scala/index.html#org.apache.spark.SparkContext)
 
 {% highlight scala linedivs %}
 val dataSeq = Seq(("Java", 20000), ("Python", 100000), ("Scala", 3000))   
@@ -81,32 +81,94 @@ val rdd3 = rdd1.map(row=>{(row._1,row._2+100)})
 val rdd4 = spark.range(20).toDF().rdd
 {% endhighlight %}
 
+RDD 的分区数可以在创建 RDD 时指定，也可以通过 `repartition()` 或者 `coalesce()` 重新分区，`repartition()` 是设置了 shuffle 的调用 `coalesce(numPartitions, shuffle = true)`，
+可以生成指定数量的分区数，而 `coalesce()` 是默认不带 shuffle 的调用，只能做减少分区的任务，性能更好，因为只是把几个父分区压缩为一个新的分区，生成后的每个分区数据量可能不会大致相同。
+
+
+{% highlight scala linedivs %}
+println("RDD4 Partitions: "+rdd4.getNumPartitions)
+// RDD4 Partitions: 3
+
+val rdd5 = rdd4.repartition(numPartitions = 5)
+println("RDD5 Partitions: " + rdd5.getNumPartitions)
+// RDD5 Partitions: 5
+
+val rdd6 = rdd4.coalesce(numPartitions = 6)
+println("RDD6 Partitions: " + rdd6.getNumPartitions)
+// RDD6 Partitions: 3
+
+val rdd7 = rdd4.coalesce(numPartitions = 1)
+println("RDD7 Partitions: " + rdd7.getNumPartitions)
+// RDD7 Partitions: 1
+
+{% endhighlight %}
+
+
 ### RDD Transformation
 
-* filter(func)：筛选出满足 func 的元素，并返回一个新的数据集；
-* map(func)：将每个元素传递到 func 中，并将结果返回一个新的数据集；
-* flatmap(func)：和 map 函数类似，但每个输入元素都可以映射到 0 个或多个输出结果；
-* groupByKey()：应用于 (K, V) 键值对的数据集时，返回一个新的 (K, Iterable) 形式的键值对；
-* reduceByKey(func)：应用于 (K, V) 键值对的数据集时，返回新的 (K, V) 形式的数据集，其中每个值是将每个 key 传递到 func 中进行聚合后的结果；
+窄依赖转换
+
+* `filter(func)`：筛选出满足 `func` 的元素，并返回一个新的数据集；
+* `map(func)`：将每个元素传递到 `func` 中，并将结果返回一个新的数据集；
+* `flatmap(func)`：和 `map` 函数类似，但每个输入元素都可以映射到 0 个或多个输出结果，即将 func 作用后的数组元素转成行，实现数据膨胀；
+* `mapPartition(func)`: 与 `map` 函数类似，可以将一些繁重的初始化工作（如数据库连接）在分区级别完成，而不是像 `map` 在每条记录上，[Spark map() vs mapPartitions() with Examples](https://sparkbyexamples.com/spark/spark-map-vs-mappartitions-transformation/)；
+* `mapPartitionsWithIndex(func)`: 与 `mapPartition` 类似，多加入一个分区的序号参数；
+* `union()`: 取两个 RDD 的并集，不会消除相同元素；
+
+宽依赖转换
+
+* `groupByKey()`：应用于 (K, V) 键值对的数据集时，返回一个新的 (K, Iterable) 形式的键值对；
+* `reduceByKey(func)`：应用于 (K, V) 键值对的数据集时，返回新的 (K, V) 形式的数据集，其中每个值是将每个 key 传递到 `func` 中进行聚合后的结果；
+* `aggregateByKey()`:
+* `aggregate()`:
+* `join()`:
+* `repartition()`:
+
+{% highlight scala linedivs %}
+import scala.util.Random
+
+val dataSeq = Seq(("RDD is basic abstraction in Spark"), ("RDD is an immutable partitioned collection of elements that can be operated on in parallel"))
+val rdd = sc.parallelize(dataSeq)
+val rdd2 = rdd.flatMap(r=>r.split(" "))
+val rdd3 = rdd2.map(r=>(r,1))
+val rdd4 = rdd3.filter(r=>r._1.startsWith("o"))
+val rdd5 = rdd4.reduceByKey(_ + _)
+rdd5.foreach(println)
+
+// 根据统计频次降序排列，并打印出来
+rdd3.reduceByKey(_ + _).map(r => (r._2, r._1)).sortByKey(ascending = false).foreach(println)
+
+// 对同一个分区的 map 转换加上一个固定的随机数
+val rdd6 = rdd3.mapPartitions(iter=>{
+  val rdInt = new Random().nextInt(100)
+  iter.map(r => (r._1, r._2+rdInt))
+})
+
+val rdd7 = rdd3.mapPartitionsWithIndex((index,iter)=>{
+  val rdInt = new Random().nextInt(100)
+  iter.map(r => (index, r._1, r._2+rdInt))
+})
+{% endhighlight %}
+
 
 ### RDD Action
 
-* count()：返回数据集中元素的个数；
-* collect()：以数组的形式返回数据集中的所有元素；
-* first()：返回数据集中的首个元素；
-* take(n)：以数组的形式返回数据集中的前 n 个元素；
-* reduce(func)：通过函数 func（两个输入一个输出） 聚合数据集中的元素；
-* foreach(func)：将数据集中的每个元素传递到函数 func 中运行；
+* `count()`：返回数据集中元素的个数；
+* `collect()`：以数组的形式返回数据集中的所有元素；
+* `first()`：返回数据集中的首个元素；
+* `take(n)`：以数组的形式返回数据集中的前 n 个元素；
+* `reduce(func)`：通过函数 `func`（两个输入一个输出） 聚合数据集中的元素；
+* `foreach(func)`：将数据集中的每个元素传递到函数 `func` 中运行；
 
 ### RDD 其他操作
 
-rdd.persist()：将 RDD 标记为持久化，不会马上计算生成 RDD 持久化，而是等到 action 触发计算把计算结果进行持久化。
-persist(MEMORY_ONLY)：表示将RDD作为反序列化的对象存储于JVM中，如果内存不足，就要按照LRU原则替换缓存中的内容；
-persist(MEMORY_AND_DISK)：表示将RDD作为反序列化的对象存储在JVM中，如果内存不足，超出的分区将会被存放在磁盘上。
+`rdd.persist()`：将 RDD 标记为持久化，不会马上计算生成 RDD 持久化，而是等到 action 触发计算把计算结果进行持久化。
+`persist(MEMORY_ONLY)`：表示将 RDD 作为反序列化的对象存储于 JVM 中，如果内存不足，就要按照 LRU 原则替换缓存中的内容；
+`persist(MEMORY_AND_DISK)`：表示将 RDD 作为反序列化的对象存储在 JVM 中，如果内存不足，超出的分区将会被存放在磁盘上。
 
-rdd.cache() 等价于 rdd.persist(MEMORY_ONLY)
+`rdd.cache()` 等价于 `rdd.persist(MEMORY_ONLY)`
 
-调用 unpersist() 将持久化的 RDD 从内存中释放。
+调用 `unpersist()` 将持久化的 RDD 从内存中释放。
 
 ## Spark 基本概念
 
@@ -181,3 +243,4 @@ Spark 官方各版本的[文档地址](https://spark.apache.org/documentation.ht
 [深入解读 Spark 宽依赖和窄依赖（ShuffleDependency & NarrowDependency）](https://blog.csdn.net/Colton_Null/article/details/112299969)
 
 [Wide vs Narrow Dependencies](https://untitled-life.github.io/blog/2018/12/27/wide-vs-narrow-dependencies/)
+
