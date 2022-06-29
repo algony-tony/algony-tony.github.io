@@ -285,6 +285,27 @@ git diff --staged HEAD [path-to-file] # 显示暂存区和当前分支的最新�
 
 ![Git diff](/assets/img/post/git-diff.png "git diff")
 
+
+### 删除 git rm
+
+`.gitignore` 文件会忽略未追踪的文件和文件夹，对已经加入追踪的文件则不起作用，需要取消已经加入追踪的文件要用 `git rm`。
+
+`git rm` 用于从暂存区和 Git 工作目录中删除文件，类似于 `git add` 的逆操作。加入 `--cached` 参数则只删除暂存区的文件，保留工作目录文件不动。
+
+下面的操作不会删除本地工作目录的文件，但是推送到远端后其他开发人员 `git pull` 会删除他们本地工作目录的相应文件。
+
+{% highlight bash linedivs %}
+# 1. 将要取消追踪的文件或文件夹加入 .gitignore 文件
+
+# 2. 删除单个文件或文件夹
+git rm --cached [file-name]
+git rm --cached -r [dir-name]
+
+# 3. 提交变更
+git commit -m [commit-message]
+{% endhighlight %}
+
+
 ### 暂存 git stash
 
 保存未提交变更到本地堆栈中，一般用于中断本地开发临时切换到其他分支，后续切换分支回来再恢复变更继续开发。
@@ -684,3 +705,5 @@ git log --author "<name>" --invert-grep --reverse --format="format:%H" HEAD..mas
 [【冷知識】斷頭（detached HEAD）是怎麼一回事？](https://gitbook.tw/chapters/faq/detached-head)
 
 [另一種合併方式（使用 rebase）](https://gitbook.tw/chapters/branch/merge-with-rebase)
+
+[How can I make Git "forget" about a file that was tracked, but is now in .gitignore?](https://stackoverflow.com/questions/1274057/how-can-i-make-git-forget-about-a-file-that-was-tracked-but-is-now-in-gitign)
