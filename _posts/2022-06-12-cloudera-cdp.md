@@ -26,19 +26,35 @@ CDP（Cloudera Data Platform）就是两个公司合并后提出的产品。
 
 ![CDP 私有云架构](/assets/img/post/cdp私有云架构.png 'CDP 私有云架构')
 
-存储集群和计算集群分离，一方面存储集群可以考虑用 Ozone 代替 HDFS 以解决文件数量限制的弱点，另一方面计算集群可以用容器化部署实现弹性扩展和收缩。
+存储集群和计算集群分离，一方面存储集群可以考虑用 Ozone 代替 HDFS 以解决文件数量限制的弱点，另一方面计算集群可以用容器化部署实现快速搭建和销毁，弹性扩展和收缩。
 由于存储与计算的分离，可以实现存储与计算集群一对一，一对多或者多对多的组合。
 
 
-> * CDP BASE CLUSETER，主要当做存储集群来使用，当不使用其计算能力时，甚至可以不安装 impala/hs2/spark等计算引擎；
+> * CDP BASE CLUSETER，主要当做存储集群来使用，当不使用其计算能力时，甚至可以不安装 impala/hs2/spark 等计算引擎；
 > * ECS 或 OCP，主要当做计算集群来使用，可以不安装也可以安装多个，当不使用其存储能力时，可以不安装 hdfs/ozone 等存储引擎；
-> * ECS 或 OCP，对应不同的使用场景，可以安装多个集群，比如对应数仓场景的 CDW(cloudera datawarehouse, 其底层主要是hs2,impala,hue),对应机器学习的CML (cloudera machile learning,其底层主要是 python/r/scala 的jupiter notebook）,对应数据工程的 CDE(cloudera data engineering,其底层主要是 spark，airflow）
+> * ECS 或 OCP，对应不同的使用场景，可以安装多个集群，比如对应数仓场景的 CDW（cloudera datawarehouse, 其底层主要是 hs2，impala，hue），对应机器学习的 CML (cloudera machile learning，其底层主要是 python/r/scala 的 jupiter notebook）,对应数据工程的 CDE（cloudera data engineering，其底层主要是 spark，airflow）
 > * 当然在复杂的场景下，CDP BASE CLUSETER 和 ECS/OCP，也可以是多对多的关系：
 
 
 > Ozone 是 Cloudera 在 2019 年创建并引入的一个 Hadoop 子项目，是一个开源的对象存储项目。引入 Ozone 是为了能够彻底解决 HDFS 文件数量的限制的弱点。目前很多企业用户在部署大规模集群的时候，都需要使用 HDFS 联邦，而 HDFS 联邦在实际应用中也存在各种问题，并不是最佳的解决方案，随着集群规模不断的增长，局限性也越发的明显。
 
 > 结合 CDP 存储跟计算分离的概念，Cloudera 将 Ozone 定位为私有云的数据存储引擎。
+
+## 资源隔离和多租户管理
+
+![实现资源隔离和多租户管理](/assets/img/post/资源隔离和多租户管理.png '实现资源隔离和多租户管理')
+
+私有云可以实现三级分离。比如有一个多部门的使用场景，可以建一个统一的资源池接管所有的集群资源，在这一个资源池上可以建很多个环境，每个环境对应一个业务部门，
+每个环境里可以争对不同的应用拉起不同的计算集群，计算集群是通过容器部署的，容器可以指定内存和 CPU 资源，弹性扩展和收缩灵活。CDP 有很多种手段实现对资源的管控。
+
+
+## Ozone
+
+Ozone 是一种对象存储，相比于 HDFS 有 20 倍扩展的提升，密度可以更高，原来 HDFS 一台机器不能挂太多的存储，建议不超过 100 T，Ozone 官方配置一台机器可以挂 400 T 的存储。
+
+## 支持细粒度升级
+
+一般存储集群的组件升级较慢，计算集群升级会更频繁，现在计算集群容器部署，这样只要更新镜像的版本就可以达到升级计算引擎的目的，在同一套资源里划分出测试，UAT 和生产的计算资源环境实现逐步测试发布。
 
 ## 参考链接
 
