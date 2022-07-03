@@ -27,6 +27,11 @@ tags: vscode
 新文件
 > Ctrl + n
 
+Ctrl + p 在 Terminal 会唤起 VSCode 的 Quick Open，想要用 shell 里的 Ctrl + p 快捷键可以如下设置
+1. 打开 setting，（快捷键 Ctrl + ,）
+2. 搜索 `terminal.integrated.commandsToSkipShell` 选项
+3. 新增选项 Add Item，填入 `-workbench.action.quickOpen`
+
 ## 特性介绍
 
 ### 文件预览

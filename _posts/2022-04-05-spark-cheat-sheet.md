@@ -50,8 +50,10 @@ val spark3 = spark.newSession
 RDD 操作分为行动 **Action** 和转换 **Transformation** 两类。转换操作输入 RDD 返回 RDD，行动操作输入 RDD 返回非 RDD，RDD 采用的是惰性计算，真正的运算发生在碰到行动操作时，
 在次之前的转换操作 Spark 只是记录下基础数据集及 RDD 的生成轨迹，即相互之间的血缘关系（lineage），而不会触发真正的计算。
 
+### 宽依赖、窄依赖、Shuffle
+
 RDD 中的依赖关系分为窄依赖（Narrow Dependency）和宽依赖（Wide Dependency）,
-区分在于是否包含 shuffle，shuffle 过程涉及数据的重新分发，会产生大量的磁盘 I/O 和网络开销，[窄依赖的官方接口文档](https://spark.apache.org/docs/2.4.7/api/scala/index.html#org.apache.spark.NarrowDependency)，[宽依赖的官方接口文档](https://spark.apache.org/docs/2.4.7/api/scala/index.html#org.apache.spark.ShuffleDependency)。
+区分在于是否包含 shuffle，shuffle 过程涉及数据的重新分发，会产生大量的磁盘 I/O ，网络 I/O 以及数据的序列化和反序列化，[窄依赖的官方接口文档](https://spark.apache.org/docs/2.4.7/api/scala/index.html#org.apache.spark.NarrowDependency)，[宽依赖的官方接口文档](https://spark.apache.org/docs/2.4.7/api/scala/index.html#org.apache.spark.ShuffleDependency)。
 如果父级 RDD 的每个分区被最多一个子级 RDD 的分区使用可以简单判断为是窄依赖，但是笛卡尔积不满足上面条件也是一种窄依赖。
 
 > `abstract class NarrowDependency[T] extends Dependency[T]`
@@ -106,23 +108,21 @@ println("RDD7 Partitions: " + rdd7.getNumPartitions)
 
 ### RDD Transformation
 
-窄依赖转换
+窄依赖转换举例，更多参考 [RDD 的接口文档](https://spark.apache.org/docs/2.4.7/api/scala/index.html#org.apache.spark.rdd.RDD)，[PairRDDFunctions](https://spark.apache.org/docs/2.4.7/api/scala/index.html#org.apache.spark.rdd.PairRDDFunctions)，[DoubleRDDFunctions](https://spark.apache.org/docs/2.4.7/api/scala/index.html#org.apache.spark.rdd.DoubleRDDFunctions)，[SequenceFileRDDFunctions](https://spark.apache.org/docs/2.4.7/api/scala/index.html#org.apache.spark.rdd.SequenceFileRDDFunctions)。
 
 * `filter(func)`：筛选出满足 `func` 的元素，并返回一个新的数据集；
 * `map(func)`：将每个元素传递到 `func` 中，并将结果返回一个新的数据集；
 * `flatmap(func)`：和 `map` 函数类似，但每个输入元素都可以映射到 0 个或多个输出结果，即将 func 作用后的数组元素转成行，实现数据膨胀；
 * `mapPartition(func)`: 与 `map` 函数类似，可以将一些繁重的初始化工作（如数据库连接）在分区级别完成，而不是像 `map` 在每条记录上，[Spark map() vs mapPartitions() with Examples](https://sparkbyexamples.com/spark/spark-map-vs-mappartitions-transformation/)；
 * `mapPartitionsWithIndex(func)`: 与 `mapPartition` 类似，多加入一个分区的序号参数；
-* `union()`: 取两个 RDD 的并集，不会消除相同元素；
+* `union(rdd)`: 取两个 RDD 的并集，不会消除相同元素；
 
-宽依赖转换
+宽依赖转换举例
 
-* `groupByKey()`：应用于 (K, V) 键值对的数据集时，返回一个新的 (K, Iterable) 形式的键值对；
-* `reduceByKey(func)`：应用于 (K, V) 键值对的数据集时，返回新的 (K, V) 形式的数据集，其中每个值是将每个 key 传递到 `func` 中进行聚合后的结果；
-* `aggregateByKey()`:
-* `aggregate()`:
-* `join()`:
-* `repartition()`:
+* `groupByKey()`：PairRDD 函数，应用于 (K, V) 上，返回一个新的 (K, Iterable) 形式的键值对；
+* `reduceByKey(func)`：PairRDD 函数，应用于 (K, V) 上，返回新的 (K, V2) 形式的键值对，其中 V2 是将相同 K 对应的 V 集合传递到 `func` 中进行聚合后的结果；
+* `aggregateByKey(zeroValue)(seqOp, combOp)`：PairRDD 函数，类似 `aggregate`，不同之处这是 PairRDD 上的函数；
+* `join(rdd)`：PairRDD 函数，来自于两个 RDD 的键值对 (K, V1) ，(K, V2) 关联输出 (K, (V1, V2))；
 
 {% highlight scala linedivs %}
 import scala.util.Random
@@ -144,10 +144,19 @@ val rdd6 = rdd3.mapPartitions(iter=>{
   iter.map(r => (r._1, r._2+rdInt))
 })
 
+// 加入分区的编号
 val rdd7 = rdd3.mapPartitionsWithIndex((index,iter)=>{
   val rdInt = new Random().nextInt(100)
   iter.map(r => (index, r._1, r._2+rdInt))
 })
+
+// join 示例
+val leftRDD = spark.sparkContext.parallelize(List(("Z", 1),("A", 2),("B", 3)))
+val rightRDD = spark.sparkContext.parallelize(List(("X", 10),("A", 10),("A", 20),("B", 30)))
+leftRDD.join(rightRDD).foreach(println)
+//  (A,(2,10))
+//  (A,(2,20))
+//  (B,(3,30))
 {% endhighlight %}
 
 
@@ -159,16 +168,115 @@ val rdd7 = rdd3.mapPartitionsWithIndex((index,iter)=>{
 * `take(n)`：以数组的形式返回数据集中的前 n 个元素；
 * `reduce(func)`：通过函数 `func`（两个输入一个输出） 聚合数据集中的元素；
 * `foreach(func)`：将数据集中的每个元素传递到函数 `func` 中运行；
+* `fold(zeroValue)(func)`：`func` 先作用在各分区上，再作用在各区分别聚合好的结果集里， `zeroValue` 在 `func` 聚合的每一步都作为初始值传入，
+对整型一般用 0，对集合一般用 `Nil`。假如 `func` 是对数值的简单求和，`fold` 的结果是 `RDD 中元素求和 + zeroValue*(partitionNum + 1)`；
+* `aggregate(zeroValue)(seqOp, combOp)`：和 `fold` 类似，不同之处在于可以输出不同类型的 RDD；
 
-### RDD 其他操作
+{% highlight scala linedivs %}
+val listRdd = spark.sparkContext.parallelize(List(1,2,3,4,5,6,5,4,3,2,1,9,11))
+println("Count : "+listRdd.count)
+//  Count : 13
+println("Partitions : "+listRdd.getNumPartitions)
+//  Partitions : 3
+println("Total : "+listRdd.reduce(_+_))
+//  Total : 56
+println("Total : "+listRdd.fold(zeroValue = 0)(_+_))
+//  Total : 56
+println("Total with init value 2 : "+listRdd.fold(zeroValue = 2)(_+_))
+//  Total with init value 2 : 64
+println("Min : "+listRdd.fold(zeroValue = 0)(_ min _))
+//  Min : 0
+println("Max : "+listRdd.fold(zeroValue = 0)(_ max _))
+//  Max : 11
+
+// aggregate 将 RDD(String,Int) 类型转换为整型输出
+val inputRDD = spark.sparkContext.parallelize(List(("Z", 1),("A", 20),("B", 30),("C", 40),("B", 30),("B", 60)))
+def param3= (accu:Int, v:(String,Int)) => accu + v._2
+def param4= (accu1:Int,accu2:Int) => accu1 + accu2
+val result2 = inputRDD.aggregate(zeroValue = 2)(param3,param4)
+println("Partitions : "+inputRDD.getNumPartitions)
+//  Partitions : 3
+println("Aggregate with init value 2 : " + result2)
+//  Aggregate with init value 2 : 189
+{% endhighlight %}
+
+|    | RDD/PairRdd | Trans/Action | Has zeroValue | Same Type\* |
+| --- | --- | --- | --- | --- |
+| **reduce** | RDD | Action | No | Yes |
+| **fold** | RDD | Action | Yes | Yes |
+| **aggregate** | RDD | Action | Yes | No |
+| **reduceByKey** | PairRdd | Transformation | No | Yes |
+| **foldByKey** | PairRdd | Transformation | Yes | Yes |
+| **aggregateByKey** | PairRdd | Transformation | Yes | No |
+
+
+\* Same Type: return same type as input RDD element type
+
+### RDD Persist
 
 `rdd.persist()`：将 RDD 标记为持久化，不会马上计算生成 RDD 持久化，而是等到 action 触发计算把计算结果进行持久化。
-`persist(MEMORY_ONLY)`：表示将 RDD 作为反序列化的对象存储于 JVM 中，如果内存不足，就要按照 LRU 原则替换缓存中的内容；
-`persist(MEMORY_AND_DISK)`：表示将 RDD 作为反序列化的对象存储在 JVM 中，如果内存不足，超出的分区将会被存放在磁盘上。
 
-`rdd.cache()` 等价于 `rdd.persist(MEMORY_ONLY)`
+持久化有几个等级，参考代码类 `org.apache.spark.storage.StorageLevel`：
+* `MEMORY_ONLY`：表示将 RDD 作为反序列化的对象存储于 JVM 中，如果内存不足，就要按照 LRU 原则替换缓存中的内容，还没有足够的内存，将不会保存某些分区，只是在需要的时候再计算。
+`rdd.cache()` 等于 `rdd.persist(MEMORY_ONLY)`；
+* `MEMORY_ONLY_SER`：与 `MEMORY_ONLY` 类似，不同之处在于作为序列化对象存储到 JVM 内存中，省空间，需要一些额外 CPU 资源来序列化和反序列化；
+* `MEMORY_ONLY_2`：与 `MEMORY_ONLY` 类似，但将每个分区复制到两个集群节点；
+* `MEMORY_AND_DISK`：将 RDD 作为反序列化对象存储在 JVM 内存中，如果空间不够会存储到磁盘上；
+* `DISK_ONLY`：将 RDD 作为反序列化对象只存储在磁盘上；
+* 还有其他几种组合：`MEMORY_ONLY_SER_2`，`MEMORY_AND_DISK_2`，`MEMORY_AND_DISK_SER`，`MEMORY_AND_DISK_SER_2`，`DISK_ONLY_2`；
+
 
 调用 `unpersist()` 将持久化的 RDD 从内存中释放。
+
+## Spark 共享变量
+
+Spark 任务之间重用和共享变量通过下面两种方式：
+* 广播变量（Broadcast variables，只读共享变量）；
+* 累加器变量（Accumulator variables，可更新共享变量）；
+
+### 广播变量
+
+在 Spark RDD 和 DataFrame 中，广播变量是只读的共享变量，在集群中的所有节点上缓存并可用，以便任务访问或使用。广播变量经常与查找数据一起使用，
+
+{% highlight scala linedivs %}
+val score = Map(("A",90),("B",80),("C",60))
+val broadcastScore = sc.broadcast(score)
+
+val data = Seq(("James","A","Math"),
+  ("Michael","a","English"),
+  ("James","C","CS"),
+  ("Maria","","Math")
+)
+val rdd = sc.parallelize(data)
+
+val rdd2 = rdd.map(f=>{
+  val score = f._2.toUpperCase
+  val scoreNum = broadcastScore.value.get(score).getOrElse(0)
+  (f._1,f._3,scoreNum)
+})
+rdd2.foreach(println)
+//  (James,Math,90)
+//  (James,CS,60)
+//  (Maria,Math,0)
+//  (Michael,English,90)
+{% endhighlight %}
+
+### 累加器变量
+
+{% highlight scala linedivs %}
+val totalLength = sc.longAccumulator("Total Length")
+val a:RDD[String] = sc.parallelize(List("dog", "salmon", "salmon", "rat", "elephant"), 1)
+val b:RDD[Int] = a.map(_.length)
+a.foreach(x => totalLength.add(x.length))
+a.zip(b).collect().foreach(println)
+println(totalLength.name.mkString + " : " + totalLength.value)
+//  (dog,3)
+//  (salmon,6)
+//  (salmon,6)
+//  (rat,3)
+//  (elephant,8)
+//  Total Length : 26
+{% endhighlight %}
 
 ## Spark 基本概念
 
@@ -232,9 +340,9 @@ Spark 官方各版本的[文档地址](https://spark.apache.org/documentation.ht
 
 ## 参考
 
-[What is the concept of application, job, stage and task in spark?](https://stackoverflow.com/questions/42263270/what-is-the-concept-of-application-job-stage-and-task-in-spark)
-
 [Spark By Examples](https://sparkbyexamples.com/)
+
+[What is the concept of application, job, stage and task in spark?](https://stackoverflow.com/questions/42263270/what-is-the-concept-of-application-job-stage-and-task-in-spark)
 
 [A Tale of Three Apache Spark APIs: RDDs vs DataFrames and Datasets](https://databricks.com/blog/2016/07/14/a-tale-of-three-apache-spark-apis-rdds-dataframes-and-datasets.html)
 
