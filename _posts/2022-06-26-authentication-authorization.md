@@ -2,7 +2,7 @@
 layout: post
 title: 认证与授权相关名词解释 
 categories: 软件技术
-tags: 名词解释 LDAP
+tags: 名称解释 LDAP
 ---
 
 ## LDAP，OpenLDAP 与 AD
