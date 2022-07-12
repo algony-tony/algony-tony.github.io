@@ -286,7 +286,7 @@ Spark 官方各版本的[文档地址](https://spark.apache.org/documentation.ht
 
 * **RDD**（Resilient Distributed Dataset）：分布式弹性数据集，RDD 是不可变对象集合，分布在集群上的分区数据，提供了一组 transformations 和 actions 的底层数据接口以实现在各分区上并行计算。RDD 是 2011 年引入的数据集 API。
 * **DataFrame**：2013 年引入的 DataFrame，它也是分布式不可变数据集，与 RDD 不同是数据被组织成命名列，就像数据库中的表一样。它将数据结构强加到了分布式数据集合上，从而实现了更高级别的抽象。
-* **DataSet**：2015 年引入，它是 DataFrames API 的扩展，提供了类型安全，面向对象的接口。
+* **DataSet**：2015 年引入，它是 DataFrames API 的扩展，提供了类型安全，面向对象的接口。`DataFrame=Dataset[Row]`，DataFrame 的 API 就是 untyped API，因为它的类型是在运行时才知道，DataSet 对应的 API 是 typed API，它的类型在编译时就确定了。
 
 ### 集群模式概览
 
