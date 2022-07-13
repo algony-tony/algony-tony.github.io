@@ -79,6 +79,31 @@ git push -f origin master
 {% endhighlight %}
 
 
+### 稀疏检出 sparse checkout
+
+稀疏检出可以从仓库中检出部分文件到工作目录，而不是默认的检出所有文件。
+使用稀疏检出后其他命令的行为也会有点不同，切换分支时不会更新指定的稀疏检出指定的文件夹外的内容。
+
+如果仓库太大，稀疏检出可以只挑选需要的内容到工作目录即可，还有一种情况，在 Windows 中检出 git 库报错“error: invalid path ...”，
+因为文件系统命名规则的限制导致一些文件无法检出，此时也可以使用稀疏检出。[git-sparse-checkout](https://git-scm.com/docs/git-sparse-checkout)
+
+{% highlight bash linedivs %}
+# 设置稀疏检出
+git config core.sparseCheckout true
+
+# 稀疏检出的内容是配置在 .git/info/sparse-checkout 文件中
+# 可以直接编辑文件，语法和 .gitignore 一样，以 ! 开头的路径表示排除在稀疏检出中
+echo /path1/subpath >> .git/info/sparse-checkout
+echo !/path1/subpath >> .git/info/sparse-checkout
+# 检出所有内容
+echo '/*' >> .git/info/sparse-checkout
+
+git checkout [branch-name]
+{% endhighlight %}
+
+如果 Windows 检出有 invalid path 报错，可以通过设置关闭保护 `git config core.protectNTFS false`。
+
+
 ### 子模块 submodule
 
 如果需要在项目里引入另一个独立的 git 库，这时候就可以用到子模块（submodule）。子模块允许你将一个 git 仓库作为另一个仓库的子目录。
