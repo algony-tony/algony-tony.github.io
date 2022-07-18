@@ -205,6 +205,10 @@
         "name": "东方财富数据中心研究报告",
         "link": "http://data.eastmoney.com/report/"
     },
+    "eastmbbsj": {
+        "name": "东方财富数据中心年报季报披露时间",
+        "link": "https://data.eastmoney.com/bbsj/"
+    },
     "ttjj": {
         "name": "天天基金网",
         "link": "https://www.1234567.com.cn/"
@@ -466,5 +470,65 @@
     "cont12315": {
         "name": "合同示范文本库",
         "link": "https://cont.12315.cn/"
+    },
+    "xueqiu": {
+        "name": "雪球网",
+        "link": "https://xueqiu.com/"
+    },
+    "wallstreetcn": {
+        "name": "华尔街见闻",
+        "link": "https://wallstreetcn.com/"
+    },
+    "jin10": {
+        "name": "金十数据",
+        "link": "https://www.jin10.com/"
+    },
+    "jisilu": {
+        "name": "集思录",
+        "link": "https://www.jisilu.cn/"
+    },
+    "joudou": {
+        "name": "九斗数据",
+        "link": "https://www.joudou.com/#/"
+    },
+    "hongzhoukan": {
+        "name": "证券市场红周刊",
+        "link": "http://www.hongzhoukan.com/"
+    },
+    "dashiyetouzi": {
+        "name": "大视野",
+        "link": "http://www.dashiyetouzi.com/"
+    },
+    "gelonghui": {
+        "name": "格隆汇",
+        "link": "https://www.gelonghui.com/"
+    },
+    "value500": {
+        "name": "value500 投资导航",
+        "link": "http://value500.com/"
+    },
+    "macromicro": {
+        "name": "财经 M 平方",
+        "link": "https://www.macromicro.me/"
+    },
+    "xueqiudh": {
+        "name": "雪球财经网站导航",
+        "link": "https://xueqiu.com/dh"
+    },
+    "jianweidata": {
+        "name": "见微数据",
+        "link": "https://www.jianweidata.com/Index",
+        "desc": "金融信披检索工具"
+    },
+    "dx2025": {
+        "name": "东西智库",
+        "link": "https://www.dx2025.com/",
+        "desc": "专注中国制造业高质量发展"
+    },
+    "nai500": {
+        "name": "NAI 500",
+        "link": "https://nai500.com/zh-hans/",
+        "desc": "北美投资机会和新闻"
     }
+    
 }
