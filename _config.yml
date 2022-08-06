@@ -116,3 +116,4 @@ exclude:
   - README.md
   - CNAME
   - "script"
+  - TODO
