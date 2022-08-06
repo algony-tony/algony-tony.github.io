@@ -323,9 +323,13 @@ Spark 官方各版本的[文档地址](https://spark.apache.org/documentation.ht
 
 * `--class`：应用程序入口，如 `org.apache.spark.examples.SparkPi`
 * `--master`：将应用提交到 master 上的地址。本地模式设置为 `local[N]`，使用 N 个线程在本地运行；在 Spark Standalone 模式为 `spark://IP:PORT`；在 Yarn 模式设置 `--master yarn`；在 Mesos 设置为 `mesos://IP:PORT`。
-* `--deploy-mode`：`cluster` 将驱动程序提交到集群上，成为由集群管理器管理的应用主程序，客户端提交应用后即可离开。这个默认值为 `client`，即将驱动运行在客户端进程中。官方文档建议开发调试可以用 `client` 模式，在生产环境用 `cluster` 模式，还可以结合提交任务的机器和集群的网络距离来考量用哪种模式。`client` 模式下日志会在本地输出方便调试，关掉启动的进程后会同时关掉 spark 应用，而集群模式，日志会收集到集群调度器（比如 yarn）日志中，本地的进程关掉后 spark 程序还会继续执行。`cluster` 模式还要注意把用到的本地 jar 包通过参数 `--jars` 参数上传，`--files` 上传应用需要的配置文件，还有参数 `spark.driver.extraClassPath`，`spark.executor.extraClassPath` 等，可以参考[提交应用](https://spark.apache.org/docs/2.4.7/submitting-applications.html)和[配置文档](https://spark.apache.org/docs/2.4.7/configuration.html#runtime-environment)。
+* `--deploy-mode`：
+  * 默认为 `client` 模式，即将驱动运行在客户端进程中。官方文档建议开发调试可以用 `client` 模式，在生产环境用 `cluster` 模式，还可以结合提交任务的机器和集群的网络距离来考量用哪种模式。`client` 模式下日志会在本地输出方便调试，关掉启动的进程后会同时关掉 spark 应用，
+  * `cluster` 将驱动程序提交到集群上，成为由集群管理器管理的应用主程序，客户端提交应用后即可离开。而集群模式，日志会收集到集群调度器（比如 yarn）日志中，本地的进程关掉后 spark 程序还会继续执行。`cluster` 模式还要注意把用到的本地 jar 包通过参数 `--jars` 参数上传或者直接引用文件的 hdfs 地址，`--files` 上传应用需要的配置文件，参考官方文档[提交应用](https://spark.apache.org/docs/2.4.7/submitting-applications.html)和[配置文档](https://spark.apache.org/docs/2.4.7/configuration.html#runtime-environment)，StackOverflow [提交任务时如何添加 jar 包](https://stackoverflow.com/questions/37132559/add-jar-files-to-a-spark-job-spark-submit)。
 * `--conf`：用 `key=value` 的形式配置 Spark 属性值，如果有空格则用双引号括起来 `"key=value"`，具体参数可以查看[配置文档](https://spark.apache.org/docs/2.4.7/configuration.html)。
-* `--jars`：添加逗号分隔的 jar 文件列表。
+* `--jars`：添加逗号分隔的 jar 文件列表，运行时把 jar 包分发到 worker 的指定目录上，一般是 /var/run/spark/work 目录，但是并不会把这些 jar 包自动装载到 executor 的 classpath 中。
+* `spark.executor.extraClassPath`：显式地将 `jars` 参数引入包注册到 executor 的 classpath 中，因为 executor 知道运行的默认目录，所以不需要指定绝对目录，直接使用 jar 包名字即可。
+* `spark.driver.extraClassPath`：类似 executor 参数，在 yarn-client 模式下需要用绝对路径。
 * `application-jar`：应用程序的 jar 包，以及相关依赖，在集群模式次 jar 包和 `jars` 参数配置的 jar 包会自动分发到 driver 和 executor 的 classpaths 中。
 * `application-arguments`：传给主程序的参数
 
