@@ -2,7 +2,7 @@
 layout: post
 title: Cloudera CDP 产品简介 
 categories: 软件技术
-tags: 大数据 CDH CDP Cloudera
+tags: CDH CDP Cloudera
 ---
 
 ## CDP 产品背景

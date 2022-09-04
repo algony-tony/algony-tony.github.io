@@ -1,14 +1,28 @@
 ---
 layout: post
 title: For Example of very Long Title Would Be Typography Elements in One
-updated: 2016-10-18 23:37
+excerpt: example excerpt of post
+image: /assets/img/sys/jekyll-logo.png
+categories: 软件技术
+tags: example
+toc: true
+mathjax: true
 ---
+
+* TOC
+{:toc}
 
 **NOTE:** This markdown cheatsheet is a typography demo for this theme. Check out this post to learn more about this markdown usage when you want to get started with this theme. Enjoy!
 
 ## Typography Elements in One
 
-Let's start with a informative paragraph. **This text is bolded.** But not this one! _How about italic text?_ Cool right? Ok, let's **_combine_** them together. Yeah, that's right! I have code to highlight, so `ThisIsMyCode()`. What a nice! Good people will hyperlink away, so [here we go](#h1-heading) or [http://www.example.com](http://www.example.com).
+Let's start with a informative paragraph. **This text is bolded.** But not this one! _How about italic text?_ Cool right? Ok, let's **_combine_** them together. Yeah, that's right! I have code to highlight, so `ThisIsMyCode()`. What a nice! Good people will hyperlink away, so [here we go](#h1-heading) or [jekyll markdown guide page](https://www.markdownguide.org/tools/jekyll/) or [go to another post]({% link _posts/2022-01-20-rmb-loan.md %}) or [统计数据]({{ site.data.links["pbctj"].link }}) :joy: .
+
+[Complete list of github markdown emoji markup](https://gist.github.com/rxaviers/7360908) :+1: .
+
+:neckbeard: :raising_hand: :snail: :phone: :rainbow: :arrow_left: :u7981: :clock5:
+
+X<sup>2</sup> and H<sub>2</sub>O
 
 <div class="divider"></div>
 
@@ -21,10 +35,6 @@ Let's start with a informative paragraph. **This text is bolded.** But not this 
 ### H3 Heading
 
 #### H4 Heading
-
-##### H5 Heading
-
-###### H6 Heading
 
 <div class="divider"></div>
 
@@ -69,6 +79,17 @@ print s
 No language indicated, so no syntax highlighting.
 But let's throw in a <b>tag</b>.
 ```
+
+{% highlight javascript linedivs %}
+var s = "JavaScript syntax highlighting";
+alert(s);
+{% endhighlight %}
+
+{% highlight python linedivs %}
+s = "Python syntax highlighting"
+print s
+{% endhighlight %}
+
 
 <div class="divider"></div>
 
@@ -134,6 +155,10 @@ ___
 ### Image
 
 ![Minion](http://octodex.github.com/images/minion.png)
+
+![404 页面](/assets/img/sys/404.jpg "404 页面")
+
+# 参考
 
 [^1]: Footnote number one yeah baby! Long sentence test of footnote to see how the words are wrapping between each other. Might overflowww!
 [^2]: A footnote you can link to - [click here!](#h1-heading)

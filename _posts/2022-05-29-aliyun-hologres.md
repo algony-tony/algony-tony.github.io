@@ -2,7 +2,7 @@
 layout: post
 title: 阿里云 Hologres 简介
 categories: 软件技术
-tags: 大数据 aliyun Hologres PostgreSQL 数据仓库 OLAP HSAP
+tags: aliyun Hologres PostgreSQL 数据仓库 OLAP HSAP
 ---
 
 [Hologres 官方文档](https://help.aliyun.com/product/113622.html)

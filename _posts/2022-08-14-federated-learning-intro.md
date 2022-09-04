@@ -2,7 +2,7 @@
 layout: post
 title: 联邦学习相关内容简介
 categories: 软件技术
-tags: 名词解释 联邦学习
+tags: 名称解释 联邦学习
 toc: false
 mathjax: true
 ---
