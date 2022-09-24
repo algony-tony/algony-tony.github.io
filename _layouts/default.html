@@ -7,6 +7,7 @@ show_footer: true
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
+    {% include gtm-head.html %}
     {% include analytics.html %}
 
     <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
@@ -35,6 +36,8 @@ show_footer: true
 
   <body>
 
+    {% include gtm-body.html %}
+    
     {% include header.html %}
 
     {{ content }}
