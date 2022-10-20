@@ -61,12 +61,94 @@ Maven 项目的核心是 pom.xml 文件，POM（Project Object Model） 是项�
 </project>
 ```
 
+### POM 结构
+
+![The Project Object Model](/assets/img/post/maven-pom.png "The Project Object Model")
+
+POM 主要由四个部分组成：
+* 一般项目信息（General project information）：包含项目名称，URL，赞助机构，开发和贡献者清单和项目许可证；
+* 构建设置（Build settings）：在这一部分可以定制化默认 Maven 构建的行为。可以改变 source 和 tests 的路径，增加新的插件，把插件目标加入生命周期，也可以定制化网站生成参数；
+* 构建环境（Build environment）：此部分由对应不同环境的 profiles 组成。比如，在开发阶段需要把代码发布到开发服务器上，而在生产环境则需要发布到生产服务器上；
+* POM 关系（POM relationships）：此部分包含依赖其他项目的关系，从父项目继承 POM 设置，定义它自己的坐标，包含的子模块等。
+
+### Super POM
+
+Maven 中有一个 Super POM 的概念，它是所有 Maven 项目 POM 文件的父级 POM，类似于 `java.lang.Object` 是所有 Java 类的父类一样。Super POM 可以在[官网](https://maven.apache.org/ref/3.6.3/maven-model-builder/super-pom.html)找到，也可以在本地安装包中 lib 下的 maven-x.y.z-uber.jar 或 maven-model-builder-x.y.z.jar 中找到，在 `org.apache.maven.model` 包下找到 pom-4.0.0.xml 文件。
+
+Super POM 定义了被所有项目继承的一些标准配置变量。它定义了命名为 central 的远程 Maven 仓库，同样地命名为 central 的插件仓库，在 build 元素下定义了 Maven 项目的标准目录结构。
+
+下面 help 插件的 effective-pom 目标会打印出由 Super POM 和当前 pom 合并后的有效配置项。
+
+``` base
+mvn help:effective-pom
+```
+
+
 ### 依赖管理
 
+Maven 中的一个最佳实践就是在多模块项目中使用父项目 pom.xml 中的 **dependencyManagement** 来避免子项目中重复的依赖信息。不这么做，每个子项目都要重复定义需要依赖的 version,scope,exclusions 等，子项目没有覆盖的配置项都会使用父项目 pom.xml 中的。比如在父 pom.xml 中定义依赖如下
+
+``` xml
+<dependencyManagement>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-commons-annotations</artifactId>
+      <version>3.3.0.ga</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate</artifactId>
+      <version>3.2.5.ga</version>
+      <exclusions>
+        <exclusion>
+            <groupId>javax.transaction</groupId>
+            <artifactId>jta</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+  </dependencies>
+</dependencyManagement>
+```
+
+子项目 pom.xml 也需要申明依赖项但是可以省去其他，如下。
+
+``` xml
+<dependencies>
+    <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-annotations</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+    </dependency>
+</dependencies>
+```
+
+还有就是把重复共用的版本号配置到 properties 中，还可以使用内置的属性值来引用其他子项目 `${project.groupId}`, `${project.version}`。
+
+另一条最佳实践是把用到的库依赖都显式地写出来，因为有依赖传递，有一些底层库虽然没有显式地写出项目也不会报错，但是却埋下了隐患，后续直接依赖的库如果移除了依赖会导致本项目的报错。
+可以用下面命令来分析项目依赖关系，找出依赖的底层库显式地写到依赖里。
+
+{% highlight bash linedivs %}
+# 分析依赖关系，找出被用到的库却没显式地申明，
+mvn dependency:analysis
+{% endhighlight %}
 
 ## 插件
 
-Maven 是使用基于插件的架构构建的，它的大部分功能都在插件中。[插件地址](https://maven.apache.org/plugins/)。
+Maven 是使用基于插件的架构构建的，它的大部分功能都在插件中。[插件地址](https://maven.apache.org/plugins/)。同样的，在多模块的项目中，插件也可以在父 pom.xml 文件中通过 **pluginManagement** 来统一管理。
 
 ### 插件目标
 
