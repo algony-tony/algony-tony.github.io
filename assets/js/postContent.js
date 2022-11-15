@@ -1,10 +1,10 @@
 
- (function() {
+ window.addEventListener("load", (event) => {
     moveTOC() //将Content内容转移
     replaceClassFirstElement('wrapper-header','wrapper-header-with-side')
     replaceClassFirstElement('wrapper-content','wrapper-content-with-side')
     replaceClassFirstElement('wrapper-footer','wrapper-footer-with-side')
-}());
+  });
 
 //将Content内容转移
 function moveTOC() {
