@@ -36,3 +36,8 @@ tags: blog recommandation
 * 国防部的教训：[Lessons for the DoD – From Ukraine and China](https://steveblank.com/2022/05/03/lessons-for-the-dod-from-ukraine-and-china/)
 * 量子技术生态系统：[The Quantum Technology Ecosystem – Explained](https://steveblank.com/2022/03/22/the-quantum-technology-ecosystem-explained/)
 
+## The Secret Lives of Data
+
+Github 上的一个数据可视化库，目前只有一篇介绍 Raft 共识算法的文章，期待更多好文。
+
+* 分布式系统的共识算法 Raft：[Raft: Understandable Distributed Consensus](http://thesecretlivesofdata.com/raft/)
