@@ -310,6 +310,22 @@ git diff --staged HEAD [path-to-file] # 显示暂存区和当前分支的最新�
 
 ![Git diff](/assets/img/post/git-diff.png "git diff")
 
+### 提交描述
+
+提交的消息的写法从技术上没有限制，但是有一个最佳实践的[约定式提交](https://www.conventionalcommits.org/zh-hans/)。
+
+> 约定式提交规范是一种基于提交信息的轻量级约定。它提供了一组简单规则来创建清晰的提交历史；这有利于编写自动化工具。
+> 通过在提交信息中描述功能、修复和破坏性变更，是这种惯例与 [SemVer](https://semver.org/lang/zh-CN/) （语义化版本）互相对应。
+
+提交说明的结构如下：
+
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
 
 ### 删除 git rm
 
