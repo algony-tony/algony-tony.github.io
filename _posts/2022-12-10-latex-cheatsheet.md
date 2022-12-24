@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Mathjax tempalte
+title: LaTeX 使用手册
 categories: 软件技术
-tags: example
+tags: LaTeX MathJax
 toc: false
 mathjax: true
 ---
@@ -67,6 +67,7 @@ CTAN 上的 [LaTeX 符号全列表(PDF, 22 MB)](https://tug.ctan.org/info/symbol
 |              | \acute{a}           | $$\acute{a}$$           | \bar{a}            | $$\bar{a}$$             | \hat{a}              | $$\hat{a}$$              |
 |              | \dot{a}             | $$\dot{a}$$             | \ddot{a}           | $$\ddot{a}$$            | \grave{a}            | $$\grave{a}$$            |
 |              | \breve{a}           | $$\breve{a}$$           | \vec{a}            | $$\vec{a}$$             | \tilde{a}            | $$\tilde{a}$$            |
+|              | \binom{a}{b}        | $$\binom{a}{b}$$        |                    |                         |                      |                          |
 | **函数名**   | \lim_{h\to 0}       | $$\lim_{h\to 0}$$       | \ln                | $$\ln$$                 | \sin                 | $$\sin$$                 |
 |              | \exp                | $$\exp$$                | \max               | $$\max$$                | \inf                 | $$\inf$$                 |
 |              | \limsup             | $$\limsup$$             | \liminf            | $$\liminf$$             | \gcd                 | $$\gcd$$                 |
