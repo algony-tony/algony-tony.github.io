@@ -6,7 +6,7 @@ tags: 投资 HowardMarks
 toc: false
 ---
 
-从 1993 年 2 月的[预测的价值，或这些雨是从哪里来的](https://www.oaktreecapital.com/docs/default-source/memos/1993-02-15-the-value-of-predictions-or-where-39-d-all-this-rain-come-from.pdf?sfvrsn=2)开始，我一直在表达我对预测的漠视，几乎与我写备忘录的时间一样长。从那以后的几年里，我已经详细解释了为什么我对预测不感兴趣，我最喜欢的几句话在下面的章节里呼应了我的不屑，但我从来没有在备忘录中专门解释过为什么做出有用的宏观预测是如此困难。所以在这里解释下。
+从 1993 年 2 月的[预测的价值，或这些雨是从哪里来的](https://www.oaktreecapital.com/docs/default-source/memos/1993-02-15-the-value-of-predictions-or-where-39-d-all-this-rain-come-from.pdf?sfvrsn=2)（[本站链接]({% link _posts/2023-01-01-howard-marks-the-value-of-predictions.md %})）开始，我一直在表达我对预测的漠视，几乎与我写备忘录的时间一样长。从那以后的几年里，我已经详细解释了为什么我对预测不感兴趣，我最喜欢的几句话在下面的章节里呼应了我的不屑，但我从来没有在备忘录中专门解释过为什么做出有用的宏观预测是如此困难。所以在这里解释下。
 
 ## 思考的食粮
 
