@@ -387,7 +387,322 @@ $$
 
 ## 整数线性规划
 
-在上述的线性规划问题的基础上，再加上对全部或者部分
+在上述的线性规划问题的基础上，如果要求某些决策变量或者全部决策变量要求为整数，则称这样的问题为**整数规划问题**（Integer Programming，IP），
+除了整数约束条件外其他的部分称为相应的**松弛问题**（Slack Problem）。如果所有决策变量要求为整数称为**纯整数规划**（Pure Integer Programming）或**全整数规划**（All Integer Programming）。
+如果只是部分决策变量要求为整数，则称为**混合整数规划**（Mixed Integer Programming，MIP）。
+整数规划中如果所有决策变量要求取值只能是 0 或者 1，称为 **0-1 型整数规划问题**。有一类特殊的 0-1 整数规划问题称为**指派问题**（assignment problem），有 n 项任务要完成，有 n 项资源（可以理解为人、机器设备等）可以完成任务，并且每项任务交给一个对象完成，每个对象也只能完成一种任务。由于每个对象的特点与能力不同，故其完成各项任务的效率也不同。那么，如何分配资源，才能使完成各项任务的总效率最高（或总消耗最少）？ 指派问题的一般形式如下：
+
+$$
+\min z = \sum_{i=1}^n\sum_{j=1}^n c_{ij}x_{ij}
+$$
+
+$$
+\left\{
+    \begin{array}{l}
+    \sum_{i=1}^n x_{ij} = 1, \quad j=1,2,\cdots,n \quad \text{第 j 项任务只能由一人完成} \\
+    \sum_{j=1}^n x_{ij} = 1, \quad i=1,2,\cdots,n \quad \text{第 i 人只能完成一项任务} \\
+    x_{ij} \in \{0,1\}
+    \end{array}
+\right.
+$$
+
+其中的矩阵 $\mathbf{C}$ 称为效率矩阵或者系数矩阵。
+
+下面是整数线性规划问题的几个主要求解算法：
+1. 分枝定界法：可求纯或混合整数线性规划。
+2. 割平面法：可求纯或混合整数线性规划。
+3. 隐枚举法：用于求解 0-1 整数规划。
+4. 匈牙利法：解决指派问题（0-1 规划特殊情形）。
+5. 蒙特卡罗法：求解各种类型规划。
+
+### 分支定界法
+
+分枝定界法（Branch and Bound, B&B）在 20 世纪 60 年代初由 A.H.Land 和 A.G.Doig 两位学者提出，用于解纯整数或混合整数规划问题。
+
+它的基本思路是考虑到整数规划可行解中任何相邻整数之间的区域均不含整数解，这样就可以将松弛问题的可行域分为多个分枝，同时将求解整数规划问题转化为求解多个线性规划的问题。
+
+假设整数线性规划问题 A，去掉其中的整数约束得到的松弛问题 B，分枝定界法的基本步骤如下：
+1. 解出问题 B，可能出现下面解的情况
+   1. B 无可行解，则 A 无可行解，停止计算；
+   2. B 有最优解，并符合 A 的整数约束条件，则此最优解就是 A 的最优解，停止计算；
+   3. B 有最优解，但不符合 A 的整数约束条件，记此最优解的目标函数值为 $\overline{z}$；
+2. 分枝：选出 B 最优解中任一不符合整数约束的变量 $x_j$，其值为 $b_j$，构造两个约束条件 $x_j \le [b_j]$ 和 $x_j \ge [b_j] + 1$ 添加到 B 中，形成两个分枝问题 B1 和 B2；
+3. 定界：求解 B1 和 B2 问题，从最优目标函数值最大者作为新的上界 $overline{z}$，从已符合整数约束的分枝中找出目标函数最大者作为新的下界 $\underline{z}$；
+4. 剪枝：各分枝的最优目标如果小于 $\underline{z}$，则剪掉这个分枝，若大于 $\underline{z}$ 且不符合整数条件则重复第二步继续分枝；
+
+| 问题 1 | 问题 2 | 说明 |
+| --- | --- | --- |
+| 无可行解 | 无可行解 | 整数规划无可行解 |
+| 无可行解 | 整数解 | 此整数解即最优解 |
+| 无可行解 | 非整数最优解 | 对问题 2 继续分枝 |
+| 整数解 | 整数解 | 目标值最大的为最优 |
+| 整数解，目标值优于问题 2 | 非整数最优解 | 问题 1 整数解即为最优解 |
+| 整数解，目标值不如问题 2 | 非整数最优解 | 问题 1 停止分枝，它的目标值作为下界，对问题 2 继续分枝 |
+
+如用分枝定界法求解下面例子
+
+$$
+\max z = x_1 + 5 x_2
+$$
+
+$$
+\left\{
+    \begin{array}{c}
+    x_1 - x_2 \ge -2 \\
+    5x_1+6x_2 \le 30 \\
+    x_1 \le 4 \\
+    x_1,x_2 \ge 0 \text{且全为整数}
+    \end{array}
+\right.
+$$
+
+第一步求解松弛问题，得到最优解：
+$$
+x_1=\frac{18}{11},\quad x_2=\frac{40}{11},\quad z=\frac{218}{11}
+$$
+
+显然有 $x_1=0, x_2=0$ 是满足规划问题的一个整数解，这样得到一个上界和下届，$0 \le z \le \frac{218}{11}$。
+
+对 $x_1 = \frac{18}{11}$ 进行分枝，构造两个约束条件 $x_1 \le 1$ 和 $x_1 \ge 2$，得到两个问题 LP1 和 LP2，求解得到两个最优解：
+
+$$
+x_1 = 1, x_2 = 3, z = 16 \quad \text{对应问题 LP1}
+$$
+
+$$
+x_1 = 2, x_2 = \frac{10}{3}, z = \frac{56}{3} \quad \text{对应问题 LP2}
+$$
+
+分枝 LP1 停止分枝，得到新的下界 16，分枝 LP2 给出新的上界 56/3，选择 $x_2$ 对 LP2 继续分枝，如下：
+
+!["分支定界法"](/assets/img/post/linear-programming-bb.png "分支定界法")
+
+### 割平面法
+
+割平面法是 1958 年 R.E.Gomory 提出的，也称为 Gomory 割平面法，它的基本思想是不考虑整数要求，先求解松弛问题的解，如果没有得到满足整数要求的解，那么逐次增加一个新约束（即割平面），
+割掉原可行域的一部分（只含非整数解），使得切割后最终得到这样的可行域（不一定一次性得到），它的一个有整数坐标的顶点恰好是问题的最优解。切割方程由松散问题的最终单纯形表中含非整数解基变量的等式约束演变而来。
+
+### 隐枚举法
+
+隐枚举法（implict enumeration）：只检查变量取值组合的一部分，就能求得问题的最优解的方法。
+
+例子如求解如下问题
+
+$$
+\max z = 3x_1 -2x_2+5x_3
+$$
+
+$$
+\left\{
+    \begin{array}{l}
+    x_1+2x_2-x_3 \le 2 \\
+    x_1+4x_2+x_3 \le 4 \\
+    x_1+x_2 \le 3 \\
+    4x_1+x_3 \le 6 \\
+    x_1,x_2,x_3 \in \{0,1\}
+    \end{array}
+\right.
+$$
+
+先试探得到 $(1,0,0)$ 是一个可行解，计算出目标函数值 $z=3$，结合目标函数可以增加约束条件 $3x_1 -2x_2+5x_3 \ge 3$，这个条件称为过滤条件（filtering constraint），这样，原问题的线性约束条件就变成 5 个。用穷举法，3 个变量共有 8 个解。对每个解，依次代入 5 个约束条件左侧，先判断是否满足过滤条件，如果不满足就可以直接跳过，满足后再检查后面约束条件，如果都满足且得到了更好的目标值则更新过滤条件的值，这样继续如下表所示：
+
+!["隐枚举法"](/assets/img/post/linear-programming-implict-enum.png "隐枚举法")
+
+### 匈牙利法
+匈牙利法是基于指派问题的标准型，标准型需要满足下面 3 个条件：
+1. 目标函数求最小 min；
+2. 效率矩阵为 n 阶方阵；
+3. 效率矩阵所有元素 $c_{ij} \ge 0$，且为常数；
+
+!["匈牙利法"](/assets/img/post/linear-programming-ap01.png "匈牙利法")
+
+!["匈牙利法例子"](/assets/img/post/linear-programming-ap02.png "匈牙利法例子")
+
+!["匈牙利法例子"](/assets/img/post/linear-programming-ap03.png "匈牙利法例子")
+
+!["匈牙利法例子"](/assets/img/post/linear-programming-ap04.png "匈牙利法例子")
+
+!["匈牙利法例子"](/assets/img/post/linear-programming-ap05.png "匈牙利法例子")
+
+!["匈牙利法例子"](/assets/img/post/linear-programming-ap06.png "匈牙利法例子")
+
+!["匈牙利法例子"](/assets/img/post/linear-programming-ap07.png "匈牙利法例子")
+
+!["匈牙利法例子"](/assets/img/post/linear-programming-ap08.png "匈牙利法例子")
+
+对于非标准形的指派问题，可以转换成标准形式：
+!["匈牙利法例子"](/assets/img/post/linear-programming-ap09.png "匈牙利法例子")
+
+
+### 蒙特卡洛法
+
+蒙特卡罗法就是选择部分穷举法，随机取样来得到在有限取样下的一个最优解。
+
+## Python 求解
+
+线性规划问题的求解主要依赖下面两个包：
+* [SciPy](https://docs.scipy.org/doc/scipy/reference/optimize.html#linear-programming-milp)：Python 的一个通用科学计算包；
+* [PuLP](https://coin-or.github.io/pulp/main/installing_pulp_at_home.html)：提供 Python 的定义线性规划问题的 API 接口，并调用外部的求解器求解；
+
+### 线性规划问题求解
+
+用 SciPy 来求解上面的线性规划问题：
+
+{% highlight python linedivs %}
+import scipy
+scipy.__version__
+# '1.9.1'
+
+import numpy as np
+from scipy import optimize
+
+# 定义参数，因为是算法是求最小值，需要把价值系数乘以 -1
+c= np.array([-2, -3])
+A_ub=np.array([[1,2],[1,0],[0,1]])
+b_ub=np.array([8,4,3])
+x0_bound=(0,None)
+x1_bound=(0,None)
+
+# 用单纯型法求解，得到最优解 [4,2] 和最优目标值 14
+res = optimize.linprog(c, A_ub=A_ub, b_ub=b_ub,bounds=[x0_bound, x1_bound], method='simplex')
+print(res)
+#      con: array([], dtype=float64)
+#      fun: -14.0
+#  message: 'Optimization terminated successfully.'
+#      nit: 3
+#    slack: array([0., 0., 1.])
+#   status: 0
+#  success: True
+#        x: array([4., 2.])
+
+
+# 使用默认的 HiGHS 算法求解
+optimize.linprog(c, A_ub=A_ub, b_ub=b_ub,bounds=[x0_bound, x1_bound])
+#            con: array([], dtype=float64)
+#  crossover_nit: 0
+#          eqlin:  marginals: array([], dtype=float64)
+#   residual: array([], dtype=float64)
+#            fun: -14.0
+#        ineqlin:  marginals: array([-1.5, -0.5, -0. ])
+#   residual: array([0., 0., 1.])
+#          lower:  marginals: array([0., 0.])
+#   residual: array([4., 2.])
+#        message: 'Optimization terminated successfully. (HiGHS Status 7: Optimal)'
+#            nit: 1
+#          slack: array([0., 0., 1.])
+#         status: 0
+#        success: True
+#          upper:  marginals: array([0., 0.])
+#   residual: array([inf, inf])
+#              x: array([4., 2.])
+
+{% endhighlight %}
+
+现在 SciPy 的线性规划问题默认使用 [HiGHS](https://www.maths.ed.ac.uk/hall/HiGHS/#top) 求解，HIGHS 是用 C++ 写的一个求解软件，提供 C, C#, FORTRAN, Julia and Python 的接口。
+> HiGHS - high performance software for linear optimization
+>
+> Open source serial and parallel solvers for large-scale sparse linear programming (LP), mixed-integer programming (MIP), and quadratic programming (QP) models 
+
+HiGHS 的 [GitHub 地址](https://github.com/ERGO-Code/HiGHS)，[Wiki 地址](https://en.wikipedia.org/wiki/HiGHS_optimization_solver)，[论文地址](https://www.maths.ed.ac.uk/hall/HuHa13/HuHa13.pdf)。它主要是两个并行对偶单纯形求解器（PAMI 和 SIP）的设计和实现。
+
+
+### 整数线性规划问题求解
+
+用 SciPy 来求解上面的整数线性规划问题，加上 `integrality` 参数即可， 0 表示连续变量，无整型约束，1 表示整数约束，其他参考文档。
+
+{% highlight python linedivs %}
+import numpy as np
+from scipy import optimize
+
+# 定义参数，因为是算法是求最小值，需要把价值系数乘以 -1
+ip_c= np.array([-1, -5])
+ip_A_ub=np.array([[-1,1],[5,6],[1,0]])
+ip_b_ub=np.array([2,30,4])
+ip_x0_bound=(0,None)
+ip_x1_bound=(0,None)
+ip_integrality=np.array([1,1])
+
+# 加上整数约束求解，得到最优解 [2,3] 和最优目标值 17
+optimize.linprog(ip_c, A_ub=ip_A_ub, b_ub=ip_b_ub,bounds=[ip_x0_bound, ip_x1_bound], integrality=ip_integrality)
+#            con: array([], dtype=float64)
+#  crossover_nit: -1
+#          eqlin:  marginals: array([], dtype=float64)
+#   residual: array([], dtype=float64)
+#            fun: -17.0
+#        ineqlin:  marginals: array([0., 0., 0.])
+#   residual: array([1., 2., 2.])
+#          lower:  marginals: array([0., 0.])
+#   residual: array([2., 3.])
+#        message: 'Optimization terminated successfully. (HiGHS Status 7: Optimal)'
+#            nit: -1
+#          slack: array([1., 2., 2.])
+#         status: 0
+#        success: True
+#          upper:  marginals: array([0., 0.])
+#   residual: array([inf, inf])
+#              x: array([2., 3.])
+
+{% endhighlight %}
+
+### 0-1 规划问题求解
+
+用 SciPy 来求解上面的 0-1 规划问题。
+
+{% highlight python linedivs %}
+import numpy as np
+from scipy import optimize
+
+# 定义参数，因为是算法是求最小值，需要把价值系数乘以 -1
+zo_c= np.array([-3, 2,-5])
+zo_A_ub=np.array([[1,2,-1],[1,4,1],[1,1,0],[4,0,1]])
+zo_b_ub=np.array([2,4,3,6])
+zo_x0_bound=(0,1)
+zo_x1_bound=(0,1)
+zo_x2_bound=(0,1)
+zo_integrality=np.array([1,1])
+
+# 加上整数约束求解，得到最优解 [1,0,1] 和最优目标值 8
+optimize.linprog(zo_c, A_ub=zo_A_ub, b_ub=zo_b_ub,bounds=[zo_x0_bound, zo_x1_bound,zo_x2_bound], integrality=zo_integrality)
+#            con: array([], dtype=float64)
+#  crossover_nit: -1
+#          eqlin:  marginals: array([], dtype=float64)
+#   residual: array([], dtype=float64)
+#            fun: -8.0
+#        ineqlin:  marginals: array([0., 0., 0., 0.])
+#   residual: array([2., 2., 2., 1.])
+#          lower:  marginals: array([0., 0., 0.])
+#   residual: array([1., 0., 1.])
+#        message: 'Optimization terminated successfully. (HiGHS Status 7: Optimal)'
+#            nit: -1
+#          slack: array([2., 2., 2., 1.])
+#         status: 0
+#        success: True
+#          upper:  marginals: array([0., 0., 0.])
+#   residual: array([0., 1., 0.])
+#              x: array([1., 0., 1.])
+
+{% endhighlight %}
+
+### 指派问题求解
+
+用 SciPy 来求解上面的指派问题：
+
+{% highlight python linedivs %}
+
+from scipy.optimize import linear_sum_assignment
+
+# 定义效率矩阵
+cost = np.array([[7,10,9,11], [6,11,10,5], [18,12,10,11],[12,13,14,8]])
+
+# 指派问题求解
+row_ind, col_ind = linear_sum_assignment(cost, maximize=False)
+
+col_ind
+# array([1, 0, 2, 3], dtype=int64)
+
+cost[row_ind, col_ind].sum()
+# 34
+{% endhighlight %}
 
 
 ## 参考链接
@@ -395,3 +710,11 @@ $$
 [运筹学基础，李志猛著](https://item.jd.com/12769676.html)
 
 [Simplex method calculator](https://cbom.atozmath.com/CBOM/Simplex.aspx)
+
+[实用运筹学：案例、方法及应用，邢光军著](https://book.douban.com/subject/30602094/)
+
+[[学习笔记] 整数规划之割平面法 How and why?](https://www.cnblogs.com/aoru45/p/12501380.html)
+
+[运筹学-指派问题-匈牙利法](https://www.bilibili.com/video/BV1vB4y1X73q)
+
+[scipy.optimize.linear_sum_assignment](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linear_sum_assignment.html)
