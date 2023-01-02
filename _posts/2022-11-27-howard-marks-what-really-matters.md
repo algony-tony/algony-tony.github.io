@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【转】Howard Marks：真正重要的是什么
+title: 【转】Howard Marks：真正重要的是什么@20221122
 categories: 金融
 tags: 投资 HowardMarks
 toc: false
@@ -10,7 +10,7 @@ toc: false
 
 ## 什么是不重要的：短期事件
 
-在[知识的幻觉](https://www.oaktreecapital.com/docs/default-source/memos/illusion-of-knowledge.pdf)（2022 年 9 月）中，我抨击了宏观预测，在我们的行业中，宏观预测主要涉及未来一年或两年。
+在[知识的幻觉](https://www.oaktreecapital.com/docs/default-source/memos/illusion-of-knowledge.pdf)（2022 年 9 月，[本站链接]({% link _posts/2022-12-25-howard-marks-illusion-of-knowledge.md %})）中，我抨击了宏观预测，在我们的行业中，宏观预测主要涉及未来一年或两年。
 在[我要求不同](https://www.oaktreecapital.com/docs/default-source/memos/i-beg-to-differ.pdf)（2022 年 7 月）中，我讨论了在 6 月 21 日的伦敦 Oaktree 会议上，我讨论了被问到最多的问题：通货膨胀会有多严重？美联储将提高多少利率来对抗它？这些加息会导致经济衰退吗？有多严重，会持续多久？我告诉与会者，底线是，这些事情都与短期有关，而下面就是我对短期的认识
 
 - 大多数投资者无法在预测类似这些短期现象方面做得很好。

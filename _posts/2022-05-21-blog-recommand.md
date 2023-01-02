@@ -41,3 +41,9 @@ tags: blog recommandation
 Github 上的一个数据可视化库，目前只有一篇介绍 Raft 共识算法的文章，期待更多好文。
 
 * 分布式系统的共识算法 Raft：[Raft: Understandable Distributed Consensus](http://thesecretlivesofdata.com/raft/)
+
+## Plantegg
+
+关注基础知识的中文博客，内容关于程序性能，Linux，CPU，网络等。
+
+* [CPU的制造和概念](https://plantegg.github.io/2021/06/01/CPU%E7%9A%84%E5%88%B6%E9%80%A0%E5%92%8C%E6%A6%82%E5%BF%B5/)
