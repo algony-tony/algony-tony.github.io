@@ -249,7 +249,7 @@ toc: false
 
 <center>*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</center>
 
-在 2001 年一份名为[这一切是什么，阿尔法](https://www.oaktreecapital.com/docs/default-source/memos/2001-07-11-whats-it-all-about-alpha.pdf?sfvrsn=13bc0f65_2)的备忘录中，我提出了“我知道”派和“我不知道”派的概念，2004 年，我在[我们和他们](https://www.oaktreecapital.com/docs/default-source/memos/2004-05-07-us-and-them.pdf?sfvrsn=bfbc0f65_2)中详细阐述了这一点。为了结束当前的备忘录，我将插入我在后者中写的关于这两个流派的一些内容。
+在 2001 年一份名为[这一切是什么，阿尔法](https://www.oaktreecapital.com/docs/default-source/memos/2001-07-11-whats-it-all-about-alpha.pdf?sfvrsn=13bc0f65_2)（[本站链接]({% link _posts/2023-01-03-howard-marks-whats-it-all-about-alpha.md %})）的备忘录中，我提出了“我知道”派和“我不知道”派的概念，2004 年，我在[我们和他们](https://www.oaktreecapital.com/docs/default-source/memos/2004-05-07-us-and-them.pdf?sfvrsn=bfbc0f65_2)中详细阐述了这一点。为了结束当前的备忘录，我将插入我在后者中写的关于这两个流派的一些内容。
 
 > 多年来，我遇到的大多数投资者都属于“我知道”的流派。在 1968-78 年，当我分析股票时尤其如此，甚至在 1978-95 年，当我已经转向非主流投资但仍在以股票为中心的资金管理公司工作时也是如此。
 
