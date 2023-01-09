@@ -14,7 +14,7 @@ toc: false
 
 ## 市场效率 
 
-一个人如何看待投资世界，在很大程度上取决于他对市场效率问题的立场。与其重新发明自己的轮子，我不如从我 2000 年 5 月的备忘录[非理性繁荣](https://www.oaktreecapital.com/docs/default-source/memos/2000-05-01-irrational-exuberance.pdf?sfvrsn=cfbc0f65_2)中提取部分内容。（值得庆幸的是，当你从自己身上复制时，这并不是抄袭。）
+一个人如何看待投资世界，在很大程度上取决于他对市场效率问题的立场。与其重新发明自己的轮子，我不如从我 2000 年 5 月的备忘录[非理性繁荣](https://www.oaktreecapital.com/docs/default-source/memos/2000-05-01-irrational-exuberance.pdf?sfvrsn=cfbc0f65_2)（[本站链接]({% link _posts/2023-01-08-howard-marks-irrational-exuberance.md %})）中提取部分内容。（值得庆幸的是，当你从自己身上复制时，这并不是抄袭。）
 
 首先，我将提供我对有效市场人士的看法。然后，我将描述我自己版本的市场效率。我再次承认，学术界并不赞同我的观点，理论上也说我是错的。但我的方法对我来说是有效的，下面我将重述它。
 
