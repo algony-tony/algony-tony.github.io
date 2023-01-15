@@ -170,7 +170,7 @@
     "nmpa": {
         "name": "国家药品监督管理局",
         "link": "https://www.nmpa.gov.cn/",
-        "desc": "由国家市场监督管理总局管理"
+        "desc": "国家药品监督管理局（由国家市场监督管理总局管理）"
     },
     "nmpasjcx": {
         "name": "药监局数据查询",
@@ -529,6 +529,19 @@
         "name": "NAI 500",
         "link": "https://nai500.com/zh-hans/",
         "desc": "北美投资机会和新闻"
+    },
+    "nea": {
+        "name": "国家能源局",
+        "link": "http://www.nea.gov.cn/",
+        "desc": "国家药品监督管理局（由国家市场监督管理总局管理）"
+    },
+    "ndrc": {
+        "name": "国家发展和改革委员会",
+        "link": "https://www.ndrc.gov.cn/index.html",
+        "desc": "发改委"
+    },
+    "ndrcfgsj": {
+        "name": "发改数据",
+        "link": "https://www.ndrc.gov.cn/fgsj/tjsj/jjyx/hgjjyx/"
     }
-    
 }
