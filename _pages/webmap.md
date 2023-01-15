@@ -177,6 +177,11 @@ LoopNet @ {
 
 #### 国务院组成部门
 
+[中华人民共和国国家发展和改革委员会]({{ site.data.links["ndrc"].link }})
+    @ {
+        [发改数据]({{ site.data.links["ndrcfgsj"].link }})
+    }
+
 [中华人民共和国自然资源部]({{ site.data.links["mnr"].link }}) # [天地图]({{ site.data.links["tianditu"].link }} "{{ site.data.links["tianditu"].desc }}")
 
 [中国人民银行]({{ site.data.links["pbc"].link }}) 
@@ -250,7 +255,9 @@ LoopNet @ {
 
 #### 国务院部委管理的国家局
 
-[国家药品监督管理局]({{ site.data.links["nmpa"].link }} "{{ site.data.links["nmpa"].desc }}")
+[国家能源局（由国家发展和改革委员会管理）]({{ site.data.links["nea"].link }} "{{ site.data.links["nea"].desc }}")
+
+[国家药品监督管理局（由国家市场监督管理总局管理）]({{ site.data.links["nmpa"].link }} "{{ site.data.links["nmpa"].desc }}")
     @ {
         [数据查询]({{ site.data.links["nmpasjcx"].link }} "{{ site.data.links["nmpasjcx"].desc }}")
     }
