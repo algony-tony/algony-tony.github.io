@@ -1,10 +1,10 @@
 /* Site header */
 .site-avatar {
     float: left;
-    margin-right: $spacing-unit / 2;
+    margin-right: calc($spacing-unit / 2);
 
     img {
-        border-radius: $avatar-unit/2;
+        border-radius: $avatar-unit / 2;
         width: $avatar-unit;
         height: $avatar-unit;
     }
@@ -27,7 +27,7 @@
 .site-name {
     cursor: pointer;
     font-weight: $base-font-weight;
-    font-size: $base-font-size * 2;
+    font-size: calc($base-font-size * 2);
 }
 
 .site-description {
@@ -84,13 +84,13 @@
 
     .page-link {
         color: $mild-gray;
-        padding: 0px $spacing-unit/6;
+        padding: 0px calc($spacing-unit / 6);
 
         display: flex;
         align-items: center;
 
         @include media-query($on-palm) {
-            padding: $spacing-unit/6;
+            padding: calc($spacing-unit / 6);
         }
 
     }
@@ -110,8 +110,8 @@
 /* Site footer */
 
 .site-footer {
-    padding-top: $spacing-unit / 2;
-    padding-bottom: $spacing-unit / 2;
+    padding-top: calc($spacing-unit / 2);
+    padding-bottom: calc($spacing-unit / 2);
     text-align: center;
     font-size: $smaller-font-size;
     color: $gray;
@@ -134,7 +134,7 @@
 
 .default-content {
     padding-top: $spacing-unit;
-    padding-bottom: $spacing-unit / 2;
+    padding-bottom: calc($spacing-unit / 2);
 
     flex: 1;
 
@@ -156,7 +156,7 @@
 }
 
 .page-header {
-    margin-bottom: $spacing-unit / 2;
+    margin-bottom: calc($spacing-unit / 2);
 }
 
 /* Posts */
@@ -197,8 +197,8 @@
         }
 
         position: sticky;
-        top: $spacing-unit / 2;
-        margin-left: $spacing-unit / 2;
+        top: calc($spacing-unit / 2);
+        margin-left: calc($spacing-unit / 2);
 
         // .side-wrap {
         //     overflow-x: hidden;
@@ -245,7 +245,7 @@ section {
         padding: 0;
 
         li {
-            margin: $spacing-unit/1.5 0;
+            margin: calc($spacing-unit / 1.5) 0;
 
             .title {
                 max-width: 100%;
@@ -267,7 +267,7 @@ section {
 
             .post-date {
                 float: left;
-                margin: 0 $spacing-unit/2 0 $spacing-unit/6;
+                margin: 0 calc($spacing-unit / 2) 0 calc($spacing-unit / 6);
             }
 
             span {
@@ -312,8 +312,8 @@ section {
 /* tools page*/
 .tool-sidebar {
     float: left;
-    width: $base-font-size * 8;
-    padding-right: $spacing-unit / 2;
+    width: calc($base-font-size * 8);
+    padding-right: calc($spacing-unit / 2);
 
     a {
         color: $gray;
@@ -343,7 +343,7 @@ section {
 .tool-md5 {
     width: 100%;
     .row {
-        padding-top: $spacing-unit / 2;
+        padding-top: calc($spacing-unit / 2);
         display: flex;
         flex-wrap: wrap;
         align-items: center;
@@ -351,8 +351,8 @@ section {
         justify-content: space-around;
     }
     textarea.form-control {
-        height: $base-font-size * 15;
-        padding: $spacing-unit/6 $spacing-unit/3;
+        height: calc($base-font-size * 15);
+        padding: calc($spacing-unit / 6) calc($spacing-unit / 3);
         width: 100%;
         display: block;
         background-color: $white;
@@ -367,7 +367,7 @@ section {
     width: 100%;
 
     .row {
-        padding-top: $spacing-unit / 2;
+        padding-top: calc($spacing-unit / 2);
         display: flex;
         flex-wrap: wrap;
         align-items: center;
@@ -376,8 +376,8 @@ section {
 
             span,
             label {
-                padding-left: $spacing-unit / 6;
-                padding-right: $spacing-unit / 6;
+                padding-left: calc($spacing-unit / 6);
+                padding-right: calc($spacing-unit / 6);
                 @include media-query($on-palm) {
                     padding-left: none;
                     padding-right: none;
