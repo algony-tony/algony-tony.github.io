@@ -183,3 +183,6 @@ toc: false
 | 平均值 | | | | | -50% | -61% |
 
 
+## 参考资料
+
+[Irrational Exuberance](https://www.oaktreecapital.com/docs/default-source/memos/2000-05-01-irrational-exuberance.pdf?sfvrsn=cfbc0f65_2)
