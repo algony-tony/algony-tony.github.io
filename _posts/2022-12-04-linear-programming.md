@@ -2,7 +2,7 @@
 layout: post
 title: 线性规划及整数线性规划算法
 categories: 自然科学
-tags: 算法 线性规划 单纯形法
+tags: 算法 线性规划 单纯形法 运筹学
 toc: true
 mathjax: true
 ---
@@ -403,6 +403,18 @@ $$
 1. 换入变量不用检验数最大的那个，而是用大于 0 的检验数中下标最小的决策变量；
 2. 换出变量还是使用 $\theta$ 最小的那个，如果有出现两个以上的相同最小值，使用下标最小的决策变量作为换出变量。
 
+### 内点法
+
+1984 年 AT&T Bell 实验室一位年轻的数学家 Narendra Karmarkar 发明了求解线性规划的问题的新算法，它在解特大型线性规划问题方面有巨大的潜力。
+Karmakar 算法也是一种迭代算法，它从得出一个可行的实验解开始，在每次迭代中，它在可行域内从当前实验解开始移动到另一个更好的实验解，然后继续这个过程直到实验解（基本上）达到最优解为止。
+对单纯形法所有的移动都是在可行域的边界上进行的，而 Karmarkar 算法实验解是内点（interior point），所以也被称为内点法（interior-point algorithm）。
+
+因为内点法获得专利的早期版本被称为障碍点算法，故内点法也被称为障碍算法（barrier algorithm），“障碍”一词是因为从搜索的角度看所找的实验解都是内点，每一个约束边界都被作为障碍对待。
+
+内点法比单纯形法复杂，它的每一次迭代都需要大量的迭代去寻找下一个实验解，因此内点法每次迭代的时间是单纯形法的好几倍。
+对于非常小的问题，内点法需要的迭代次数和单纯形法差不多，这样对于小规模问题内点法速度上不如单纯形法。但是对于大规模的问题，比如 10000 个约束条件的问题可能只需要 100 次以下迭代，相反单纯形法可能需要 20000 次迭代，这样考虑上内点法每次迭代上多消耗的时间，总体时间内点法还可能更短一些。内点法和单纯形法也可以结合使用。
+
+
 ## 整数线性规划
 
 在上述的线性规划问题的基础上，如果要求某些决策变量或者全部决策变量要求为整数，则称这样的问题为**整数规划问题**（Integer Programming，IP），
@@ -727,7 +739,7 @@ cost[row_ind, col_ind].sum()
 
 ## 参考链接
 
-[运筹学基础，李志猛著](https://item.jd.com/12769676.html)
+[运筹学基础，李志猛著](https://item.jd.com/12769676.html "ISBN：9787121353123")
 
 [Simplex method calculator](https://cbom.atozmath.com/CBOM/Simplex.aspx)
 
@@ -738,3 +750,5 @@ cost[row_ind, col_ind].sum()
 [运筹学-指派问题-匈牙利法](https://www.bilibili.com/video/BV1vB4y1X73q)
 
 [scipy.optimize.linear_sum_assignment](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linear_sum_assignment.html)
+
+[运筹学导论，（美）希利尔（Hillier,F.S.）/（美）利伯曼（Lieberman,G.J.）](https://book.douban.com/subject/2253276/)

@@ -55,7 +55,7 @@ code.highlight {
 /* Block code, no highlight */
 pre {
     border-radius: 5px;
-    margin: $spacing-unit * 0.75 $spacing-unit / 2;
+    margin: calc($spacing-unit * 0.75) calc($spacing-unit / 2);
     padding: 8px 12px;
     overflow-x: auto;
     background-color: $lightest-purple;
@@ -91,8 +91,8 @@ figure.highlight, div.highlight {
 
                 // font-size: 12px;
                 top: -10px;
-                padding-left: $spacing-unit / 4;
-                padding-right: $spacing-unit / 4;
+                padding-left: calc($spacing-unit / 4);
+                padding-right: calc($spacing-unit / 4);
 
                 border: 1px solid $gray;
                 border-top-left-radius: 5px;
@@ -124,8 +124,8 @@ figure.highlight, div.highlight {
 
                     /* Add a nice border */
                     display: inline-block;
-                    padding-right: $spacing-unit / 4;
-                    margin-right: $spacing-unit * 0.4;
+                    padding-right: calc($spacing-unit / 4);
+                    margin-right: calc($spacing-unit * 0.4);
                     border-right: 1px solid $nimbus-dark-gray;
 
                     /* For older browsers and Safari */
