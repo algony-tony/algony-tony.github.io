@@ -47,6 +47,7 @@ CTAN 上的 [LaTeX 符号全列表(PDF, 22 MB)](https://tug.ctan.org/info/symbol
 
 | **比较符号** | <                   | $$<$$                   | >                  | $$>$$                   | =                    | $$=$$                    |
 |              | \leq                | $$\leq$$                | \geq               | $$\geq$$                | \equiv               | $$\equiv$$               |
+|              | \gg                 | $$\gg$$                 | \ggg               | $$\ggg$$                | \ll                  | $$\ll$$                  |
 |              | \subset             | $$\subset$$             | \supset            | $$\supset$$             | \sim                 | $$\sim$$                 |
 |              | \subseteq           | $$\subseteq$$           | \supseteq          | $$\supseteq$$           | \simeq               | $$\simeq$$               |
 |              | \in                 | $$\in$$                 | \ni                | $$\ni$$                 | \approx              | $$\approx$$              |
