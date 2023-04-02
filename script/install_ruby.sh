@@ -27,3 +27,6 @@ gem install jekyll bundler
 
 # change to repo dir
 bundle install
+
+# update all gem version in project
+bundle update
