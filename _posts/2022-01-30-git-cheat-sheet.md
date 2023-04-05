@@ -543,6 +543,8 @@ git hash-object $file
 
 ### 父引用的快捷写法
 
+!["父引用的快捷写法"](/assets/img/post/git-relative-ref.png "git 父引用的快捷写法")
+
 在修订名后面紧接着输入 ^ 符号表示该修订的第一个父对象。例如，HEAD^ 代表 HEAD 的父对象（节点），即上一个提交。对于合并提交来说，会拥有多个父对象，为了查询多个父对象中的某一个，你需要在 ^ 字符后指定它的数字代号，使用 ```^<n>``` 意味着查看修订的第 n 个父对象。我们可以将 ^ 理解为 ^1 的快捷方式。
 
 一个比较特殊的情况是，```^0``` 指代的是该提交自身。它还可以用来获取提交中包含附注（签名）的标签指针，```git show v0.9``` 会显示标签标注信息和提交的相关信息，而 ```git show v0.9^0``` 只会显示标签附着的提交的相关信息。
@@ -748,3 +750,5 @@ git log --author "<name>" --invert-grep --reverse --format="format:%H" HEAD..mas
 [另一種合併方式（使用 rebase）](https://gitbook.tw/chapters/branch/merge-with-rebase)
 
 [How can I make Git "forget" about a file that was tracked, but is now in .gitignore?](https://stackoverflow.com/questions/1274057/how-can-i-make-git-forget-about-a-file-that-was-tracked-but-is-now-in-gitign)
+
+[学习 Git 网页版进阶教程](https://learngitbranching.js.org)
