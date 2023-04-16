@@ -14,9 +14,45 @@ Total Commander 第一眼看上去就像上世纪的软件，也确实，它在�
 * 内置大量简易而实用的 Windows 功能，可以通过自定义的快捷键调用；
 * 通过 addons 和 plugins 提供额外的功能；
 * 可自定义的工具栏；
-* 丰富而实用的快捷键；
+* 丰富而实用的快捷键，以及可自定义的快捷键；
 
-TC 的配置主要是记录在文件 wincmd.ini 中，里面的配置项很丰富，注意这个文件编码不是 UTF-8，而是 CP936。关于 FTP 客户端的相关信息写在文件 wcx_ftp.ini 里。
+## 绿色版 TC
+
+要制作绿色版 TC，需要知道 TC 的启动过程，以及 TC 配置项的保存地方。
+
+TC 的所有配置都保存在 `wincmd.ini` 文件中，里面的配置项很丰富，注意这个文件编码不是 UTF-8，而是 CP936，关于 FTP 客户端的相关信息写在文件 `wcx_ftp.ini` 里。如果你直接运行 TOTALCMD.EXE，它会到注册表中如下找配置文件的位置：
+
+```
+[HKEY_CURRENT_USER\Software\Ghisler\Total Commander]
+　　 "IniFileName"=".\\wincmd.ini"
+　　 "FtpIniName"=".\\wcx_ftp.ini"
+　　 "InstallDir"="D:\\program\\totalcmd"
+```
+
+要跳过注册表项，可以在启动 TC 的时候通过命令行参数 `/i` 和 `/f` 手工指定配置文件，其中 `/i` 表示配置文件，`/f` 表示 FTP 服务器信息文件，不分大小写。比如，你可以用命令行来运行 TC，把这 2 个文件放到独立的目录下：
+
+```
+"d:\program\totalcmd.exe" /i="d:\conf\mytc.ini" /f="d:\conf\myftp.ini"
+```
+
+除了把参数放在命令行（以及批处理文件），还可以在快捷方式中指定配置文件的位置。（其中 `.\` 表示 TC 所在目录）：
+
+```
+"d:\program\totalcmd.EXE" /I=".\wincmd.ini" /F=".\wcx_ftp.ini"
+```
+
+但这都不是推荐的方式，从 TC6.5 开始，`wincmd.ini` 中 `[Configuration]` 一节增加了 `UseIniInProgramDir` 参数，它允许如下值（并支持相加）：
+* 1, 如果未在注册表或命令行参数指定 INI，则使用 TC 安装目录下的 wincmd.ini；
+* 2, 如果未在注册表或命令行参数指定 INI，使用 TC 安装目录下的 wcx_ftp.ini；
+* 4, 忽略注册表的设置（但命令行参数指定的 INI 仍然优先）
+
+上面3个数字可以进行叠加，比如说设置为 7 的话，上面三个选项同时生效。
+
+TC 的启动过程可以这样理解：首先最优先采用运行时指定的 `/i` `/f`；如无指定，则找 TC 目录下的 wincmd.ini（仅仅是找，不一定就用）：如果有 `UseIniInProgramDir` 且值为 4、5、6、7，则忽略注册表，直接使用 TC 目录的相应 ini 文件；如果无 `UseIniInProgramDir` 或值小于4，则读注册表：注册表中指定了文件，则采用；注册表中未指定，则使用 TC 目录下的文件。
+
+所以综上，要做绿色版的 TC，先把两个配置文件放到 TC 程序所在路径下，再修改 `wincmd.ini` 中的配置项 `UseIniInProgramDir=7`，还有要注意的是把配置文件中的绝对路径都改成代表 TC 程序安装路径的变量 `%Commander_Path%`，如指定插件的默认路径为 `pluginbasedir=%Commander_Path%\plugins`，指定默认工具栏的路径 `Buttonbar=%Commander_Path%\BARS\DEFAULT.BAR` 等等。
+
+想让 TC 启动后就最大化？就在 TC 最大化后再从菜单栏的 `Configuration` 里点击“Save Position”，以后每次打开就都是最大化的。
 
 ## 快捷键
 
