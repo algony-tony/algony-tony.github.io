@@ -282,6 +282,11 @@ git cherry-pick G
 git checkout --orphan gh-pages # 创建孤儿分支 gh-pages，并切换到分支上
 {% endhighlight %}
 
+### merge or rebase
+
+合并变更可以选择 merge 或者 rebase，开源社区对这两种方式有很多讨论，两种方式各有好处，rebase 使你的提交树很简洁，所有的提交都在一条直线上，但是它是通过修改提交历史来达到的，
+比如提交 C2 被 rebase 合并到 C3 之后，看起来 C2 在 C3 之后，其实 C2 的提交时间是在 C3 之前的。Merge 会完整保留历史记录，但是会多出很多 merge 的节点，并且在分支变多后会变得看起来很乱。其实这两种方式可以综合起来使用，如 [Stackoverflow 这个问题](https://stackoverflow.com/questions/804115/when-do-you-use-git-rebase-instead-of-git-merge)所说，如果是开发一个特性，最后合并进主分支可以使用 merger 操作来合并，如果是另一个开发者开发进行了一些不相干的更改，你可以基于自己的变更来 rebase。
+
 ## 提交 git commit
 
 {% highlight bash linedivs %}
