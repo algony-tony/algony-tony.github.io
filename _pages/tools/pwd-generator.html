@@ -35,12 +35,12 @@ show_page_header: false
     const base_length = final_string.length;
 
     if (!pwd_length || pwd_length < 1 || isNaN(pwd_length) || pwd_length > 10000 ) {
-        alert("请输入 1-10000 的密码长度数字");
+        swal("密码长度", "请输入 1-10000 的整数", "error");
         return;
     }
 
     if (base_length === 0) {
-        alert("请至少选择一类字符");
+        swal("请至少选择一类字符", "", "error");
         return;
     }
 
@@ -70,7 +70,7 @@ show_page_header: false
     </div>
 
     <div class="row">
-        <label for="tentacles">密码长度 (1-100) </label>
+        <label for="tentacles">密码长度</label>
         <span><input type="number" id="pwd_length" min="1" max="100" value="16"></span>
     </div>
 
