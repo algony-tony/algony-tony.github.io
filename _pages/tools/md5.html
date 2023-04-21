@@ -20,7 +20,7 @@ show_page_header: false
         var txtInput = document.getElementById("input").value;
 
         if (isEmpty(txtInput)) {
-            alert("输入框是空的");
+            swal("请输入字符", "输入框是空的", "error");
             return;
         }
         var arry = txtInput.trim().split('\n');

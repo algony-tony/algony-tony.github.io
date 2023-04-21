@@ -335,7 +335,7 @@ section {
       }
 }
 
-.tool-md5 {
+.tool-md5, .tool-replacement {
     width: 100%;
     .row {
         padding-top: calc($spacing-unit / 2);
@@ -380,4 +380,17 @@ section {
             }
 
     }
+}
+
+textarea.hidden {
+    width: 100%;
+    max-width: 100%;
+    border: none;
+    outline: none;
+    color: $gray;
+    resize: none;
+    overflow: hidden;
+    white-space: pre-wrap;
+    word-break: break-all;
+    pointer-events: none;
 }
