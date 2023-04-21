@@ -262,6 +262,12 @@ LoopNet @ {
         [数据查询]({{ site.data.links["nmpasjcx"].link }} "{{ site.data.links["nmpasjcx"].desc }}")
     }
 
+### 地方政府
+
+[江西省人民政府]({{ site.data.links["jiangxi"].link }})
+    @ {
+        [数据开放]({{ site.data.links["jiangxidata"].link }})
+    }
 
 ## 行业协会
 
