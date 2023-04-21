@@ -2,3 +2,5 @@
   link: /tools/md5.html
 - name: 密码生成器
   link: /tools/pwd-generator.html
+- name: 字符替换
+  link: /tools/replacement.html
