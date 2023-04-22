@@ -287,7 +287,7 @@ LoopNet @ {
 ### 内容
 
 | [书享家]({{ site.data.links["sxj"].link }} "{{ site.data.links["sxj"].desc }}") | [z-library]({{ site.data.links["zlib"].link }} "{{ site.data.links["zlib"].desc }}") | [云媒体]({{ site.data.links["laosheng"].link }} "{{ site.data.links["laosheng"].desc }}") | [湾区日报]({{ site.data.links["wanqu"].link }} "{{ site.data.links["wanqu"].desc }}") | [阮一峰]({{ site.data.links["ruanyifeng"].link }} "{{ site.data.links["ruanyifeng"].desc }}") |
-| [计算机电子书下载](https://github.com/itdevbooks/pdf) |
+| [计算机电子书下载](https://github.com/itdevbooks/pdf) | [Howard Marks]({{ site.data.links["howardmarks"].link }} "{{ site.data.links["howardmarks"].desc }}") |
 
 ### 工具
 
