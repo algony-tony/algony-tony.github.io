@@ -1,0 +1,72 @@
+---
+layout: tool
+title: Unix 时间戳转换
+permalink: /tools/unixtime.html
+show_page_header: false
+---
+
+<script>
+    // Function to convert a Unix timestamp in seconds to a datetime string in 'YYYY-MM-DD HH:MM:SS' format
+    function convertUnixTimestampToDatetime(unixTimestamp) {
+      const date = new Date(unixTimestamp * 1000);
+      const year = date.getFullYear();
+      const month = ("0" + (date.getMonth() + 1)).slice(-2);
+      const day = ("0" + date.getDate()).slice(-2);
+      const hours = ("0" + date.getHours()).slice(-2);
+      const minutes = ("0" + date.getMinutes()).slice(-2);
+      const seconds = ("0" + date.getSeconds()).slice(-2);
+      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    }
+  
+    // Function to convert a Unix timestamp in milliseconds to a datetime string in 'YYYY-MM-DD HH:MM:SS.SSS' format
+    function convertUnixTimestampToDatetimeWithMilliseconds(unixTimestamp) {
+      const date = new Date(unixTimestamp);
+      const year = date.getFullYear();
+      const month = ("0" + (date.getMonth() + 1)).slice(-2);
+      const day = ("0" + date.getDate()).slice(-2);
+      const hours = ("0" + date.getHours()).slice(-2);
+      const minutes = ("0" + date.getMinutes()).slice(-2);
+      const seconds = ("0" + date.getSeconds()).slice(-2);
+      const milliseconds = ("00" + date.getMilliseconds()).slice(-3);
+      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}.${milliseconds}`;
+    }
+  
+    // Set the initial values of the input and output fields to the current Unix timestamp
+    window.addEventListener("load", () => {
+        const currentUnixTimestamp = Math.floor(Date.now() / 1000);
+        document.getElementById("input_unixtimestamp").value = currentUnixTimestamp;
+        document.getElementById("output_datetime").value = convertUnixTimestampToDatetime(currentUnixTimestamp);
+    });
+
+    function Converter(k) {
+        const convert_type = k;
+        const inputUnixTimestamp = parseInt(document.getElementById("input_unixtimestamp").value);
+        if (!isNaN(inputUnixTimestamp)) {
+            const op = document.getElementById("output_datetime");
+            if (convert_type === "millisecond") {
+                op.value = convertUnixTimestampToDatetimeWithMilliseconds(inputUnixTimestamp);
+            }
+            else if (convert_type === "second") {
+                op.value = convertUnixTimestampToDatetime(inputUnixTimestamp);
+            }
+            op.focus();
+            op.select();
+        } else {
+            swal("请输入有效 Unix 时间戳", "", "error");
+        }
+    }
+  </script>
+  
+  <h2>Unix 时间戳转换</h2>
+  
+  <div class="tool-unixtime">
+    <div class="row">
+      <span><label>Unix 时间戳: </label><input type="text" id="input_unixtimestamp"></span>
+  
+      <span><button class="btn-try" id="second-conv" type="submit" onclick="Converter('second')">  秒  </button></span>
+      <span><button class="btn-try" id="millisecond-conv" type="submit" onclick="Converter('millisecond')">毫秒</button></span>
+  
+      <span><input id="output_datetime" type="text" class="form-control" readonly="readonly"></span>
+    </div>
+  </div>
+  
