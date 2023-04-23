@@ -1,0 +1,42 @@
+---
+layout: tool
+title: 字符替换
+permalink: /tools/replacement.html
+show_page_header: false
+---
+
+<script>
+    function replace() {
+      let input = document.getElementById('input').value;
+      let fromStr = document.getElementById('from_str').value;
+      let toStr = document.getElementById('to_str').value;
+    
+      let output = input.replace(new RegExp(fromStr, 'g'), toStr);
+    
+      document.getElementById('replacement-output').value = output;
+    }
+</script>
+
+<h2>微信聊天特殊字符换回空格</h2>
+
+<textarea class="hidden" readonly>
+微信在一些聊天中会自动把空格 (U+0020) 替换成字符 Non-breaking space (NBSP, U+00A0), 这里默认把它还原回来, 也可以做其他的字符替换.
+</textarea>
+
+<div class="tool-replacement">
+    <div class="row">
+        <textarea id="input" class="form-control" placeholder="输入文本"></textarea>
+    </div>
+
+    <div class="row">
+        
+        <span><label>查找 </label><input type="text" id="from_str" value=" "></span>
+        <span><label>替换 </label><input type="text" id="to_str" value=" "></span>
+        <span><button class="btn-try" id="replace" type="submit"
+            onclick="replace()">字符替换</button></span>
+    </div>
+
+    <div class="row">
+        <textarea id="replacement-output" class="form-control" placeholder="替换结果"></textarea>
+    </div>
+</div>

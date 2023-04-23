@@ -6,48 +6,54 @@ show_page_header: false
 ---
 
 <script>
-    function pwd_generator() {
-        const chars_upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        const chars_lower = "abcdefghijklmnopqrstuvwxyz"
-        const chars_digital = "0123456789"
-        const chars_special = "!@#$%^&*"
-        let pwd_length = document.getElementById("pwd_length");
-        let final_string = "";
-        let password = "";
+    const pwd_generator = () => {
+    const chars_upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const chars_lower = "abcdefghijklmnopqrstuvwxyz";
+    const chars_digital = "0123456789";
+    const chars_special = "!@#$%^&*";
 
-        if (document.getElementById("str_upper").checked) {
-            final_string += chars_upper;
-        }
+    const pwd_length = parseInt(document.getElementById("pwd_length").value);
+    let final_string = "";
+    let password = "";
 
-        if (document.getElementById("str_lower").checked) {
-            final_string += chars_lower;
-        }
-
-        if (document.getElementById("str_digital").checked) {
-            final_string += chars_digital;
-        }
-
-        if (document.getElementById("str_special").checked) {
-            final_string += chars_special;
-        }
-
-        let base_length = final_string.length;
-
-        if (base_length == 0) {
-            alert("没有选择字符");
-            return;
-        }
-
-        for (var i = 0; i < pwd_length.value; i++) {
-            let pwd = final_string[Math.floor(Math.random() * base_length)];
-            password += pwd;
-        }
-
-        const op = document.getElementById('pwd-output');
-        op.value = password;
-        op.focus();
-        op.select();
+    if (document.getElementById("str_upper").checked) {
+        final_string += chars_upper;
     }
+
+    if (document.getElementById("str_lower").checked) {
+        final_string += chars_lower;
+    }
+
+    if (document.getElementById("str_digital").checked) {
+        final_string += chars_digital;
+    }
+
+    if (document.getElementById("str_special").checked) {
+        final_string += chars_special;
+    }
+
+    const base_length = final_string.length;
+
+    if (!pwd_length || pwd_length < 1 || isNaN(pwd_length) || pwd_length > 10000 ) {
+        swal("密码长度", "请输入 1-10000 的整数", "error");
+        return;
+    }
+
+    if (base_length === 0) {
+        swal("请至少选择一类字符", "", "error");
+        return;
+    }
+
+    for (let i = 0; i < pwd_length; i++) {
+        const pwd = final_string[Math.floor(Math.random() * base_length)];
+        password += pwd;
+    }
+
+    const op = document.getElementById("pwd-output");
+    op.value = password;
+    op.focus();
+    op.select();
+    };
 </script>
 
 <h2>随机密码生成器</h2>
@@ -64,7 +70,7 @@ show_page_header: false
     </div>
 
     <div class="row">
-        <label for="tentacles">密码长度 (1-100) </label>
+        <label for="tentacles">密码长度</label>
         <span><input type="number" id="pwd_length" min="1" max="100" value="16"></span>
     </div>
 

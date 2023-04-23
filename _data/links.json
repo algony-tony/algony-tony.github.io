@@ -543,5 +543,18 @@
     "ndrcfgsj": {
         "name": "发改数据",
         "link": "https://www.ndrc.gov.cn/fgsj/tjsj/jjyx/hgjjyx/"
+    },
+    "jiangxi": {
+        "name": "江西省人民政府",
+        "link": "http://www.jiangxi.gov.cn/"
+    },
+    "jiangxidata": {
+        "name": "江西省人民政府-数据开放",
+        "link": "http://www.jiangxi.gov.cn/col/col386/index.html"
+    },
+    "howardmarks": {
+        "name": "Howard Marks",
+        "link": "https://www.oaktreecapital.com/insights/memos",
+        "desc": "Howard Marks Memos"
     }
 }
