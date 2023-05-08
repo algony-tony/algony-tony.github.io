@@ -6,8 +6,8 @@ wget -O ~/software/guetzli.zip  https://github.com/google/guetzli/archive/master
 unzip ~/software/guetzli.zip -d ~/software/
 
 # Ubuntu
-sudo apt-get install libpng-dev -y
-sudo apt-get install pkg-config -y
+sudo apt install libpng-dev -y
+sudo apt install pkg-config -y
 
 cd ~/software/guetzli-master/
 make
