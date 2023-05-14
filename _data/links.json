@@ -556,5 +556,13 @@
         "name": "Howard Marks",
         "link": "https://www.oaktreecapital.com/insights/memos",
         "desc": "Howard Marks Memos"
+    },
+    "iachina": {
+        "name": "中国保险行业协会",
+        "link": "http://www.iachina.cn/"
+    },
+    "iachinatjsj": {
+        "name": "中国保险行业协会-统计数据",
+        "link": "http://www.iachina.cn/col/col41/index.html"
     }
 }
