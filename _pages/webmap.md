@@ -276,6 +276,10 @@ LoopNet @ {
         [研究与统计]({{ site.data.links["amacyjtj"].link }})
     }
 
+[中国保险行业协会]({{ site.data.links["iachina"].link }})
+    @ {
+        [统计数据]({{ site.data.links["iachinatjsj"].link }})
+    }
 
 ## 网站快链
 
