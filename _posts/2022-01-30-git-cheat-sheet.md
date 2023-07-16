@@ -361,6 +361,7 @@ git stash # 保存变更到本地堆栈中
 git stash save [message] # 保存变更到堆栈并记录标记信息
 git stash list # 列出保存的记录
 git stash pop # 恢复最近一次入栈记录内容
+git stash apply "stash@{n}" # 恢复暂存列表中的第几次暂存，双引号可以避免在一些终端的吃掉大括号
 {% endhighlight %}
 
 放弃修改，从某次提交中恢复历史版本
@@ -382,6 +383,19 @@ git stash -p # 效果同上
 # Stash this hunk [y,n,q,a,d,j,J,g,/,e,?]?
 # ? 显示帮助；y 暂存此改动；n 不暂存此改动；q 从此处退出，后续改动都未暂存；a 暂存此改动，后续改动都暂存；
 {% endhighlight %}
+
+查看最近一次暂存了哪些文件的命令如下。
+
+{% highlight bash linedivs %}
+git stash show
+
+# 打印出每个文件的变更内容需要加上 -p 参数
+git stash show -p
+
+# 打印某次暂存的内容
+git stash show -p "stash@{2}"
+{% endhighlight %}
+
 
 ### 标签 git tag
 
