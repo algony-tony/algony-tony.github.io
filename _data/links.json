@@ -564,5 +564,31 @@
     "iachinatjsj": {
         "name": "中国保险行业协会-统计数据",
         "link": "http://www.iachina.cn/col/col41/index.html"
+    },
+    "natcm": {
+        "name": "国家中医药管理局",
+        "link": "http://www.natcm.gov.cn/"
+    },
+    "natcm-2021tjzb": {
+        "name": "全国中医药统计摘编（1999-2021）",
+        "link": "http://www.natcm.gov.cn/2021tjzb/start.htm",
+        "desc": "包含A-中医资源，B-中医医疗机构运营与服务，C-中医教育，D-中医药科研，E-中医财政拨款"
+    },
+    "sse": {
+        "name": "上海证券交易所",
+        "link": "http://www.sse.com.cn/"
+    },
+    "szse": {
+        "name": "深圳证券交易所",
+        "link": "http://www.szse.cn/index/index.html"
+    },
+    "chinaclear": {
+        "name": "中国证券登记结算有限责任公司",
+        "link": "http://www.chinaclear.cn/zdjs/index.shtml"
+    },
+    "chinaclear-tjyb": {
+        "name": "中国证券登记结算有限责任公司-统计月报",
+        "link": "http://www.chinaclear.cn/zdjs/index.shtml",
+        "desc": "包含投资者统计，证券登记业务统计，证券存管业务统计，证券结算业务统计，北京分公司业务统计，其他业务统计"
     }
 }
