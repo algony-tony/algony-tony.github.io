@@ -157,15 +157,11 @@
     },
     "csrc": {
         "name": "中国证券监督管理委员会",
-        "link": "http://www.csrc.gov.cn/pub/newsite/"
+        "link": "http://www.csrc.gov.cn/"
     },
     "csrcpl": {
         "name": "证监会信息披露",
         "link": "http://eid.csrc.gov.cn/"
-    },
-    "csrcjgdx": {
-        "name": "证监会监管对象",
-        "link": "http://www.csrc.gov.cn/pub/newsite/zjjg/hfjgml/xqhfjgml/"
     },
     "nmpa": {
         "name": "国家药品监督管理局",
@@ -588,7 +584,7 @@
     },
     "chinaclear-tjyb": {
         "name": "中国证券登记结算有限责任公司-统计月报",
-        "link": "http://www.chinaclear.cn/zdjs/index.shtml",
+        "link": "http://www.chinaclear.cn/zdjs/tjyb1/center_scsj_tjyb.shtml",
         "desc": "包含投资者统计，证券登记业务统计，证券存管业务统计，证券结算业务统计，北京分公司业务统计，其他业务统计"
     }
 }

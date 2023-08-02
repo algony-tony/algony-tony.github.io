@@ -232,7 +232,6 @@ LoopNet @ {
 [中国证券监督管理委员会]({{ site.data.links["csrc"].link }})
     @ {
         [信息披露]({{ site.data.links["csrcpl"].link }})
-        * [监管对象]({{ site.data.links["csrcjgdx"].link }})
     }
 
 [国家统计局]({{ site.data.links["stats"].link }})
@@ -294,7 +293,7 @@ LoopNet @ {
 
 [中国证券登记结算有限责任公司]({{ site.data.links["chinaclear"].link }})
     @{
-        [统计月报]({{ site.data.links["chinaclear-tjyb"].link }} "site.data.links["chinaclear-tjyb"].desc")
+        [统计月报]({{ site.data.links["chinaclear-tjyb"].link }} "{{ site.data.links["chinaclear-tjyb"].desc }}")
     }
 
 ## 网站快链
