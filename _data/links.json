@@ -586,5 +586,9 @@
         "name": "中国证券登记结算有限责任公司-统计月报",
         "link": "http://www.chinaclear.cn/zdjs/tjyb1/center_scsj_tjyb.shtml",
         "desc": "包含投资者统计，证券登记业务统计，证券存管业务统计，证券结算业务统计，北京分公司业务统计，其他业务统计"
+    },
+    "rfi-zhaoyuesheng": {
+        "name": "法国世界报-特约专栏作者:赵越胜",
+        "link": "https://www.rfi.fr/cn/%E4%BD%9C%E8%80%85/%E7%89%B9%E7%BA%A6%E4%B8%93%E6%A0%8F%E4%BD%9C%E8%80%85-%E8%B5%B5%E8%B6%8A%E8%83%9C/"
     }
 }
