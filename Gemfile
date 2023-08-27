@@ -8,7 +8,6 @@ group :jekyll_plugins do
   gem 'jekyll-seo-tag'
 end
 
-gem 'html-proofer'
 gem 'tzinfo'
 gem 'tzinfo-data'
 gem 'jemoji'
