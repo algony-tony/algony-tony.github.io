@@ -162,6 +162,21 @@ git merge --abort
 
 {% endhighlight %}
 
+查看和设置分支的上游
+
+{% highlight bash linedivs %}
+# 查看分支及其上游
+git branch -vv
+
+# 设置分支上游
+git branch [branch-name] -u [remote]/[remote-branch-name]
+git branch master -u origin/master
+
+# 也可以在推送的时候指定上游
+git push -u origin [remote-branch-name]
+{% endhighlight %}
+
+
 ### 删除分支 delete
 
 主要涉及三种分支：
