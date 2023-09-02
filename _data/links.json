@@ -590,5 +590,10 @@
     "rfi-zhaoyuesheng": {
         "name": "法国世界报-特约专栏作者:赵越胜",
         "link": "https://www.rfi.fr/cn/%E4%BD%9C%E8%80%85/%E7%89%B9%E7%BA%A6%E4%B8%93%E6%A0%8F%E4%BD%9C%E8%80%85-%E8%B5%B5%E8%B6%8A%E8%83%9C/"
+    },
+    "bookfere": {
+        "name": "书伴",
+        "link": "https://bookfere.com/",
+        "desc": "包含很多电子书相关的工具，使用技巧等"
     }
 }
