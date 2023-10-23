@@ -595,5 +595,10 @@
         "name": "书伴",
         "link": "https://bookfere.com/",
         "desc": "包含很多电子书相关的工具，使用技巧等"
+    },
+    "anna-archive": {
+        "name": "Anna's Archive",
+        "link": "https://annas-archive.org/",
+        "desc": "The world's largest open-source open-data library."
     }
 }
