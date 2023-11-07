@@ -278,6 +278,7 @@ LoopNet @ {
 [中国证券投资基金业协会]({{ site.data.links["amac"].link }})
     @ {
         [研究与统计]({{ site.data.links["amacyjtj"].link }})
+        * [个人养老金基金名录]({{ site.data.links["amacpensionfund"].link }})
     }
 
 [中国保险行业协会]({{ site.data.links["iachina"].link }})

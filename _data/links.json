@@ -181,6 +181,10 @@
         "name": "基金协会研究与统计",
         "link": "https://www.amac.org.cn/researchstatistics/datastatistics/comprehensive/"
     },
+    "amacpensionfund": {
+        "name": "个人养老金基金名录",
+        "link": "https://www.amac.org.cn/informationpublicity/productpublicity/PensionFundByQuarterPage/"
+    },
     "eastm": {
         "name": "东方财富数据中心",
         "link": "http://data.eastmoney.com/"
