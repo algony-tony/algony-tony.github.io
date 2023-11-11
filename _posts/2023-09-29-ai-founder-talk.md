@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 40 位 AI 公司创始人谈论目前的 AI 技术
-categories: 软件工程
-tags: 新闻 AI LLM
+categories: 新闻
+tags: AI LLM 科技
 toc: false
 ---
 
