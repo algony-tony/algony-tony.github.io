@@ -181,6 +181,10 @@
         "name": "基金协会研究与统计",
         "link": "https://www.amac.org.cn/researchstatistics/datastatistics/comprehensive/"
     },
+    "amacpensionfund": {
+        "name": "个人养老金基金名录",
+        "link": "https://www.amac.org.cn/informationpublicity/productpublicity/PensionFundByQuarterPage/"
+    },
     "eastm": {
         "name": "东方财富数据中心",
         "link": "http://data.eastmoney.com/"
@@ -600,5 +604,10 @@
         "name": "Anna's Archive",
         "link": "https://annas-archive.org/",
         "desc": "The world's largest open-source open-data library."
+    },
+    "downsub": {
+        "name": "DownSub",
+        "link": "https://downsub.com/",
+        "desc": "免费直接从 YouTube 视频中下载字幕，还包含其他视频网站 VIU, Viki, Vlive 等。"
     }
 }
