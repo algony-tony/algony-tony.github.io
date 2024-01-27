@@ -609,5 +609,10 @@
         "name": "DownSub",
         "link": "https://downsub.com/",
         "desc": "免费直接从 YouTube 视频中下载字幕，还包含其他视频网站 VIU, Viki, Vlive 等。"
+    },
+    "library-genesis": {
+        "name": "Library Genesis",
+        "link": "http://libgen.rs/",
+        "desc": "libgen.rs, libgen.is 和 libgen.st 都是网址"
     }
 }
