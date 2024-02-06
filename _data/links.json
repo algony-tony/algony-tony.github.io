@@ -614,5 +614,9 @@
         "name": "Library Genesis",
         "link": "http://libgen.rs/",
         "desc": "libgen.rs, libgen.is 和 libgen.st 都是网址"
+    },
+    "bloomberg": {
+        "name": "Bloomberg",
+        "link": "https://www.bloomberg.com/"
     }
 }

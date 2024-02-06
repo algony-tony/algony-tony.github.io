@@ -109,6 +109,8 @@ permalink: /WebMap/
     * [英文翻译]({{ site.data.links["cnbc2cn"].link }})
 }
 
+[Bloomberg]({{ site.data.links["bloomberg"].link }})
+
 [Financial Visualizations]({{ site.data.links["finviz"].link }})
 
 [财新网]({{ site.data.links["caixin"].link }}) *
