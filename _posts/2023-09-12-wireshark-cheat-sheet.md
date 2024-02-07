@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Wireshark 使用手册
-categories: 软件工程
+categories: 软件技术
 tags: 网络
 toc: false
 ---
