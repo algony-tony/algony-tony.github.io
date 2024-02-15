@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 编写 Prompt 的几种通用框架和方法
-categories: 软件工程
+categories: 软件技术
 tags: prompt LLM
 toc: false
 ---
