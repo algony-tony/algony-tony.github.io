@@ -18,12 +18,18 @@ rbenv install -l
 # https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
 
 # install
-rbenv install 3.1.3
+rbenv install 3.1.4
 
 # to activate this Ruby version as the new default
-rbenv global 3.1.3
+rbenv global 3.1.4
 
 gem install jekyll bundler
+
+# update bundler
+gem update bundler
+
+# update jekyll
+gem update jekyll
 
 # change to repo dir
 bundle install
