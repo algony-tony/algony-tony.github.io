@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Cloudera CDP 产品简介 
+title: Cloudera CDP 产品简介
 categories: 软件技术
 tags: CDH CDP Cloudera
 ---

@@ -1178,7 +1178,7 @@ for url in url_list:
 
 ## 参考资料
 
-[TC学堂——最易读的Total Commander教程](https://xbeta.info/studytc/index.htm "善用佳软")  
+[TC学堂——最易读的Total Commander教程](https://xbeta.info/studytc/index.htm "善用佳软")
 
 [totalcmd.net](https://totalcmd.net/)
 

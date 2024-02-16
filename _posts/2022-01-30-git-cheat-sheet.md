@@ -183,7 +183,7 @@ git push -u origin [remote-branch-name]
 * 本地分支 X；
 * 远端（如 origin）分支 X；
 * 本地跟踪远端 X 的分支 origin/X；
- 
+
 X  ---  origin/X | X
 local repo       | remote origin repo
 
@@ -262,7 +262,7 @@ git merge --no-ff feature-branch # 效果同上
 > 一般我们这样做的目的是为了确保在向远程分支推送时能保持提交历史的整洁——例如向某个其他人维护的项目贡献代码时。 在这种情况下，你首先在自己的分支里进行开发，当开发完成时你需要先将你的代码变基到 origin/master 上，然后再向主项目提交修改。 这样的话，该项目的维护者就不再需要进行整合工作，只需要快进合并便可。
 
 > 奇妙的变基也并非完美无缺，要用它得遵守一条准则：
-> 
+>
 > **如果提交存在于你的仓库之外，而别人可能基于这些提交进行开发，那么不要执行变基。**
 
 `cherry-pick` 是挑选一个或几个提交选择性的变基。
@@ -478,13 +478,13 @@ git reset 会根据不同的参数来重置不同的区域
 
 {% highlight bash linedivs %}
          HEAD    HEAD                    HEAD
-           |       |                       | 
-           V       V                       V 
+           |       |                       |
+           V       V                       V
 master    dev    master    dev    master  dev
-  |        |       |        |       |    /     
-  V        V       V        V       V  /      
-  C1 <--- C2       C1 <--- C2       C1 <--- C2 
-   初始状态         checkout 后       reset 后  
+  |        |       |        |       |    /
+  V        V       V        V       V  /
+  C1 <--- C2       C1 <--- C2       C1 <--- C2
+   初始状态         checkout 后       reset 后
 {% endhighlight %}
 
 
@@ -598,9 +598,9 @@ git hash-object $file
 
 Git 是一个内容寻址文件系统。一个 git 对象对应一个 40 位的散列值。
 
-> Git is a content-addressable filesystem. 
+> Git is a content-addressable filesystem.
 
-> It means that at the core of Git is a simple key-value data store. 
+> It means that at the core of Git is a simple key-value data store.
 
 {% highlight bash linedivs %}
 # 用 hash-object 生成 'test content' 的散列值
@@ -670,7 +670,7 @@ Git 的工作目录中的文件主要分为下面几种状态
 在新仓库中添加远程仓库的地址，然后挑选出远程仓库需要的提交在新仓库中重播，步骤代码如下
 
 {% highlight bash linedivs %}
-# add the old repo as a remote repository 
+# add the old repo as a remote repository
 git remote add oldrepo https://github.com/path/to/oldrepo
 
 # get the old repo commits

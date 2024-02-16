@@ -29,7 +29,7 @@ permalink: /WebMap/
 美国有线电视新闻网 @ {
     [英文]({{ site.data.links["cnn"].link }})
     * [英文翻译]({{ site.data.links["cnn2cn"].link }})
-} 
+}
 金融时报 @ {
     [英文]({{ site.data.links["ft"].link }})
     * [英文翻译]({{ site.data.links["ft2cn"].link }})
@@ -160,7 +160,7 @@ LoopNet @ {
 
 ## 政府网站
 
-[中华人民共和国中央人民政府]({{ site.data.links["gov"].link }}) 
+[中华人民共和国中央人民政府]({{ site.data.links["gov"].link }})
     @ {
         [政府网站基本信息数据库]({{ site.data.links["govwebdb"].link }})
     }
@@ -168,13 +168,13 @@ LoopNet @ {
 [全国人民代表大会]({{ site.data.links["npc"].link }} "{{ site.data.links["npc"].desc }}")
 
 ### 国务院
-[国务院]({{ site.data.links["gwy"].link }} "{{ site.data.links["gwy"].desc }}") 
-    @ { 
-        [常务会议]({{ site.data.links["gwycwhy"].link }}) 
-        * [全体会议]({{ site.data.links["gwyqthy"].link }}) 
-        * [政府工作报告]({{ site.data.links["gwygzbg"].link }}) 
-        * [组织机构]({{ site.data.links["gwyzzjg"].link }}) 
-        * [国务院任免]({{ site.data.links["gwyrm"].link }}) 
+[国务院]({{ site.data.links["gwy"].link }} "{{ site.data.links["gwy"].desc }}")
+    @ {
+        [常务会议]({{ site.data.links["gwycwhy"].link }})
+        * [全体会议]({{ site.data.links["gwyqthy"].link }})
+        * [政府工作报告]({{ site.data.links["gwygzbg"].link }})
+        * [组织机构]({{ site.data.links["gwyzzjg"].link }})
+        * [国务院任免]({{ site.data.links["gwyrm"].link }})
     }
 
 #### 国务院组成部门
@@ -186,17 +186,17 @@ LoopNet @ {
 
 [中华人民共和国自然资源部]({{ site.data.links["mnr"].link }}) # [天地图]({{ site.data.links["tianditu"].link }} "{{ site.data.links["tianditu"].desc }}")
 
-[中国人民银行]({{ site.data.links["pbc"].link }}) 
+[中国人民银行]({{ site.data.links["pbc"].link }})
     @ {
-         [统计数据]({{ site.data.links["pbctj"].link }} "{{ site.data.links["pbctj"].desc }}") 
+         [统计数据]({{ site.data.links["pbctj"].link }} "{{ site.data.links["pbctj"].desc }}")
     }
 
-[中华人民共和国商务部]({{ site.data.links["mofcom"].link }}) 
+[中华人民共和国商务部]({{ site.data.links["mofcom"].link }})
     @ {
-        ["走出去"公共服务平台]({{ site.data.links["mofcomzcq"].link }}) 
+        ["走出去"公共服务平台]({{ site.data.links["mofcomzcq"].link }})
             @ {
-                 [国别（地区）指南]({{ site.data.links["mofcomgb"].link }}) 
-            } 
+                 [国别（地区）指南]({{ site.data.links["mofcomgb"].link }})
+            }
     }
 
 [中华人民共和国工业和信息化部]({{ site.data.links["miit"].link }})
@@ -204,9 +204,9 @@ LoopNet @ {
         [工信数据]({{ site.data.links["miittj"].link }} "{{ site.data.links["miittj"].desc }}")
     }
 
-[中华人民共和国财政部]({{ site.data.links["mof"].link }}) 
+[中华人民共和国财政部]({{ site.data.links["mof"].link }})
     @ {
-        [国库司]({{ site.data.links["mofgks"].link }} "{{ site.data.links["mofgks"].desc }}") 
+        [国库司]({{ site.data.links["mofgks"].link }} "{{ site.data.links["mofgks"].desc }}")
             @ {
                 [统计数据]({{ site.data.links["mofgkstj"].link }} "{{ site.data.links["mofgkstj"].desc }}")
                 * [中国政府采购网]({{ site.data.links["ccgp"].link }})
@@ -249,9 +249,9 @@ LoopNet @ {
         [中国中央电视台]({{ site.data.links["cctv"].link }} "{{ site.data.links["cctv"].desc }}")
             @ {
                 [新闻联播]({{ site.data.links["xwlb"].link }})
-            } 
+            }
             * [中央人民广播电台]({{ site.data.links["cnr"].link }} "{{ site.data.links["cnr"].desc }}")
-            * [中国国际广播电台]({{ site.data.links["cri"].link }} "{{ site.data.links["cri"].desc }}") 
+            * [中国国际广播电台]({{ site.data.links["cri"].link }} "{{ site.data.links["cri"].desc }}")
     }
 
 #### 国务院部委管理的国家局

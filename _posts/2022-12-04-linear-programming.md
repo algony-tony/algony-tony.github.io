@@ -633,7 +633,7 @@ optimize.linprog(c, A_ub=A_ub, b_ub=b_ub,bounds=[x0_bound, x1_bound])
 现在 SciPy 的线性规划问题默认使用 [HiGHS](https://www.maths.ed.ac.uk/hall/HiGHS/#top) 求解，HIGHS 是用 C++ 写的一个求解软件，提供 C, C#, FORTRAN, Julia and Python 的接口。
 > HiGHS - high performance software for linear optimization
 >
-> Open source serial and parallel solvers for large-scale sparse linear programming (LP), mixed-integer programming (MIP), and quadratic programming (QP) models 
+> Open source serial and parallel solvers for large-scale sparse linear programming (LP), mixed-integer programming (MIP), and quadratic programming (QP) models
 
 HiGHS 的 [GitHub 地址](https://github.com/ERGO-Code/HiGHS)，[Wiki 地址](https://en.wikipedia.org/wiki/HiGHS_optimization_solver)，[论文地址](https://www.maths.ed.ac.uk/hall/HuHa13/HuHa13.pdf)。它主要是两个并行对偶单纯形求解器（PAMI 和 SIP）的设计和实现。
 

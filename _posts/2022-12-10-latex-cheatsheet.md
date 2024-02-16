@@ -182,7 +182,7 @@ $$
 
 代码 2：
 ```latex
-f(z) = 
+f(z) =
 \left\{
     \begin{array}{rcl}
         \overline{\overline{z^2}+\cos z} & \mbox{for} & |z|<3 \\
@@ -194,7 +194,7 @@ f(z) =
 
 效果 2：
 $$
-f(z) = 
+f(z) =
 \left\{
     \begin{array}{rcl}
         \overline{\overline{z^2}+\cos z} & \mbox{for} & |z|<3 \\
@@ -264,7 +264,7 @@ $$
 
 ```latex
 $$
-c[i, j] = 
+c[i, j] =
 \left\{
 \begin{matrix}
 \begin{align}
@@ -279,7 +279,7 @@ $$
 效果 3：
 
 $$
-c[i, j] = 
+c[i, j] =
 \left\{
 \begin{matrix}
 \begin{align}
