@@ -1,0 +1,23 @@
+# https://github.com/trufflesecurity/trufflehog
+name: TruffleHog Security Scan
+
+on:
+  push:
+    branches:
+      - main
+      - post
+      - gh-pages
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Secret Scanning
+      uses: trufflesecurity/trufflehog@main
+      with:
+        extra_args: --only-verified

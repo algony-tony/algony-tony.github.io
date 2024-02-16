@@ -16,3 +16,10 @@ repos:
         # args:
         # - --additional-pattern 'mytoken*'
         # - --additional-pattern 'mykey*'
+-   repo: local
+    hooks:
+    -   id: img_compress
+        name: compress images
+        entry: script/img_compress.sh
+        language: system
+        stages: ["commit", "push"]
