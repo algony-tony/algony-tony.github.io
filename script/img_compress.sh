@@ -48,3 +48,5 @@ done
 # PNG compression
 echo "Begin compress png"
 pngquant --quality=65-80 --ext=.png --force --skip-if-larger "$base_dir"/*.png
+
+exit 0
