@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PQ63V8S');</script>
+<!-- End Google Tag Manager -->
+
+    
+
+
+    <title>MD5 – Algony Tony – etvdyn</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="etvdyn">
+    <meta property="og:description" content="etvdyn" />
+    
+    <meta name="author" content="Algony Tony" />
+
+    
+    <meta property="og:title" content="MD5" />
+    <meta property="twitter:title" content="MD5" />
+    
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+    <link rel="alternate" type="application/rss+xml" title="Algony Tony - etvdyn" href="/feed.xml" />
+
+    
+
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3291441471504209"
+     crossorigin="anonymous"></script>
+
+
+    <link type="application/atom+xml" rel="alternate" href="https://algony-tony.github.io/feed.xml" title="Algony Tony" />
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>MD5 | Algony Tony</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="MD5" />
+<meta property="og:locale" content="zh_CN" />
+<meta name="description" content="etvdyn" />
+<meta property="og:description" content="etvdyn" />
+<link rel="canonical" href="https://algony-tony.github.io/tools/md5.html" />
+<meta property="og:url" content="https://algony-tony.github.io/tools/md5.html" />
+<meta property="og:site_name" content="Algony Tony" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="MD5" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"etvdyn","headline":"MD5","url":"https://algony-tony.github.io/tools/md5.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  </head>
+
+  <body>
+
+    
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQ63V8S"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    
+    <header class="site-header">
+
+    <div class="wrapper-header">
+      <div class="header-left">
+        <!-- <a href="/" class="site-avatar"><img src="/assets/img/sys/jekyll-logo.png" alt="avatar" /></a> -->
+
+        <a class="site-info" href="/">
+          <span class="site-name">Algony Tony</span>
+          <span class="site-description">etvdyn</span>
+        </a>
+
+      </div>
+      
+      <nav class="header-right">
+        
+        <a href="/"  class="page-link"  >
+          首页
+        </a>
+        
+        <a href="/WebMap/"  class="page-link"  >
+          导航
+        </a>
+        
+        <a href="/tools/"  class="page-link"  >
+          工具
+        </a>
+        
+        <a href="/collections/"  class="page-link"  >
+          归档
+        </a>
+        
+      </nav>
+    </div>
+    
+</header>
+  
+
+    <main class="default-content" aria-label="内容区">
+  <div class="wrapper-content">
+
+    
+
+    <div class="page-content">
+      <div class="tool-sidebar">
+
+  <div class="col">
+    <ul class="menu">
+      
+      <li>
+        <a href="/tools/md5.html"  class="page-link active"
+          >
+          MD5
+        </a>
+      </li>
+      
+      <li>
+        <a href="/tools/pwd-generator.html"  class="page-link" >
+          密码生成器
+        </a>
+      </li>
+      
+      <li>
+        <a href="/tools/replacement.html"  class="page-link" >
+          字符替换
+        </a>
+      </li>
+      
+      <li>
+        <a href="/tools/unixtime.html"  class="page-link" >
+          时间戳转换
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<div class="tool-content">
+    <script async type="text/javascript" src="/assets/js/md5.js"></script>
+<script>
+    function isEmpty(obj) {
+        if (typeof obj == "undefined" || obj == null || obj == "") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function MyMD5(k) {
+        var button_name = k;
+        var txtInput = document.getElementById("input").value;
+
+        if (isEmpty(txtInput)) {
+            swal("请输入字符", "输入框是空的", "error");
+            return;
+        }
+        var arry = txtInput.trim().split('\n');
+        var output = [];
+        for (var i = 0; i < arry.length; i++) {
+            if (isEmpty(arry[i])) {
+                output.push("");
+            } else {
+                var temp_md5 = CryptoJS.MD5(arry[i]).toString();
+                if (button_name == "16lower") {
+                    output.push(temp_md5.substring(8, 24));
+                }
+                else if (button_name == "16upper") {
+                    output.push(temp_md5.substring(8, 24).toUpperCase());
+                }
+                else if (button_name == "32lower") {
+                    output.push(temp_md5);
+                }
+                else if (button_name == "32upper") {
+                    output.push(temp_md5.toUpperCase());
+                }
+            }
+
+        }
+        document.getElementById('md5-output').value = output.join("\n");
+    };
+
+</script>
+
+<h2>MD5</h2>
+
+<h4>MD5批量加密，每行分别加密</h4>
+<div class="tool-md5">
+
+    <div class="row">
+        <textarea id="input" class="form-control" placeholder="待加密区域，一行一个分别加密"></textarea>
+    </div>
+
+    <div class="row">
+        <span><button class="btn-try" id="32lower" type="submit"
+            onclick="MyMD5('32lower')">32位小写</button></span>
+            <span><button class="btn-try" id="32upper" type="submit"
+            onclick="MyMD5('32upper')">32位大写</button></span>
+            <span><button class="btn-try" id="16lower" type="submit"
+            onclick="MyMD5('16lower')">16位小写</button></span>
+            <span><button class="btn-try" id="16upper" type="submit"
+            onclick="MyMD5('16upper')">16位大写</button></span>
+    </div>
+
+    <div class="row">
+        <textarea id="md5-output" class="form-control" placeholder="结果区域"></textarea>
+    </div>
+
+</div>
+</div>
+
+    </div>
+    
+  </div>
+</main>
+
+    
+
+  </body>
+</html>
+

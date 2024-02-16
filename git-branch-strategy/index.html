@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PQ63V8S');</script>
+<!-- End Google Tag Manager -->
+
+    
+
+
+    <title>Git 分支使用策略 – Algony Tony – etvdyn</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="介绍 git-flow 的分支策略模型。" />
+    <meta property="og:description" content="介绍 git-flow 的分支策略模型。" />
+    
+    <meta name="author" content="Algony Tony" />
+
+    
+    <meta property="og:title" content="Git 分支使用策略" />
+    <meta property="twitter:title" content="Git 分支使用策略" />
+    
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+    <link rel="alternate" type="application/rss+xml" title="Algony Tony - etvdyn" href="/feed.xml" />
+
+    
+
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3291441471504209"
+     crossorigin="anonymous"></script>
+
+
+    <link type="application/atom+xml" rel="alternate" href="https://algony-tony.github.io/feed.xml" title="Algony Tony" />
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Git 分支使用策略 | Algony Tony</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Git 分支使用策略" />
+<meta property="og:locale" content="zh_CN" />
+<meta name="description" content="介绍 git-flow 的分支策略模型。" />
+<meta property="og:description" content="介绍 git-flow 的分支策略模型。" />
+<link rel="canonical" href="https://algony-tony.github.io/git-branch-strategy/" />
+<meta property="og:url" content="https://algony-tony.github.io/git-branch-strategy/" />
+<meta property="og:site_name" content="Algony Tony" />
+<meta property="og:image" content="https://algony-tony.github.io/assets/img/post/Git-branching-model.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-02-07T00:00:00+08:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://algony-tony.github.io/assets/img/post/Git-branching-model.png" />
+<meta property="twitter:title" content="Git 分支使用策略" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-02-07T00:00:00+08:00","datePublished":"2022-02-07T00:00:00+08:00","description":"介绍 git-flow 的分支策略模型。","headline":"Git 分支使用策略","image":"https://algony-tony.github.io/assets/img/post/Git-branching-model.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://algony-tony.github.io/git-branch-strategy/"},"url":"https://algony-tony.github.io/git-branch-strategy/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  </head>
+
+  <body>
+
+    
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQ63V8S"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    
+    <header class="site-header">
+
+    <div class="wrapper-header">
+      <div class="header-left">
+        <!-- <a href="/" class="site-avatar"><img src="/assets/img/sys/jekyll-logo.png" alt="avatar" /></a> -->
+
+        <a class="site-info" href="/">
+          <span class="site-name">Algony Tony</span>
+          <span class="site-description">etvdyn</span>
+        </a>
+
+      </div>
+      
+      <nav class="header-right">
+        
+        <a href="/"  class="page-link"  >
+          首页
+        </a>
+        
+        <a href="/WebMap/"  class="page-link"  >
+          导航
+        </a>
+        
+        <a href="/tools/"  class="page-link"  >
+          工具
+        </a>
+        
+        <a href="/collections/"  class="page-link"  >
+          归档
+        </a>
+        
+      </nav>
+    </div>
+    
+</header>
+  
+
+    <main class="default-content" aria-label="内容区">
+  <div class="wrapper-content">
+
+    <article class="post">
+      <div class="left">
+        <h1>Git 分支使用策略</h1>
+        <div class="label">
+
+          <div class="label-date">
+            2022-02-07
+          </div>
+
+          <div class="label-category">
+            <span >类别:</span>
+
+<a class="category-link" href="https://algony-tony.github.io/category/#软件技术" title="Category: 软件技术">
+  软件技术
+</a>
+
+
+          </div>
+
+          <div class="label-tag">
+            <span >标签:</span>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#git" title="Tag: git">
+  git
+</a>
+
+          </div>
+
+        </div>
+
+        <div class="entry">
+          <ul id="markdown-toc">
+  <li><a href="#中心库" id="markdown-toc-中心库">中心库</a></li>
+  <li><a href="#主分支" id="markdown-toc-主分支">主分支</a></li>
+  <li><a href="#支撑分支" id="markdown-toc-支撑分支">支撑分支</a>    <ul>
+      <li><a href="#特性分支-feature-branches" id="markdown-toc-特性分支-feature-branches">特性分支 Feature branches</a></li>
+      <li><a href="#发版分支-release-branches" id="markdown-toc-发版分支-release-branches">发版分支 Release branches</a></li>
+      <li><a href="#紧急修复分支-hotfix-branches" id="markdown-toc-紧急修复分支-hotfix-branches">紧急修复分支 Hotfix branches</a></li>
+    </ul>
+  </li>
+  <li><a href="#git-分支策略模型" id="markdown-toc-git-分支策略模型">Git 分支策略模型</a></li>
+  <li><a href="#参考" id="markdown-toc-参考">参考</a></li>
+</ul>
+
+<p>本文介绍一种 git-flow 的分支策略模型，主要参考下文。</p>
+
+<h2 id="中心库">中心库</h2>
+
+<p>Git 是分布式的，每个开发者的本地库都是一份完整的代码副本，这里说的中心库指的概念上的中心库，一般用 origin 指代。
+每个开发都会从中心库推送和拉取代码，对于一些较大的开发项目，如果不想提前推送到中心库上，开发者之间也会互相推拉代码。</p>
+
+<h2 id="主分支">主分支</h2>
+
+<p>中心库一般会有如下两个长期分支</p>
+
+<ul>
+  <li>master</li>
+  <li>develop</li>
+</ul>
+
+<p>在 origin/master 分支上的是生产环境的已发布代码，HEAD 指向的是生产环境最新的代码版本，
+origin/develop 是开发分支，HEAD 指向的是为下一个发布版本做准备的最新开发中代码，
+开发分支也叫做集成分支（integration branch）,可以设置成自动 build 的分支。</p>
+
+<p>当 develop 分支上的代码相对稳定，并为发布做好了准备，就可以把开发分支上的所有变化合并进 master 分支，
+并且会被打上标签和发布的版本号，具体操作会在下面进一步介绍。</p>
+
+<p>每次代码被合并进 master 分支，生产环境就会做一次版本发布。对主分支的合并操作要谨慎，
+对于 master 一般会设置 git 钩子，在有提交代码到这个分支上时，会做自动化构建和自动化部署到生产环境中。</p>
+
+<p><img src="/assets/img/post/git-main-branches.png" alt="main branches" title="main branches" /></p>
+
+<h2 id="支撑分支">支撑分支</h2>
+
+<p>除了上面的两个主要长期分支，还有一些有一定时效性和特定功能的支撑分支，可以支持对于功能和特性的并行开发，
+或者专门做版本发布用，或者是对生产环境一些紧急缺陷的修复。支撑分支主要是下面三种分支。</p>
+
+<ul>
+  <li>特性分支 Feature branches</li>
+  <li>发版分支 Release branches</li>
+  <li>紧急修复分支 Hotfix branches</li>
+</ul>
+
+<p>这些分支都有一些特定的用途，而且对于分支从哪种分支分叉出来，最终又要合并进哪种分支里都有严格的规则。
+这三种分支从技术上看没有什么不同的，它们的区别在于我们对其使用上的约束。</p>
+
+<h3 id="特性分支-feature-branches">特性分支 Feature branches</h3>
+
+<p>特性分支可以从 develop 中分叉出来，最终必须合并进 develop 分支中，分支名可以用除了 master, develop, release-* 或者 hotfix-* 外的有意义的名称。</p>
+
+<p>特性分支（也叫做 topic branches）主要用作开发新功能，新特性，或者是较远版本上的开发。
+在做新功能的分支开发时，开发人员可能并不知道此功能最终会被合并进哪个版本里。
+特性分支的本质上就是为这个特性的开发而存在的，最终会合并回 develop 里，将该特性加入到未来的某个版本中。
+如果实验性质的特性分支开发失败，这种特性分支会被丢弃，不再使用。</p>
+
+<p>特性分支一般只存在于开发人员的本地版本库中，不会推送到中心库 origin 里。</p>
+
+<p><img src="/assets/img/post/git-feature-branches.png" alt="feature branches" title="feature branches" /></p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1"><span class="c"># 1. 从 develop 中分叉创建一个 myfeature 分支</span>
+</div><div class="line-2">git checkout <span class="nt">-b</span> myfeature develop
+</div><div class="line-3">
+</div><div class="line-4"><span class="c"># 2. 在 myfeature 分支中完成开发</span>
+</div><div class="line-5">
+</div><div class="line-6"><span class="c"># 3. 切换回 develop 分支</span>
+</div><div class="line-7">git checkout develop
+</div><div class="line-8">
+</div><div class="line-9"><span class="c"># 4. 把 myfeature 分支合并进 develop 中，如果有冲突就解决冲突再合并</span>
+</div><div class="line-10">git merge <span class="nt">--no-ff</span> myfeature
+</div><div class="line-11">
+</div><div class="line-12"><span class="c"># 5. 推送本地 develop 到中心库的 develop 上</span>
+</div><div class="line-13">git push origin develop
+</div></code></pre></figure>
+
+<p>注意上面合并时使用的 <code class="language-plaintext highlighter-rouge">--no-ff</code> 参数，就是始终不用快进合并（fast-forward）,这样就不会丢失特性分支存在的信息，也不会丢失分支特性存在的起止点信息，
+后期也能方便查看，或者有撤销整个特性分支的需要时也能直接知道需要撤销哪些提交。</p>
+
+<h3 id="发版分支-release-branches">发版分支 Release branches</h3>
+
+<p>发版分支可以从 develop 中分叉出来，最终必须合并进 develop 和 master 分支中，命名用 release-*。</p>
+
+<p>发版分支是用来为生产环境的发布做准备的，有的项目是用 UAT 环境做准备。
+发版分支用作发布前最后一次的检查。如果有发现小 bug 这时候也是修复后直接提交在 release 分支上，最终会分别合并进 develop 和 master 里。
+发版分支还要准备发布的元数据（包含发布的版本号，构建日期等）。
+在代码进入发版分支后，develop 就准备好了为后面版本接收新特性的推送，这样和发版分支的准备工作是并行进行的。</p>
+
+<p>当下一个版本需要的特性都开发完成，合并进了 develop 分支中，就可以从 develop 分叉出 release 分支了，
+后期发版的新特性必须等到分叉出发版分支后才能再提交到开发分支上。</p>
+
+<p>只有在分叉出 release 分支的时候才定下了版本号，在此之前，develop 分支都只知道是为下一次发版做准备，至于下一次发版是 0.3 还是 1.0 并不确定。版本号的命名规则可以参考这篇 <a href="https://semver.org/lang/zh-CN/">语义化版本 2.0.0</a>，主要原则如下。</p>
+
+<blockquote>
+  <p>语义化版本 2.0.0</p>
+
+  <p>摘要</p>
+
+  <p>版本格式：主版本号.次版本号.修订号，版本号递增规则如下：</p>
+
+  <ul>
+    <li>主版本号：当你做了不兼容的 API 修改，</li>
+    <li>次版本号：当你做了向下兼容的功能性新增，</li>
+    <li>修订号：当你做了向下兼容的问题修正。</li>
+  </ul>
+
+  <p>先行版本号及版本编译信息可以加到“主版本号.次版本号.修订号”的后面，作为延伸。</p>
+</blockquote>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1"><span class="c"># 1. 从 develop 创建发版分支，假定原版本号是1.1.5，根据这次变更内容定出版本号 1.2</span>
+</div><div class="line-2">git checkout <span class="nt">-b</span> release-1.2 develop
+</div><div class="line-3">
+</div><div class="line-4"><span class="c"># 2. 修改项目下的版本号文件，修复小 bug 都提交在 release 上</span>
+</div><div class="line-5">git commit <span class="nt">-a</span> <span class="nt">-m</span> <span class="s2">"Bumped version number to 1.2"</span>
+</div><div class="line-6">
+</div><div class="line-7"><span class="c"># 3. 将 release 合并到 master</span>
+</div><div class="line-8">git checkout master
+</div><div class="line-9">git merge <span class="nt">--no-ff</span> release-1.2
+</div><div class="line-10">
+</div><div class="line-11"><span class="c"># 4. 在 master 上打上这次提交的标签，方便后期定位</span>
+</div><div class="line-12">git tag <span class="nt">-a</span> 1.2
+</div><div class="line-13">
+</div><div class="line-14"><span class="c"># 5. 将 release 合并回 develop 分支，如果有冲突解决冲突后继续合并</span>
+</div><div class="line-15">git checkout develop
+</div><div class="line-16">git merge <span class="nt">--no-ff</span> release-1.2
+</div><div class="line-17">
+</div><div class="line-18"><span class="c"># 6. 删除发版分支</span>
+</div><div class="line-19">git branch <span class="nt">-d</span> release-1.2
+</div></code></pre></figure>
+
+<h3 id="紧急修复分支-hotfix-branches">紧急修复分支 Hotfix branches</h3>
+
+<p>紧急修复分支可以从 master 中分叉出来，最终必须合并进 develop 和 master 分支中，命名用 hotfix-*。</p>
+
+<p>紧急修复分支很像发版分支，它们都是为了生产环境发版使用的，但是紧急修复分支不是提前计划好的，它是为了响应线上生产环境的缺陷而生成的分支。
+当生产环境有一个紧急 bug 需要修复，就从生产环境 master 分支中有相应缺陷的标签分支中分叉出紧急修复分支。</p>
+
+<p>这个分支的核心就是当有团队成员在做生产环境的紧急修复的同时，其他团队成员还是可以在 develop 分支上继续各自的开发。</p>
+
+<p><img src="/assets/img/post/git-hotfix-branches.png" alt="hotfix branches" title="hotfix branches" /></p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1"><span class="c"># 1. 假设有重大缺陷的生产版本是 1.2，但是开发分支还不稳定，新建分支去解决生产环境这个 bug</span>
+</div><div class="line-2">git branch <span class="nt">-b</span> hotfix-1.2.1 master
+</div><div class="line-3">
+</div><div class="line-4"><span class="c"># 2. 修复缺陷，别忘了修改版本号</span>
+</div><div class="line-5">git commit <span class="nt">-a</span> <span class="nt">-m</span> <span class="s2">"Bumped version number to 1.2.1"</span>
+</div><div class="line-6">
+</div><div class="line-7"><span class="c"># 3. 将 hotfix 分支合并回生产环境，并打上新的生产环境版本标签</span>
+</div><div class="line-8">git checkout master
+</div><div class="line-9">git merge <span class="nt">--no-merge</span> hotfix-1.2.1
+</div><div class="line-10">git tag <span class="nt">-a</span> 1.2.1
+</div><div class="line-11">
+</div><div class="line-12"><span class="c"># 4. 将 hotfix 分支合并回 develop 分支，这样后面再出现的版本都不会出现这个 bug</span>
+</div><div class="line-13">git checkout develop
+</div><div class="line-14">git merge <span class="nt">--no-merge</span> hotfix-1.2.1
+</div><div class="line-15">
+</div><div class="line-16"><span class="c"># 5. 删除分支</span>
+</div><div class="line-17">git branch <span class="nt">-d</span> hotfix-1.2.1
+</div></code></pre></figure>
+
+<p>需要注意上面第 4 步，如果此时有一个 release 分支，就把 hotfix 分支合并回 release 就行，最终会通过 release 分支把这个修复代码合并回 develop。
+如果 develop 分支上对这个修复也有很迫切的需求，等不及 release 分支发布后合并回 develop，那也可以把这个 hotfix 分支同时合并到 release 和 develop 分支中。</p>
+
+<h2 id="git-分支策略模型">Git 分支策略模型</h2>
+<p>下图是原博作者做的 Git 分支策略模型图。</p>
+
+<p><img src="/assets/img/post/Git-branching-model.png" alt="git branching model" title="git branching model" /></p>
+
+<h2 id="参考">参考</h2>
+<p><a href="https://nvie.com/posts/a-successful-git-branching-model/">A successful Git branching model</a></p>
+
+        </div>
+
+        
+<div class="comments" id="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+
+	    var disqus_shortname = 'https-algony-tony-github-io';
+
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+      </div>
+
+      
+      <div class="right">
+    <div class="side-wrap">
+        <!-- Content -->
+        <nav class="side-content">
+            <ul id="content-side" class="content-ul">
+                <li><a href="#comments">评论区</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<script src="/assets/js/postContent.js" charset="utf-8"></script>
+      
+
+      
+
+    </article>
+    
+  </div>
+</main>
+
+    
+      <footer class="site-footer">
+
+  <div class="wrapper-footer">
+    <div class="social-wrapper">
+      
+
+
+
+
+
+
+
+<a href="/feed.xml"><i class="svg-icon rss"></i></a>
+
+
+
+
+    </div>
+
+    <div>
+      <p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+    </div>
+
+    <div>Site powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://pages.github.com/">Github Pages</a>.</div>
+  </div>
+
+</footer>
+
+    
+
+  </body>
+</html>
+

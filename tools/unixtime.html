@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PQ63V8S');</script>
+<!-- End Google Tag Manager -->
+
+    
+
+
+    <title>Unix 时间戳转换 – Algony Tony – etvdyn</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="etvdyn">
+    <meta property="og:description" content="etvdyn" />
+    
+    <meta name="author" content="Algony Tony" />
+
+    
+    <meta property="og:title" content="Unix 时间戳转换" />
+    <meta property="twitter:title" content="Unix 时间戳转换" />
+    
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+    <link rel="alternate" type="application/rss+xml" title="Algony Tony - etvdyn" href="/feed.xml" />
+
+    
+
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3291441471504209"
+     crossorigin="anonymous"></script>
+
+
+    <link type="application/atom+xml" rel="alternate" href="https://algony-tony.github.io/feed.xml" title="Algony Tony" />
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Unix 时间戳转换 | Algony Tony</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Unix 时间戳转换" />
+<meta property="og:locale" content="zh_CN" />
+<meta name="description" content="etvdyn" />
+<meta property="og:description" content="etvdyn" />
+<link rel="canonical" href="https://algony-tony.github.io/tools/unixtime.html" />
+<meta property="og:url" content="https://algony-tony.github.io/tools/unixtime.html" />
+<meta property="og:site_name" content="Algony Tony" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Unix 时间戳转换" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"etvdyn","headline":"Unix 时间戳转换","url":"https://algony-tony.github.io/tools/unixtime.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  </head>
+
+  <body>
+
+    
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQ63V8S"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    
+    <header class="site-header">
+
+    <div class="wrapper-header">
+      <div class="header-left">
+        <!-- <a href="/" class="site-avatar"><img src="/assets/img/sys/jekyll-logo.png" alt="avatar" /></a> -->
+
+        <a class="site-info" href="/">
+          <span class="site-name">Algony Tony</span>
+          <span class="site-description">etvdyn</span>
+        </a>
+
+      </div>
+      
+      <nav class="header-right">
+        
+        <a href="/"  class="page-link"  >
+          首页
+        </a>
+        
+        <a href="/WebMap/"  class="page-link"  >
+          导航
+        </a>
+        
+        <a href="/tools/"  class="page-link"  >
+          工具
+        </a>
+        
+        <a href="/collections/"  class="page-link"  >
+          归档
+        </a>
+        
+      </nav>
+    </div>
+    
+</header>
+  
+
+    <main class="default-content" aria-label="内容区">
+  <div class="wrapper-content">
+
+    
+
+    <div class="page-content">
+      <div class="tool-sidebar">
+
+  <div class="col">
+    <ul class="menu">
+      
+      <li>
+        <a href="/tools/md5.html"  class="page-link" >
+          MD5
+        </a>
+      </li>
+      
+      <li>
+        <a href="/tools/pwd-generator.html"  class="page-link" >
+          密码生成器
+        </a>
+      </li>
+      
+      <li>
+        <a href="/tools/replacement.html"  class="page-link" >
+          字符替换
+        </a>
+      </li>
+      
+      <li>
+        <a href="/tools/unixtime.html"  class="page-link active"
+          >
+          时间戳转换
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<div class="tool-content">
+    <script>
+    // Function to convert a Unix timestamp in seconds to a datetime string in 'YYYY-MM-DD HH:MM:SS' format
+    function convertUnixTimestampToDatetime(unixTimestamp) {
+      const date = new Date(unixTimestamp * 1000);
+      const year = date.getFullYear();
+      const month = ("0" + (date.getMonth() + 1)).slice(-2);
+      const day = ("0" + date.getDate()).slice(-2);
+      const hours = ("0" + date.getHours()).slice(-2);
+      const minutes = ("0" + date.getMinutes()).slice(-2);
+      const seconds = ("0" + date.getSeconds()).slice(-2);
+      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    }
+  
+    // Function to convert a Unix timestamp in milliseconds to a datetime string in 'YYYY-MM-DD HH:MM:SS.SSS' format
+    function convertUnixTimestampToDatetimeWithMilliseconds(unixTimestamp) {
+      const date = new Date(unixTimestamp);
+      const year = date.getFullYear();
+      const month = ("0" + (date.getMonth() + 1)).slice(-2);
+      const day = ("0" + date.getDate()).slice(-2);
+      const hours = ("0" + date.getHours()).slice(-2);
+      const minutes = ("0" + date.getMinutes()).slice(-2);
+      const seconds = ("0" + date.getSeconds()).slice(-2);
+      const milliseconds = ("00" + date.getMilliseconds()).slice(-3);
+      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}.${milliseconds}`;
+    }
+  
+    // Set the initial values of the input and output fields to the current Unix timestamp
+    window.addEventListener("load", () => {
+        const currentUnixTimestamp = Math.floor(Date.now() / 1000);
+        document.getElementById("input_unixtimestamp").value = currentUnixTimestamp;
+        document.getElementById("output_datetime").value = convertUnixTimestampToDatetime(currentUnixTimestamp);
+    });
+
+    function Converter(k) {
+        const convert_type = k;
+        const inputUnixTimestamp = parseInt(document.getElementById("input_unixtimestamp").value);
+        if (!isNaN(inputUnixTimestamp)) {
+            const op = document.getElementById("output_datetime");
+            if (convert_type === "millisecond") {
+                op.value = convertUnixTimestampToDatetimeWithMilliseconds(inputUnixTimestamp);
+            }
+            else if (convert_type === "second") {
+                op.value = convertUnixTimestampToDatetime(inputUnixTimestamp);
+            }
+            op.focus();
+            op.select();
+        } else {
+            swal("请输入有效 Unix 时间戳", "", "error");
+        }
+    }
+  </script>
+  
+  <h2>Unix 时间戳转换</h2>
+  
+  <div class="tool-unixtime">
+    <div class="row">
+      <span><label>Unix 时间戳: </label><input type="text" id="input_unixtimestamp"></span>
+  
+      <span><button class="btn-try" id="second-conv" type="submit" onclick="Converter('second')">  秒  </button></span>
+      <span><button class="btn-try" id="millisecond-conv" type="submit" onclick="Converter('millisecond')">毫秒</button></span>
+  
+      <span><input id="output_datetime" type="text" class="form-control" readonly="readonly"></span>
+    </div>
+  </div>
+  
+</div>
+
+    </div>
+    
+  </div>
+</main>
+
+    
+
+  </body>
+</html>
+

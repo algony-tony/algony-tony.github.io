@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PQ63V8S');</script>
+<!-- End Google Tag Manager -->
+
+    
+
+
+    <title>用 Vim 查找重复行的几种办法 – Algony Tony – etvdyn</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="如果你有一个文本文件，现在想看下里面有没有重复内容的行，最简单的一个思路就是先用 vim 对文本排序，再直接正则匹配前后两个内容相同的行，代码如下（下面假设已经通过 ESC 键进入了命令模式）：
+" />
+    <meta property="og:description" content="如果你有一个文本文件，现在想看下里面有没有重复内容的行，最简单的一个思路就是先用 vim 对文本排序，再直接正则匹配前后两个内容相同的行，代码如下（下面假设已经通过 ESC 键进入了命令模式）：
+" />
+    
+    <meta name="author" content="Algony Tony" />
+
+    
+    <meta property="og:title" content="用 Vim 查找重复行的几种办法" />
+    <meta property="twitter:title" content="用 Vim 查找重复行的几种办法" />
+    
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+    <link rel="alternate" type="application/rss+xml" title="Algony Tony - etvdyn" href="/feed.xml" />
+
+    
+
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3291441471504209"
+     crossorigin="anonymous"></script>
+
+
+    <link type="application/atom+xml" rel="alternate" href="https://algony-tony.github.io/feed.xml" title="Algony Tony" />
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>用 Vim 查找重复行的几种办法 | Algony Tony</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="用 Vim 查找重复行的几种办法" />
+<meta property="og:locale" content="zh_CN" />
+<meta name="description" content="如果你有一个文本文件，现在想看下里面有没有重复内容的行，最简单的一个思路就是先用 vim 对文本排序，再直接正则匹配前后两个内容相同的行，代码如下（下面假设已经通过 ESC 键进入了命令模式）：" />
+<meta property="og:description" content="如果你有一个文本文件，现在想看下里面有没有重复内容的行，最简单的一个思路就是先用 vim 对文本排序，再直接正则匹配前后两个内容相同的行，代码如下（下面假设已经通过 ESC 键进入了命令模式）：" />
+<link rel="canonical" href="https://algony-tony.github.io/vi-find-duplicate-lines/" />
+<meta property="og:url" content="https://algony-tony.github.io/vi-find-duplicate-lines/" />
+<meta property="og:site_name" content="Algony Tony" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-10-24T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="用 Vim 查找重复行的几种办法" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-10-24T00:00:00+08:00","datePublished":"2023-10-24T00:00:00+08:00","description":"如果你有一个文本文件，现在想看下里面有没有重复内容的行，最简单的一个思路就是先用 vim 对文本排序，再直接正则匹配前后两个内容相同的行，代码如下（下面假设已经通过 ESC 键进入了命令模式）：","headline":"用 Vim 查找重复行的几种办法","mainEntityOfPage":{"@type":"WebPage","@id":"https://algony-tony.github.io/vi-find-duplicate-lines/"},"url":"https://algony-tony.github.io/vi-find-duplicate-lines/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  </head>
+
+  <body>
+
+    
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQ63V8S"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    
+    <header class="site-header">
+
+    <div class="wrapper-header">
+      <div class="header-left">
+        <!-- <a href="/" class="site-avatar"><img src="/assets/img/sys/jekyll-logo.png" alt="avatar" /></a> -->
+
+        <a class="site-info" href="/">
+          <span class="site-name">Algony Tony</span>
+          <span class="site-description">etvdyn</span>
+        </a>
+
+      </div>
+      
+      <nav class="header-right">
+        
+        <a href="/"  class="page-link"  >
+          首页
+        </a>
+        
+        <a href="/WebMap/"  class="page-link"  >
+          导航
+        </a>
+        
+        <a href="/tools/"  class="page-link"  >
+          工具
+        </a>
+        
+        <a href="/collections/"  class="page-link"  >
+          归档
+        </a>
+        
+      </nav>
+    </div>
+    
+</header>
+  
+
+    <main class="default-content" aria-label="内容区">
+  <div class="wrapper-content">
+
+    <article class="post">
+      <div class="left">
+        <h1>用 Vim 查找重复行的几种办法</h1>
+        <div class="label">
+
+          <div class="label-date">
+            2023-10-24
+          </div>
+
+          <div class="label-category">
+            <span >类别:</span>
+
+<a class="category-link" href="https://algony-tony.github.io/category/#软件技术" title="Category: 软件技术">
+  软件技术
+</a>
+
+
+          </div>
+
+          <div class="label-tag">
+            <span >标签:</span>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#Vim" title="Tag: Vim">
+  Vim
+</a>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#Linux" title="Tag: Linux">
+  Linux
+</a>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#shell" title="Tag: shell">
+  shell
+</a>
+
+          </div>
+
+        </div>
+
+        <div class="entry">
+          <p>如果你有一个文本文件，现在想看下里面有没有重复内容的行，最简单的一个思路就是先用 vim 对文本排序，再直接正则匹配前后两个内容相同的行，代码如下（下面假设已经通过 <code class="language-plaintext highlighter-rouge">ESC</code> 键进入了命令模式）：</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><div class="line-1"><span class="p">:</span><span class="k">sort</span>
+</div><div class="line-2"><span class="p">:</span><span class="k">g</span><span class="sr">/^\(.*\)$\n\1$/</span><span class="k">p</span>
+</div></code></pre></figure>
+
+<p>上面第一行就是对文本排序，再解释下第二行的正则匹配内容，就是匹配一行行首 <code class="language-plaintext highlighter-rouge">^</code> 和行尾 <code class="language-plaintext highlighter-rouge">$</code> 中的所有内容 <code class="language-plaintext highlighter-rouge">.*</code> 放入第一组中 <code class="language-plaintext highlighter-rouge">\(\)</code>，接着匹配一个换行符 <code class="language-plaintext highlighter-rouge">\n</code>，紧接着把上面匹配到的第一组内容拿出来继续匹配 <code class="language-plaintext highlighter-rouge">\1</code>，最后的一个 <code class="language-plaintext highlighter-rouge">p</code> 就是把满足这个正则模式的内容高亮出来。</p>
+
+<p>上面的正则只能匹配连续两行内容相同的行，如果有三行或者多行内容相同的情况只会高亮出前两行，问了下 ChatGPT 得到了一个匹配多行的代码，略复杂了一些：</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><div class="line-1"><span class="p">:</span><span class="k">g</span><span class="sr">/^\(.*\)$\n\(\(.*\n\)*\)\1$/</span><span class="k">p</span>
+</div></code></pre></figure>
+
+<p>这个改进版的代码前面和前面一样，在匹配好第一行之后加了一个匹配任意内容的多行 <code class="language-plaintext highlighter-rouge">\(\(.*\n\)*\)</code>，再紧接着匹配与第一组内容完全相同的行 <code class="language-plaintext highlighter-rouge">\1</code>，这样就可以匹配多行内容了。但是这里对中间行是不做校验的，在这个问题里因为前面加了 <code class="language-plaintext highlighter-rouge">:sort</code> 排序所以是没有问题的。自己修改了下把中间行的内容也加上匹配校验也是可以的，如下：</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><div class="line-1"><span class="p">:</span><span class="k">g</span><span class="sr">/^\(.*\)$\n\(\(\1\n\)*\)\1$/</span><span class="k">p</span>
+</div></code></pre></figure>
+
+<p>上面给的都是通过 Vim 的一次性的快捷操作，知道了思路后正则匹配命令基本现场就能写出来，下面是 <a href="https://stackoverflow.com/questions/1268032/how-can-i-mark-highlight-duplicate-lines-in-vi-editor">StackOverflow</a> 上网友给出的高级玩法：</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><div class="line-1"><span class="p">:</span><span class="k">syn</span> clear Repeat <span class="p">|</span> <span class="k">g</span><span class="sr">/^\(.*\)\n\ze\%(.*\n\)*\1$/</span>exe <span class="s1">'syn match Repeat "^'</span> <span class="p">.</span> <span class="nb">escape</span><span class="p">(</span><span class="nb">getline</span><span class="p">(</span><span class="s1">'.'</span><span class="p">),</span> <span class="s1">'".\^$*[]'</span><span class="p">)</span> <span class="p">.</span> <span class="s1">'$"'</span> <span class="p">|</span> <span class="k">nohlsearch</span>
+</div></code></pre></figure>
+
+<p>如果需要经常匹配相同的行，也可以在 vimrc 文件中写成一个函数通过快捷键去调用。</p>
+
+<p>换种思路，用着 Vim 应该离 Linux 也不远，那就直接用 shell 命令也一样实现起来：</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1"><span class="nb">sort</span> &lt;file&gt; | <span class="nb">uniq</span> <span class="nt">-c</span>
+</div></code></pre></figure>
+
+<p>上面命令会把文件中每个行和它在文件中出现的次数打印出来，如果只需要打印出重复的行就再加个参数 <code class="language-plaintext highlighter-rouge">sort &lt;file&gt; | uniq -cd</code>。</p>
+
+<h2 id="参考链接">参考链接</h2>
+
+<p><a href="https://stackoverflow.com/questions/1268032/how-can-i-mark-highlight-duplicate-lines-in-vi-editor">How can I mark/highlight duplicate lines in VI editor?</a></p>
+
+        </div>
+
+        
+<div class="comments" id="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+
+	    var disqus_shortname = 'https-algony-tony-github-io';
+
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+      </div>
+
+      
+
+      
+
+    </article>
+    
+  </div>
+</main>
+
+    
+      <footer class="site-footer">
+
+  <div class="wrapper-footer">
+    <div class="social-wrapper">
+      
+
+
+
+
+
+
+
+<a href="/feed.xml"><i class="svg-icon rss"></i></a>
+
+
+
+
+    </div>
+
+    <div>
+      <p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+    </div>
+
+    <div>Site powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://pages.github.com/">Github Pages</a>.</div>
+  </div>
+
+</footer>
+
+    
+
+  </body>
+</html>
+

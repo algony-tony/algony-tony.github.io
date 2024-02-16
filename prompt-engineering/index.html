@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PQ63V8S');</script>
+<!-- End Google Tag Manager -->
+
+    
+
+
+    <title>编写 Prompt 的几种通用框架和方法 – Algony Tony – etvdyn</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="对于大模型（LLM）来说，输入和输出都是文本字符串，输入部分的文本就叫做 Prompt，它是用户的输入，prompt 和 LLM 一起决定了输出的内容和质量。对于一般用户来说，LLM 是相对固定的部分，能发挥主观能动性决定输出内容的部分就是 prompt 了，这也是最近 Prompt 工程比较火的原因。
+" />
+    <meta property="og:description" content="对于大模型（LLM）来说，输入和输出都是文本字符串，输入部分的文本就叫做 Prompt，它是用户的输入，prompt 和 LLM 一起决定了输出的内容和质量。对于一般用户来说，LLM 是相对固定的部分，能发挥主观能动性决定输出内容的部分就是 prompt 了，这也是最近 Prompt 工程比较火的原因。
+" />
+    
+    <meta name="author" content="Algony Tony" />
+
+    
+    <meta property="og:title" content="编写 Prompt 的几种通用框架和方法" />
+    <meta property="twitter:title" content="编写 Prompt 的几种通用框架和方法" />
+    
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+    <link rel="alternate" type="application/rss+xml" title="Algony Tony - etvdyn" href="/feed.xml" />
+
+    
+
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3291441471504209"
+     crossorigin="anonymous"></script>
+
+
+    <link type="application/atom+xml" rel="alternate" href="https://algony-tony.github.io/feed.xml" title="Algony Tony" />
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>编写 Prompt 的几种通用框架和方法 | Algony Tony</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="编写 Prompt 的几种通用框架和方法" />
+<meta property="og:locale" content="zh_CN" />
+<meta name="description" content="对于大模型（LLM）来说，输入和输出都是文本字符串，输入部分的文本就叫做 Prompt，它是用户的输入，prompt 和 LLM 一起决定了输出的内容和质量。对于一般用户来说，LLM 是相对固定的部分，能发挥主观能动性决定输出内容的部分就是 prompt 了，这也是最近 Prompt 工程比较火的原因。" />
+<meta property="og:description" content="对于大模型（LLM）来说，输入和输出都是文本字符串，输入部分的文本就叫做 Prompt，它是用户的输入，prompt 和 LLM 一起决定了输出的内容和质量。对于一般用户来说，LLM 是相对固定的部分，能发挥主观能动性决定输出内容的部分就是 prompt 了，这也是最近 Prompt 工程比较火的原因。" />
+<link rel="canonical" href="https://algony-tony.github.io/prompt-engineering/" />
+<meta property="og:url" content="https://algony-tony.github.io/prompt-engineering/" />
+<meta property="og:site_name" content="Algony Tony" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-08-21T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="编写 Prompt 的几种通用框架和方法" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-08-21T00:00:00+08:00","datePublished":"2023-08-21T00:00:00+08:00","description":"对于大模型（LLM）来说，输入和输出都是文本字符串，输入部分的文本就叫做 Prompt，它是用户的输入，prompt 和 LLM 一起决定了输出的内容和质量。对于一般用户来说，LLM 是相对固定的部分，能发挥主观能动性决定输出内容的部分就是 prompt 了，这也是最近 Prompt 工程比较火的原因。","headline":"编写 Prompt 的几种通用框架和方法","mainEntityOfPage":{"@type":"WebPage","@id":"https://algony-tony.github.io/prompt-engineering/"},"url":"https://algony-tony.github.io/prompt-engineering/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  </head>
+
+  <body>
+
+    
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQ63V8S"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    
+    <header class="site-header">
+
+    <div class="wrapper-header">
+      <div class="header-left">
+        <!-- <a href="/" class="site-avatar"><img src="/assets/img/sys/jekyll-logo.png" alt="avatar" /></a> -->
+
+        <a class="site-info" href="/">
+          <span class="site-name">Algony Tony</span>
+          <span class="site-description">etvdyn</span>
+        </a>
+
+      </div>
+      
+      <nav class="header-right">
+        
+        <a href="/"  class="page-link"  >
+          首页
+        </a>
+        
+        <a href="/WebMap/"  class="page-link"  >
+          导航
+        </a>
+        
+        <a href="/tools/"  class="page-link"  >
+          工具
+        </a>
+        
+        <a href="/collections/"  class="page-link"  >
+          归档
+        </a>
+        
+      </nav>
+    </div>
+    
+</header>
+  
+
+    <main class="default-content" aria-label="内容区">
+  <div class="wrapper-content">
+
+    <article class="post">
+      <div class="left">
+        <h1>编写 Prompt 的几种通用框架和方法</h1>
+        <div class="label">
+
+          <div class="label-date">
+            2023-08-21
+          </div>
+
+          <div class="label-category">
+            <span >类别:</span>
+
+<a class="category-link" href="https://algony-tony.github.io/category/#软件技术" title="Category: 软件技术">
+  软件技术
+</a>
+
+
+          </div>
+
+          <div class="label-tag">
+            <span >标签:</span>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#prompt" title="Tag: prompt">
+  prompt
+</a>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#LLM" title="Tag: LLM">
+  LLM
+</a>
+
+          </div>
+
+        </div>
+
+        <div class="entry">
+          <p>对于大模型（LLM）来说，输入和输出都是文本字符串，输入部分的文本就叫做 Prompt，它是用户的输入，prompt 和 LLM 一起决定了输出的内容和质量。对于一般用户来说，LLM 是相对固定的部分，能发挥主观能动性决定输出内容的部分就是 prompt 了，这也是最近 Prompt 工程比较火的原因。</p>
+
+<p>有一种观点认为 prompt 只是目前 LLM 能力还有短板时的短期方案，是个人用户对 LLM 打的一次补丁，后面 LLM 相对强大后就会逐渐弱化 prompt 的重要性，这个观点是否成立只能拭目以待了。</p>
+
+<p>目前想用大模型技术来开发某些场景应用，除了软件工程上的开发部分，很大一块内容就在于编写一系列场景下的 prompts，以及对不同 prompt 的效果评估和选取，这是目前大模型应用中变量最大的部分，也是决定大模型应用成功的关键。</p>
+
+<p>下面就介绍几个编写 prompt 的通用框架和一些方法，包含吴恩达教授的 9 集 <a href="https://www.bilibili.com/video/BV1Mo4y157iF">ChatGPT 提示词工程课程</a>，ICIO 框架，CRISPE 框架。</p>
+
+<h2 id="吴恩达chatgpt-提示词工程课程">吴恩达《ChatGPT 提示词工程课程》</h2>
+
+<p>下面是课程的主要内容提炼。</p>
+
+<p>创建 prompt 的<strong>两个原则</strong>：</p>
+<ol>
+  <li>编写清晰、具体的指令；
+    <ul>
+      <li>使用分隔符清晰地表示输入的不同部分，分隔符可以是：```，”“，&lt;&gt;，:，&lt;tag&gt; &lt;/tag&gt;等；</li>
+      <li>寻求结构化的输出，输出可以是 JSON, HTML 等格式；</li>
+      <li>要求模型检查是否满足条件，如果任务包含不一定能满足的假设（条件），我们可以告诉模型先检查这些假设；</li>
+      <li>提供少量示例，Few-shot prompting；</li>
+    </ul>
+  </li>
+  <li>给 LLM 时间去思考；要求模型在提供最终的答案之前开展<strong>思维链</strong>或进行<strong>一系列相关的推理</strong>。
+    <ul>
+      <li>指定完成任务所需的步骤；</li>
+      <li>指导模型在下结论之前找出一个自己的解法。对于需要判断一个已有的答案是否正确的情景，可以先让模型自行得出一个解法，再行比较两者来得出结论；</li>
+    </ul>
+  </li>
+</ol>
+
+<p>开发 prompt 的过程：<strong>不断的迭代优化</strong>。和机器学习模型的开发过程类似，开发 prompt 也是先产生想法，编写 prompt，查看实验效果并分析错误，改进 prompt 并继续验证结果直到产生满意的结果。</p>
+
+<p>4 种主要大模型应用场景的 prompt 编写举例：</p>
+<ol>
+  <li>文本概括总结（Summarizing）
+    <ul>
+      <li>限制输出文本长度；</li>
+      <li>通过提示词来设置对某个特定角度的侧重；</li>
+      <li>如果只想要某一方面的信息，可以进行信息提取（Extract）而不是总结（Summarize）；</li>
+    </ul>
+  </li>
+  <li>推理（inferring）
+    <ul>
+      <li>识别文本的情感和类别；</li>
+      <li>商品信息提取；</li>
+      <li>主题推断；</li>
+    </ul>
+  </li>
+  <li>文本转换（Transforming）
+    <ul>
+      <li>语言翻译；</li>
+      <li>语气转换；</li>
+      <li>文件格式转换；</li>
+      <li>拼写及语法纠正；</li>
+    </ul>
+  </li>
+  <li>文本扩展（Expanding）。输入短文本（一个主题或者一组说明）让模型生成更长的文本。可以定制邮件或者写一些议论段落。</li>
+</ol>
+
+<h2 id="icio-框架">ICIO 框架</h2>
+
+<p>ICIO 框架模型来自 Elvis Saravia 的<a href="https://www.promptingguide.ai/introduction/elements">提示词工程指南</a>。这个框架的 prompt 包含下面四个组成部分：</p>
+
+<ul>
+  <li><strong>Instruction</strong> - 您希望模型执行的特定任务或指令</li>
+  <li><strong>Context</strong> - 可以引导模型做出更好响应的外部信息或附加上下文</li>
+  <li><strong>Input Data</strong> - 我们有兴趣寻找答案的输入或问题</li>
+  <li><strong>Output Indicator</strong> - 输出的类型或格式</li>
+</ul>
+
+<h2 id="crispe-框架">CRISPE 框架</h2>
+
+<p>CRISPE 框架来自 Matt Nigh 的<a href="https://github.com/mattnigh/ChatGPT3-Free-Prompt-List">免费提示词列表</a>，这个框架的 prompt 包含如下五个部分：</p>
+
+<ul>
+  <li><strong>Capacity and Role</strong>: ChatGPT 应该扮演什么角色？</li>
+  <li><strong>Insight</strong>: 为您的请求提供幕后洞察力、上下文和背景。</li>
+  <li><strong>Statement</strong>: 您要求 ChatGPT 做什么。</li>
+  <li><strong>Personality</strong>: 您希望 ChatGPT 做出响应的风格、个性或方式。</li>
+  <li><strong>Experiment</strong>: 要求 ChatGPT 为您提供多个示例。</li>
+</ul>
+
+<h2 id="参考资料">参考资料</h2>
+
+<p><a href="https://www.bilibili.com/video/BV1Mo4y157iF">ChatGPT 提示词工程课程</a></p>
+
+<p><a href="https://github.com/datawhalechina/prompt-engineering-for-developers/tree/main/content/Prompt%20Engineering%20for%20Developer">ChatGPT 提示词工程课程（中文文字版）</a></p>
+
+<p><a href="https://github.com/dair-ai/Prompt-Engineering-Guide">Prompt-Engineering-Guide</a></p>
+
+<p><a href="https://www.promptingguide.ai/zh">提示词工程指南</a></p>
+
+<p><a href="https://github.com/mattnigh/ChatGPT3-Free-Prompt-List">免费提示词列表</a></p>
+
+<p><a href="https://sourcingdenis.medium.com/crispe-prompt-engineering-framework-e47eaaf83611">CRISPE — ChatGPT 提示工程框架</a></p>
+
+<p><a href="https://mp.weixin.qq.com/s/N8XnSSdXlIITSig5z1oZCw">GPT Prompt编写的艺术：如何提高AI模型的表现力</a></p>
+
+        </div>
+
+        
+<div class="comments" id="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+
+	    var disqus_shortname = 'https-algony-tony-github-io';
+
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+      </div>
+
+      
+
+      
+
+    </article>
+    
+  </div>
+</main>
+
+    
+      <footer class="site-footer">
+
+  <div class="wrapper-footer">
+    <div class="social-wrapper">
+      
+
+
+
+
+
+
+
+<a href="/feed.xml"><i class="svg-icon rss"></i></a>
+
+
+
+
+    </div>
+
+    <div>
+      <p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+    </div>
+
+    <div>Site powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://pages.github.com/">Github Pages</a>.</div>
+  </div>
+
+</footer>
+
+    
+
+  </body>
+</html>
+

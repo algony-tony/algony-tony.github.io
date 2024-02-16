@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PQ63V8S');</script>
+<!-- End Google Tag Manager -->
+
+    
+
+
+    <title>线性规划及整数线性规划算法 – Algony Tony – etvdyn</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="" />
+    <meta property="og:description" content="" />
+    
+    <meta name="author" content="Algony Tony" />
+
+    
+    <meta property="og:title" content="线性规划及整数线性规划算法" />
+    <meta property="twitter:title" content="线性规划及整数线性规划算法" />
+    
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+    <link rel="alternate" type="application/rss+xml" title="Algony Tony - etvdyn" href="/feed.xml" />
+
+    
+
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3291441471504209"
+     crossorigin="anonymous"></script>
+
+
+    <link type="application/atom+xml" rel="alternate" href="https://algony-tony.github.io/feed.xml" title="Algony Tony" />
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>线性规划及整数线性规划算法 | Algony Tony</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="线性规划及整数线性规划算法" />
+<meta property="og:locale" content="zh_CN" />
+<meta name="description" content="etvdyn" />
+<meta property="og:description" content="etvdyn" />
+<link rel="canonical" href="https://algony-tony.github.io/linear-programming/" />
+<meta property="og:url" content="https://algony-tony.github.io/linear-programming/" />
+<meta property="og:site_name" content="Algony Tony" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-12-04T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="线性规划及整数线性规划算法" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-12-04T00:00:00+08:00","datePublished":"2022-12-04T00:00:00+08:00","description":"etvdyn","headline":"线性规划及整数线性规划算法","mainEntityOfPage":{"@type":"WebPage","@id":"https://algony-tony.github.io/linear-programming/"},"url":"https://algony-tony.github.io/linear-programming/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  </head>
+
+  <body>
+
+    
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQ63V8S"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    
+    <header class="site-header">
+
+    <div class="wrapper-header">
+      <div class="header-left">
+        <!-- <a href="/" class="site-avatar"><img src="/assets/img/sys/jekyll-logo.png" alt="avatar" /></a> -->
+
+        <a class="site-info" href="/">
+          <span class="site-name">Algony Tony</span>
+          <span class="site-description">etvdyn</span>
+        </a>
+
+      </div>
+      
+      <nav class="header-right">
+        
+        <a href="/"  class="page-link"  >
+          首页
+        </a>
+        
+        <a href="/WebMap/"  class="page-link"  >
+          导航
+        </a>
+        
+        <a href="/tools/"  class="page-link"  >
+          工具
+        </a>
+        
+        <a href="/collections/"  class="page-link"  >
+          归档
+        </a>
+        
+      </nav>
+    </div>
+    
+</header>
+  
+
+    <main class="default-content" aria-label="内容区">
+  <div class="wrapper-content">
+
+    <article class="post">
+      <div class="left">
+        <h1>线性规划及整数线性规划算法</h1>
+        <div class="label">
+
+          <div class="label-date">
+            2022-12-04
+          </div>
+
+          <div class="label-category">
+            <span >类别:</span>
+
+<a class="category-link" href="https://algony-tony.github.io/category/#自然科学" title="Category: 自然科学">
+  自然科学
+</a>
+
+
+          </div>
+
+          <div class="label-tag">
+            <span >标签:</span>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#算法" title="Tag: 算法">
+  算法
+</a>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#线性规划" title="Tag: 线性规划">
+  线性规划
+</a>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#单纯形法" title="Tag: 单纯形法">
+  单纯形法
+</a>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#运筹学" title="Tag: 运筹学">
+  运筹学
+</a>
+
+          </div>
+
+        </div>
+
+        <div class="entry">
+          <ul id="markdown-toc">
+  <li><a href="#运筹学基础" id="markdown-toc-运筹学基础">运筹学基础</a></li>
+  <li><a href="#线性规划" id="markdown-toc-线性规划">线性规划</a>    <ul>
+      <li><a href="#标准形式" id="markdown-toc-标准形式">标准形式</a>        <ul>
+          <li><a href="#转换到标准形式的步骤" id="markdown-toc-转换到标准形式的步骤">转换到标准形式的步骤</a></li>
+          <li><a href="#基可行解" id="markdown-toc-基可行解">基可行解</a></li>
+        </ul>
+      </li>
+      <li><a href="#线性规划的解" id="markdown-toc-线性规划的解">线性规划的解</a></li>
+      <li><a href="#单纯形法" id="markdown-toc-单纯形法">单纯形法</a></li>
+      <li><a href="#大-m-法" id="markdown-toc-大-m-法">大 M 法</a></li>
+      <li><a href="#两阶段法" id="markdown-toc-两阶段法">两阶段法</a></li>
+      <li><a href="#退化情形与勃兰特准则" id="markdown-toc-退化情形与勃兰特准则">退化情形与勃兰特准则</a></li>
+      <li><a href="#内点法" id="markdown-toc-内点法">内点法</a></li>
+    </ul>
+  </li>
+  <li><a href="#整数线性规划" id="markdown-toc-整数线性规划">整数线性规划</a>    <ul>
+      <li><a href="#分枝定界法" id="markdown-toc-分枝定界法">分枝定界法</a></li>
+      <li><a href="#割平面法" id="markdown-toc-割平面法">割平面法</a></li>
+      <li><a href="#隐枚举法" id="markdown-toc-隐枚举法">隐枚举法</a></li>
+      <li><a href="#匈牙利法" id="markdown-toc-匈牙利法">匈牙利法</a></li>
+      <li><a href="#蒙特卡洛法" id="markdown-toc-蒙特卡洛法">蒙特卡洛法</a></li>
+    </ul>
+  </li>
+  <li><a href="#python-求解" id="markdown-toc-python-求解">Python 求解</a>    <ul>
+      <li><a href="#线性规划问题求解" id="markdown-toc-线性规划问题求解">线性规划问题求解</a></li>
+      <li><a href="#整数线性规划问题求解" id="markdown-toc-整数线性规划问题求解">整数线性规划问题求解</a></li>
+      <li><a href="#0-1-规划问题求解" id="markdown-toc-0-1-规划问题求解">0-1 规划问题求解</a></li>
+      <li><a href="#指派问题求解" id="markdown-toc-指派问题求解">指派问题求解</a></li>
+    </ul>
+  </li>
+  <li><a href="#参考链接" id="markdown-toc-参考链接">参考链接</a></li>
+</ul>
+
+<h2 id="运筹学基础">运筹学基础</h2>
+
+<p>运筹学中的一套完整的工作流程，可分为如下六个步骤：</p>
+<ul>
+  <li><strong>问题定义</strong>：在实践中遇到的问题，最初可能是模糊的，不精确的，所以第一步就是要把问题明确下来。这一步需要确定研究目标，明确问题边界，列出问题约束和问题要素及其关系；</li>
+  <li><strong>数据收集</strong>：数据收集有可能贯穿研究的全过程，根据研究目标明确需要收集的数据范围，数据既能加深对问题的理解，也是为下一步构建模型提供数据输入；</li>
+  <li><strong>模型构建</strong>：模型是研究对象的抽象，<strong>好的模型是保真性、灵活性和成本之间的巧妙平衡</strong>，模型需要贴近现实世界的问题，当条件改变时模型也能适应变化，同时模型方便操作和维护；</li>
+  <li><strong>模型求解</strong>：模型求解一般使用计算机软件来完成，需要熟悉成熟模型的算法才好灵活运用；</li>
+  <li><strong>模型验证</strong>：一方面是检查模型是否得到了正确的解，另一方面验证模型的解是否正确反映了问题实际；</li>
+  <li><strong>结论实施</strong>：一般要实施交互式决策服务的工具，同时帮助决策者能够使用和实施，包括提供操作手册和相关培训等，在使用过程中实施全周期管理，当发现原有假设严重偏离时，应重新检验模型并更新工具。</li>
+</ul>
+
+<p>运筹学模型中的三要素：</p>
+<ul>
+  <li>决策变量（Decision Variables）：待优化的对象；</li>
+  <li>目标函数（Objective Function）：需要达成的目标的表达式，一般为寻求最大值或最小值，有时候可要求满意、可行、非劣等；</li>
+  <li>约束条件（Constraints）：表示进行优化时收到的限制，包括资源的限制，时间约束等；</li>
+</ul>
+
+<p>还有模型中的常数项，称为模型的参数（Parameters），参数的取值一般需要收集数据后才能确定。对参数值的不确定性的研究称为灵敏度分析（Sensitivity Analysis）。</p>
+
+<h2 id="线性规划">线性规划</h2>
+
+<p>线性规划用来解决这一类问题：如何使用有限的资源（人力、物力、财力或者时间等）达到一定的目标，很多时候还可能要求以最好的效果来达成目标。</p>
+
+<p>线性指的是模型中所有表达式均为线性等式或不等式，线性规划问题的一般形式如下：</p>
+
+\[\max (\min) z = c_1 x_1\ +\ c_2 x_2\ +\ \cdots \ +\ c_n x_n\]
+
+\[\left\{
+    \begin{array}{lcl}
+    a_{11} x_1\ +\ a_{12} x_2\ +\ \cdots\ +\ a_{1n} x_n &amp;\le (=, \ge)&amp; b_1 \\
+    a_{21} x_1\ +\ a_{22} x_2\ +\ \cdots\ +\ a_{2n} x_n &amp;\le (=, \ge)&amp; b_2 \\
+    \qquad \vdots \\
+    a_{m1} x_1\ +\ a_{m2} x_2\ +\ \cdots +\ \ a_{mn} x_n &amp;\le (=, \ge)&amp; b_m \\
+    x_1, x_2, \ldots, x_n \le (=, \ge)~0, \text{或无约束}
+    \end{array}
+\right.\]
+
+<h3 id="标准形式">标准形式</h3>
+
+<p>满足下面 3 个条件的形式为线性规划模型的标准形式，</p>
+<ol>
+  <li>目标函数最大化；</li>
+  <li>约束条件等式化；</li>
+  <li>决策变量非负化；</li>
+</ol>
+
+<p>设线性规划模型中变量数为 $n$ 个，非负约束条件共 $m$ 个，标准形式可写为</p>
+
+\[\max z = c_1 x_1\ +\ c_2 x_2\ +\ \cdots \ +\ c_n x_n\]
+
+\[\left\{
+    \begin{array}{lcl}
+    a_{11} x_1\ +\ a_{12} x_2\ +\ \cdots\ +\ a_{1n} x_n &amp; = &amp; b_1 \\
+    a_{21} x_1\ +\ a_{22} x_2\ +\ \cdots\ +\ a_{2n} x_n &amp; = &amp; b_2 \\
+    \qquad \vdots \\
+    a_{m1} x_1\ +\ a_{m2} x_2\ +\ \cdots +\ \ a_{mn} x_n &amp; = &amp; b_m \\
+    x_1, x_2, \ldots, x_n \ge 0
+    \end{array}
+\right.\]
+
+<p>改写成矩阵形式：</p>
+
+\[\max z = \mathbf{C} \mathbf{X}\]
+
+\[\left\{
+    \begin{array}{l}
+    \mathbf{A} \mathbf{X} = \mathbf{b} \\
+    \mathbf{X} \ge \mathbf{0}
+    \end{array}
+\right.\]
+
+<p>其中</p>
+
+\[\mathbf{C} =
+\left(
+    \begin{matrix}
+    c_1\\
+    c_2\\
+    \vdots \\
+    c_n
+    \end{matrix}
+\right)^ T,\quad
+
+\mathbf{X} =
+\left(
+    \begin{matrix}
+    x_1\\
+    x_2\\
+    \vdots \\
+    x_n
+    \end{matrix}
+\right),\quad
+
+\mathbf{P_j} =
+\left(
+    \begin{matrix}
+    a_{1j}\\
+    a_{2j}\\
+    \vdots \\
+    a_{mj}
+    \end{matrix}
+\right),\quad
+
+\mathbf{b} =
+\left(
+    \begin{matrix}
+    b_1\\
+    b_2\\
+    \vdots \\
+    b_m
+    \end{matrix}
+\right)\]
+
+\[\mathbf{A} = \mathbf{A_{m \times n}} =
+\left(
+    \begin{matrix}
+    a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\
+    \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+    a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn} \\
+    \end{matrix}
+\right)
+= (\mathbf{P_1},\mathbf{P_2},\cdots,\mathbf{P_n})\]
+
+<p>其中，$\mathbf{A}$ 称为 $m \times n$ <strong>系数矩阵</strong>，一般有 $m &lt; n$，$\mathbf{b}$ 称为<strong>资源向量</strong>，$\mathbf{C}$ 称为<strong>价值向量</strong>，
+$\mathbf{X}$ 称为<strong>决策变量向量</strong>，$\mathbf{P_j}$ 称为<strong>系数列向量</strong>。</p>
+
+<h4 id="转换到标准形式的步骤">转换到标准形式的步骤</h4>
+
+<p>所有一般形式的线性规划模型都可以转换为标准形式，步骤如下</p>
+<ol>
+  <li>决策变量非负化：若原变量不是非负化的约束，可以对原变量做加减一个常数值，或者乘以 -1 来转化为非负约束的形式；如果原来是无约束变量如 $x_k$，可以转换成两个带有非负约束的变量 $x_k = x_k’ - x_k’’$，其中 $x_k’, x_k’’ \ge 0$；</li>
+  <li>约束条件等式化：若约束方程为 $\le$ 可在不等式的左端加入非负松弛变量将不等式转换为等式；若不等式为 $\ge$ 则在左端减去一个非负剩余变量，同样可以转换为等式；</li>
+  <li>目标函数最大化：若原目标函数是要求最小值，只需要取 $z’ = -z$，就可以转换为求最大值的形式 $\max z’ = (- \mathbf{C}) \mathbf{X}$。</li>
+</ol>
+
+<h4 id="基可行解">基可行解</h4>
+
+<p>区域 $\mathbf{D} = \{ \mathbf{X} \in \mathbf{R}^n\ |\ \mathbf{A} \mathbf{X} = \mathbf{b},\ \mathbf{X} \ge 0 \}$ 称为<strong>可行域</strong>，若 $\mathbf{X} \in \mathbf{D}$，则称 $\mathbf{X}$ 为<strong>可行解</strong>（Feasible Solution），若对任意 $\mathbf{X}’ \in \mathbf{D}$，都有 $\mathbf{C} \mathbf{X}’ \le \mathbf{C} \mathbf{X}$，则称 $\mathbf{X}$ 为线性规划问题的<strong>最优解</strong>。</p>
+
+<p>可以假设系数矩阵 $\mathbf{A}$ 是行满秩（如果不是说明约束条件是线性相关，可以通过变换消去部分约束条件），也即 $\mathbf{A}$ 的秩为 $m$，从而可以从 $\mathbf{A}$ 中找到 $m$ 个线性无关的列向量 $ (\mathbf{P}_{j_1}, \mathbf{P}_{j_2}, \cdots, \mathbf{P}_{j_m}) $，记为 $\mathbf{B}$，称为线性规划问题的一个<strong>基</strong>（Basis），其中每个向量称为<strong>基向量</strong>，称对应的决策变量为<strong>基变量</strong>，其他的变量称为<strong>非基变量</strong>。</p>
+
+<p>假设 $\mathbf{B}$ 是一个基，可以通过调整变量顺序使得基向量排在前面 $\mathbf{B} = (\mathbf{P}_1, \mathbf{P}_2, \cdots, \mathbf{P}_m)$，设 $\mathbf{N} = (\mathbf{P}_{m+1}, \cdots, \mathbf{P}_n)$，这样导出</p>
+
+\[(\mathbf{B},\ \mathbf{N})
+\left(
+    \begin{matrix}
+    \mathbf{X}_{\mathbf{B}} \\
+    \mathbf{X}_{\mathbf{N}}
+    \end{matrix}
+\right)
+= \mathbf{b}\]
+
+<p>因为 $\mathbf{B}$ 是可逆矩阵，可以得出</p>
+
+\[\mathbf{X}_{\mathbf{B}} = \mathbf{B}^{-1} \mathbf{b} - \mathbf{B}^{-1} \mathbf{N} \mathbf{X}_{\mathbf{N}}\]
+
+<p>在上式中令非基变量为 0，这样得到</p>
+
+\[\mathbf{X} =
+\left(
+    \begin{matrix}
+    \mathbf{X}_{\mathbf{B}} \\
+    \mathbf{X}_{\mathbf{N}}
+    \end{matrix}
+\right) =
+\left(
+    \begin{matrix}
+    \mathbf{B}^{-1} \mathbf{b} \\
+    \mathbf{0}
+    \end{matrix}
+\right)\]
+
+<p>满足条件 $\mathbf{A} \mathbf{X} = \mathbf{b}$，称为<strong>基解</strong>（basic solution），此时如果有 $\mathbf{B}^{-1} \mathbf{b} \ge 0$，则有 $\mathbf{X} \ge 0$ 满足条件，这样的 $\mathbf{X}$ 称为<strong>基可行解</strong>（Basic feasible solution，BFS），对应的基称为<strong>可行基</strong>（feasible basis）。他们的关系如下图。</p>
+
+<p><img src="/assets/img/post/linear-programming-basis.png" alt="基可行解" title="基可行解是可行解和基解的交集" /></p>
+
+<p>线性规划问题的基最多有 $\binom{n}{m}$ 个（假定任意从 $n$ 个列向量中抽取 $m$ 个都线性无关，则基的数量取到最大值），基解对应于约束条件对应的多面体的交角（corner of the polyhedron），基可行解是位于可行域中的基解。在两个变量的二维平面中，基解就是任意两个约束条件的交点，如下面五个约束条件两两相交对应图中的 $A,B,C,D,E,F,G,H$ 总共 8 个点（有两对直线平行（线性相关）无交点，所以 $\binom{5}{2} - 2 = 8$ ），其中位于可行域中的 $A,B,C,D,E$ 是基可行解，再结合目标函数至少可以找到一个最优解。</p>
+
+\[\left\{
+    \begin{matrix}
+        x_1&amp;+&amp;2 x_2 &amp;\le&amp; 8 \\
+        x_1&amp;&amp;&amp;\le&amp; 4 \\
+        &amp;&amp; x_2 &amp;\le&amp; 3 \\
+        x_1&amp;&amp;&amp;\ge&amp; 0 \\
+        &amp;&amp; x_2 &amp;\ge&amp; 0
+    \end{matrix}
+\right.\]
+
+<p><img src="/assets/img/post/linear-programming-bfs.png" alt="&quot;基解和基可行解&quot;" /></p>
+
+<h3 id="线性规划的解">线性规划的解</h3>
+
+<p>关于线性规划问题有下面几个结论：</p>
+<ol>
+  <li>线性规划问题的可行域如果非空，则一定是凸集；</li>
+  <li>如果是有界凸集，由于目标函数的连续性，则一定可以在可行域的有界凸集上取得极值，也就是最优解；</li>
+  <li>在有界可行域的顶点处一定可以找到至少一个最优解；</li>
+  <li>线性规划问题的基可行解对应于可行域的顶点；（从代数角度定义的“基可行解”和几何角度定义的“顶点”两者本质上是一回事。）</li>
+</ol>
+
+<p>线性规划的解有几种情况：</p>
+<ol>
+  <li>唯一的最优解；</li>
+  <li>无穷多最优解；</li>
+  <li>无界解；</li>
+  <li>无可行解；</li>
+</ol>
+
+<p>当线性规划问题的可行域非空时，它是有界或无界凸多边形；若线性规划问题存在最优解，它一定在可行域的某个顶点得到；若在两个顶点同时得到最优解，则它们连线上的任意一点都是最优解，即有无穷最优解。</p>
+
+<h3 id="单纯形法">单纯形法</h3>
+
+<p>单纯形法（Simplex Method ）是建立在线性规划模型的“标准形式”之上的，总体来说可以分为 5 步：</p>
+<ol>
+  <li>寻找一个初始解；</li>
+  <li>构建单纯性表；</li>
+  <li>判断当前解是否最优；</li>
+  <li>如果是最优解就结束，不是最优解就换到一个新解上；</li>
+  <li>在单纯性表中计算相关值，返回第三步重复直到解出最优解或者其他终止条件；</li>
+</ol>
+
+<p>如求解这个例子的单纯行表步骤如下：</p>
+
+\[\max z = 2 x_1 + 3 x_2\]
+
+\[\left\{
+    \begin{matrix}
+        x_1 + 2 x_2 &amp;\le&amp; 8 \\
+        x_1 &amp;\le&amp; 4 \\
+        x_2 &amp;\le&amp; 3 \\
+        x_1,x_2&amp;\ge&amp; 0
+    \end{matrix}
+\right.\]
+
+<p>先转换成标准形式如下，以及容易找到一个初始解 $(0,0,8,4,3)^T$</p>
+
+\[\max z = 2 x_1 + 3 x_2\]
+
+\[\left\{
+    \begin{matrix}
+        x_1 + 2 x_2 +x_3 &amp; = &amp; 8 \\
+        x_1 + x_4 &amp; = &amp; 4 \\
+        x_2 + x_5 &amp; = &amp; 3 \\
+        x_1,x_2,x_3,x_4,x_5&amp;\ge&amp; 0
+    \end{matrix}
+\right.\]
+
+<p><img src="/assets/img/post/linear-programming-simplex-method.png" alt="单纯形法" title="单纯形法" /></p>
+
+<p>上面步骤中的检验数从下面可以推导出，它代表着目标函数会随着该变量的变化方向，以及变化的快慢，它是资源的<strong>影子价格</strong>，也被称为<strong>边际价格</strong>。</p>
+
+\[\begin{array}{rcl}
+z &amp;=&amp; \mathbf{C} \mathbf{X} \\
+ &amp;=&amp; \mathbf{C}_{\mathbf{B}} \mathbf{X}_{\mathbf{B}} + \mathbf{C}_{\mathbf{N}} \mathbf{X}_{\mathbf{N}} \\
+ &amp;=&amp; \mathbf{C}_{\mathbf{B}} (\mathbf{B}^{-1} \mathbf{b} - \mathbf{B}^{-1} \mathbf{N} \mathbf{X}_{\mathbf{N}}) + \mathbf{C}_{\mathbf{N}} \mathbf{X}_{\mathbf{N}} \\
+ &amp;=&amp; \mathbf{C}_{\mathbf{B}} \mathbf{B}^{-1} \mathbf{b} + ( \mathbf{C}_{\mathbf{N}} - \mathbf{C}_{\mathbf{B}} \mathbf{B}^{-1} \mathbf{N} ) \mathbf{X}_{\mathbf{N}}
+ \end{array}\]
+
+<p>从而对于非基变量 $x_j$ 的检验数为</p>
+
+\[\frac{\partial{z}}{\partial{x_j}} = c_j - \mathbf{C}_{\mathbf{B}} \mathbf{B}^{-1} \mathbf{P}_j = \sigma_j\]
+
+<h3 id="大-m-法">大 M 法</h3>
+
+<p>单纯形法开始迭代时需要找到一个初始基可行解，但是上面把线性规划问题转换成标准形式的过程中不能自然得到一个单位矩阵，
+<strong>大 M 法</strong>是在上面转换标准形式的过程中加入<strong>人工变量</strong>（artificial variables）和惩罚系数如下：</p>
+<ol>
+  <li>若约束条件为“$\le$”，在不等式左边加入非负松弛变量；</li>
+  <li>若约束条件为等式，在等式左边加入一个非负人工变量；</li>
+  <li>若约束条件为“$\ge$”，在不等式左边减去非负剩余变量，再加入一个非负人工变量；</li>
+  <li>在目标函数中，加入的松弛变量和剩余变量的系数为 0，加入的人工变量系数为 $-M$，是一个任意大的正数，惩罚系数。</li>
+</ol>
+
+<p>如下面的线性规划问题</p>
+
+\[\min z = -3x_1 -2x_2\]
+
+\[\left\{
+    \begin{array}
+        2x_1 + 4 x_2 - x_3 \le 5 \\
+        -x_1 + x_2 - x_3 \ge -1 \\
+        -x_2+x_3 = 1 \\
+        x_1,x_2,x_3 \ge 0
+    \end{array}
+\right.\]
+
+<p>用大 M 法转成标准形式：</p>
+
+\[\max z = 3x_1 + 2x_2 - M x_6\]
+
+\[\left\{
+    \begin{array}{rcccl}
+        2x_1 + 4 x_2 - x_3 &amp;+ x_4 &amp;&amp;&amp;= 5 \\
+        x_1 - x_2 + x_3 &amp;&amp;+ x_5 &amp; &amp;= 1 \\
+        -x_2+x_3 &amp;&amp;&amp;+ x_6 &amp;= 1 \\
+        x_1,x_2,x_3,x_4,x_5,x_6 &amp;&amp;&amp;&amp;\ge 0
+    \end{array}
+\right.\]
+
+<p>其中 $x_6$ 是人工变量，这样可以得到 $x_4,x_5,x_6$ 的系数列向量构成单位矩阵 $\mathbf{B}$，初始基解 $\mathbf{X} = (0,0,0,5,1,1)^T$ 为基可行解，从而开始单纯形法计算。</p>
+
+<p>这里可以得到线性规划问题四种解的<strong>判别准则</strong>：</p>
+<ol>
+  <li>唯一的最优解：对于所有非基变量，检验数都有 $\sigma_j &lt; 0$；</li>
+  <li>无穷多最优解：对于所有非基变量，检验数都有 $\sigma_j \le 0$，且存在某个非基变量的检验数等于 0；</li>
+  <li>无界解：存在一个非基变量的检验数 $\sigma_{m+k} &gt; 0$，且该变量在系数矩阵中对应的列 $\mathbf{P}_{m+k} \le 0$；</li>
+  <li>无可行解：满足上面的迭代终止条件，但是存在取非零值的人工变量，则此线性规划问题无可行解；</li>
+</ol>
+
+<p><img src="/assets/img/post/linear-programming-simplex-method-procedure.png" alt="单纯形法的计算流程" title="单纯形法的计算流程" /></p>
+
+<h3 id="两阶段法">两阶段法</h3>
+
+<p>大 M 法在用计算机求解的过程中 M 值一般用很大的数来近似替代，这会造成计算上的累计误差，两阶段法就是用拆分成两个阶段的办法来解决这个问题，使得计算过程中不出现大 M。</p>
+
+<p>第一阶段用来寻找一个不包含人工变量的初始基可行解。步骤是在原问题引入松弛变量和人工变量进行标准化，构造仅含人工变量的目标函数，将其价值系数设置为 -1，使用单纯形法求解，若得到了目标函数为 0，也即是得到了不包含人工变量的一个基可行解，从而转入第二阶段，否则原问题无可行解。</p>
+
+<p>第二阶段，使用第一阶段得到的最终单纯形表，去掉其中的人工变量，并将目标函数还原成原问题的目标函数，继续使用单纯形法求解即可。</p>
+
+<p>例子，线性规划问题如下</p>
+
+\[\max z = -4 x_1 - x_2 +2x_3\]
+
+\[\left\{
+    \begin{array}{c}
+    x_1 -2x_2+x_3 \le 11 \\
+    -4x_1+x_2 + 2x_3 \ge 3 \\
+    -2x_1 + x_3 = 1 \\
+    x_1,x_2,x_3 \ge 0
+    \end{array}
+\right.\]
+
+<p>第一阶段，转换成带人工变量的标准形式，用单纯形法第一次迭代 $x_3$ 替换掉 $x_7$，第二次 $x_2$ 替换掉 $x_6$，这样第一阶段就结束了。</p>
+
+\[\max w = -x_6 - x_7\]
+
+\[\left\{
+    \begin{array}{c}
+        x_1 - 2x_2+x_3+x_4 = 11 \\
+        -4 x_1 + x_2 +2x_3 - x_5 + x_6 = 3 \\
+        -2x_1 + x_3 + x_7 = 1 \\
+        x_1,x_2,x_3,x_4,x_5,x_6,x_7 \ge 0
+    \end{array}
+\right.\]
+
+<h3 id="退化情形与勃兰特准则">退化情形与勃兰特准则</h3>
+
+<p>在单纯形法的求解中可能出现 $\theta$ 为 0 的情形，即该行的资源系数为 0，称这种情况是退化的。出现退化的情形是因为约束条件中存在线性相关的条件。</p>
+
+<p>出现退化的情况可能导致迭代出现局部循环，而最优解不在其中。解决的办法就是使用勃兰特准则（Bland’s rule）：</p>
+<ol>
+  <li>换入变量不用检验数最大的那个，而是用大于 0 的检验数中下标最小的决策变量；</li>
+  <li>换出变量还是使用 $\theta$ 最小的那个，如果有出现两个以上的相同最小值，使用下标最小的决策变量作为换出变量。</li>
+</ol>
+
+<h3 id="内点法">内点法</h3>
+
+<p>1984 年 AT&amp;T Bell 实验室一位年轻的数学家 Narendra Karmarkar 发明了求解线性规划的问题的新算法，它在解特大型线性规划问题方面有巨大的潜力。
+Karmakar 算法也是一种迭代算法，它从得出一个可行的实验解开始，在每次迭代中，它在可行域内从当前实验解开始移动到另一个更好的实验解，然后继续这个过程直到实验解（基本上）达到最优解为止。
+对单纯形法所有的移动都是在可行域的边界上进行的，而 Karmarkar 算法实验解是内点（interior point），所以也被称为内点法（interior-point algorithm）。</p>
+
+<p>因为内点法获得专利的早期版本被称为障碍点算法，故内点法也被称为障碍算法（barrier algorithm），“障碍”一词是因为从搜索的角度看所找的实验解都是内点，每一个约束边界都被作为障碍对待。</p>
+
+<p>内点法比单纯形法复杂，它的每一次迭代都需要大量的迭代去寻找下一个实验解，因此内点法每次迭代的时间是单纯形法的好几倍。
+对于非常小的问题，内点法需要的迭代次数和单纯形法差不多，这样对于小规模问题内点法速度上不如单纯形法。但是对于大规模的问题，比如 10000 个约束条件的问题可能只需要 100 次以下迭代，相反单纯形法可能需要 20000 次迭代，这样考虑上内点法每次迭代上多消耗的时间，总体时间内点法还可能更短一些。内点法和单纯形法也可以结合使用。</p>
+
+<h2 id="整数线性规划">整数线性规划</h2>
+
+<p>在上述的线性规划问题的基础上，如果要求某些决策变量或者全部决策变量要求为整数，则称这样的问题为<strong>整数规划问题</strong>（Integer Programming，IP），
+除了整数约束条件外其他的部分称为相应的<strong>松弛问题</strong>（Slack Problem）。如果所有决策变量要求为整数称为<strong>纯整数规划</strong>（Pure Integer Programming）或<strong>全整数规划</strong>（All Integer Programming）。
+如果只是部分决策变量要求为整数，则称为<strong>混合整数规划</strong>（Mixed Integer Programming，MIP）。
+整数规划中如果所有决策变量要求取值只能是 0 或者 1，称为 <strong>0-1 型整数规划问题</strong>。有一类特殊的 0-1 整数规划问题称为<strong>指派问题</strong>（assignment problem），有 n 项任务要完成，有 n 项资源（可以理解为人、机器设备等）可以完成任务，并且每项任务交给一个对象完成，每个对象也只能完成一种任务。由于每个对象的特点与能力不同，故其完成各项任务的效率也不同。那么，如何分配资源，才能使完成各项任务的总效率最高（或总消耗最少）？ 指派问题的一般形式如下：</p>
+
+\[\min z = \sum_{i=1}^n\sum_{j=1}^n c_{ij}x_{ij}\]
+
+\[\left\{
+    \begin{array}{l}
+    \sum_{i=1}^n x_{ij} = 1, \quad j=1,2,\cdots,n \quad \text{第 j 项任务只能由一人完成} \\
+    \sum_{j=1}^n x_{ij} = 1, \quad i=1,2,\cdots,n \quad \text{第 i 人只能完成一项任务} \\
+    x_{ij} \in \{0,1\}
+    \end{array}
+\right.\]
+
+<p>其中的矩阵 $\mathbf{C}$ 称为效率矩阵或者系数矩阵。</p>
+
+<p>下面是整数线性规划问题的几个主要求解算法：</p>
+<ol>
+  <li>分枝定界法：可求纯或混合整数线性规划。</li>
+  <li>割平面法：可求纯或混合整数线性规划。</li>
+  <li>隐枚举法：用于求解 0-1 整数规划。</li>
+  <li>匈牙利法：解决指派问题（0-1 规划特殊情形）。</li>
+  <li>蒙特卡罗法：求解各种类型规划。</li>
+</ol>
+
+<h3 id="分枝定界法">分枝定界法</h3>
+
+<p>分枝定界法（Branch and Bound, B&amp;B）在 20 世纪 60 年代初由 A.H.Land 和 A.G.Doig 两位学者提出，用于解纯整数或混合整数规划问题。</p>
+
+<p>它的基本思路是考虑到整数规划可行解中任何相邻整数之间的区域均不含整数解，这样就可以将松弛问题的可行域分为多个分枝，同时将求解整数规划问题转化为求解多个线性规划的问题。</p>
+
+<p>假设整数线性规划问题 A，去掉其中的整数约束得到的松弛问题 B，分枝定界法的基本步骤如下：</p>
+<ol>
+  <li>解出问题 B，可能出现下面解的情况
+    <ol>
+      <li>B 无可行解，则 A 无可行解，停止计算；</li>
+      <li>B 有最优解，并符合 A 的整数约束条件，则此最优解就是 A 的最优解，停止计算；</li>
+      <li>B 有最优解，但不符合 A 的整数约束条件，记此最优解的目标函数值为 $\overline{z}$；</li>
+    </ol>
+  </li>
+  <li>分枝：选出 B 最优解中任一不符合整数约束的变量 $x_j$，其值为 $b_j$，构造两个约束条件 $x_j \le [b_j]$ 和 $x_j \ge [b_j] + 1$ 添加到 B 中，形成两个分枝问题 B1 和 B2；</li>
+  <li>定界：求解 B1 和 B2 问题，从最优目标函数值最大者作为新的上界 $\overline{z}$，从已符合整数约束的分枝中找出目标函数最大者作为新的下界 $\underline{z}$；</li>
+  <li>剪枝：各分枝的最优目标如果小于 $\underline{z}$，则剪掉这个分枝，若大于 $\underline{z}$ 且不符合整数条件则重复第二步继续分枝；</li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th>问题 1</th>
+      <th>问题 2</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>无可行解</td>
+      <td>无可行解</td>
+      <td>整数规划无可行解</td>
+    </tr>
+    <tr>
+      <td>无可行解</td>
+      <td>整数解</td>
+      <td>此整数解即最优解</td>
+    </tr>
+    <tr>
+      <td>无可行解</td>
+      <td>非整数最优解</td>
+      <td>对问题 2 继续分枝</td>
+    </tr>
+    <tr>
+      <td>整数解</td>
+      <td>整数解</td>
+      <td>目标值最大的为最优</td>
+    </tr>
+    <tr>
+      <td>整数解，目标值优于问题 2</td>
+      <td>非整数最优解</td>
+      <td>问题 1 整数解即为最优解</td>
+    </tr>
+    <tr>
+      <td>整数解，目标值不如问题 2</td>
+      <td>非整数最优解</td>
+      <td>问题 1 停止分枝，它的目标值作为下界，对问题 2 继续分枝</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>如用分枝定界法求解下面例子</p>
+
+\[\max z = x_1 + 5 x_2\]
+
+\[\left\{
+    \begin{array}{c}
+    x_1 - x_2 \ge -2 \\
+    5x_1+6x_2 \le 30 \\
+    x_1 \le 4 \\
+    x_1,x_2 \ge 0 \text{且全为整数}
+    \end{array}
+\right.\]
+
+<p>第一步求解松弛问题，得到最优解：
+\(x_1=\frac{18}{11},\quad x_2=\frac{40}{11},\quad z=\frac{218}{11}\)</p>
+
+<p>显然有 $x_1=0, x_2=0$ 是满足规划问题的一个整数解，这样得到一个上界和下届，$0 \le z \le \frac{218}{11}$。</p>
+
+<p>对 $x_1 = \frac{18}{11}$ 进行分枝，构造两个约束条件 $x_1 \le 1$ 和 $x_1 \ge 2$，得到两个问题 LP1 和 LP2，求解得到两个最优解：</p>
+
+\[x_1 = 1, x_2 = 3, z = 16 \quad \text{对应问题 LP1}\]
+
+\[x_1 = 2, x_2 = \frac{10}{3}, z = \frac{56}{3} \quad \text{对应问题 LP2}\]
+
+<p>分枝 LP1 停止分枝，得到新的下界 16，分枝 LP2 给出新的上界 56/3，选择 $x_2$ 对 LP2 继续分枝，如下：</p>
+
+<p><img src="/assets/img/post/linear-programming-bb.png" alt="&quot;分枝定界法&quot;" title="分枝定界法" /></p>
+
+<h3 id="割平面法">割平面法</h3>
+
+<p>割平面法是 1958 年 R.E.Gomory 提出的，也称为 Gomory 割平面法，它的基本思想是不考虑整数要求，先求解松弛问题的解，如果没有得到满足整数要求的解，那么逐次增加一个新约束（即割平面），
+割掉原可行域的一部分（只含非整数解），使得切割后最终得到这样的可行域（不一定一次性得到），它的一个有整数坐标的顶点恰好是问题的最优解。切割方程由松散问题的最终单纯形表中含非整数解基变量的等式约束演变而来。</p>
+
+<p>割平面法是在松弛问题的可行域的边缘不断地添加割平面切掉不含整数解的部分，从而不断逼近整数解，而分枝定界则是直接将可行域从整数处切成两个分枝部分再分别求解。</p>
+
+<h3 id="隐枚举法">隐枚举法</h3>
+
+<p>隐枚举法（implict enumeration）：只检查变量取值组合的一部分，就能求得问题的最优解的方法。</p>
+
+<p>例子如求解如下问题</p>
+
+\[\max z = 3x_1 -2x_2+5x_3\]
+
+\[\left\{
+    \begin{array}{l}
+    x_1+2x_2-x_3 \le 2 \\
+    x_1+4x_2+x_3 \le 4 \\
+    x_1+x_2 \le 3 \\
+    4x_1+x_3 \le 6 \\
+    x_1,x_2,x_3 \in \{0,1\}
+    \end{array}
+\right.\]
+
+<p>先试探得到 $(1,0,0)$ 是一个可行解，计算出目标函数值 $z=3$，结合目标函数可以增加约束条件 $3x_1 -2x_2+5x_3 \ge 3$，这个条件称为过滤条件（filtering constraint），这样，原问题的线性约束条件就变成 5 个。用穷举法，3 个变量共有 8 个解。对每个解，依次代入 5 个约束条件左侧，先判断是否满足过滤条件，如果不满足就可以直接跳过，满足后再检查后面约束条件，如果都满足且得到了更好的目标值则更新过滤条件的值，这样继续如下表所示：</p>
+
+<p><img src="/assets/img/post/linear-programming-implict-enum.png" alt="&quot;隐枚举法&quot;" title="隐枚举法" /></p>
+
+<h3 id="匈牙利法">匈牙利法</h3>
+<p>匈牙利法是基于指派问题的标准型，标准型需要满足下面 3 个条件：</p>
+<ol>
+  <li>目标函数求最小 min；</li>
+  <li>效率矩阵为 n 阶方阵；</li>
+  <li>效率矩阵所有元素 $c_{ij} \ge 0$，且为常数；</li>
+</ol>
+
+<p><img src="/assets/img/post/linear-programming-ap01.png" alt="&quot;匈牙利法&quot;" title="匈牙利法" /></p>
+
+<p><img src="/assets/img/post/linear-programming-ap02.png" alt="&quot;匈牙利法例子&quot;" title="匈牙利法例子" /></p>
+
+<p><img src="/assets/img/post/linear-programming-ap03.png" alt="&quot;匈牙利法例子&quot;" title="匈牙利法例子" /></p>
+
+<p><img src="/assets/img/post/linear-programming-ap04.png" alt="&quot;匈牙利法例子&quot;" title="匈牙利法例子" /></p>
+
+<p><img src="/assets/img/post/linear-programming-ap05.png" alt="&quot;匈牙利法例子&quot;" title="匈牙利法例子" /></p>
+
+<p><img src="/assets/img/post/linear-programming-ap06.png" alt="&quot;匈牙利法例子&quot;" title="匈牙利法例子" /></p>
+
+<p><img src="/assets/img/post/linear-programming-ap07.png" alt="&quot;匈牙利法例子&quot;" title="匈牙利法例子" /></p>
+
+<p><img src="/assets/img/post/linear-programming-ap08.png" alt="&quot;匈牙利法例子&quot;" title="匈牙利法例子" /></p>
+
+<p>对于非标准形的指派问题，可以转换成标准形式：
+<img src="/assets/img/post/linear-programming-ap09.png" alt="&quot;匈牙利法例子&quot;" title="匈牙利法例子" /></p>
+
+<h3 id="蒙特卡洛法">蒙特卡洛法</h3>
+
+<p>蒙特卡罗法就是选择部分穷举法，随机取样来得到在有限取样下的一个最优解。</p>
+
+<h2 id="python-求解">Python 求解</h2>
+
+<p>线性规划问题的求解主要依赖下面两个包：</p>
+<ul>
+  <li><a href="https://docs.scipy.org/doc/scipy/reference/optimize.html#linear-programming-milp">SciPy</a>：Python 的一个通用科学计算包；</li>
+  <li><a href="https://coin-or.github.io/pulp/main/installing_pulp_at_home.html">PuLP</a>：提供 Python 的定义线性规划问题的 API 接口，并调用外部的求解器求解；</li>
+</ul>
+
+<h3 id="线性规划问题求解">线性规划问题求解</h3>
+
+<p>用 SciPy 来求解上面的线性规划问题：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><div class="line-1"><span class="kn">import</span> <span class="n">scipy</span>
+</div><div class="line-2"><span class="n">scipy</span><span class="p">.</span><span class="n">__version__</span>
+</div><div class="line-3"><span class="c1"># '1.9.1'</span>
+</div><div class="line-4">
+</div><div class="line-5"><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+</div><div class="line-6"><span class="kn">from</span> <span class="n">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
+</div><div class="line-7">
+</div><div class="line-8"><span class="c1"># 定义参数，因为是算法是求最小值，需要把价值系数乘以 -1</span>
+</div><div class="line-9"><span class="n">c</span><span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">])</span>
+</div><div class="line-10"><span class="n">A_ub</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+</div><div class="line-11"><span class="n">b_ub</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+</div><div class="line-12"><span class="n">x0_bound</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="bp">None</span><span class="p">)</span>
+</div><div class="line-13"><span class="n">x1_bound</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="bp">None</span><span class="p">)</span>
+</div><div class="line-14">
+</div><div class="line-15"><span class="c1"># 用单纯型法求解，得到最优解 [4,2] 和最优目标值 14</span>
+</div><div class="line-16"><span class="n">res</span> <span class="o">=</span> <span class="n">optimize</span><span class="p">.</span><span class="nf">linprog</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">A_ub</span><span class="o">=</span><span class="n">A_ub</span><span class="p">,</span> <span class="n">b_ub</span><span class="o">=</span><span class="n">b_ub</span><span class="p">,</span><span class="n">bounds</span><span class="o">=</span><span class="p">[</span><span class="n">x0_bound</span><span class="p">,</span> <span class="n">x1_bound</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="sh">'</span><span class="s">simplex</span><span class="sh">'</span><span class="p">)</span>
+</div><div class="line-17"><span class="nf">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</div><div class="line-18"><span class="c1">#      con: array([], dtype=float64)</span>
+</div><div class="line-19"><span class="c1">#      fun: -14.0</span>
+</div><div class="line-20"><span class="c1">#  message: 'Optimization terminated successfully.'</span>
+</div><div class="line-21"><span class="c1">#      nit: 3</span>
+</div><div class="line-22"><span class="c1">#    slack: array([0., 0., 1.])</span>
+</div><div class="line-23"><span class="c1">#   status: 0</span>
+</div><div class="line-24"><span class="c1">#  success: True</span>
+</div><div class="line-25"><span class="c1">#        x: array([4., 2.])</span>
+</div><div class="line-26">
+</div><div class="line-27">
+</div><div class="line-28"><span class="c1"># 使用默认的 HiGHS 算法求解</span>
+</div><div class="line-29"><span class="n">optimize</span><span class="p">.</span><span class="nf">linprog</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">A_ub</span><span class="o">=</span><span class="n">A_ub</span><span class="p">,</span> <span class="n">b_ub</span><span class="o">=</span><span class="n">b_ub</span><span class="p">,</span><span class="n">bounds</span><span class="o">=</span><span class="p">[</span><span class="n">x0_bound</span><span class="p">,</span> <span class="n">x1_bound</span><span class="p">])</span>
+</div><div class="line-30"><span class="c1">#            con: array([], dtype=float64)</span>
+</div><div class="line-31"><span class="c1">#  crossover_nit: 0</span>
+</div><div class="line-32"><span class="c1">#          eqlin:  marginals: array([], dtype=float64)</span>
+</div><div class="line-33"><span class="c1">#   residual: array([], dtype=float64)</span>
+</div><div class="line-34"><span class="c1">#            fun: -14.0</span>
+</div><div class="line-35"><span class="c1">#        ineqlin:  marginals: array([-1.5, -0.5, -0. ])</span>
+</div><div class="line-36"><span class="c1">#   residual: array([0., 0., 1.])</span>
+</div><div class="line-37"><span class="c1">#          lower:  marginals: array([0., 0.])</span>
+</div><div class="line-38"><span class="c1">#   residual: array([4., 2.])</span>
+</div><div class="line-39"><span class="c1">#        message: 'Optimization terminated successfully. (HiGHS Status 7: Optimal)'</span>
+</div><div class="line-40"><span class="c1">#            nit: 1</span>
+</div><div class="line-41"><span class="c1">#          slack: array([0., 0., 1.])</span>
+</div><div class="line-42"><span class="c1">#         status: 0</span>
+</div><div class="line-43"><span class="c1">#        success: True</span>
+</div><div class="line-44"><span class="c1">#          upper:  marginals: array([0., 0.])</span>
+</div><div class="line-45"><span class="c1">#   residual: array([inf, inf])</span>
+</div><div class="line-46"><span class="c1">#              x: array([4., 2.])</span>
+</div></code></pre></figure>
+
+<p>现在 SciPy 的线性规划问题默认使用 <a href="https://www.maths.ed.ac.uk/hall/HiGHS/#top">HiGHS</a> 求解，HIGHS 是用 C++ 写的一个求解软件，提供 C, C#, FORTRAN, Julia and Python 的接口。</p>
+<blockquote>
+  <p>HiGHS - high performance software for linear optimization</p>
+
+  <p>Open source serial and parallel solvers for large-scale sparse linear programming (LP), mixed-integer programming (MIP), and quadratic programming (QP) models</p>
+</blockquote>
+
+<p>HiGHS 的 <a href="https://github.com/ERGO-Code/HiGHS">GitHub 地址</a>，<a href="https://en.wikipedia.org/wiki/HiGHS_optimization_solver">Wiki 地址</a>，<a href="https://www.maths.ed.ac.uk/hall/HuHa13/HuHa13.pdf">论文地址</a>。它主要是两个并行对偶单纯形求解器（PAMI 和 SIP）的设计和实现。</p>
+
+<h3 id="整数线性规划问题求解">整数线性规划问题求解</h3>
+
+<p>用 SciPy 来求解上面的整数线性规划问题，加上 <code class="language-plaintext highlighter-rouge">integrality</code> 参数即可， 0 表示连续变量，无整型约束，1 表示整数约束，其他参考文档。</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><div class="line-1"><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+</div><div class="line-2"><span class="kn">from</span> <span class="n">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
+</div><div class="line-3">
+</div><div class="line-4"><span class="c1"># 定义参数，因为是算法是求最小值，需要把价值系数乘以 -1</span>
+</div><div class="line-5"><span class="n">ip_c</span><span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">])</span>
+</div><div class="line-6"><span class="n">ip_A_ub</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+</div><div class="line-7"><span class="n">ip_b_ub</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+</div><div class="line-8"><span class="n">ip_x0_bound</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="bp">None</span><span class="p">)</span>
+</div><div class="line-9"><span class="n">ip_x1_bound</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="bp">None</span><span class="p">)</span>
+</div><div class="line-10"><span class="n">ip_integrality</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</div><div class="line-11">
+</div><div class="line-12"><span class="c1"># 加上整数约束求解，得到最优解 [2,3] 和最优目标值 17</span>
+</div><div class="line-13"><span class="n">optimize</span><span class="p">.</span><span class="nf">linprog</span><span class="p">(</span><span class="n">ip_c</span><span class="p">,</span> <span class="n">A_ub</span><span class="o">=</span><span class="n">ip_A_ub</span><span class="p">,</span> <span class="n">b_ub</span><span class="o">=</span><span class="n">ip_b_ub</span><span class="p">,</span><span class="n">bounds</span><span class="o">=</span><span class="p">[</span><span class="n">ip_x0_bound</span><span class="p">,</span> <span class="n">ip_x1_bound</span><span class="p">],</span> <span class="n">integrality</span><span class="o">=</span><span class="n">ip_integrality</span><span class="p">)</span>
+</div><div class="line-14"><span class="c1">#            con: array([], dtype=float64)</span>
+</div><div class="line-15"><span class="c1">#  crossover_nit: -1</span>
+</div><div class="line-16"><span class="c1">#          eqlin:  marginals: array([], dtype=float64)</span>
+</div><div class="line-17"><span class="c1">#   residual: array([], dtype=float64)</span>
+</div><div class="line-18"><span class="c1">#            fun: -17.0</span>
+</div><div class="line-19"><span class="c1">#        ineqlin:  marginals: array([0., 0., 0.])</span>
+</div><div class="line-20"><span class="c1">#   residual: array([1., 2., 2.])</span>
+</div><div class="line-21"><span class="c1">#          lower:  marginals: array([0., 0.])</span>
+</div><div class="line-22"><span class="c1">#   residual: array([2., 3.])</span>
+</div><div class="line-23"><span class="c1">#        message: 'Optimization terminated successfully. (HiGHS Status 7: Optimal)'</span>
+</div><div class="line-24"><span class="c1">#            nit: -1</span>
+</div><div class="line-25"><span class="c1">#          slack: array([1., 2., 2.])</span>
+</div><div class="line-26"><span class="c1">#         status: 0</span>
+</div><div class="line-27"><span class="c1">#        success: True</span>
+</div><div class="line-28"><span class="c1">#          upper:  marginals: array([0., 0.])</span>
+</div><div class="line-29"><span class="c1">#   residual: array([inf, inf])</span>
+</div><div class="line-30"><span class="c1">#              x: array([2., 3.])</span>
+</div></code></pre></figure>
+
+<h3 id="0-1-规划问题求解">0-1 规划问题求解</h3>
+
+<p>用 SciPy 来求解上面的 0-1 规划问题。</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><div class="line-1"><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+</div><div class="line-2"><span class="kn">from</span> <span class="n">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
+</div><div class="line-3">
+</div><div class="line-4"><span class="c1"># 定义参数，因为是算法是求最小值，需要把价值系数乘以 -1</span>
+</div><div class="line-5"><span class="n">zo_c</span><span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">])</span>
+</div><div class="line-6"><span class="n">zo_A_ub</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+</div><div class="line-7"><span class="n">zo_b_ub</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
+</div><div class="line-8"><span class="n">zo_x0_bound</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</div><div class="line-9"><span class="n">zo_x1_bound</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</div><div class="line-10"><span class="n">zo_x2_bound</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</div><div class="line-11"><span class="n">zo_integrality</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</div><div class="line-12">
+</div><div class="line-13"><span class="c1"># 加上整数约束求解，得到最优解 [1,0,1] 和最优目标值 8</span>
+</div><div class="line-14"><span class="n">optimize</span><span class="p">.</span><span class="nf">linprog</span><span class="p">(</span><span class="n">zo_c</span><span class="p">,</span> <span class="n">A_ub</span><span class="o">=</span><span class="n">zo_A_ub</span><span class="p">,</span> <span class="n">b_ub</span><span class="o">=</span><span class="n">zo_b_ub</span><span class="p">,</span><span class="n">bounds</span><span class="o">=</span><span class="p">[</span><span class="n">zo_x0_bound</span><span class="p">,</span> <span class="n">zo_x1_bound</span><span class="p">,</span><span class="n">zo_x2_bound</span><span class="p">],</span> <span class="n">integrality</span><span class="o">=</span><span class="n">zo_integrality</span><span class="p">)</span>
+</div><div class="line-15"><span class="c1">#            con: array([], dtype=float64)</span>
+</div><div class="line-16"><span class="c1">#  crossover_nit: -1</span>
+</div><div class="line-17"><span class="c1">#          eqlin:  marginals: array([], dtype=float64)</span>
+</div><div class="line-18"><span class="c1">#   residual: array([], dtype=float64)</span>
+</div><div class="line-19"><span class="c1">#            fun: -8.0</span>
+</div><div class="line-20"><span class="c1">#        ineqlin:  marginals: array([0., 0., 0., 0.])</span>
+</div><div class="line-21"><span class="c1">#   residual: array([2., 2., 2., 1.])</span>
+</div><div class="line-22"><span class="c1">#          lower:  marginals: array([0., 0., 0.])</span>
+</div><div class="line-23"><span class="c1">#   residual: array([1., 0., 1.])</span>
+</div><div class="line-24"><span class="c1">#        message: 'Optimization terminated successfully. (HiGHS Status 7: Optimal)'</span>
+</div><div class="line-25"><span class="c1">#            nit: -1</span>
+</div><div class="line-26"><span class="c1">#          slack: array([2., 2., 2., 1.])</span>
+</div><div class="line-27"><span class="c1">#         status: 0</span>
+</div><div class="line-28"><span class="c1">#        success: True</span>
+</div><div class="line-29"><span class="c1">#          upper:  marginals: array([0., 0., 0.])</span>
+</div><div class="line-30"><span class="c1">#   residual: array([0., 1., 0.])</span>
+</div><div class="line-31"><span class="c1">#              x: array([1., 0., 1.])</span>
+</div></code></pre></figure>
+
+<h3 id="指派问题求解">指派问题求解</h3>
+
+<p>用 SciPy 来求解上面的指派问题：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><div class="line-1"><span class="kn">from</span> <span class="n">scipy.optimize</span> <span class="kn">import</span> <span class="n">linear_sum_assignment</span>
+</div><div class="line-2">
+</div><div class="line-3"><span class="c1"># 定义效率矩阵</span>
+</div><div class="line-4"><span class="n">cost</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([[</span><span class="mi">7</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">11</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">18</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">],[</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">8</span><span class="p">]])</span>
+</div><div class="line-5">
+</div><div class="line-6"><span class="c1"># 指派问题求解</span>
+</div><div class="line-7"><span class="n">row_ind</span><span class="p">,</span> <span class="n">col_ind</span> <span class="o">=</span> <span class="nf">linear_sum_assignment</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">maximize</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</div><div class="line-8">
+</div><div class="line-9"><span class="n">col_ind</span>
+</div><div class="line-10"><span class="c1"># array([1, 0, 2, 3], dtype=int64)</span>
+</div><div class="line-11">
+</div><div class="line-12"><span class="n">cost</span><span class="p">[</span><span class="n">row_ind</span><span class="p">,</span> <span class="n">col_ind</span><span class="p">].</span><span class="nf">sum</span><span class="p">()</span>
+</div><div class="line-13"><span class="c1"># 34</span>
+</div></code></pre></figure>
+
+<h2 id="参考链接">参考链接</h2>
+
+<p><a href="https://item.jd.com/12769676.html" title="ISBN：9787121353123">运筹学基础，李志猛著</a></p>
+
+<p><a href="https://cbom.atozmath.com/CBOM/Simplex.aspx">Simplex method calculator</a></p>
+
+<p><a href="https://book.douban.com/subject/30602094/">实用运筹学：案例、方法及应用，邢光军著</a></p>
+
+<p><a href="https://www.cnblogs.com/aoru45/p/12501380.html">[学习笔记] 整数规划之割平面法 How and why?</a></p>
+
+<p><a href="https://www.bilibili.com/video/BV1vB4y1X73q">运筹学-指派问题-匈牙利法</a></p>
+
+<p><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linear_sum_assignment.html">scipy.optimize.linear_sum_assignment</a></p>
+
+<p><a href="https://book.douban.com/subject/2253276/">运筹学导论，（美）希利尔（Hillier,F.S.）/（美）利伯曼（Lieberman,G.J.）</a></p>
+
+        </div>
+
+        
+<div class="comments" id="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+
+	    var disqus_shortname = 'https-algony-tony-github-io';
+
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+      </div>
+
+      
+      <div class="right">
+    <div class="side-wrap">
+        <!-- Content -->
+        <nav class="side-content">
+            <ul id="content-side" class="content-ul">
+                <li><a href="#comments">评论区</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<script src="/assets/js/postContent.js" charset="utf-8"></script>
+      
+
+      
+      <script> 
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ["\\(", "\\)"]],
+        processEscapes: true
+      }
+    };
+</script>
+
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+
+    </article>
+    
+  </div>
+</main>
+
+    
+      <footer class="site-footer">
+
+  <div class="wrapper-footer">
+    <div class="social-wrapper">
+      
+
+
+
+
+
+
+
+<a href="/feed.xml"><i class="svg-icon rss"></i></a>
+
+
+
+
+    </div>
+
+    <div>
+      <p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+    </div>
+
+    <div>Site powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://pages.github.com/">Github Pages</a>.</div>
+  </div>
+
+</footer>
+
+    
+
+  </body>
+</html>
+

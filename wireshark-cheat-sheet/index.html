@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PQ63V8S');</script>
+<!-- End Google Tag Manager -->
+
+    
+
+
+    <title>Wireshark 使用手册 – Algony Tony – etvdyn</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="Wireshark 是一个强大的开源抓包工具。
+" />
+    <meta property="og:description" content="Wireshark 是一个强大的开源抓包工具。
+" />
+    
+    <meta name="author" content="Algony Tony" />
+
+    
+    <meta property="og:title" content="Wireshark 使用手册" />
+    <meta property="twitter:title" content="Wireshark 使用手册" />
+    
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+    <link rel="alternate" type="application/rss+xml" title="Algony Tony - etvdyn" href="/feed.xml" />
+
+    
+
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3291441471504209"
+     crossorigin="anonymous"></script>
+
+
+    <link type="application/atom+xml" rel="alternate" href="https://algony-tony.github.io/feed.xml" title="Algony Tony" />
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Wireshark 使用手册 | Algony Tony</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Wireshark 使用手册" />
+<meta property="og:locale" content="zh_CN" />
+<meta name="description" content="Wireshark 是一个强大的开源抓包工具。" />
+<meta property="og:description" content="Wireshark 是一个强大的开源抓包工具。" />
+<link rel="canonical" href="https://algony-tony.github.io/wireshark-cheat-sheet/" />
+<meta property="og:url" content="https://algony-tony.github.io/wireshark-cheat-sheet/" />
+<meta property="og:site_name" content="Algony Tony" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-09-12T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Wireshark 使用手册" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-09-12T00:00:00+08:00","datePublished":"2023-09-12T00:00:00+08:00","description":"Wireshark 是一个强大的开源抓包工具。","headline":"Wireshark 使用手册","mainEntityOfPage":{"@type":"WebPage","@id":"https://algony-tony.github.io/wireshark-cheat-sheet/"},"url":"https://algony-tony.github.io/wireshark-cheat-sheet/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  </head>
+
+  <body>
+
+    
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQ63V8S"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    
+    <header class="site-header">
+
+    <div class="wrapper-header">
+      <div class="header-left">
+        <!-- <a href="/" class="site-avatar"><img src="/assets/img/sys/jekyll-logo.png" alt="avatar" /></a> -->
+
+        <a class="site-info" href="/">
+          <span class="site-name">Algony Tony</span>
+          <span class="site-description">etvdyn</span>
+        </a>
+
+      </div>
+      
+      <nav class="header-right">
+        
+        <a href="/"  class="page-link"  >
+          首页
+        </a>
+        
+        <a href="/WebMap/"  class="page-link"  >
+          导航
+        </a>
+        
+        <a href="/tools/"  class="page-link"  >
+          工具
+        </a>
+        
+        <a href="/collections/"  class="page-link"  >
+          归档
+        </a>
+        
+      </nav>
+    </div>
+    
+</header>
+  
+
+    <main class="default-content" aria-label="内容区">
+  <div class="wrapper-content">
+
+    <article class="post">
+      <div class="left">
+        <h1>Wireshark 使用手册</h1>
+        <div class="label">
+
+          <div class="label-date">
+            2023-09-12
+          </div>
+
+          <div class="label-category">
+            <span >类别:</span>
+
+<a class="category-link" href="https://algony-tony.github.io/category/#软件技术" title="Category: 软件技术">
+  软件技术
+</a>
+
+
+          </div>
+
+          <div class="label-tag">
+            <span >标签:</span>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#网络" title="Tag: 网络">
+  网络
+</a>
+
+          </div>
+
+        </div>
+
+        <div class="entry">
+          <p>Wireshark 是一个强大的开源抓包工具。</p>
+
+<h2 id="过滤">过滤</h2>
+
+<p>Wireshark 有两种过滤器，第一种过滤器是捕获过滤器（Capture Filters），它只能在抓包前设置，Wireshark 只捕获满足条件的包，这种过滤器可以减少抓包的数量，但是在抓包过程中不能更改，可以参考这个文档 <a href="https://wiki.wireshark.org/CaptureFilters">CaptureFilters</a> 或者这个<a href="https://www.wireshark.org/docs/wsug_html_chunked/ChCapCaptureFilterSection.html">用户手册</a>。另一种是显示过滤器（Display Filters），顾名思义，它就是在包的列表页里做筛选显示，它可以在抓包过程中随时更改显示内容，日常使用过程中更方便一些，可以参考文档 <a href="https://wiki.wireshark.org/DisplayFilters">DisplayFilters</a> 或者<a href="https://www.wireshark.org/docs/wsug_html_chunked/ChWorkBuildDisplayFilterSection.html">用户手册</a>中的介绍。两种过滤器语法略有差别，下面简单介绍。</p>
+
+<p><img src="/assets/img/post/wireshark01.png" alt="&quot;捕获过滤器和显示过滤器&quot;" /></p>
+
+<h3 id="捕获过滤器">捕获过滤器</h3>
+
+<p>捕获过滤器由一些本原表达式组合而成，形式如下</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[not] primitive [and|or [not] primitive ...]
+</code></pre></div></div>
+
+<p>过滤 IP 相关内容</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-- 过滤 IP 为 172.18.5.4 的进出流量
+host 172.18.5.4
+
+-- 过滤 IP 范围为 192.168.0.0/24 的进出流量
+net 192.168.0.0/24
+net 192.168.0.0 mask 255.255.255.0
+
+-- 过滤一段 IP 范围主机发出的流量
+src net 192.168.0.0/24
+src net 192.168.0.0 mask 255.255.255.0
+
+-- 过滤一段 IP 范围主机收到的流量
+dst net 192.168.0.0/24
+dst net 192.168.0.0 mask 255.255.255.0
+</code></pre></div></div>
+
+<p>过滤端口</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-- 只筛选 DNS 流量（端口 53）
+port 53
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-- 过滤主机 www.example.com 的 non-HTTP 和 non-SMTP 流量
+host www.example.com and not (port 80 or port 25)
+host www.example.com and not port 80 and not port 25
+</code></pre></div></div>
+
+<h3 id="显示过滤器">显示过滤器</h3>
+
+<p>过滤条件中可以使用这些逻辑运算符：<code class="language-plaintext highlighter-rouge">and</code>, <code class="language-plaintext highlighter-rouge">or</code>, <code class="language-plaintext highlighter-rouge">not</code> 以及组合符号 <code class="language-plaintext highlighter-rouge">()</code>，比较符号 <code class="language-plaintext highlighter-rouge">eq</code>(<code class="language-plaintext highlighter-rouge">==</code>), <code class="language-plaintext highlighter-rouge">ne</code>(<code class="language-plaintext highlighter-rouge">!=</code>), <code class="language-plaintext highlighter-rouge">gt</code>(<code class="language-plaintext highlighter-rouge">&gt;</code>), <code class="language-plaintext highlighter-rouge">lt</code>(<code class="language-plaintext highlighter-rouge">&lt;</code>), <code class="language-plaintext highlighter-rouge">ge</code>(<code class="language-plaintext highlighter-rouge">&gt;=</code>), <code class="language-plaintext highlighter-rouge">le</code>(<code class="language-plaintext highlighter-rouge">&lt;=</code>), 
+还有包含符号 <code class="language-plaintext highlighter-rouge">contains</code>, 搜索符号 <code class="language-plaintext highlighter-rouge">matches</code>(<code class="language-plaintext highlighter-rouge">~</code>) 以大小写不敏感的方式匹配正则表达式，函数 <code class="language-plaintext highlighter-rouge">upper</code>, <code class="language-plaintext highlighter-rouge">lower</code>, <code class="language-plaintext highlighter-rouge">len</code>, <code class="language-plaintext highlighter-rouge">count</code>, <code class="language-plaintext highlighter-rouge">string</code>, <code class="language-plaintext highlighter-rouge">max</code>, <code class="language-plaintext highlighter-rouge">min</code>, <code class="language-plaintext highlighter-rouge">abs</code>, 
+以及常用的加减乘除模和位运算符。还可以使用字符的切片操作，下面是切片的语法：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[i:j]    i = start_offset, j = length
+[i-j]    i = start_offset, j = end_offset, inclusive.
+[i]      i = start_offset, length = 1
+[:j]     start_offset = 0, length = j
+[i:]     start_offset = i, end_offset = end_of_field
+</code></pre></div></div>
+
+<p>这是显示过滤器各网络协议的<a href="https://www.wireshark.org/docs/dfref/">字段参考列表</a>。下面是一些常用的过滤条件。</p>
+
+<p>只显示局域网（192.168.x.x）的流量：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ip.src==192.168.0.0/16 and ip.dst==192.168.0.0/16
+或者
+ip.addr == 192.168.0.0/16
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">ip.addr</code> 表示的是 IPv4 的地址，IPv6 的是 <code class="language-plaintext highlighter-rouge">ipv6.addr</code>。</p>
+
+<p>筛选一般的 HTTP/HTTPS 端口流量（大括号是集合符号）：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tcp.port in {80,443,8080}
+或者
+tcp.port == 80 or tcp.port == 443 or tcp.port == 8080
+</code></pre></div></div>
+
+<p>搜索包含某个网址的 HTTP URL:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http contains "https://www.wireshark.org"
+</code></pre></div></div>
+
+<h2 id="参考链接">参考链接</h2>
+
+<p><a href="https://www.wireshark.org/docs/wsug_html_chunked/">Wireshark User’s Guide</a></p>
+
+<p><a href="https://wiki.wireshark.org">Wireshark Wiki</a></p>
+
+<p><a href="https://www.wireshark.org/docs/man-pages/">Wireshark Manual Pages</a></p>
+
+        </div>
+
+        
+<div class="comments" id="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+
+	    var disqus_shortname = 'https-algony-tony-github-io';
+
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+      </div>
+
+      
+
+      
+
+    </article>
+    
+  </div>
+</main>
+
+    
+      <footer class="site-footer">
+
+  <div class="wrapper-footer">
+    <div class="social-wrapper">
+      
+
+
+
+
+
+
+
+<a href="/feed.xml"><i class="svg-icon rss"></i></a>
+
+
+
+
+    </div>
+
+    <div>
+      <p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+    </div>
+
+    <div>Site powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://pages.github.com/">Github Pages</a>.</div>
+  </div>
+
+</footer>
+
+    
+
+  </body>
+</html>
+

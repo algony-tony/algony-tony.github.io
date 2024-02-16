@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PQ63V8S');</script>
+<!-- End Google Tag Manager -->
+
+    
+
+
+    <title>Wall time 和 CPU time – Algony Tony – etvdyn</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="
+  real time（wall time）是从进行开始执行到完成所经历的墙上时钟时间（wall clock）时间，包括其他进程使用的时间片（time slice）和本进程耗费在阻塞（如等待 I/O 操作完成）上的时间；
+  user time 是进程执行用户态代码（内核外）耗费的 CPU 时间，仅统计该进程执行时实际使用的 CPU 时间，而不计入其他进程使用的时间片和本进程阻塞的时间；
+  sys time 是该进程在内核态运行所耗费的 CPU 时间，即内核执行系统调用所使用的 CPU 时间；
+
+" />
+    <meta property="og:description" content="
+  real time（wall time）是从进行开始执行到完成所经历的墙上时钟时间（wall clock）时间，包括其他进程使用的时间片（time slice）和本进程耗费在阻塞（如等待 I/O 操作完成）上的时间；
+  user time 是进程执行用户态代码（内核外）耗费的 CPU 时间，仅统计该进程执行时实际使用的 CPU 时间，而不计入其他进程使用的时间片和本进程阻塞的时间；
+  sys time 是该进程在内核态运行所耗费的 CPU 时间，即内核执行系统调用所使用的 CPU 时间；
+
+" />
+    
+    <meta name="author" content="Algony Tony" />
+
+    
+    <meta property="og:title" content="Wall time 和 CPU time" />
+    <meta property="twitter:title" content="Wall time 和 CPU time" />
+    
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+    <link rel="alternate" type="application/rss+xml" title="Algony Tony - etvdyn" href="/feed.xml" />
+
+    
+
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3291441471504209"
+     crossorigin="anonymous"></script>
+
+
+    <link type="application/atom+xml" rel="alternate" href="https://algony-tony.github.io/feed.xml" title="Algony Tony" />
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Wall time 和 CPU time | Algony Tony</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Wall time 和 CPU time" />
+<meta property="og:locale" content="zh_CN" />
+<meta name="description" content="real time（wall time）是从进行开始执行到完成所经历的墙上时钟时间（wall clock）时间，包括其他进程使用的时间片（time slice）和本进程耗费在阻塞（如等待 I/O 操作完成）上的时间； user time 是进程执行用户态代码（内核外）耗费的 CPU 时间，仅统计该进程执行时实际使用的 CPU 时间，而不计入其他进程使用的时间片和本进程阻塞的时间； sys time 是该进程在内核态运行所耗费的 CPU 时间，即内核执行系统调用所使用的 CPU 时间；" />
+<meta property="og:description" content="real time（wall time）是从进行开始执行到完成所经历的墙上时钟时间（wall clock）时间，包括其他进程使用的时间片（time slice）和本进程耗费在阻塞（如等待 I/O 操作完成）上的时间； user time 是进程执行用户态代码（内核外）耗费的 CPU 时间，仅统计该进程执行时实际使用的 CPU 时间，而不计入其他进程使用的时间片和本进程阻塞的时间； sys time 是该进程在内核态运行所耗费的 CPU 时间，即内核执行系统调用所使用的 CPU 时间；" />
+<link rel="canonical" href="https://algony-tony.github.io/wall-time/" />
+<meta property="og:url" content="https://algony-tony.github.io/wall-time/" />
+<meta property="og:site_name" content="Algony Tony" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-06-08T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Wall time 和 CPU time" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-06-08T00:00:00+08:00","datePublished":"2022-06-08T00:00:00+08:00","description":"real time（wall time）是从进行开始执行到完成所经历的墙上时钟时间（wall clock）时间，包括其他进程使用的时间片（time slice）和本进程耗费在阻塞（如等待 I/O 操作完成）上的时间； user time 是进程执行用户态代码（内核外）耗费的 CPU 时间，仅统计该进程执行时实际使用的 CPU 时间，而不计入其他进程使用的时间片和本进程阻塞的时间； sys time 是该进程在内核态运行所耗费的 CPU 时间，即内核执行系统调用所使用的 CPU 时间；","headline":"Wall time 和 CPU time","mainEntityOfPage":{"@type":"WebPage","@id":"https://algony-tony.github.io/wall-time/"},"url":"https://algony-tony.github.io/wall-time/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  </head>
+
+  <body>
+
+    
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQ63V8S"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    
+    <header class="site-header">
+
+    <div class="wrapper-header">
+      <div class="header-left">
+        <!-- <a href="/" class="site-avatar"><img src="/assets/img/sys/jekyll-logo.png" alt="avatar" /></a> -->
+
+        <a class="site-info" href="/">
+          <span class="site-name">Algony Tony</span>
+          <span class="site-description">etvdyn</span>
+        </a>
+
+      </div>
+      
+      <nav class="header-right">
+        
+        <a href="/"  class="page-link"  >
+          首页
+        </a>
+        
+        <a href="/WebMap/"  class="page-link"  >
+          导航
+        </a>
+        
+        <a href="/tools/"  class="page-link"  >
+          工具
+        </a>
+        
+        <a href="/collections/"  class="page-link"  >
+          归档
+        </a>
+        
+      </nav>
+    </div>
+    
+</header>
+  
+
+    <main class="default-content" aria-label="内容区">
+  <div class="wrapper-content">
+
+    <article class="post">
+      <div class="left">
+        <h1>Wall time 和 CPU time</h1>
+        <div class="label">
+
+          <div class="label-date">
+            2022-06-08
+          </div>
+
+          <div class="label-category">
+            <span >类别:</span>
+
+<a class="category-link" href="https://algony-tony.github.io/category/#软件技术" title="Category: 软件技术">
+  软件技术
+</a>
+
+
+          </div>
+
+          <div class="label-tag">
+            <span >标签:</span>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#system" title="Tag: system">
+  system
+</a>
+
+          </div>
+
+        </div>
+
+        <div class="entry">
+          <ul>
+  <li>real time（wall time）是从进行开始执行到完成所经历的墙上时钟时间（wall clock）时间，包括其他进程使用的时间片（time slice）和本进程耗费在阻塞（如等待 I/O 操作完成）上的时间；</li>
+  <li>user time 是进程执行用户态代码（内核外）耗费的 CPU 时间，仅统计该进程执行时实际使用的 CPU 时间，而不计入其他进程使用的时间片和本进程阻塞的时间；</li>
+  <li>sys time 是该进程在内核态运行所耗费的 CPU 时间，即内核执行系统调用所使用的 CPU 时间；</li>
+</ul>
+
+<p>CPU 总时间（user + sys）是 CPU 执行用户进程操作和内核（代表用户进程执行）系统调用所耗时间的总和，即该进程（包括线程和子进程）所使用的实际 CPU 时间。若程序循环遍历数组，则增加用户 CPU 时间；若程序执行 exec 或 fork 等系统调用，则增加系统 CPU 时间。</p>
+
+<p>在多核处理器机器上，若进程含有多个线程或通过 fork 调用创建子进程，则实际时间可能小于 CPU 总时间，因为不同线程或进程可并行执行，但其时间会计入主进程的 CPU 总时间。若程序在某段时间处于等待状态而并未执行，则实际时间可能大于 CPU 总时间：</p>
+
+<ul>
+  <li>real &lt; CPU 表明进程为计算密集型（CPU bound），利用多核处理器的并行执行优势；</li>
+  <li>real ≈ CPU 表明进程为计算密集型，未并行执行；</li>
+  <li>real &gt; CPU 表明进程为I/O密集型 （I/O bound），多核并行执行优势并不明显；</li>
+</ul>
+
+        </div>
+
+        
+<div class="comments" id="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+
+	    var disqus_shortname = 'https-algony-tony-github-io';
+
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+      </div>
+
+      
+
+      
+
+    </article>
+    
+  </div>
+</main>
+
+    
+      <footer class="site-footer">
+
+  <div class="wrapper-footer">
+    <div class="social-wrapper">
+      
+
+
+
+
+
+
+
+<a href="/feed.xml"><i class="svg-icon rss"></i></a>
+
+
+
+
+    </div>
+
+    <div>
+      <p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+    </div>
+
+    <div>Site powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://pages.github.com/">Github Pages</a>.</div>
+  </div>
+
+</footer>
+
+    
+
+  </body>
+</html>
+

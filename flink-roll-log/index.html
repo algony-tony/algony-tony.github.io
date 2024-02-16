@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PQ63V8S');</script>
+<!-- End Google Tag Manager -->
+
+    
+
+
+    <title>CSA Flink 上滚动和归档日志的设置 – Algony Tony – etvdyn</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="CSA 是 Cloudera Streaming Analytics，即将 Flink 部署在 Cloudera 的环境中，Flink 对 HDFS、YARN 和 Zookeeper 具有强制性依赖性。
+" />
+    <meta property="og:description" content="CSA 是 Cloudera Streaming Analytics，即将 Flink 部署在 Cloudera 的环境中，Flink 对 HDFS、YARN 和 Zookeeper 具有强制性依赖性。
+" />
+    
+    <meta name="author" content="Algony Tony" />
+
+    
+    <meta property="og:title" content="CSA Flink 上滚动和归档日志的设置" />
+    <meta property="twitter:title" content="CSA Flink 上滚动和归档日志的设置" />
+    
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+    <link rel="alternate" type="application/rss+xml" title="Algony Tony - etvdyn" href="/feed.xml" />
+
+    
+
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3291441471504209"
+     crossorigin="anonymous"></script>
+
+
+    <link type="application/atom+xml" rel="alternate" href="https://algony-tony.github.io/feed.xml" title="Algony Tony" />
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>CSA Flink 上滚动和归档日志的设置 | Algony Tony</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="CSA Flink 上滚动和归档日志的设置" />
+<meta property="og:locale" content="zh_CN" />
+<meta name="description" content="CSA 是 Cloudera Streaming Analytics，即将 Flink 部署在 Cloudera 的环境中，Flink 对 HDFS、YARN 和 Zookeeper 具有强制性依赖性。" />
+<meta property="og:description" content="CSA 是 Cloudera Streaming Analytics，即将 Flink 部署在 Cloudera 的环境中，Flink 对 HDFS、YARN 和 Zookeeper 具有强制性依赖性。" />
+<link rel="canonical" href="https://algony-tony.github.io/flink-roll-log/" />
+<meta property="og:url" content="https://algony-tony.github.io/flink-roll-log/" />
+<meta property="og:site_name" content="Algony Tony" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-09-14T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="CSA Flink 上滚动和归档日志的设置" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-09-14T00:00:00+08:00","datePublished":"2022-09-14T00:00:00+08:00","description":"CSA 是 Cloudera Streaming Analytics，即将 Flink 部署在 Cloudera 的环境中，Flink 对 HDFS、YARN 和 Zookeeper 具有强制性依赖性。","headline":"CSA Flink 上滚动和归档日志的设置","mainEntityOfPage":{"@type":"WebPage","@id":"https://algony-tony.github.io/flink-roll-log/"},"url":"https://algony-tony.github.io/flink-roll-log/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  </head>
+
+  <body>
+
+    
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQ63V8S"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    
+    <header class="site-header">
+
+    <div class="wrapper-header">
+      <div class="header-left">
+        <!-- <a href="/" class="site-avatar"><img src="/assets/img/sys/jekyll-logo.png" alt="avatar" /></a> -->
+
+        <a class="site-info" href="/">
+          <span class="site-name">Algony Tony</span>
+          <span class="site-description">etvdyn</span>
+        </a>
+
+      </div>
+      
+      <nav class="header-right">
+        
+        <a href="/"  class="page-link"  >
+          首页
+        </a>
+        
+        <a href="/WebMap/"  class="page-link"  >
+          导航
+        </a>
+        
+        <a href="/tools/"  class="page-link"  >
+          工具
+        </a>
+        
+        <a href="/collections/"  class="page-link"  >
+          归档
+        </a>
+        
+      </nav>
+    </div>
+    
+</header>
+  
+
+    <main class="default-content" aria-label="内容区">
+  <div class="wrapper-content">
+
+    <article class="post">
+      <div class="left">
+        <h1>CSA Flink 上滚动和归档日志的设置</h1>
+        <div class="label">
+
+          <div class="label-date">
+            2022-09-14
+          </div>
+
+          <div class="label-category">
+            <span >类别:</span>
+
+<a class="category-link" href="https://algony-tony.github.io/category/#软件技术" title="Category: 软件技术">
+  软件技术
+</a>
+
+
+          </div>
+
+          <div class="label-tag">
+            <span >标签:</span>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#Flink" title="Tag: Flink">
+  Flink
+</a>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#CDH" title="Tag: CDH">
+  CDH
+</a>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#CDP" title="Tag: CDP">
+  CDP
+</a>
+
+          </div>
+
+        </div>
+
+        <div class="entry">
+          <p>CSA 是 Cloudera Streaming Analytics，即将 Flink 部署在 Cloudera 的环境中，Flink 对 HDFS、YARN 和 Zookeeper 具有强制性依赖性。</p>
+
+<p>因为 Flink 应用大多是长期运行的任务，jobmanager.log 和 taskmanager.log 日志文件很容易增长到 GB 级别，这样在 Flink 的仪表板上查看日志可能会出问题。这篇文章就是说明怎么对 CSA Flink 的 jobmanager.log 和 taskmanager.log 设置滚动日志。</p>
+
+<p>默认情况下 CSA Flink 上 log4j.properties 没有配置滚动追加文件。</p>
+
+<p>通过下面操作能覆盖 CSA Flink 上 log4j.properties 的默认配置。</p>
+
+<p>在 CM 中的如下路径 Cloudera Manager -&gt; Flink -&gt; Configuration -&gt; Flink Client Advanced Configuration Snippet (Safety Valve) for flink-conf/log4j.properties 写入下面内容</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>appender.main.name = MainAppender
+appender.main.type = RollingFile
+appender.main.append = false
+appender.main.fileName = ${sys:log.file}
+appender.main.layout.type = PatternLayout
+appender.main.layout.pattern = %d{yyyy-MM-dd HH:mm:ss,SSS} %-5p %t %-60c %x - %m%n
+appender.main.filePattern = ${sys:log.file}-archive-%d{yyyyMMdd_HHmmss}.log
+appender.main.policies.type = Policies
+appender.main.policies.size.type = SizeBasedTriggeringPolicy
+appender.main.policies.size.size = 100MB
+appender.main.strategy.type = DefaultRolloverStrategy
+appender.main.strategy.action.type = Delete
+appender.main.strategy.action.basePath = ${env:LOG_DIRS}
+appender.main.strategy.action.condition.type = IfFileName
+appender.main.strategy.action.condition.glob = *-archive-*
+appender.main.strategy.action.condition.nested_condition.type = IfAny
+appender.main.strategy.action.condition.nested_condition.lastMod.type = IfLastModified
+appender.main.strategy.action.condition.nested_condition.lastMod.age = PT7D
+appender.main.strategy.action.condition.nested_condition.totalSize.type = IfAccumulatedFileSize
+appender.main.strategy.action.condition.nested_condition.totalSize.exceeds = 5000MB
+</code></pre></div></div>
+
+<p>保存后在 CM 里重新部署 flink 客户端配置，CM -&gt; Flink -&gt; Actions -&gt; Deploy client configurations。</p>
+
+<p>注 1：上面的设置让 jobmanager.log and taskmanager.log 文件每 100 MB 滚动保存一个文件，只保留最近 7 天的文件或者当总大小超过 5000 MB 时删除最早的文件。</p>
+
+<p>注 2：上面的 log4j.properties 没有控制 jobmanager.err/out 和 taskmanager.err/out 输出，如果你的应用有明确打印任何结果到 stdout/stderr 上那么在应用的长时间运行后日志会占满文件系统。建议还是利用 log4j 日志框架去记录所有消息和结果。</p>
+
+<h2 id="参考链接">参考链接</h2>
+
+<p><a href="https://my.cloudera.com/knowledge/How-to-configure-CSA-flink-to-rotate-and-archive-the?id=333860">How to configure CSA flink to rotate and archive the taskmanager.log and jobmanager.log on node manager local disk</a></p>
+
+<p><a href="https://blog.csdn.net/Mrerlou/article/details/125159007">【Flink】CDH/CDP Flink on Yarn 日志配置</a></p>
+
+<p><a href="https://nightlies.apache.org/flink/flink-docs-master/zh/docs/deployment/advanced/logging/">如何使用日志记录</a></p>
+
+<p><a href="https://cs101.blog/2018/01/03/logging-configuration-in-flink/">Logging configuration in Flink</a></p>
+
+        </div>
+
+        
+<div class="comments" id="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+
+	    var disqus_shortname = 'https-algony-tony-github-io';
+
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+      </div>
+
+      
+
+      
+
+    </article>
+    
+  </div>
+</main>
+
+    
+      <footer class="site-footer">
+
+  <div class="wrapper-footer">
+    <div class="social-wrapper">
+      
+
+
+
+
+
+
+
+<a href="/feed.xml"><i class="svg-icon rss"></i></a>
+
+
+
+
+    </div>
+
+    <div>
+      <p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+    </div>
+
+    <div>Site powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://pages.github.com/">Github Pages</a>.</div>
+  </div>
+
+</footer>
+
+    
+
+  </body>
+</html>
+
