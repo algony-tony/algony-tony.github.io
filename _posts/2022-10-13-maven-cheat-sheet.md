@@ -13,7 +13,7 @@ toc: true
 如 Maven 官网介绍，Maven 是一个管理和理解软件项目的工具。Maven 是一个强大的工具，有着陡峭的学习曲线，它的创始人 J​​ason van Zyl 在 2002 年开始创建 Maven，后面开了个公司 Sonatype。
 Maven 通常被理解为一个 "build tool"。
 
-* 入门文档 [Maven by Example](https://books.sonatype.com/mvnex-book/reference/index.html) [(PDF, 2.7 MB)](/assets/file/mvnref-pdf.pdf) 
+* 入门文档 [Maven by Example](https://books.sonatype.com/mvnex-book/reference/index.html) [(PDF, 2.7 MB)](/assets/file/mvnref-pdf.pdf)
 * 参考手册 [Maven: The Complete Reference](https://books.sonatype.com/mvnref-book/reference/index.html) [(PDF, 1.3 MB)](/assets/file/mvnref-pdf.pdf)。
 
 Maven 采用**约定大于配置（Convention Over Configuration）**的原则，Maven 默认假设源代码都在 `${basedir}/src/main/java`，resources 都在 `${basedir}/src/main/resources`，测试在 `${basedir}/src/test`，项目默认构建 jar 文件，编译后的 bytecode 在 `${basedir}/target/classes`，创建的 jar 放在 `${basedir}/target`。不仅是文件目录，Maven 的核心插件也共享约定来编译打包构建分发等流程。

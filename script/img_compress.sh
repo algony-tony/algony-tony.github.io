@@ -21,14 +21,14 @@ for imgfile in $(find "$base_dir" -type f -iname "*.jpg"); do
     echo "$imgfile"
     img=$(basename "$imgfile")
     compressed_img="$temp_data_dir/$file_pre$img"
-    
+
     while true; do
         # Guetzli
         # ~/software/guetzli-master/bin/Release/guetzli "$imgfile" "$compressed_img"
-        
+
         # MozJPEG
         ~/software/mozjpeg-4.0.3/cjpeg -outfile "$compressed_img" "$imgfile"
-        
+
         pic_size=$(stat -c %s "$imgfile")
         new_pic_size=$(stat -c %s "$compressed_img")
         echo "Original Image size: $pic_size"

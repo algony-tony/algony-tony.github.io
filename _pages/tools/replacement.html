@@ -10,9 +10,9 @@ show_page_header: false
       let input = document.getElementById('input').value;
       let fromStr = document.getElementById('from_str').value;
       let toStr = document.getElementById('to_str').value;
-    
+
       let output = input.replace(new RegExp(fromStr, 'g'), toStr);
-    
+
       document.getElementById('replacement-output').value = output;
     }
 </script>
@@ -29,7 +29,7 @@ show_page_header: false
     </div>
 
     <div class="row">
-        
+
         <span><label>查找 </label><input type="text" id="from_str" value=" "></span>
         <span><label>替换 </label><input type="text" id="to_str" value=" "></span>
         <span><button class="btn-try" id="replace" type="submit"

@@ -14,10 +14,10 @@ E45: 'readonly' option is set (add ! to override)
 
 此时用 `:w!` 是可以保存变更的。
 
-还可以用 vim 的命令行参数来选择只读模式打开文件， 
+还可以用 vim 的命令行参数来选择只读模式打开文件，
 
 {% highlight shell %}
-vim -R filename 
+vim -R filename
 
 vim -M filename
 {% endhighlight %}

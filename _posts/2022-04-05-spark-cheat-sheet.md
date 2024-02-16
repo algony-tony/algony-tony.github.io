@@ -57,12 +57,12 @@ RDD 中的依赖关系分为窄依赖（Narrow Dependency）和宽依赖（Wide 
 如果父级 RDD 的每个分区被最多一个子级 RDD 的分区使用可以简单判断为是窄依赖，但是笛卡尔积不满足上面条件也是一种窄依赖。
 
 > `abstract class NarrowDependency[T] extends Dependency[T]`
-> 
-> Base class for dependencies where each partition of the child RDD depends on a small number of partitions of the parent RDD. Narrow dependencies allow for pipelined execution. 
-> 
+>
+> Base class for dependencies where each partition of the child RDD depends on a small number of partitions of the parent RDD. Narrow dependencies allow for pipelined execution.
+>
 > `class ShuffleDependency[K, V, C] extends Dependency[Product2[K, V]]`
-> 
-> Represents a dependency on the output of a shuffle stage. Note that in the case of shuffle, the RDD is transient since we don't need it on the executor side. 
+>
+> Represents a dependency on the output of a shuffle stage. Note that in the case of shuffle, the RDD is transient since we don't need it on the executor side.
 
 ![宽依赖和窄依赖](/assets/img/post/spark-dependency.png "宽依赖和窄依赖")
 
@@ -73,7 +73,7 @@ RDD 中的依赖关系分为窄依赖（Narrow Dependency）和宽依赖（Wide 
 RDD 可以从现有的 collection 中转换生成，也可以从其他存储系统（如 HDFS，S3 等）的数据集中创建生成，从其他 RDD 生成或者从 Dataframe 中转换出来。[SparkContext 接口文档](https://spark.apache.org/docs/2.4.7/api/scala/index.html#org.apache.spark.SparkContext)
 
 {% highlight scala linedivs %}
-val dataSeq = Seq(("Java", 20000), ("Python", 100000), ("Scala", 3000))   
+val dataSeq = Seq(("Java", 20000), ("Python", 100000), ("Scala", 3000))
 val rdd1 = spark.sparkContext.parallelize(dataSeq)
 
 val rdd2 = spark.sparkContext.textFile("/path/to/file.txt")

@@ -57,8 +57,8 @@ host www.example.com and not port 80 and not port 25
 
 ### 显示过滤器
 
-过滤条件中可以使用这些逻辑运算符：`and`, `or`, `not` 以及组合符号 `()`，比较符号 `eq`(`==`), `ne`(`!=`), `gt`(`>`), `lt`(`<`), `ge`(`>=`), `le`(`<=`), 
-还有包含符号 `contains`, 搜索符号 `matches`(`~`) 以大小写不敏感的方式匹配正则表达式，函数 `upper`, `lower`, `len`, `count`, `string`, `max`, `min`, `abs`, 
+过滤条件中可以使用这些逻辑运算符：`and`, `or`, `not` 以及组合符号 `()`，比较符号 `eq`(`==`), `ne`(`!=`), `gt`(`>`), `lt`(`<`), `ge`(`>=`), `le`(`<=`),
+还有包含符号 `contains`, 搜索符号 `matches`(`~`) 以大小写不敏感的方式匹配正则表达式，函数 `upper`, `lower`, `len`, `count`, `string`, `max`, `min`, `abs`,
 以及常用的加减乘除模和位运算符。还可以使用字符的切片操作，下面是切片的语法：
 
 ```

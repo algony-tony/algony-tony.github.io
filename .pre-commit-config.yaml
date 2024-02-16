@@ -1,0 +1,18 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+    -   id: check-yaml
+    -   id: check-json
+    -   id: check-symlinks
+    -   id: check-xml
+    -   id: trailing-whitespace
+    -   id: detect-private-key
+-   repo: https://github.com/sirwart/ripsecrets
+    rev: v0.1.7  # Use latest tag on GitHub
+    hooks:
+    -   id: ripsecrets
+        # uncomment to check additional patterns
+        # args:
+        # - --additional-pattern 'mytoken*'
+        # - --additional-pattern 'mykey*'

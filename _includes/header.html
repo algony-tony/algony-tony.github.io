@@ -10,7 +10,7 @@
         </a>
 
       </div>
-      
+
       <nav class="header-right">
         {% for item in site.data.navigation %}
         <a href="{{ item.link | prepend: site.baseurl }}" {% if page.url == item.link %} class="page-link active" {% else %} class="page-link" {% endif %} >
@@ -19,6 +19,5 @@
         {% endfor %}
       </nav>
     </div>
-    
+
 </header>
-  

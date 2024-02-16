@@ -125,7 +125,7 @@ Z: 我永远不想忘记，最终这项技术是为人类服务的，我们不�
 
 **Question: What is the most unexpected way that you use AI in your regular life?**
 
-Yeah, I don't know if I should say this, but writing speeches for weddings. 
+Yeah, I don't know if I should say this, but writing speeches for weddings.
 
 Yeah, we both set our answering machines to our voice bot.
 
@@ -169,7 +169,7 @@ We are building truly human like AI voices, that's very conversational, like hum
 
 Without AI, the voices sounded horrible. Now it's just indistinguishable from from a human voice.
 
-For us personally, what it's amazing at is semantic search, that's something that didn't really work before. Just like taking a random piece of text and finding relevant things. 
+For us personally, what it's amazing at is semantic search, that's something that didn't really work before. Just like taking a random piece of text and finding relevant things.
 
 LLM have great ability to read.
 

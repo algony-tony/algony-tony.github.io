@@ -14,7 +14,7 @@ Cynefin 提供五个决策场景，这些场景区域提供了一种分析行为
 ![Cynefin framework](/assets/img/post/Cynefin_framework_2022.jpg "Cynefin framework")
 
 ## 清晰域（clear）
- 
+
 清晰域里是已知的知识，因果关系是清晰的，处理问题是有规则的，采用最佳实践（best practice），此时决策者采用的策略是“感知-分类-响应（sense-categorise-respond）”。
 
 > 这是法律结构、标准操作程序、被证明有效的做法的领域。永远不要向内部直系亲属贷款。绝不向月付款额超过总收入 35% 的客户提供贷款。永远不要在不要求销售的情况下结束会议。在这里，决策完全属于理性的范畴。找到适当的规则并加以应用。

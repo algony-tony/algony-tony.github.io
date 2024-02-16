@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 认证与授权相关名词解释 
+title: 认证与授权相关名词解释
 categories: 软件技术
 tags: 名称解释 LDAP
 ---
@@ -15,7 +15,7 @@ LDAP 定义的是一种树形结构组织的数据库，适合写入少读取多
 
 
 **条目（Entry）**：最基本的数据，类似数据库中的记录，LDAP 中存储数据的单元，一个条目由一组属性组成；
-  
+
 **DN（Distinguished Name）**：条目的唯一标识名，通过列出树结构的路径来定位，类似 Linux 文件系统中的目录结构，但是展示方向是相反的。DN 由 RDN 后根父条目的 DN 组成，**RDN** 由条目中的某些属性构成。DN 中的三种属性用组织机构的方式易于理解，**DC（Domain Component）** 是树形的根节点，**OU（Organization Unit）**机构单位，DN 路径中的中间分叉节点，**CN（Common Name）**用作叶子节点的名词，一般做人名。
 
 比如“dn:cn=myname,ou=mydep,ou=mybu,dc=mycompany”用 Linux 文件系统方式表示出来就是 “/mycompany/mybu/mydep/myname”。
