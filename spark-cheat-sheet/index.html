@@ -75,7 +75,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-    
+
     <header class="site-header">
 
     <div class="wrapper-header">
@@ -88,7 +88,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </a>
 
       </div>
-      
+
       <nav class="header-right">
         
         <a href="/"  class="page-link"  >
@@ -109,9 +109,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         
       </nav>
     </div>
-    
+
 </header>
-  
+
 
     <main class="default-content" aria-label="内容区">
   <div class="wrapper-content">
@@ -240,7 +240,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <p>RDD 可以从现有的 collection 中转换生成，也可以从其他存储系统（如 HDFS，S3 等）的数据集中创建生成，从其他 RDD 生成或者从 Dataframe 中转换出来。<a href="https://spark.apache.org/docs/2.4.7/api/scala/index.html#org.apache.spark.SparkContext">SparkContext 接口文档</a></p>
 
-<figure class="highlight"><pre><code class="language-scala" data-lang="scala"><div class="line-1"><span class="k">val</span> <span class="nv">dataSeq</span> <span class="k">=</span> <span class="nc">Seq</span><span class="o">((</span><span class="s">"Java"</span><span class="o">,</span> <span class="mi">20000</span><span class="o">),</span> <span class="o">(</span><span class="s">"Python"</span><span class="o">,</span> <span class="mi">100000</span><span class="o">),</span> <span class="o">(</span><span class="s">"Scala"</span><span class="o">,</span> <span class="mi">3000</span><span class="o">))</span>   
+<figure class="highlight"><pre><code class="language-scala" data-lang="scala"><div class="line-1"><span class="k">val</span> <span class="nv">dataSeq</span> <span class="k">=</span> <span class="nc">Seq</span><span class="o">((</span><span class="s">"Java"</span><span class="o">,</span> <span class="mi">20000</span><span class="o">),</span> <span class="o">(</span><span class="s">"Python"</span><span class="o">,</span> <span class="mi">100000</span><span class="o">),</span> <span class="o">(</span><span class="s">"Scala"</span><span class="o">,</span> <span class="mi">3000</span><span class="o">))</span>
 </div><div class="line-2"><span class="k">val</span> <span class="nv">rdd1</span> <span class="k">=</span> <span class="nv">spark</span><span class="o">.</span><span class="py">sparkContext</span><span class="o">.</span><span class="py">parallelize</span><span class="o">(</span><span class="n">dataSeq</span><span class="o">)</span>
 </div><div class="line-3">
 </div><div class="line-4"><span class="k">val</span> <span class="nv">rdd2</span> <span class="k">=</span> <span class="nv">spark</span><span class="o">.</span><span class="py">sparkContext</span><span class="o">.</span><span class="py">textFile</span><span class="o">(</span><span class="s">"/path/to/file.txt"</span><span class="o">)</span>
@@ -615,7 +615,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
 
     </article>
-    
+
   </div>
 </main>
 

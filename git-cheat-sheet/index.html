@@ -77,7 +77,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-    
+
     <header class="site-header">
 
     <div class="wrapper-header">
@@ -90,7 +90,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </a>
 
       </div>
-      
+
       <nav class="header-right">
         
         <a href="/"  class="page-link"  >
@@ -111,9 +111,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         
       </nav>
     </div>
-    
+
 </header>
-  
+
 
     <main class="default-content" aria-label="内容区">
   <div class="wrapper-content">
@@ -641,13 +641,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p><code class="language-plaintext highlighter-rouge">git reset --hard [branch]</code> 和 <code class="language-plaintext highlighter-rouge">git checkout [branch]</code> 非常类似，有两点不同，第一是 checkout 对工作目录会更安全些，第二是 reset 是移动 HEAD 所指向分支的指向，而 checkout 是移动 HEAD 指向的分支。</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1">         HEAD    HEAD                    HEAD
-</div><div class="line-2">           |       |                       | 
-</div><div class="line-3">           V       V                       V 
+</div><div class="line-2">           |       |                       |
+</div><div class="line-3">           V       V                       V
 </div><div class="line-4">master    dev    master    dev    master  dev
-</div><div class="line-5">  |        |       |        |       |    /     
-</div><div class="line-6">  V        V       V        V       V  /      
-</div><div class="line-7">  C1 &lt;<span class="nt">---</span> C2       C1 &lt;<span class="nt">---</span> C2       C1 &lt;<span class="nt">---</span> C2 
-</div><div class="line-8">   初始状态         checkout 后       reset 后  
+</div><div class="line-5">  |        |       |        |       |    /
+</div><div class="line-6">  V        V       V        V       V  /
+</div><div class="line-7">  C1 &lt;<span class="nt">---</span> C2       C1 &lt;<span class="nt">---</span> C2       C1 &lt;<span class="nt">---</span> C2
+</div><div class="line-8">   初始状态         checkout 后       reset 后
 </div></code></pre></figure>
 
 <p>下面的表格整理出来各命令的相关影响区域。“HEAD” 一列中的 “REF” 表示该命令移动了 HEAD 指向的分支引用，而 “HEAD” 则表示只移动了 HEAD 自身。</p>
@@ -893,7 +893,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <p>在新仓库中添加远程仓库的地址，然后挑选出远程仓库需要的提交在新仓库中重播，步骤代码如下</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1"><span class="c"># add the old repo as a remote repository </span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1"><span class="c"># add the old repo as a remote repository</span>
 </div><div class="line-2">git remote add oldrepo https://github.com/path/to/oldrepo
 </div><div class="line-3">
 </div><div class="line-4"><span class="c"># get the old repo commits</span>
@@ -1045,7 +1045,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
 
     </article>
-    
+
   </div>
 </main>
 
