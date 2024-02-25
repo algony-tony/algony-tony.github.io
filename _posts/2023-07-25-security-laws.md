@@ -69,9 +69,19 @@ toc: false
 
 该办法规定了上市公司信息披露的内容、要求和披露义务等事项，监管机构为证监会。
 
+## 《深圳证券交易所交易规则》
+
+[关于发布《深圳证券交易所交易规则（2023年修订）》的通知](http://www.szse.cn/lawrules/rule/stock/trade/t20230217_598773.html)
+
+## 《上海证券交易所交易规则》
+
+[关于发布《上海证券交易所交易规则（2023年修订）》的通知](http://www.sse.com.cn/lawandrules/sselawsrules/trade/universal/c/c_20230216_5716382.shtml)
+
 ## 《深圳证券交易所股票上市规则》
 
 [（9月4日施行）关于发布《深圳证券交易所股票上市规则（2023年8月修订）》的通知](https://www.szse.cn/lawrules/rule/stock/supervision/mb/t20230804_602477.html)
+
+[（9月4日施行）关于发布《深圳证券交易所创业板股票上市规则（2023年8月修订）》的通知](https://www.szse.cn/disclosure/notice/general/t20230804_602478.html)
 
 ## 《上海证券交易所股票上市规则》
 
