@@ -14,6 +14,9 @@ if [ ! -d "$temp_data_dir" ]; then
     mkdir -p "$temp_data_dir"
 fi
 
+# 标记是否有图片被压缩
+IS_COMPRESSED=0
+
 # JPEG compression
 echo "Begin compress jpg"
 file_pre="new-"
@@ -40,6 +43,7 @@ for imgfile in $(find "$base_dir" -type f -iname "*.jpg"); do
         else
             mv "$imgfile" "$temp_data_dir/$img"
             mv "$compressed_img" "$imgfile"
+            IS_COMPRESSED=1
             continue
         fi
     done
@@ -47,6 +51,23 @@ done
 
 # PNG compression
 echo "Begin compress png"
-pngquant --quality=65-80 --ext=.png --force --skip-if-larger "$base_dir"/*.png
+for png_filename in "$base_dir"/*.png; do
+    if [ -f "$png_filename" ]; then
+        # 使用 pngquant 压缩图片
+        pngquant --quality=65-80 --ext=.png --force --skip-if-larger --strip "$png_filename"
 
-exit 0
+        # 检查压缩命令的退出码
+        if [ $? -eq 0 ]; then
+            IS_COMPRESSED=1
+            echo "压缩成功: $png_filename"
+        else
+            echo "压缩失败或图片已经是最优质的: $png_filename"
+        fi
+    fi
+done
+
+if [ $IS_COMPRESSED -eq 1 ]; then
+    exit 1
+else
+    exit 0
+fi
