@@ -77,6 +77,8 @@ toc: false
 
 [关于发布《上海证券交易所交易规则（2023年修订）》的通知](http://www.sse.com.cn/lawandrules/sselawsrules/trade/universal/c/c_20230216_5716382.shtml)
 
+[关于发布《上海证券交易所科创板股票上市规则（2023年8月修订）》的通知](http://www.sse.com.cn/lawandrules/sselawsrules/stocks/staripo/c/c_20230804_5724640.shtml)
+
 ## 《深圳证券交易所股票上市规则》
 
 [（9月4日施行）关于发布《深圳证券交易所股票上市规则（2023年8月修订）》的通知](https://www.szse.cn/lawrules/rule/stock/supervision/mb/t20230804_602477.html)
