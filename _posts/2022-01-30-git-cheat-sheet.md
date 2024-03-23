@@ -50,7 +50,6 @@ git config --unset http.proxy
 git fetch # 下载远端跟踪分支的所有历史
 git merge # 将远端跟踪分支合并到当前本地分支
 git pull # 使用来自对应远端分支的所有新提交更新你当前的本地工作分支。git pull 是 git fetch 和 git merge 的结合
-git fetch [remote-name] [remote-branch-name]:[local-branch-name] # 同步远端分支到本地指定分支，本地分支如果不存在会创建指定分支名的分支
 {% endhighlight %}
 
 设置推送的默认行为 `push.default` 的几个选项，[参考链接](https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushdefault)：
@@ -174,6 +173,22 @@ git branch master -u origin/master
 
 # 也可以在推送的时候指定上游
 git push -u origin [remote-branch-name]
+{% endhighlight %}
+
+### 同步分支
+
+新克隆一个仓库到本地时默认只会创建 remote 当前 HEAD 指向的分支到本地，如果要新创建一个跟踪远端的本地分支，比如 dev，可以使用下面命令：
+
+{% highlight bash linedivs %}
+# 先拉取远端 dev 分支
+git fetch origin dev
+
+# 创建本地分支并 checkout
+git checkout -b dev origin/dev
+
+# 或者直接创建分支并拉取远端对应分支
+git fetch [remote-name] [remote-branch-name]:[local-branch-name] # 同步远端分支到本地指定分支，本地分支如果不存在会创建指定分支名的分支
+git fetch origin dev:dev
 {% endhighlight %}
 
 

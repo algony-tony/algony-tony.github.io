@@ -142,8 +142,8 @@ Maven 中的一个最佳实践就是在多模块项目中使用父项目 pom.xml
 可以用下面命令来分析项目依赖关系，找出依赖的底层库显式地写到依赖里。
 
 {% highlight bash linedivs %}
-# 分析依赖关系，找出被用到的库却没显式地申明，
-mvn dependency:analysis
+# 分析依赖关系，找出被用到的库却没显式地申明和申明了却没在使用的库，但是有误报的可能，具体还是需要自己判断。
+mvn dependency:analyze
 {% endhighlight %}
 
 ## 插件
