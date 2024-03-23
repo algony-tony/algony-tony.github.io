@@ -300,8 +300,8 @@ Maven 通常被理解为一个 “build tool”。</p>
 <p>另一条最佳实践是把用到的库依赖都显式地写出来，因为有依赖传递，有一些底层库虽然没有显式地写出项目也不会报错，但是却埋下了隐患，后续直接依赖的库如果移除了依赖会导致本项目的报错。
 可以用下面命令来分析项目依赖关系，找出依赖的底层库显式地写到依赖里。</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1"><span class="c"># 分析依赖关系，找出被用到的库却没显式地申明，</span>
-</div><div class="line-2">mvn dependency:analysis
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1"><span class="c"># 分析依赖关系，找出被用到的库却没显式地申明和申明了却没在使用的库，但是有误报的可能，具体还是需要自己判断。</span>
+</div><div class="line-2">mvn dependency:analyze
 </div></code></pre></figure>
 
 <h2 id="插件">插件</h2>

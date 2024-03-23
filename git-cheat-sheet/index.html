@@ -158,6 +158,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </ul>
   </li>
   <li><a href="#分支-git-branch" id="markdown-toc-分支-git-branch">分支 git branch</a>    <ul>
+      <li><a href="#同步分支" id="markdown-toc-同步分支">同步分支</a></li>
       <li><a href="#删除分支-delete" id="markdown-toc-删除分支-delete">删除分支 delete</a></li>
       <li><a href="#合并分支-merge" id="markdown-toc-合并分支-merge">合并分支 merge</a></li>
       <li><a href="#变基操作-rebase" id="markdown-toc-变基操作-rebase">变基操作 rebase</a></li>
@@ -225,7 +226,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1">git fetch <span class="c"># 下载远端跟踪分支的所有历史</span>
 </div><div class="line-2">git merge <span class="c"># 将远端跟踪分支合并到当前本地分支</span>
 </div><div class="line-3">git pull <span class="c"># 使用来自对应远端分支的所有新提交更新你当前的本地工作分支。git pull 是 git fetch 和 git merge 的结合</span>
-</div><div class="line-4">git fetch <span class="o">[</span>remote-name] <span class="o">[</span>remote-branch-name]:[local-branch-name] <span class="c"># 同步远端分支到本地指定分支，本地分支如果不存在会创建指定分支名的分支</span>
 </div></code></pre></figure>
 
 <p>设置推送的默认行为 <code class="language-plaintext highlighter-rouge">push.default</code> 的几个选项，<a href="https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushdefault">参考链接</a>：</p>
@@ -340,6 +340,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div><div class="line-7">
 </div><div class="line-8"><span class="c"># 也可以在推送的时候指定上游</span>
 </div><div class="line-9">git push <span class="nt">-u</span> origin <span class="o">[</span>remote-branch-name]
+</div></code></pre></figure>
+
+<h3 id="同步分支">同步分支</h3>
+
+<p>新克隆一个仓库到本地时默认只会创建 remote 当前 HEAD 指向的分支到本地，如果要新创建一个跟踪远端的本地分支，比如 dev，可以使用下面命令：</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1"><span class="c"># 先拉取远端 dev 分支</span>
+</div><div class="line-2">git fetch origin dev
+</div><div class="line-3">
+</div><div class="line-4"><span class="c"># 创建本地分支并 checkout</span>
+</div><div class="line-5">git checkout <span class="nt">-b</span> dev origin/dev
+</div><div class="line-6">
+</div><div class="line-7"><span class="c"># 或者直接创建分支并拉取远端对应分支</span>
+</div><div class="line-8">git fetch <span class="o">[</span>remote-name] <span class="o">[</span>remote-branch-name]:[local-branch-name] <span class="c"># 同步远端分支到本地指定分支，本地分支如果不存在会创建指定分支名的分支</span>
+</div><div class="line-9">git fetch origin dev:dev
 </div></code></pre></figure>
 
 <h3 id="删除分支-delete">删除分支 delete</h3>
