@@ -1,0 +1,97 @@
+---
+layout: tool
+title: 文本转列表
+permalink: /tools/multilinetolist.html
+show_page_header: false
+---
+
+<script>
+    function multilineStringToList() {
+        // 获取是否去除每行头尾的空格字符的选项
+        var isTrim = document.getElementById("is_trim").checked;
+
+        // 获取选择的引号类型
+        var quoteType = document.querySelector('input[name="quotes"]:checked').id;
+        var quote = (quoteType === "str_singlequotes") ? "'" : '"';
+
+        // 获取选择的括号类型
+        var bracketType = document.querySelector('input[name="brackets"]:checked').id;
+        var openBracket, closeBracket;
+        switch (bracketType) {
+            case "str_parentheses":
+                openBracket = "(";
+                closeBracket = ")";
+                break;
+            case "str_squarebraces":
+                openBracket = "[";
+                closeBracket = "]";
+                break;
+            case "str_curlybraces":
+                openBracket = "{";
+                closeBracket = "}";
+                break;
+            default:
+                openBracket = "(";
+                closeBracket = ")";
+        }
+
+        // 获取输入框的内容
+        var inputText = document.getElementById("input").value;
+        // 根据换行符拆分成数组
+        var lines = inputText.split("\n");
+
+        // 如果选中了去除每行头尾的空格字符，对每行进行 trim
+        if (isTrim) {
+            lines = lines.map(function(line) {
+                return line.trim();
+            });
+        }
+
+        // 对每行加上引号和逗号，并用选择的括号括起来
+        var result = lines.map(function(line) {
+            return quote + line + quote;
+        }).join(", ");
+
+        // 使用选择的括号类型括起来
+        result = openBracket + result + closeBracket;
+
+        // 将结果显示在输出文本框中
+        document.getElementById("tolist-output").value = result;
+    }
+</script>
+
+
+<h2>文本转列表</h2>
+
+<h4>多行文本转成列表形式</h4>
+<div class="tool-tolist">
+
+    <div class="row">
+        <label>选择括号类型：</label>
+        <span><input type="radio" name="brackets" id="str_parentheses" checked="checked">( )</span>
+        <span><input type="radio" name="brackets" id="str_squarebraces">[ ]</span>
+        <span><input type="radio" name="brackets" id="str_curlybraces">{ }</span>
+    </div>
+    <div class="row">
+        <label>选择引号类型：</label>
+        <span><input type="radio" name="quotes" id="str_singlequotes" checked="checked">单引号</span>
+        <span><input type="radio" name="quotes" id="str_doublequotes">双引号</span>
+    </div>
+    <div class="row">
+        <span><input type="checkbox" id="is_trim" checked="checked">去除每行头尾的空格字符</span>
+    </div>
+
+    <div class="row">
+        <textarea id="input" class="form-control" placeholder="文本区域，每行一个元素"></textarea>
+    </div>
+
+    <div class="row">
+        <span><button class="btn-try" id="multilinetolist" type="submit"
+            onclick="multilineStringToList()">转成列表形式</button></span>
+    </div>
+
+    <div class="row">
+        <textarea id="tolist-output" class="form-control" placeholder="结果区域" readonly></textarea>
+    </div>
+
+</div>

@@ -358,7 +358,7 @@ section {
     }
 }
 
-.tool-pwd {
+.tool-pwd, .tool-tolist {
     width: 100%;
 
     .row {
@@ -379,6 +379,17 @@ section {
                 }
             }
 
+    }
+    textarea.form-control {
+        height: calc($base-font-size * 15);
+        padding: calc($spacing-unit / 6) calc($spacing-unit / 3);
+        width: 100%;
+        display: block;
+        background-color: $white;
+        background-image: none;
+        border: 1px solid $gray;
+        border-radius: 4px;
+        box-shadow: 0 1px 1px $lighter-gray;
     }
 }
 

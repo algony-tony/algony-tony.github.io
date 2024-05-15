@@ -6,3 +6,5 @@
   link: /tools/replacement.html
 - name: 时间戳转换
   link: /tools/unixtime.html
+- name: 文本转列表
+  link: /tools/multilinetolist.html
