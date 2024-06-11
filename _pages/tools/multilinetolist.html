@@ -14,6 +14,10 @@ show_page_header: false
         var quoteType = document.querySelector('input[name="quotes"]:checked').id;
         var quote = (quoteType === "str_singlequotes") ? "'" : '"';
 
+        // 获取分隔符
+        var separatorType = document.querySelector('input[name="separator"]:checked').id;
+        var separator = (separatorType === "str_comma") ? ", " : ' ';
+
         // 获取选择的括号类型
         var bracketType = document.querySelector('input[name="brackets"]:checked').id;
         var openBracket, closeBracket;
@@ -50,7 +54,7 @@ show_page_header: false
         // 对每行加上引号和逗号，并用选择的括号括起来
         var result = lines.map(function(line) {
             return quote + line + quote;
-        }).join(", ");
+        }).join(separator);
 
         // 使用选择的括号类型括起来
         result = openBracket + result + closeBracket;
@@ -76,6 +80,11 @@ show_page_header: false
         <label>选择引号类型：</label>
         <span><input type="radio" name="quotes" id="str_singlequotes" checked="checked">单引号</span>
         <span><input type="radio" name="quotes" id="str_doublequotes">双引号</span>
+    </div>
+    <div class="row">
+        <label>选择分割符：</label>
+        <span><input type="radio" name="separator" id="str_comma" checked="checked">逗号</span>
+        <span><input type="radio" name="separator" id="str_space">空格</span>
     </div>
     <div class="row">
         <span><input type="checkbox" id="is_trim" checked="checked">去除每行头尾的空格字符</span>
