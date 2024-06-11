@@ -90,3 +90,5 @@ toc: false
  [关于发布《上海证券交易所股票上市规则（2023年8月修订）》的通知](http://www.sse.com.cn/lawandrules/sselawsrules/stocks/mainipo/c/c_20230804_5724639.shtml)
 
 ## [《企业集团财务公司管理办法》](https://www.gov.cn/zhengce/2022-10/14/content_5725782.htm)
+
+## [《企业资产损失所得税税前扣除管理办法》](https://www.gov.cn/gongbao/content/2011/content_1967429.htm)
