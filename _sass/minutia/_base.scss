@@ -155,7 +155,7 @@ table {
     top: 0;
   }
 
-  tr:hover {
+  tbody tr:hover {
     background-color: yellow;
     font-weight: $bold-font-weight;
   }
