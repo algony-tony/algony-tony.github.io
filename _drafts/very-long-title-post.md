@@ -114,7 +114,7 @@ $$
 ### Table 1: With Alignment
 
 | Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
+| ------------- |:-------------:| :-----|
 | col 3 is      | right-aligned | $1600 |
 | col 2 is      | centered      |   $12 |
 | zebra stripes | are neat      |    $1 |
@@ -125,6 +125,16 @@ Markdown | Less | Pretty
 --- | --- | ---
 *Still* | `renders` | **nicely**
 1 | 2 | 3
+
+### Table 3: Data From CSV file
+
+{% assign csvdata = site.data.AFRE202110 %}
+{% include table.html %}
+
+### Table 4: With Tabulator JS Library
+
+{% assign tabulatordata = site.data.tabulator-example %}
+{% include table-tabulator.html pagination="true" paginationSize="4" %}
 
 <div class="divider"></div>
 
