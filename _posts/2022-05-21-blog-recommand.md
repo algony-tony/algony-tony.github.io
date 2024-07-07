@@ -60,3 +60,10 @@ Github 上的一个数据可视化库，目前只有一篇介绍 Raft 共识算�
 可以查看各个地质年代的地球全景图，时间范围从 7.5 亿年前现在。
 
 [这是 7.5 亿年前的地球](https://dinosaurpictures.org/ancient-earth/#750)，当时处于成冰期（Cryogenian Period）。在地球上已知的最大冰河时期，冰川可能覆盖了整个地球，在此期间出现了红藻和绿藻等新的生命类型。
+
+## 軟體考古學家
+
+“從舊聞中找新知，軟體開發者的故事”，作者挖掘软件开发者的故事，文章很好读，关于 git 的这篇很吸引人，推荐。
+
+* [Git 的故事：這一次沒這麼好玩](https://blog.brachiosoft.com/posts/git/)
+* [Redis 與作者 antirez 的故事](https://blog.brachiosoft.com/posts/redis/)
