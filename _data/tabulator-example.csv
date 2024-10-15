@@ -1,0 +1,7 @@
+id,name,progress,gender,rating,col,dob,car
+1,Oli Bob,12,male,1,red,19/02/1984,1
+2,Mary May,1,female,2,blue,14/05/1982,true
+3,Christine Lobowski,42,female,0,green,22/05/1982,true
+4,Brendon Philips,100,male,1,orange,01/08/1980,
+5,Margret Marmajuke,16,female,5,yellow,31/01/1999,
+6,Frank Harbours,38,male,4,red,12/05/1966,1

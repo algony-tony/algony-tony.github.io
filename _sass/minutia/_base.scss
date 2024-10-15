@@ -146,17 +146,27 @@ table {
     border-bottom: $table-border-width solid $table-border-color;
   }
 
-  th {
+  thead {
     vertical-align: center;
     border-bottom: (2 * $table-border-width) solid $table-border-color;
+    background: black;
+    color: white;
+    position: sticky;
+    top: 0;
   }
 
-  tr:hover {
+  tbody tr:hover {
     background-color: yellow;
     font-weight: $bold-font-weight;
   }
 
+  tr:nth-of-type(even) {
+    background: #eee;
+  }
+
 }
+
+
 
 /* Horizontal rule */
 
