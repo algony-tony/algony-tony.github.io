@@ -618,5 +618,13 @@
     "bloomberg": {
         "name": "Bloomberg",
         "link": "https://www.bloomberg.com/"
+    },
+    "csindex": {
+        "name": "中证指数有限公司",
+        "link": "https://www.csindex.com.cn/"
+    },
+    "csindex-list": {
+        "name": "中证指数-指数浏览器",
+        "link": "https://www.csindex.com.cn/#/indices/family/list"
     }
 }
