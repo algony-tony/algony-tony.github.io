@@ -299,6 +299,11 @@ LoopNet @ {
         [统计月报]({{ site.data.links["chinaclear-tjyb"].link }} "{{ site.data.links["chinaclear-tjyb"].desc }}")
     }
 
+[中证指数有限公司]({{ site.data.links["csindex"].link }})
+    @{
+        [指数浏览器]({{ site.data.links["csindex-list"].link }})
+    }
+
 ## 网站快链
 
 数据和文档
