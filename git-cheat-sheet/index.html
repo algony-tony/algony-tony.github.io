@@ -48,7 +48,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link type="application/atom+xml" rel="alternate" href="https://algony-tony.github.io/feed.xml" title="Algony Tony" />
     <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Git 使用手册 | Algony Tony</title>
-<meta name="generator" content="Jekyll v4.3.4" />
+<meta name="generator" content="Jekyll v4.4.1" />
 <meta property="og:title" content="Git 使用手册" />
 <meta property="og:locale" content="zh_CN" />
 <meta name="description" content="Git 基本概念解释及命令查询手册" />
@@ -520,14 +520,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <h3 id="提交描述">提交描述</h3>
 
-<p>提交的消息的写法从技术上没有限制，但是有一个最佳实践的<a href="https://www.conventionalcommits.org/zh-hans/">约定式提交</a>。</p>
+<p>Git message 的写法从技术上没有限制，但是有一个最佳实践的<a href="https://www.conventionalcommits.org/zh-hans/">约定式提交</a>，社区里广泛采用 <a href="https://karma-runner.github.io/latest/dev/git-commit-msg.html">Angular 约定</a>。采用这样的约定可以方便地筛选和查看历史提交信息，同时后续对指定版本生成 changelog 也很方便。</p>
 
 <blockquote>
   <p>约定式提交规范是一种基于提交信息的轻量级约定。它提供了一组简单规则来创建清晰的提交历史；这有利于编写自动化工具。
 通过在提交信息中描述功能、修复和破坏性变更，是这种惯例与 <a href="https://semver.org/lang/zh-CN/">SemVer</a> （语义化版本）互相对应。</p>
 </blockquote>
 
-<p>提交说明的结构如下：</p>
+<p>提交描述的语法如下：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;type&gt;[optional scope]: &lt;description&gt;
 
@@ -535,6 +535,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 [optional footer(s)]
 </code></pre></div></div>
+
+<p>提交描述里包含一个必选的 header，可选的 body 和 footer。Header 中的 type 描述这次提交的类型，最常用的就是 <code class="language-plaintext highlighter-rouge">feat</code>，<code class="language-plaintext highlighter-rouge">fix</code>，其他的 type 还有 <code class="language-plaintext highlighter-rouge">perf</code>，<code class="language-plaintext highlighter-rouge">doc</code>，<code class="language-plaintext highlighter-rouge">style</code>，<code class="language-plaintext highlighter-rouge">refactor</code>，<code class="language-plaintext highlighter-rouge">test</code>，<code class="language-plaintext highlighter-rouge">build</code>，在以前版本的约定中还有一个 <code class="language-plaintext highlighter-rouge">chore</code> 类型，因为容易被滥用在规范中已经取消了。在 Body 里可以更详细地描述变更的内容。Footer 主要是两种，一种是关闭 issue，形式如 <code class="language-plaintext highlighter-rouge">Closes #123, #245, #992</code>，另一种是 <code class="language-plaintext highlighter-rouge">BREAKING CHANGE</code>，这种类型只会出现在大版本升级的情况。</p>
 
 <h3 id="删除-git-rm">删除 git rm</h3>
 
