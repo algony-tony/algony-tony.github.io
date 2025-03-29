@@ -347,12 +347,12 @@ git diff --staged HEAD [path-to-file] # 显示暂存区和当前分支的最新�
 
 ### 提交描述
 
-提交的消息的写法从技术上没有限制，但是有一个最佳实践的[约定式提交](https://www.conventionalcommits.org/zh-hans/)。
+Git message 的写法从技术上没有限制，但是有一个最佳实践的[约定式提交](https://www.conventionalcommits.org/zh-hans/)，社区里广泛采用 [Angular 约定](https://karma-runner.github.io/latest/dev/git-commit-msg.html)。采用这样的约定可以方便地筛选和查看历史提交信息，同时后续对指定版本生成 changelog 也很方便。
 
 > 约定式提交规范是一种基于提交信息的轻量级约定。它提供了一组简单规则来创建清晰的提交历史；这有利于编写自动化工具。
 > 通过在提交信息中描述功能、修复和破坏性变更，是这种惯例与 [SemVer](https://semver.org/lang/zh-CN/) （语义化版本）互相对应。
 
-提交说明的结构如下：
+提交描述的语法如下：
 
 ```
 <type>[optional scope]: <description>
@@ -361,6 +361,8 @@ git diff --staged HEAD [path-to-file] # 显示暂存区和当前分支的最新�
 
 [optional footer(s)]
 ```
+
+提交描述里包含一个必选的 header，可选的 body 和 footer。Header 中的 type 描述这次提交的类型，最常用的就是 `feat`，`fix`，其他的 type 还有 `perf`，`doc`，`style`，`refactor`，`test`，`build`，在以前版本的约定中还有一个 `chore` 类型，因为容易被滥用在规范中已经取消了。在 Body 里可以更详细地描述变更的内容。Footer 主要是两种，一种是关闭 issue，形式如 `Closes #123, #245, #992`，另一种是 `BREAKING CHANGE`，这种类型只会出现在大版本升级的情况。
 
 ### 删除 git rm
 
