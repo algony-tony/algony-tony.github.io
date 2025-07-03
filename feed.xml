@@ -1,13 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://algony-tony.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://algony-tony.github.io/" rel="alternate" type="text/html" /><updated>2025-07-04T00:04:37+08:00</updated><id>https://algony-tony.github.io/feed.xml</id><title type="html">Algony Tony</title><subtitle>etvdyn</subtitle><entry><title type="html">SVG 中的</title><link href="https://algony-tony.github.io/wx-svg04/" rel="alternate" type="text/html" title="SVG 中的" /><published>2025-07-01T00:00:00+08:00</published><updated>2025-07-01T00:00:00+08:00</updated><id>https://algony-tony.github.io/wx-svg04</id><content type="html" xml:base="https://algony-tony.github.io/wx-svg04/"><![CDATA[<svg width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <rect x="0" y="0" width="200" height="200" fill="blue" />
-  <circle cx="100" cy="100" r="50" stroke="yellow" stroke-width="40" stroke-opacity=".5" fill="red" />
-</svg>
-
-<h2 id="参考链接">参考链接</h2>
-
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/SVG">SVG: Scalable Vector Graphics</a></p>
-
-<p><a href="https://www.w3.org/TR/SVG/">Scalable Vector Graphics (SVG) 2</a></p>]]></content><author><name></name></author><category term="软件技术" /><category term="SVG" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">SVG 基础形状中的路径 Path</title><link href="https://algony-tony.github.io/wx-svg03/" rel="alternate" type="text/html" title="SVG 基础形状中的路径 Path" /><published>2025-06-15T00:00:00+08:00</published><updated>2025-06-15T00:00:00+08:00</updated><id>https://algony-tony.github.io/wx-svg03</id><content type="html" xml:base="https://algony-tony.github.io/wx-svg03/"><![CDATA[<ul id="markdown-toc">
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://algony-tony.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://algony-tony.github.io/" rel="alternate" type="text/html" /><updated>2025-07-04T00:06:53+08:00</updated><id>https://algony-tony.github.io/feed.xml</id><title type="html">Algony Tony</title><subtitle>etvdyn</subtitle><entry><title type="html">SVG 基础形状中的路径 Path</title><link href="https://algony-tony.github.io/wx-svg03/" rel="alternate" type="text/html" title="SVG 基础形状中的路径 Path" /><published>2025-06-15T00:00:00+08:00</published><updated>2025-06-15T00:00:00+08:00</updated><id>https://algony-tony.github.io/wx-svg03</id><content type="html" xml:base="https://algony-tony.github.io/wx-svg03/"><![CDATA[<ul id="markdown-toc">
   <li><a href="#直线" id="markdown-toc-直线">直线</a></li>
   <li><a href="#曲线" id="markdown-toc-曲线">曲线</a>    <ul>
       <li><a href="#二次贝塞尔曲线-q" id="markdown-toc-二次贝塞尔曲线-q">二次贝塞尔曲线 Q</a></li>
@@ -811,7 +802,7 @@ a rx ry x-axis-rotation large-arc-flag sweep-flag dx dy
 
 <p><a href="https://www.w3.org/TR/SVG/">Scalable Vector Graphics (SVG) 2</a></p>
 
-<p><a href="https://www.w3.org/Graphics/SVG/">Scalable Vector Graphics (SVG)</a></p>]]></content><author><name></name></author><category term="软件技术" /><category term="SVG" /><summary type="html"><![CDATA[可以无限放大依旧丝滑的图片！]]></summary></entry><entry><title type="html">Vue 使用手册</title><link href="https://algony-tony.github.io/vue-cheat-sheet/" rel="alternate" type="text/html" title="Vue 使用手册" /><published>2025-05-30T00:00:00+08:00</published><updated>2025-05-30T00:00:00+08:00</updated><id>https://algony-tony.github.io/vue-cheat-sheet</id><content type="html" xml:base="https://algony-tony.github.io/vue-cheat-sheet/"><![CDATA[]]></content><author><name></name></author><category term="软件技术" /><category term="前端" /><category term="VUE" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">个人养老金基金 2024 年跟踪</title><link href="https://algony-tony.github.io/pension-fund-2024/" rel="alternate" type="text/html" title="个人养老金基金 2024 年跟踪" /><published>2024-12-15T00:00:00+08:00</published><updated>2024-12-15T00:00:00+08:00</updated><id>https://algony-tony.github.io/pension-fund-2024</id><content type="html" xml:base="https://algony-tony.github.io/pension-fund-2024/"><![CDATA[<p>今年个人养老金基金的最大的变化就是在 12 月加入了指数基金，按照去年的筛选标准大致看了下偏股型 FOF，变化不大，所以今年主要是重点研究下新加入的指数基金的。现在首批权益类指数基金总共有 85 支，如下可以分为宽基和红利指数。</p>
+<p><a href="https://www.w3.org/Graphics/SVG/">Scalable Vector Graphics (SVG)</a></p>]]></content><author><name></name></author><category term="软件技术" /><category term="SVG" /><summary type="html"><![CDATA[可以无限放大依旧丝滑的图片！]]></summary></entry><entry><title type="html">个人养老金基金 2024 年跟踪</title><link href="https://algony-tony.github.io/pension-fund-2024/" rel="alternate" type="text/html" title="个人养老金基金 2024 年跟踪" /><published>2024-12-15T00:00:00+08:00</published><updated>2024-12-15T00:00:00+08:00</updated><id>https://algony-tony.github.io/pension-fund-2024</id><content type="html" xml:base="https://algony-tony.github.io/pension-fund-2024/"><![CDATA[<p>今年个人养老金基金的最大的变化就是在 12 月加入了指数基金，按照去年的筛选标准大致看了下偏股型 FOF，变化不大，所以今年主要是重点研究下新加入的指数基金的。现在首批权益类指数基金总共有 85 支，如下可以分为宽基和红利指数。</p>
 
 <p><img src="/assets/img/post/pension-fund-2024-01.png" alt="&quot;权益类指数基金统计&quot;" title="权益类指数基金统计" /></p>
 
@@ -3240,4 +3231,4122 @@ tcp.port == 80 or tcp.port == 443 or tcp.port == 8080
 </div><div class="line-2">    HostName github.com
 </div><div class="line-3">    User git
 </div><div class="line-4">    ProxyCommand connect <span class="nt">-H</span> 127.0.0.1:18889 %h %p
-</div></code></pre></figure>]]></content><author><name></name></author><category term="软件技术" /><category term="git" /><summary type="html"><![CDATA[Git 代理]]></summary></entry></feed>
+</div></code></pre></figure>]]></content><author><name></name></author><category term="软件技术" /><category term="git" /><summary type="html"><![CDATA[Git 代理]]></summary></entry><entry><title type="html">Total Commander 配置使用</title><link href="https://algony-tony.github.io/totalcommander-cheatsheet/" rel="alternate" type="text/html" title="Total Commander 配置使用" /><published>2023-03-29T00:00:00+08:00</published><updated>2023-03-29T00:00:00+08:00</updated><id>https://algony-tony.github.io/totalcommander-cheatsheet</id><content type="html" xml:base="https://algony-tony.github.io/totalcommander-cheatsheet/"><![CDATA[<ul id="markdown-toc">
+  <li><a href="#绿色版-tc" id="markdown-toc-绿色版-tc">绿色版 TC</a></li>
+  <li><a href="#快捷键" id="markdown-toc-快捷键">快捷键</a></li>
+  <li><a href="#addons" id="markdown-toc-addons">Addons</a>    <ul>
+      <li><a href="#搜索" id="markdown-toc-搜索">搜索</a></li>
+    </ul>
+  </li>
+  <li><a href="#plugins" id="markdown-toc-plugins">Plugins</a>    <ul>
+      <li><a href="#lister-plugins" id="markdown-toc-lister-plugins">Lister Plugins</a></li>
+      <li><a href="#file-system-plugins" id="markdown-toc-file-system-plugins">File System Plugins</a></li>
+      <li><a href="#packer-plugins" id="markdown-toc-packer-plugins">Packer Plugins</a></li>
+      <li><a href="#content-plugins" id="markdown-toc-content-plugins">Content Plugins</a></li>
+    </ul>
+  </li>
+  <li><a href="#插件下载排名" id="markdown-toc-插件下载排名">插件下载排名</a>    <ul>
+      <li><a href="#工具列表" id="markdown-toc-工具列表">工具列表</a></li>
+      <li><a href="#fs-plugins" id="markdown-toc-fs-plugins">FS Plugins</a></li>
+      <li><a href="#lister-plugins-1" id="markdown-toc-lister-plugins-1">Lister plugins</a></li>
+      <li><a href="#packer-plugins-1" id="markdown-toc-packer-plugins-1">Packer plugins</a></li>
+      <li><a href="#content-plugins-1" id="markdown-toc-content-plugins-1">Content plugins</a></li>
+      <li><a href="#icon-包" id="markdown-toc-icon-包">Icon 包</a></li>
+    </ul>
+  </li>
+  <li><a href="#参考资料" id="markdown-toc-参考资料">参考资料</a></li>
+</ul>
+
+<p>Total Commander 第一眼看上去就像上世纪的软件，也确实，它在小众圈子比较火还是 200x 年的时候，目前在它的官方论坛上还是有一批忠实的粉丝。它有一些很好用的特性：</p>
+<ul>
+  <li>双窗口布局，方便文件移动查看等操作；</li>
+  <li>内置大量简易而实用的 Windows 功能，可以通过自定义的快捷键调用；</li>
+  <li>通过 addons 和 plugins 提供额外的功能；</li>
+  <li>可自定义的工具栏；</li>
+  <li>丰富而实用的快捷键，以及可自定义的快捷键；</li>
+</ul>
+
+<h2 id="绿色版-tc">绿色版 TC</h2>
+
+<p>要制作绿色版 TC，需要知道 TC 的启动过程，以及 TC 配置项的保存地方。</p>
+
+<p>TC 的所有配置都保存在 <code class="language-plaintext highlighter-rouge">wincmd.ini</code> 文件中，里面的配置项很丰富，注意这个文件编码不是 UTF-8，而是 CP936，关于 FTP 客户端的相关信息写在文件 <code class="language-plaintext highlighter-rouge">wcx_ftp.ini</code> 里。如果你直接运行 TOTALCMD.EXE，它会到注册表中如下找配置文件的位置：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[HKEY_CURRENT_USER\Software\Ghisler\Total Commander]
+　　 "IniFileName"=".\\wincmd.ini"
+　　 "FtpIniName"=".\\wcx_ftp.ini"
+　　 "InstallDir"="D:\\program\\totalcmd"
+</code></pre></div></div>
+
+<p>要跳过注册表项，可以在启动 TC 的时候通过命令行参数 <code class="language-plaintext highlighter-rouge">/i</code> 和 <code class="language-plaintext highlighter-rouge">/f</code> 手工指定配置文件，其中 <code class="language-plaintext highlighter-rouge">/i</code> 表示配置文件，<code class="language-plaintext highlighter-rouge">/f</code> 表示 FTP 服务器信息文件，不分大小写。比如，你可以用命令行来运行 TC，把这 2 个文件放到独立的目录下：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"d:\program\totalcmd.exe" /i="d:\conf\mytc.ini" /f="d:\conf\myftp.ini"
+</code></pre></div></div>
+
+<p>除了把参数放在命令行（以及批处理文件），还可以在快捷方式中指定配置文件的位置。（其中 <code class="language-plaintext highlighter-rouge">.\</code> 表示 TC 所在目录）：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"d:\program\totalcmd.EXE" /I=".\wincmd.ini" /F=".\wcx_ftp.ini"
+</code></pre></div></div>
+
+<p>但这都不是推荐的方式，从 TC6.5 开始，<code class="language-plaintext highlighter-rouge">wincmd.ini</code> 中 <code class="language-plaintext highlighter-rouge">[Configuration]</code> 一节增加了 <code class="language-plaintext highlighter-rouge">UseIniInProgramDir</code> 参数，它允许如下值（并支持相加）：</p>
+<ul>
+  <li>1, 如果未在注册表或命令行参数指定 INI，则使用 TC 安装目录下的 wincmd.ini；</li>
+  <li>2, 如果未在注册表或命令行参数指定 INI，使用 TC 安装目录下的 wcx_ftp.ini；</li>
+  <li>4, 忽略注册表的设置（但命令行参数指定的 INI 仍然优先）</li>
+</ul>
+
+<p>上面3个数字可以进行叠加，比如说设置为 7 的话，上面三个选项同时生效。</p>
+
+<p>TC 的启动过程可以这样理解：首先最优先采用运行时指定的 <code class="language-plaintext highlighter-rouge">/i</code> <code class="language-plaintext highlighter-rouge">/f</code>；如无指定，则找 TC 目录下的 wincmd.ini（仅仅是找，不一定就用）：如果有 <code class="language-plaintext highlighter-rouge">UseIniInProgramDir</code> 且值为 4、5、6、7，则忽略注册表，直接使用 TC 目录的相应 ini 文件；如果无 <code class="language-plaintext highlighter-rouge">UseIniInProgramDir</code> 或值小于4，则读注册表：注册表中指定了文件，则采用；注册表中未指定，则使用 TC 目录下的文件。</p>
+
+<p>所以综上，要做绿色版的 TC，先把两个配置文件放到 TC 程序所在路径下，再修改 <code class="language-plaintext highlighter-rouge">wincmd.ini</code> 中的配置项 <code class="language-plaintext highlighter-rouge">UseIniInProgramDir=7</code>，还有要注意的是把配置文件中的绝对路径都改成代表 TC 程序安装路径的变量 <code class="language-plaintext highlighter-rouge">%Commander_Path%</code>，如指定插件的默认路径为 <code class="language-plaintext highlighter-rouge">pluginbasedir=%Commander_Path%\plugins</code>，指定默认工具栏的路径 <code class="language-plaintext highlighter-rouge">Buttonbar=%Commander_Path%\BARS\DEFAULT.BAR</code> 等等。</p>
+
+<p>想让 TC 启动后就最大化？就在 TC 最大化后再从菜单栏的 <code class="language-plaintext highlighter-rouge">Configuration</code> 里点击“Save Position”，以后每次打开就都是最大化的。</p>
+
+<h2 id="快捷键">快捷键</h2>
+
+<p>在 TC 的安装根目录下有个 KEYBOARD.TXT 文件罗列着默认快捷键，下面截取一些我常用的快捷键：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>快捷键</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>F1</td>
+      <td>帮助文档</td>
+    </tr>
+    <tr>
+      <td>F3</td>
+      <td>查看文件</td>
+    </tr>
+    <tr>
+      <td>F4</td>
+      <td>编辑文件</td>
+    </tr>
+    <tr>
+      <td>F5</td>
+      <td>复制文件</td>
+    </tr>
+    <tr>
+      <td>F6</td>
+      <td>重命名/移动文件</td>
+    </tr>
+    <tr>
+      <td>F7</td>
+      <td>新建文件夹</td>
+    </tr>
+    <tr>
+      <td>ALT+F1</td>
+      <td>更改左面板的驱动盘</td>
+    </tr>
+    <tr>
+      <td>ALT+F2</td>
+      <td>更改右面板的驱动盘</td>
+    </tr>
+    <tr>
+      <td>ALT+F5</td>
+      <td>打包选中文件</td>
+    </tr>
+    <tr>
+      <td>ALT+F6</td>
+      <td>解压选中压缩包</td>
+    </tr>
+    <tr>
+      <td>ALT+F7</td>
+      <td>唤出查找对话框</td>
+    </tr>
+    <tr>
+      <td>ALT+left or right</td>
+      <td>打开历史文件夹列表的上一个/下一个</td>
+    </tr>
+    <tr>
+      <td>ALT+down</td>
+      <td>打开历史文件夹列表</td>
+    </tr>
+    <tr>
+      <td>SHIFT+F10</td>
+      <td>唤出右键菜单</td>
+    </tr>
+    <tr>
+      <td>NUM *</td>
+      <td>反选</td>
+    </tr>
+    <tr>
+      <td>CTRL+PgDn</td>
+      <td>打开文件夹以及压缩包等打包类文件</td>
+    </tr>
+    <tr>
+      <td>TAB</td>
+      <td>将焦点在左右面板间切换</td>
+    </tr>
+    <tr>
+      <td>SPACE</td>
+      <td>选择焦点下的文件或文件夹</td>
+    </tr>
+    <tr>
+      <td>ALT+ENTER</td>
+      <td>打开属性对话框</td>
+    </tr>
+    <tr>
+      <td>CTRL+B</td>
+      <td>列出改文件夹下任意深度的所有文件</td>
+    </tr>
+    <tr>
+      <td>CTRL+D</td>
+      <td>列出文件夹的书签列表</td>
+    </tr>
+    <tr>
+      <td>CTRL+F</td>
+      <td>连接 FTP 服务器</td>
+    </tr>
+    <tr>
+      <td>CTRL+M</td>
+      <td>多重重命名</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>在配置窗口的 Misc. 项下，还配置了两个常用的快捷键：</p>
+
+<ul>
+  <li>F2：定义为命令 cm_RenameOnly，摁一下选中不带扩展的文件名，可以改名可以复制文件名，摁两下选中带扩展的文件名；</li>
+  <li>CTRL+SHIFT+P：定义为命令 cm_CopyFullNamesToClip，复制当前文件的完整路径和文件名；</li>
+</ul>
+
+<h2 id="addons">Addons</h2>
+
+<p>Addons 就是一些扩展的小工具，每一个都可以独立开发，通过 TC 调用。</p>
+
+<h3 id="搜索">搜索</h3>
+
+<p><a href="https://www.ghisler.ch/board/viewtopic.php?t=22592">QuickSearch eXtended</a></p>
+
+<p>TC 默认的快捷搜索输入能匹配到的字符串，并且支持拼音首字母搜索，QuickSearch eXtended 能让搜索更方便快捷，支持使用空格做“且”条件的匹配搜索。</p>
+
+<p>配合快捷键 Ctrl+D x 使用效率加倍，先用 Ctrl+D x 快速跳转到一个较外层文件夹处，
+如果只是直接搜索文件，就开始输入字母，在列表里就直接显示匹配后的文件，
+如果需要跳转到内层某个文件夹里的文件，也一样开始输入字母，定位到首个选项为目标文件夹时，回车进入文件夹，如果还需进入子文件夹则重复上述步骤，搜索文件也一样输入字母定位；
+如果需要搜索该文件夹内任意深度的子文件夹内的所有文件，一种办法是使用 Alt+F7 唤出 TC 的搜索对话框进行灵活的搜索，支持正则匹配，支持指定深度，支持匹配文件内容等，
+另一种适用这种只是匹配文件名的场景的快捷方法是直接在文件夹根目录下使用 Ctrl+B 直接在列表里列出任意深度的子文件夹中的所有文件，再直接通过输入字母进行快捷搜索，两步到位。</p>
+
+<h2 id="plugins">Plugins</h2>
+
+<p><a href="https://www.ghisler.com/plugins.htm">官方插件列表</a>，在论坛上有<a href="https://www.ghisler.ch/board/viewforum.php?f=6&amp;sid=82b06e80ac2525024e8d293b42680db1">更多插件提供</a>，下载插件在 TC 里打开会自动弹窗安装，手动安装就是把压缩包解压放到 TC 对应目录下，并在配置文件中加上对应的配置项，或者通过 “Tc Plugins Manager” addon 来加入配置项。
+插件分为下面四大类：</p>
+<ul>
+  <li>Lister Plugins，查看类插件，对应插件放在 plugins\wls 文件夹下;</li>
+  <li>Packer Plugins，压缩类插件，对应插件放在 plugins\wcs 文件夹下;</li>
+  <li>File System Plugins，文件系统类插件，对应插件放在 plugins\wfs 文件夹下;</li>
+  <li>Content Plugins，内容类插件，对应插件放在 plugins\wds 文件夹下;</li>
+</ul>
+
+<h3 id="lister-plugins">Lister Plugins</h3>
+
+<p>Lister Plugins 是通过 TC 的 F3 来查看文件，可以配置对一些文件格式自动使用对应的插件，对应配置文件 ListerPlugins 子项，如下是我安装的七个查看插件的配置，也可以在查看器的 Plugins 菜单下手动选择。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ListerPlugins]
+0=%COMMANDER_PATH%\plugins\wlx\sumatrapdf\sumatrapdf.wlx
+0_detect="(ext="PDF") | ([0]="%" &amp; [1]="P" &amp; [2]="D" &amp; [3]="F" &amp; [4]="-" &amp; [5]="1")"
+1=%COMMANDER_PATH%\plugins\wlx\IniEd\Inied.wlx
+1_detect="ext="INI"|ext="INF"|ext="REG""
+2=%COMMANDER_PATH%\plugins\wlx\AmpView\AmpView.wlx
+2_detect="MULTIMEDIA | EXT="MP3" | EXT="WAV" | EXT="WMA" |EXT="OGG" | EXT="CDA" | EXT="MO3" | EXT="IT" |EXT="XM" | EXT="S3M" | EXT="MOD" | EXT="M3U" | EXT="PLS" | EXT="MID"| EXT="MIDI" | EXT="KAR""
+3=%COMMANDER_PATH%\plugins\wlx\wlx_anytag\anytag.wlx
+3_detect="force | (EXT="AAC" | EXT="APE" | EXT=" FLAC" | EXT=" MP3" | EXT="MP4" | EXT=" M4A" | EXT=" M4B" | EXT=" MPC" | EXT="OFR" | EXT=" OFS" | EXT="OGG" | EXT=" SPX" | EXT="TTA" | EXT="WMA" | EXT="WV")"
+4=%Commander_Path%\plugins\wlx\CudaLister\cudalister.wlx
+5=%Commander_Path%\plugins\wlx\Imagine\Imagine.wlx
+5_detect="MULTIMEDIA"
+6=%COMMANDER_PATH%\plugins\wlx\wlx_pdfview\pdfview.wlx
+6_detect="ext="PDF" | ext="PS" | ext="EPS" | ([0]="%" &amp; [1]="!" &amp; [2]="P" &amp; [3]="S") | ([0]="%" &amp; [1]="P" &amp; [2]="D" &amp; [3]="F" &amp; [4]="-")"
+</code></pre></div></div>
+
+<h3 id="file-system-plugins">File System Plugins</h3>
+
+<p>File System Plugins 是系统插件，通过面板上的“网络邻居”使用，对应配置文件 FileSystemPlugins 子项，如下是我安装的五个插件。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[FileSystemPlugins]
+Environment Variables=%COMMANDER_PATH%\plugins\wfx\Environment Variables\Envvar.wfx
+Registry=%COMMANDER_PATH%\plugins\wfx\Registry\registry.wfx
+Startup Guard=%Commander_Path%\plugins\wfx\StartupGuard\StartupGuard.wfx
+UnInstaller=%Commander_Path%\plugins\wfx\Uninstall\UnInstTC.wfx
+Secure FTP=%Commander_Path%\plugins\wfx\sftpplug\sftpplug.wfx
+</code></pre></div></div>
+
+<h3 id="packer-plugins">Packer Plugins</h3>
+
+<p>Packer Plugins 是关于压缩文件的插件，TC 里是把广义的压缩文件都当作文件夹来对待，可以直接打开，这里的广义压缩文件包含 zip,rar 之类的压缩文件，也包含 jar,iso 等，这样如果有一些压缩打包的文件格式不在 TC 支持列表里就需要安装一些插件来支持。还有就是在调用 TC 的压缩和解压窗口的时候也可以使用自己安装的插件。这种插件对应配置文件中的 PackerPlugins 子项，</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[PackerPlugins]
+iso=192,%COMMANDER_PATH%\plugins\wcx\iso\iso.wcx
+7zip=95,%COMMANDER_PATH%\plugins\wcx\7zip\7zip.wcx
+Chmdir=479,%COMMANDER_PATH%\plugins\wcx\ChmDir\Chmdir.wcx
+7z=223,%COMMANDER_PATH%\plugins\wcx\7zip\7zip.wcx
+wipe=5,%COMMANDER_PATH%\plugins\wcx\wipe\wipe.wcx
+gif=287,%Commander_Path%\plugins\wcx\GifWcx\GifWcx.wcx
+</code></pre></div></div>
+
+<h3 id="content-plugins">Content Plugins</h3>
+
+<p>Content Plugins 是从文件中提取相关信息，在文件列表中展示这些相关信息，或者在搜索中使用，或者在多重重命名中使用，一般对多媒体文件和文件夹使用较多，对应配置文件 ContentPlugins 子项。我没有特别需求没有使用这种插件。</p>
+
+<h2 id="插件下载排名">插件下载排名</h2>
+
+<p><a href="https://totalcmd.net/">Totalcmd.net</a> 是非官方的收集 TC 工具和插件的网站，里面包含很丰富的内容，下面是从网站上截取的各类插件和工具下载量排名列表，最后有拉取数据的 python 脚本。</p>
+
+<h3 id="工具列表">工具列表</h3>
+
+<p><a href="https://totalcmd.net/directory/util.html">工具列表</a>下载排名</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>name</th>
+      <th>download_times</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TCIMG 32.4</td>
+      <td>365291</td>
+    </tr>
+    <tr>
+      <td>TC Plugins Manager 2.2.8</td>
+      <td>290368</td>
+    </tr>
+    <tr>
+      <td>QuickSearch eXtended -</td>
+      <td>227969</td>
+    </tr>
+    <tr>
+      <td>Ultra TC Editors 6.42 Final</td>
+      <td>160356</td>
+    </tr>
+    <tr>
+      <td>FTP passwords’ decrypting tool 1.2</td>
+      <td>149126</td>
+    </tr>
+    <tr>
+      <td>Total Updater 0.8.6.9 (Final)</td>
+      <td>147230</td>
+    </tr>
+    <tr>
+      <td>Tweak Total Commander 10 (zombie)</td>
+      <td>144254</td>
+    </tr>
+    <tr>
+      <td>TC Safe Run 1.00</td>
+      <td>100642</td>
+    </tr>
+    <tr>
+      <td>Windows Commander FTP crack</td>
+      <td>96592</td>
+    </tr>
+    <tr>
+      <td>Open File shell for TC 1.8c</td>
+      <td>53872</td>
+    </tr>
+    <tr>
+      <td>NTFS Links 1.30</td>
+      <td>40479</td>
+    </tr>
+    <tr>
+      <td>Vic Plugin manager 1.4.9.4a</td>
+      <td>39766</td>
+    </tr>
+    <tr>
+      <td>Total Calculator v4.0 PL</td>
+      <td>38761</td>
+    </tr>
+    <tr>
+      <td>TCShell 1.4</td>
+      <td>37148</td>
+    </tr>
+    <tr>
+      <td>ChoiceEditor 1.95c</td>
+      <td>35774</td>
+    </tr>
+    <tr>
+      <td>TotalRun 0.3.0.0</td>
+      <td>34619</td>
+    </tr>
+    <tr>
+      <td>WCX Tweak 0.5.2b</td>
+      <td>34000</td>
+    </tr>
+    <tr>
+      <td>Aezay TC Color Presets 1.2 build 274</td>
+      <td>32648</td>
+    </tr>
+    <tr>
+      <td>WDX Guide 1.9.0</td>
+      <td>30584</td>
+    </tr>
+    <tr>
+      <td>Camper 3.0 beta 1</td>
+      <td>30062</td>
+    </tr>
+    <tr>
+      <td>Inireloc 20040916</td>
+      <td>29979</td>
+    </tr>
+    <tr>
+      <td>Total Commander Loader 1.0</td>
+      <td>29926</td>
+    </tr>
+    <tr>
+      <td>Total Commander Edit Redirector 1.4.2.0</td>
+      <td>28510</td>
+    </tr>
+    <tr>
+      <td>Mbius TC Tweaker 1.0.0.42Beta</td>
+      <td>27317</td>
+    </tr>
+    <tr>
+      <td>TCFS2 2.4.3.584</td>
+      <td>26752</td>
+    </tr>
+    <tr>
+      <td>Total Commander .ICL Toolkit 1.1</td>
+      <td>26750</td>
+    </tr>
+    <tr>
+      <td>NoClose Replacer 1.3</td>
+      <td>25699</td>
+    </tr>
+    <tr>
+      <td>TCFullScreen 2.0.rc1</td>
+      <td>25513</td>
+    </tr>
+    <tr>
+      <td>ReloadTC 1.1</td>
+      <td>24944</td>
+    </tr>
+    <tr>
+      <td>Aezay TC Script Editor 1.0 final - build 116</td>
+      <td>24328</td>
+    </tr>
+    <tr>
+      <td>TCmenu 1.9</td>
+      <td>23885</td>
+    </tr>
+    <tr>
+      <td>Total Commander Menu Editor 1.05</td>
+      <td>23250</td>
+    </tr>
+    <tr>
+      <td>TCFS2Tools 1.4.4.216</td>
+      <td>22879</td>
+    </tr>
+    <tr>
+      <td>Total Commander extDir (Utility) 1.6.0.5</td>
+      <td>22544</td>
+    </tr>
+    <tr>
+      <td>LogViewer Pro 2.2.0</td>
+      <td>22103</td>
+    </tr>
+    <tr>
+      <td>LaunchTC 1.03</td>
+      <td>21562</td>
+    </tr>
+    <tr>
+      <td>Clear History TC 1.5</td>
+      <td>21488</td>
+    </tr>
+    <tr>
+      <td>TC Commands List 1.3</td>
+      <td>21159</td>
+    </tr>
+    <tr>
+      <td>FileListViewer 3.3.0</td>
+      <td>19950</td>
+    </tr>
+    <tr>
+      <td>View64 1.49</td>
+      <td>19908</td>
+    </tr>
+    <tr>
+      <td>FavMenu &amp; Menu Editor 2.0</td>
+      <td>19842</td>
+    </tr>
+    <tr>
+      <td>Wincmd Directory Menu Customizer 1.2</td>
+      <td>18934</td>
+    </tr>
+    <tr>
+      <td>Astrolabe 1.0 beta 3</td>
+      <td>18674</td>
+    </tr>
+    <tr>
+      <td>AskParam 1.0.6.152</td>
+      <td>18544</td>
+    </tr>
+    <tr>
+      <td>ButtonBar eXtended 2.3</td>
+      <td>18344</td>
+    </tr>
+    <tr>
+      <td>DupSelector 1.0.0.1</td>
+      <td>18223</td>
+    </tr>
+    <tr>
+      <td>NTLinks Maker 1.4.1.416</td>
+      <td>17935</td>
+    </tr>
+    <tr>
+      <td>Inireloc (WC) 20021029</td>
+      <td>16332</td>
+    </tr>
+    <tr>
+      <td>Impomezia TC Color Presets 0.1.1</td>
+      <td>16244</td>
+    </tr>
+    <tr>
+      <td>TotalSet 0.3</td>
+      <td>16138</td>
+    </tr>
+    <tr>
+      <td>TCAMPER 1.0b</td>
+      <td>16076</td>
+    </tr>
+    <tr>
+      <td>Camp 1.4</td>
+      <td>15421</td>
+    </tr>
+    <tr>
+      <td>List2Clipboard 1.02</td>
+      <td>15380</td>
+    </tr>
+    <tr>
+      <td>Aezay TC FTP Checker 1.3.180 beta</td>
+      <td>15088</td>
+    </tr>
+    <tr>
+      <td>TC Log Viewer 1.50 Final</td>
+      <td>14989</td>
+    </tr>
+    <tr>
+      <td>AddTime Addon 1.03</td>
+      <td>14905</td>
+    </tr>
+    <tr>
+      <td>NuCov 1.21.54 Beta RC 2</td>
+      <td>14862</td>
+    </tr>
+    <tr>
+      <td>TC Restar 1.3.1.10</td>
+      <td>14370</td>
+    </tr>
+    <tr>
+      <td>BarEditor 1.5</td>
+      <td>13901</td>
+    </tr>
+    <tr>
+      <td>Nested Button Bar Creator 2.00</td>
+      <td>13894</td>
+    </tr>
+    <tr>
+      <td>iniEditor for Total Commander 0.2beta</td>
+      <td>13862</td>
+    </tr>
+    <tr>
+      <td>Tinny TC Restarter 1.0.0.4</td>
+      <td>13820</td>
+    </tr>
+    <tr>
+      <td>Command icon library test menu 7.00 BETA 2</td>
+      <td>13720</td>
+    </tr>
+    <tr>
+      <td>Sudo 1.1.0.50</td>
+      <td>13559</td>
+    </tr>
+    <tr>
+      <td>LinuxMove 1.1.2</td>
+      <td>13475</td>
+    </tr>
+    <tr>
+      <td>TCALLO 1.0.b</td>
+      <td>13248</td>
+    </tr>
+    <tr>
+      <td>WALaunch4TC 1.1</td>
+      <td>13200</td>
+    </tr>
+    <tr>
+      <td>ReDate Addon 1.04</td>
+      <td>13080</td>
+    </tr>
+    <tr>
+      <td>ChoiceEditor 1.95c_patched</td>
+      <td>13008</td>
+    </tr>
+    <tr>
+      <td>TCsrv4dos</td>
+      <td>12954</td>
+    </tr>
+    <tr>
+      <td>MultiLister Configuration Tool 2.0</td>
+      <td>12329</td>
+    </tr>
+    <tr>
+      <td>Playlist Tip 0.1</td>
+      <td>12270</td>
+    </tr>
+    <tr>
+      <td>AmpView Skin Maker 1.0.0.5</td>
+      <td>12225</td>
+    </tr>
+    <tr>
+      <td>ContentAlt 1.0</td>
+      <td>12092</td>
+    </tr>
+    <tr>
+      <td>Simplest converters for MultiLister 1.0</td>
+      <td>11911</td>
+    </tr>
+    <tr>
+      <td>ReDate Addon 1.1.7.2</td>
+      <td>11728</td>
+    </tr>
+    <tr>
+      <td>TC User Command Converter 1.00</td>
+      <td>11076</td>
+    </tr>
+    <tr>
+      <td>Full Name Launcher 1.0</td>
+      <td>10760</td>
+    </tr>
+    <tr>
+      <td>ClpBrd 1.3.1</td>
+      <td>10442</td>
+    </tr>
+    <tr>
+      <td>F4Menu 0.59</td>
+      <td>10374</td>
+    </tr>
+    <tr>
+      <td>T2FN</td>
+      <td>10190</td>
+    </tr>
+    <tr>
+      <td>kIT Universal Presets 0.4.0.397</td>
+      <td>10051</td>
+    </tr>
+    <tr>
+      <td>SM2BT 0.5 beta 4</td>
+      <td>10037</td>
+    </tr>
+    <tr>
+      <td>TC Fav Menu 1.0 beta 7</td>
+      <td>9128</td>
+    </tr>
+    <tr>
+      <td>cmdTotal 2.02</td>
+      <td>8842</td>
+    </tr>
+    <tr>
+      <td>TCMetadataViewer 2.0</td>
+      <td>8548</td>
+    </tr>
+    <tr>
+      <td>TCM as MSI installation 7.50a</td>
+      <td>8237</td>
+    </tr>
+    <tr>
+      <td>SetFolderDate 1.5</td>
+      <td>8202</td>
+    </tr>
+    <tr>
+      <td>kIT TC Color Presets 1.0.0</td>
+      <td>8183</td>
+    </tr>
+    <tr>
+      <td>TC Changes Viewer 2.50 Final</td>
+      <td>8103</td>
+    </tr>
+    <tr>
+      <td>TC History Cleaner</td>
+      <td>8046</td>
+    </tr>
+    <tr>
+      <td>ToFroWin 0.1.0.0</td>
+      <td>7825</td>
+    </tr>
+    <tr>
+      <td>kIT Portable Launcher 1.9.3</td>
+      <td>7807</td>
+    </tr>
+    <tr>
+      <td>Total Commander Application Starter 1.3</td>
+      <td>7735</td>
+    </tr>
+    <tr>
+      <td>ChooseEditor 2.10</td>
+      <td>7472</td>
+    </tr>
+    <tr>
+      <td>AddTime Addon 1.1.1.2</td>
+      <td>7306</td>
+    </tr>
+    <tr>
+      <td>Choose Media Player 1.53</td>
+      <td>7070</td>
+    </tr>
+    <tr>
+      <td>Exe2Bat</td>
+      <td>6059</td>
+    </tr>
+    <tr>
+      <td>TC Logfile Viewer 0.3</td>
+      <td>5715</td>
+    </tr>
+    <tr>
+      <td>List to MultiInstance 2005</td>
+      <td>5183</td>
+    </tr>
+    <tr>
+      <td>WideActivePanelTC 0.3</td>
+      <td>5129</td>
+    </tr>
+    <tr>
+      <td>ViATc 0.4.1</td>
+      <td>5030</td>
+    </tr>
+    <tr>
+      <td>TCBL 1.04</td>
+      <td>4914</td>
+    </tr>
+    <tr>
+      <td>Fix Time 1.11</td>
+      <td>4843</td>
+    </tr>
+    <tr>
+      <td>TotalMouseEx 0.7</td>
+      <td>4658</td>
+    </tr>
+    <tr>
+      <td>Wlx2Explorer 1.2.1</td>
+      <td>4596</td>
+    </tr>
+    <tr>
+      <td>NewFiles 2.0.1.0 &amp; 2.1.0.4</td>
+      <td>4417</td>
+    </tr>
+    <tr>
+      <td>TCBgColors</td>
+      <td>4372</td>
+    </tr>
+    <tr>
+      <td>TCFullScreen</td>
+      <td>3450</td>
+    </tr>
+    <tr>
+      <td>BarPanel 3.0</td>
+      <td>3285</td>
+    </tr>
+    <tr>
+      <td>WDX Guide 2.0.6</td>
+      <td>2888</td>
+    </tr>
+    <tr>
+      <td>decTC32Host 2014.06.17</td>
+      <td>2522</td>
+    </tr>
+    <tr>
+      <td>Copy file contents to the clipboard 1.0</td>
+      <td>1936</td>
+    </tr>
+    <tr>
+      <td>TCbarGen 1.3</td>
+      <td>1715</td>
+    </tr>
+    <tr>
+      <td>Command-line Compression Utilities 1.0</td>
+      <td>1654</td>
+    </tr>
+    <tr>
+      <td>tacklebar</td>
+      <td>1537</td>
+    </tr>
+    <tr>
+      <td>BarToLnk 1</td>
+      <td>1484</td>
+    </tr>
+    <tr>
+      <td>Total Commander Send/Receive 2.2</td>
+      <td>1477</td>
+    </tr>
+    <tr>
+      <td>TCbarGcmd 1</td>
+      <td>1439</td>
+    </tr>
+    <tr>
+      <td>NoCancel 1.0.1</td>
+      <td>1240</td>
+    </tr>
+    <tr>
+      <td>ViATc 0.5.5</td>
+      <td>1213</td>
+    </tr>
+    <tr>
+      <td>TCCD 1.0</td>
+      <td>410</td>
+    </tr>
+    <tr>
+      <td>Download Torrent 2.0</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="fs-plugins">FS Plugins</h3>
+
+<p><a href="https://totalcmd.net/directory/fsplugin.html">File system plugins</a>下载排名。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>name</th>
+      <th>download_times</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Android ADB 8.7</td>
+      <td>369673</td>
+    </tr>
+    <tr>
+      <td>Virtual Disk 1.3.3 Final</td>
+      <td>282080</td>
+    </tr>
+    <tr>
+      <td>SFTP plugin 1.4.67.4</td>
+      <td>194906</td>
+    </tr>
+    <tr>
+      <td>Uninstaller 1.8.1</td>
+      <td>185248</td>
+    </tr>
+    <tr>
+      <td>Registry 5.2</td>
+      <td>163949</td>
+    </tr>
+    <tr>
+      <td>WinCE 2.2</td>
+      <td>155986</td>
+    </tr>
+    <tr>
+      <td>CD/DVD Burning Plugin 0.9.3</td>
+      <td>142125</td>
+    </tr>
+    <tr>
+      <td>Ext2fs+Reiser 1.6</td>
+      <td>130075</td>
+    </tr>
+    <tr>
+      <td>LAN Seeker 0.31</td>
+      <td>107862</td>
+    </tr>
+    <tr>
+      <td>PluginManager 2.6</td>
+      <td>102864</td>
+    </tr>
+    <tr>
+      <td>AceHelper 0.3.7</td>
+      <td>101823</td>
+    </tr>
+    <tr>
+      <td>MotoPK 0.4</td>
+      <td>97204</td>
+    </tr>
+    <tr>
+      <td>SFTP 1.04</td>
+      <td>93574</td>
+    </tr>
+    <tr>
+      <td>VirtualPanel 2.0.7.1372</td>
+      <td>84653</td>
+    </tr>
+    <tr>
+      <td>T-PoT 1.3</td>
+      <td>80115</td>
+    </tr>
+    <tr>
+      <td>DiskInternals Reader 1.9.3</td>
+      <td>79456</td>
+    </tr>
+    <tr>
+      <td>Startup Guard 0.5.1</td>
+      <td>78703</td>
+    </tr>
+    <tr>
+      <td>Services 2.4</td>
+      <td>77244</td>
+    </tr>
+    <tr>
+      <td>Device Manager 1.4</td>
+      <td>75813</td>
+    </tr>
+    <tr>
+      <td>TConsole 2.7</td>
+      <td>75354</td>
+    </tr>
+    <tr>
+      <td>CD-Ripper 1.6.1</td>
+      <td>72289</td>
+    </tr>
+    <tr>
+      <td>ProcFS 2.0</td>
+      <td>68954</td>
+    </tr>
+    <tr>
+      <td>MSIE Cache Browser 1.4.4.2</td>
+      <td>68247</td>
+    </tr>
+    <tr>
+      <td>WebDAV 2.5</td>
+      <td>66870</td>
+    </tr>
+    <tr>
+      <td>NokiaFS 0.0.1.4</td>
+      <td>66803</td>
+    </tr>
+    <tr>
+      <td>NetworkAlt 0.2</td>
+      <td>66348</td>
+    </tr>
+    <tr>
+      <td>ADO Data Sources 1.6</td>
+      <td>65761</td>
+    </tr>
+    <tr>
+      <td>CanonCam 1.7</td>
+      <td>63601</td>
+    </tr>
+    <tr>
+      <td>TotalAndDroid 4.0</td>
+      <td>62940</td>
+    </tr>
+    <tr>
+      <td>VNavigator Siemens Obex File System 1.7.7</td>
+      <td>62848</td>
+    </tr>
+    <tr>
+      <td>CDDataBase 4.00.2657.0 Release</td>
+      <td>61259</td>
+    </tr>
+    <tr>
+      <td>Complex TC burner 3.70</td>
+      <td>60802</td>
+    </tr>
+    <tr>
+      <td>Calendar 1.02</td>
+      <td>59446</td>
+    </tr>
+    <tr>
+      <td>decClipboardFS 3.6</td>
+      <td>57850</td>
+    </tr>
+    <tr>
+      <td>Shared Files 1.0.2</td>
+      <td>57546</td>
+    </tr>
+    <tr>
+      <td>SYMBFS 0.4</td>
+      <td>53479</td>
+    </tr>
+    <tr>
+      <td>NTFS4TC 1.0</td>
+      <td>52646</td>
+    </tr>
+    <tr>
+      <td>Environment Variables 1.3.0.222v</td>
+      <td>51877</td>
+    </tr>
+    <tr>
+      <td>RedDetect 16.03.2013</td>
+      <td>51699</td>
+    </tr>
+    <tr>
+      <td>MAIL_WFX 0.99b6</td>
+      <td>50367</td>
+    </tr>
+    <tr>
+      <td>Neropanel 0.0.4b</td>
+      <td>48989</td>
+    </tr>
+    <tr>
+      <td>badcopy 1.0.0.4</td>
+      <td>47650</td>
+    </tr>
+    <tr>
+      <td>ext4tc 0.17</td>
+      <td>46798</td>
+    </tr>
+    <tr>
+      <td>TWinAmp2 1.5.2</td>
+      <td>44542</td>
+    </tr>
+    <tr>
+      <td>Google Drive for Total Commander 0.10</td>
+      <td>43597</td>
+    </tr>
+    <tr>
+      <td>HTTP 1.04</td>
+      <td>42520</td>
+    </tr>
+    <tr>
+      <td>Back2Life 2.7</td>
+      <td>42317</td>
+    </tr>
+    <tr>
+      <td>SGHFS 1.3</td>
+      <td>42044</td>
+    </tr>
+    <tr>
+      <td>POP3&amp;SMTP 1.2</td>
+      <td>41783</td>
+    </tr>
+    <tr>
+      <td>TC Services 1.0.0.0</td>
+      <td>41311</td>
+    </tr>
+    <tr>
+      <td>FSClipboard 2.0b</td>
+      <td>40895</td>
+    </tr>
+    <tr>
+      <td>File Redirector 5.4</td>
+      <td>40117</td>
+    </tr>
+    <tr>
+      <td>Siemens DES 1.1.0.0</td>
+      <td>39373</td>
+    </tr>
+    <tr>
+      <td>iPod</td>
+      <td>38795</td>
+    </tr>
+    <tr>
+      <td>TCRadmin beta 3.1e</td>
+      <td>38427</td>
+    </tr>
+    <tr>
+      <td>TWinAmp 1.8.2.9 debug</td>
+      <td>36343</td>
+    </tr>
+    <tr>
+      <td>RamCopy 1.3</td>
+      <td>35577</td>
+    </tr>
+    <tr>
+      <td>RSS Reader 0.7</td>
+      <td>35394</td>
+    </tr>
+    <tr>
+      <td>MS SQL Servers 1.3</td>
+      <td>35256</td>
+    </tr>
+    <tr>
+      <td>PassStore 0.61</td>
+      <td>34321</td>
+    </tr>
+    <tr>
+      <td>Services2 0.8.1</td>
+      <td>34097</td>
+    </tr>
+    <tr>
+      <td>photofile 2.6.0</td>
+      <td>32245</td>
+    </tr>
+    <tr>
+      <td>TotalConsole 0.5.2.1</td>
+      <td>31665</td>
+    </tr>
+    <tr>
+      <td>FSNetStat</td>
+      <td>31564</td>
+    </tr>
+    <tr>
+      <td>HTTP_SmartBrowserPlugin 1.1</td>
+      <td>30969</td>
+    </tr>
+    <tr>
+      <td>FTP over SSL/TLS 0.1 alpha</td>
+      <td>30776</td>
+    </tr>
+    <tr>
+      <td>Serial 1.0</td>
+      <td>29551</td>
+    </tr>
+    <tr>
+      <td>TurboRegistry 1.02 Beta</td>
+      <td>29403</td>
+    </tr>
+    <tr>
+      <td>NTFS FileStreams 1.0</td>
+      <td>28693</td>
+    </tr>
+    <tr>
+      <td>FSNetShare 0.11b</td>
+      <td>28357</td>
+    </tr>
+    <tr>
+      <td>Events NT 1.3</td>
+      <td>28219</td>
+    </tr>
+    <tr>
+      <td>Privileges 1.01</td>
+      <td>28104</td>
+    </tr>
+    <tr>
+      <td>Windows Media Audio 2 1.2</td>
+      <td>28096</td>
+    </tr>
+    <tr>
+      <td>FTP List 0.6</td>
+      <td>27916</td>
+    </tr>
+    <tr>
+      <td>SIFS 1.1</td>
+      <td>27839</td>
+    </tr>
+    <tr>
+      <td>EFS 1.1.2</td>
+      <td>27545</td>
+    </tr>
+    <tr>
+      <td>CVSBrowser 1.2.0</td>
+      <td>27415</td>
+    </tr>
+    <tr>
+      <td>MirandaFS 0.0.4.1 beta</td>
+      <td>26655</td>
+    </tr>
+    <tr>
+      <td>Versions 1.51</td>
+      <td>26112</td>
+    </tr>
+    <tr>
+      <td>TipTop 1.0</td>
+      <td>25731</td>
+    </tr>
+    <tr>
+      <td>Uninstall 1.0</td>
+      <td>24963</td>
+    </tr>
+    <tr>
+      <td>TMedia 0.1.D</td>
+      <td>24934</td>
+    </tr>
+    <tr>
+      <td>Temporary Panel 1.0</td>
+      <td>24395</td>
+    </tr>
+    <tr>
+      <td>CPL 1.0</td>
+      <td>24235</td>
+    </tr>
+    <tr>
+      <td>TempDrive 1.5</td>
+      <td>23937</td>
+    </tr>
+    <tr>
+      <td>tcPhonebook 0.9.5.2</td>
+      <td>23426</td>
+    </tr>
+    <tr>
+      <td>Uninstaller64 1.0.1</td>
+      <td>23372</td>
+    </tr>
+    <tr>
+      <td>S.T.A.L.K.E.R. db explorer 0.0.4</td>
+      <td>23011</td>
+    </tr>
+    <tr>
+      <td>Environment Variables Ex 1.0</td>
+      <td>22795</td>
+    </tr>
+    <tr>
+      <td>Wipe plugin (FS) 0.1</td>
+      <td>22451</td>
+    </tr>
+    <tr>
+      <td>TWinAmp3 3.02</td>
+      <td>21843</td>
+    </tr>
+    <tr>
+      <td>wfx_iOS 1.3</td>
+      <td>20389</td>
+    </tr>
+    <tr>
+      <td>FTP monitor 1.1 beta 2</td>
+      <td>20377</td>
+    </tr>
+    <tr>
+      <td>MKS Integrity Browser 1.0.8.1</td>
+      <td>19910</td>
+    </tr>
+    <tr>
+      <td>DialPWD 1.0</td>
+      <td>19467</td>
+    </tr>
+    <tr>
+      <td>Bluetooth OBEX Object Push 1.2.1</td>
+      <td>19413</td>
+    </tr>
+    <tr>
+      <td>T-PoT 1.1</td>
+      <td>17848</td>
+    </tr>
+    <tr>
+      <td>Perl FS 1.05</td>
+      <td>16886</td>
+    </tr>
+    <tr>
+      <td>TestFTP 0.5.1</td>
+      <td>16642</td>
+    </tr>
+    <tr>
+      <td>Iriver Storage 2.2b</td>
+      <td>16553</td>
+    </tr>
+    <tr>
+      <td>Visual SourceSafe 0.4 Beta</td>
+      <td>16184</td>
+    </tr>
+    <tr>
+      <td>ScriptWFX 1.3</td>
+      <td>15985</td>
+    </tr>
+    <tr>
+      <td>Diamond Rio PMP300 0.2b</td>
+      <td>15637</td>
+    </tr>
+    <tr>
+      <td>HPLX 1.2</td>
+      <td>14906</td>
+    </tr>
+    <tr>
+      <td>Ghisler SFTP Plugin 1.4.1</td>
+      <td>14765</td>
+    </tr>
+    <tr>
+      <td>NTFS FileStreams 2.0.6 Beta</td>
+      <td>14567</td>
+    </tr>
+    <tr>
+      <td>Startups 0.4.0</td>
+      <td>14407</td>
+    </tr>
+    <tr>
+      <td>procViewer 1.5.1 beta</td>
+      <td>14198</td>
+    </tr>
+    <tr>
+      <td>FDC TC 28.04.2008</td>
+      <td>13968</td>
+    </tr>
+    <tr>
+      <td>WIACam 1.12</td>
+      <td>13964</td>
+    </tr>
+    <tr>
+      <td>CVSBrowser_1.0.4.zip 1.0.4</td>
+      <td>13904</td>
+    </tr>
+    <tr>
+      <td>Mpio 0.1</td>
+      <td>13853</td>
+    </tr>
+    <tr>
+      <td>System Events Ex 1.0.3</td>
+      <td>13764</td>
+    </tr>
+    <tr>
+      <td>MP3Commander 0.1.0.70</td>
+      <td>13754</td>
+    </tr>
+    <tr>
+      <td>HTTP Browser 1.2.1</td>
+      <td>13159</td>
+    </tr>
+    <tr>
+      <td>RadminPlg 3.27 (19.09.2013)</td>
+      <td>13125</td>
+    </tr>
+    <tr>
+      <td>iPlugin</td>
+      <td>12863</td>
+    </tr>
+    <tr>
+      <td>DotNet Wrapper 0.4 beta</td>
+      <td>12590</td>
+    </tr>
+    <tr>
+      <td>CoRegistry 1.1.0.0</td>
+      <td>12307</td>
+    </tr>
+    <tr>
+      <td>OperaFS 0.5</td>
+      <td>11757</td>
+    </tr>
+    <tr>
+      <td>Branch View Extended 1.03</td>
+      <td>11649</td>
+    </tr>
+    <tr>
+      <td>wfx_Opera</td>
+      <td>11607</td>
+    </tr>
+    <tr>
+      <td>Temp drive</td>
+      <td>11441</td>
+    </tr>
+    <tr>
+      <td>S3 Browser 1.9.5</td>
+      <td>11232</td>
+    </tr>
+    <tr>
+      <td>WinWalk 0.0.0.3-alpha</td>
+      <td>10785</td>
+    </tr>
+    <tr>
+      <td>RedLOCK [01.04.2013]</td>
+      <td>10706</td>
+    </tr>
+    <tr>
+      <td>Link drive</td>
+      <td>10170</td>
+    </tr>
+    <tr>
+      <td>Tweak Collector 1.25l</td>
+      <td>9830</td>
+    </tr>
+    <tr>
+      <td>RedGUARD [13.03.2013]</td>
+      <td>8598</td>
+    </tr>
+    <tr>
+      <td>Brew Mobile Plugin 0.2.0 beta</td>
+      <td>8214</td>
+    </tr>
+    <tr>
+      <td>EFS2splugin 0.9.3</td>
+      <td>8190</td>
+    </tr>
+    <tr>
+      <td>Transformer Framework 1.0</td>
+      <td>8145</td>
+    </tr>
+    <tr>
+      <td>RadminPlg64 1.0.0</td>
+      <td>8139</td>
+    </tr>
+    <tr>
+      <td>CVSBrowser_1.0.3.zip 1.0.3</td>
+      <td>7799</td>
+    </tr>
+    <tr>
+      <td>Sequences 0.10</td>
+      <td>7773</td>
+    </tr>
+    <tr>
+      <td>EnsoniqFS 0.57 BETA</td>
+      <td>7739</td>
+    </tr>
+    <tr>
+      <td>Versions 2.0.2</td>
+      <td>7587</td>
+    </tr>
+    <tr>
+      <td>Total Upgrade 1.0.2.0</td>
+      <td>7381</td>
+    </tr>
+    <tr>
+      <td>XBox DVD 1.2</td>
+      <td>7381</td>
+    </tr>
+    <tr>
+      <td>wfx_ONotes</td>
+      <td>7258</td>
+    </tr>
+    <tr>
+      <td>AGacVEd 1.0.1</td>
+      <td>6430</td>
+    </tr>
+    <tr>
+      <td>WFX HTTPS Browser 1.1</td>
+      <td>6421</td>
+    </tr>
+    <tr>
+      <td>OPC DA 1.0</td>
+      <td>6417</td>
+    </tr>
+    <tr>
+      <td>Delicious Posts 2.5.1</td>
+      <td>6316</td>
+    </tr>
+    <tr>
+      <td>DocClassifier 1.6</td>
+      <td>5681</td>
+    </tr>
+    <tr>
+      <td>REB1100 0.2</td>
+      <td>5595</td>
+    </tr>
+    <tr>
+      <td>RedClipboard 16.04.2019 [08.29]</td>
+      <td>5557</td>
+    </tr>
+    <tr>
+      <td>RamCopy 1.3.1.1</td>
+      <td>4906</td>
+    </tr>
+    <tr>
+      <td>MP3 Database 0.9 Beta</td>
+      <td>4450</td>
+    </tr>
+    <tr>
+      <td>cpmimg 0.7</td>
+      <td>4192</td>
+    </tr>
+    <tr>
+      <td>AzureBlob 0.3 Alpha</td>
+      <td>4098</td>
+    </tr>
+    <tr>
+      <td>FB2Lib 0.6</td>
+      <td>4032</td>
+    </tr>
+    <tr>
+      <td>TFS Version Control 1.0</td>
+      <td>3996</td>
+    </tr>
+    <tr>
+      <td>RedSmart 15.04.19 [08.29]</td>
+      <td>3826</td>
+    </tr>
+    <tr>
+      <td>RedOHM 19.06.19</td>
+      <td>3229</td>
+    </tr>
+    <tr>
+      <td>RedOneC 16.08.2019</td>
+      <td>2596</td>
+    </tr>
+    <tr>
+      <td>MSIE Cache Browser 1.4.4.2</td>
+      <td>2150</td>
+    </tr>
+    <tr>
+      <td>CloudMailRu</td>
+      <td>237</td>
+    </tr>
+    <tr>
+      <td>Privileges 1.01, 28104</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="lister-plugins-1">Lister plugins</h3>
+
+<p><a href="https://totalcmd.net/directory/lister.html">Lister plugins</a>下载排名。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>name</th>
+      <th>download_times</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Imagine 1.1.4</td>
+      <td>408142</td>
+    </tr>
+    <tr>
+      <td>xBaseView 10.0</td>
+      <td>311486</td>
+    </tr>
+    <tr>
+      <td>Mmedia 2.62</td>
+      <td>202569</td>
+    </tr>
+    <tr>
+      <td>FileInfo 2.23</td>
+      <td>197955</td>
+    </tr>
+    <tr>
+      <td>ICLView 26.3.2022</td>
+      <td>194590</td>
+    </tr>
+    <tr>
+      <td>OpenOffice Simple Viewer 1.2.0</td>
+      <td>179270</td>
+    </tr>
+    <tr>
+      <td>AmpView 3.3 beta 3</td>
+      <td>176176</td>
+    </tr>
+    <tr>
+      <td>SynWrite 6.40.2770</td>
+      <td>169435</td>
+    </tr>
+    <tr>
+      <td>SGViewer 1.9.3.1</td>
+      <td>164421</td>
+    </tr>
+    <tr>
+      <td>OpenOffice/DOCX/FB2 Viewer 1.7.2</td>
+      <td>146443</td>
+    </tr>
+    <tr>
+      <td>SQLite Viewer 2.17</td>
+      <td>136647</td>
+    </tr>
+    <tr>
+      <td>PDFView 1.09</td>
+      <td>125592</td>
+    </tr>
+    <tr>
+      <td>Excellence 1.20</td>
+      <td>124478</td>
+    </tr>
+    <tr>
+      <td>SWFView 1.4.1</td>
+      <td>120418</td>
+    </tr>
+    <tr>
+      <td>2D CAD View Plugin: DWG DXF HPGL SVG CGM 9.1.5</td>
+      <td>103195</td>
+    </tr>
+    <tr>
+      <td>EML Viewer 0.6</td>
+      <td>100879</td>
+    </tr>
+    <tr>
+      <td>SWF Lister 2.0</td>
+      <td>95524</td>
+    </tr>
+    <tr>
+      <td>Multimedia Factory 0.8.3</td>
+      <td>89624</td>
+    </tr>
+    <tr>
+      <td>tcCalendar 2.0u10</td>
+      <td>86675</td>
+    </tr>
+    <tr>
+      <td>ListDoc 1.2</td>
+      <td>80606</td>
+    </tr>
+    <tr>
+      <td>IEView 1.94a</td>
+      <td>80306</td>
+    </tr>
+    <tr>
+      <td>TTFviewer 0.1.2.4</td>
+      <td>78629</td>
+    </tr>
+    <tr>
+      <td>Office2007wlx 0.0.6.2</td>
+      <td>76691</td>
+    </tr>
+    <tr>
+      <td>PE Viewer 2.0</td>
+      <td>75200</td>
+    </tr>
+    <tr>
+      <td>Boot Screen View 1.1 release</td>
+      <td>72264</td>
+    </tr>
+    <tr>
+      <td>ArchView 0.9.1.2</td>
+      <td>72263</td>
+    </tr>
+    <tr>
+      <td>VisualDirSize 1.2</td>
+      <td>71658</td>
+    </tr>
+    <tr>
+      <td>MATLAB MAT-file Viewer 1.6.13.0</td>
+      <td>69997</td>
+    </tr>
+    <tr>
+      <td>DjvuList</td>
+      <td>69061</td>
+    </tr>
+    <tr>
+      <td>MultiLister (former PDF Filter) 1.50a</td>
+      <td>66830</td>
+    </tr>
+    <tr>
+      <td>Office 1.1</td>
+      <td>66694</td>
+    </tr>
+    <tr>
+      <td>NFO View 1.5</td>
+      <td>66166</td>
+    </tr>
+    <tr>
+      <td>TCTorrent 2.1.3</td>
+      <td>65018</td>
+    </tr>
+    <tr>
+      <td>anytag 0.97</td>
+      <td>64828</td>
+    </tr>
+    <tr>
+      <td>sLister 1.1.2</td>
+      <td>62912</td>
+    </tr>
+    <tr>
+      <td>uLister 4.0.0</td>
+      <td>62761</td>
+    </tr>
+    <tr>
+      <td>3D File viewer 2.040524</td>
+      <td>62356</td>
+    </tr>
+    <tr>
+      <td>Media Show 0.9.5</td>
+      <td>60658</td>
+    </tr>
+    <tr>
+      <td>File Thumbnails 1.0.2</td>
+      <td>57924</td>
+    </tr>
+    <tr>
+      <td>Sumatra PDF based plugin 0.8.1</td>
+      <td>56227</td>
+    </tr>
+    <tr>
+      <td>FlashView 1.4</td>
+      <td>55097</td>
+    </tr>
+    <tr>
+      <td>Autodesk 3ds Max Preview 1.3.0.1</td>
+      <td>54963</td>
+    </tr>
+    <tr>
+      <td>LinkInfo 1.52</td>
+      <td>49917</td>
+    </tr>
+    <tr>
+      <td>CSV Viewer 0.6.1</td>
+      <td>49748</td>
+    </tr>
+    <tr>
+      <td>TxQuickView 1.30</td>
+      <td>48550</td>
+    </tr>
+    <tr>
+      <td>DSView 1.3.1</td>
+      <td>46930</td>
+    </tr>
+    <tr>
+      <td>Syn 1.5</td>
+      <td>43144</td>
+    </tr>
+    <tr>
+      <td>Audio Tag View 1.6</td>
+      <td>42752</td>
+    </tr>
+    <tr>
+      <td>IniEd 2.0</td>
+      <td>42326</td>
+    </tr>
+    <tr>
+      <td>ActivePDFView 1.0</td>
+      <td>40423</td>
+    </tr>
+    <tr>
+      <td>decThumbsDBViewer 4.7</td>
+      <td>40258</td>
+    </tr>
+    <tr>
+      <td>PhotoViewer 0.18 Beta</td>
+      <td>39388</td>
+    </tr>
+    <tr>
+      <td>Office2007wlx_64 0.0.6.5</td>
+      <td>39229</td>
+    </tr>
+    <tr>
+      <td>FileView v2.0 alpha</td>
+      <td>38432</td>
+    </tr>
+    <tr>
+      <td>Torrent 1.3</td>
+      <td>37098</td>
+    </tr>
+    <tr>
+      <td>SWF Lister lite 1.5</td>
+      <td>37097</td>
+    </tr>
+    <tr>
+      <td>edt-pack for tcCalendar 22.12.07</td>
+      <td>37072</td>
+    </tr>
+    <tr>
+      <td>SolidWorks Preview 1.3.0.1</td>
+      <td>35831</td>
+    </tr>
+    <tr>
+      <td>DBF-view 1.20</td>
+      <td>35810</td>
+    </tr>
+    <tr>
+      <td>BaseView 1.2</td>
+      <td>35204</td>
+    </tr>
+    <tr>
+      <td>CudaLister 1.8.1.0</td>
+      <td>34778</td>
+    </tr>
+    <tr>
+      <td>AppLoader 0.9.6.3</td>
+      <td>34458</td>
+    </tr>
+    <tr>
+      <td>AKFont 2.8.1</td>
+      <td>34442</td>
+    </tr>
+    <tr>
+      <td>gswlx 0.2 beta6</td>
+      <td>34287</td>
+    </tr>
+    <tr>
+      <td>Imagine (beta) 1.0.0.0 beta 10</td>
+      <td>33557</td>
+    </tr>
+    <tr>
+      <td>SVGView 1.4.5</td>
+      <td>32715</td>
+    </tr>
+    <tr>
+      <td>CDRView 0.95</td>
+      <td>32468</td>
+    </tr>
+    <tr>
+      <td>ArcView 1.2.0.28</td>
+      <td>32467</td>
+    </tr>
+    <tr>
+      <td>GisLister 1.0.4</td>
+      <td>32283</td>
+    </tr>
+    <tr>
+      <td>EventLog 2.5</td>
+      <td>31092</td>
+    </tr>
+    <tr>
+      <td>SynUs 1.6</td>
+      <td>31012</td>
+    </tr>
+    <tr>
+      <td>Font 0.08</td>
+      <td>30491</td>
+    </tr>
+    <tr>
+      <td>SynWrite x64 Edition 3.0.610</td>
+      <td>30292</td>
+    </tr>
+    <tr>
+      <td>GDBView 0.0.3</td>
+      <td>30053</td>
+    </tr>
+    <tr>
+      <td>WebView 0.7</td>
+      <td>29927</td>
+    </tr>
+    <tr>
+      <td>LogViewer 1.1.2</td>
+      <td>29425</td>
+    </tr>
+    <tr>
+      <td>Imgview 2.0</td>
+      <td>28502</td>
+    </tr>
+    <tr>
+      <td>IEView 1.0</td>
+      <td>27895</td>
+    </tr>
+    <tr>
+      <td>HTMLView 1.1</td>
+      <td>27763</td>
+    </tr>
+    <tr>
+      <td>MP3 TAG editor 1.1</td>
+      <td>26977</td>
+    </tr>
+    <tr>
+      <td>CDR thumbnail 1.0</td>
+      <td>26183</td>
+    </tr>
+    <tr>
+      <td>ruDwgPreview 1.1</td>
+      <td>25898</td>
+    </tr>
+    <tr>
+      <td>TorrentLister 0.02</td>
+      <td>25612</td>
+    </tr>
+    <tr>
+      <td>mplayer4tc 0.2</td>
+      <td>25611</td>
+    </tr>
+    <tr>
+      <td>Wise Tracker 2.2</td>
+      <td>25366</td>
+    </tr>
+    <tr>
+      <td>TotalHLT 1.7.0.160</td>
+      <td>24377</td>
+    </tr>
+    <tr>
+      <td>ImageLister 1.00</td>
+      <td>23979</td>
+    </tr>
+    <tr>
+      <td>MyViewPad 4.1</td>
+      <td>23461</td>
+    </tr>
+    <tr>
+      <td>hpg_ed 0.5.13</td>
+      <td>23407</td>
+    </tr>
+    <tr>
+      <td>URL Shortcut Viewer 1.1.1.0</td>
+      <td>23310</td>
+    </tr>
+    <tr>
+      <td>SMViewer 1.4.1 b</td>
+      <td>23174</td>
+    </tr>
+    <tr>
+      <td>CSV View 0.9.5.5 Beta</td>
+      <td>22062</td>
+    </tr>
+    <tr>
+      <td>SystemInfo 3.0</td>
+      <td>22016</td>
+    </tr>
+    <tr>
+      <td>PdbView 0.1.1</td>
+      <td>21423</td>
+    </tr>
+    <tr>
+      <td>mp3tag 0.98</td>
+      <td>20525</td>
+    </tr>
+    <tr>
+      <td>SyntaxColorizer 1.1</td>
+      <td>20231</td>
+    </tr>
+    <tr>
+      <td>GDBViewer 0.1.0.0</td>
+      <td>20220</td>
+    </tr>
+    <tr>
+      <td>decFastThumbs 1.9</td>
+      <td>20051</td>
+    </tr>
+    <tr>
+      <td>AmpView Classic 1.1 RC5</td>
+      <td>19965</td>
+    </tr>
+    <tr>
+      <td>XSudoku 1.2.0.2</td>
+      <td>19384</td>
+    </tr>
+    <tr>
+      <td>SymbolView 2.1.2 beta</td>
+      <td>19347</td>
+    </tr>
+    <tr>
+      <td>RedCell [22.03.2013]</td>
+      <td>19293</td>
+    </tr>
+    <tr>
+      <td>RedDOC [02.04.2013]</td>
+      <td>18744</td>
+    </tr>
+    <tr>
+      <td>Modelviewer</td>
+      <td>18742</td>
+    </tr>
+    <tr>
+      <td>IniView 1.2 beta</td>
+      <td>18447</td>
+    </tr>
+    <tr>
+      <td>AnyELF 1.6</td>
+      <td>18341</td>
+    </tr>
+    <tr>
+      <td>EMLView 1.2.6.5 Beta</td>
+      <td>18280</td>
+    </tr>
+    <tr>
+      <td>MXP Lister 1.2</td>
+      <td>18097</td>
+    </tr>
+    <tr>
+      <td>AmpView Lite 1.2</td>
+      <td>17972</td>
+    </tr>
+    <tr>
+      <td>ANSI viewer plugin 2016-10-09</td>
+      <td>17831</td>
+    </tr>
+    <tr>
+      <td>DmpView 0.2.3</td>
+      <td>17708</td>
+    </tr>
+    <tr>
+      <td>RVLister 2.1</td>
+      <td>17532</td>
+    </tr>
+    <tr>
+      <td>Putty</td>
+      <td>16898</td>
+    </tr>
+    <tr>
+      <td>scrlist 1.0</td>
+      <td>16768</td>
+    </tr>
+    <tr>
+      <td>inSCR 4.0</td>
+      <td>16707</td>
+    </tr>
+    <tr>
+      <td>Firebird DB Viewer 0.9.4.3 Beta</td>
+      <td>16694</td>
+    </tr>
+    <tr>
+      <td>TC Jad - Java Decompiler Plugin 1.1</td>
+      <td>16677</td>
+    </tr>
+    <tr>
+      <td>Script plugin-maker 0.5.1</td>
+      <td>16632</td>
+    </tr>
+    <tr>
+      <td>JSON Viewer 1.3.1</td>
+      <td>16570</td>
+    </tr>
+    <tr>
+      <td>Rhinoceros Preview 2.0.0.0</td>
+      <td>16470</td>
+    </tr>
+    <tr>
+      <td>WhoOpenDoc 0.3</td>
+      <td>16361</td>
+    </tr>
+    <tr>
+      <td>eBookInfo WLX 2.4.1.0</td>
+      <td>16205</td>
+    </tr>
+    <tr>
+      <td>OriginView 1.20</td>
+      <td>16180</td>
+    </tr>
+    <tr>
+      <td>Playlist 1.06</td>
+      <td>16142</td>
+    </tr>
+    <tr>
+      <td>NFOViewer 0.8</td>
+      <td>15819</td>
+    </tr>
+    <tr>
+      <td>DBLister 2.01</td>
+      <td>15805</td>
+    </tr>
+    <tr>
+      <td>Flic 1.0.0.0</td>
+      <td>15675</td>
+    </tr>
+    <tr>
+      <td>wLx_SQLLite 17.02.2009</td>
+      <td>15459</td>
+    </tr>
+    <tr>
+      <td>IEWebLister 1.01</td>
+      <td>15064</td>
+    </tr>
+    <tr>
+      <td>JccView 5.3.1.2</td>
+      <td>14907</td>
+    </tr>
+    <tr>
+      <td>Scintilla Lister 0.1.1</td>
+      <td>14836</td>
+    </tr>
+    <tr>
+      <td>DBFViewer 1.4.2</td>
+      <td>14646</td>
+    </tr>
+    <tr>
+      <td>tLister 1.2.0</td>
+      <td>14500</td>
+    </tr>
+    <tr>
+      <td>TC IrfanView Plugin 2.54</td>
+      <td>14455</td>
+    </tr>
+    <tr>
+      <td>WaveView 1.0.0</td>
+      <td>14290</td>
+    </tr>
+    <tr>
+      <td>DVI Simple Viewer 1.0.0.1</td>
+      <td>14269</td>
+    </tr>
+    <tr>
+      <td>Winamp Playlist Lister 1.01</td>
+      <td>13957</td>
+    </tr>
+    <tr>
+      <td>ActiveSnapView 1.0.1</td>
+      <td>13831</td>
+    </tr>
+    <tr>
+      <td>CBxThumbs 0.24b</td>
+      <td>13281</td>
+    </tr>
+    <tr>
+      <td>LogTail 0.1.1.12</td>
+      <td>13240</td>
+    </tr>
+    <tr>
+      <td>decFLTViewer 1.1</td>
+      <td>12675</td>
+    </tr>
+    <tr>
+      <td>TCPlayer 1.05</td>
+      <td>12635</td>
+    </tr>
+    <tr>
+      <td>Multimedia Factory Preview 0.9</td>
+      <td>12494</td>
+    </tr>
+    <tr>
+      <td>DirSizeCalc Charts 1.10</td>
+      <td>12360</td>
+    </tr>
+    <tr>
+      <td>XML Review 3.5</td>
+      <td>12239</td>
+    </tr>
+    <tr>
+      <td>Mathematica Link 1.0.1.0</td>
+      <td>12093</td>
+    </tr>
+    <tr>
+      <td>sLister - view more file formats</td>
+      <td>11958</td>
+    </tr>
+    <tr>
+      <td>WDXGuideInLister 1.01</td>
+      <td>11775</td>
+    </tr>
+    <tr>
+      <td>WSZView 2.95.522</td>
+      <td>11603</td>
+    </tr>
+    <tr>
+      <td>MD2wlx 1.0</td>
+      <td>11461</td>
+    </tr>
+    <tr>
+      <td>PalmDump 0.02 beta</td>
+      <td>11345</td>
+    </tr>
+    <tr>
+      <td>sqlite-wlx 1.1.3</td>
+      <td>10855</td>
+    </tr>
+    <tr>
+      <td>RedHTML 2013.03.22</td>
+      <td>10756</td>
+    </tr>
+    <tr>
+      <td>mthumbs.wlx 20210405</td>
+      <td>10576</td>
+    </tr>
+    <tr>
+      <td>Access DB Viewer 1.3.2.2</td>
+      <td>10003</td>
+    </tr>
+    <tr>
+      <td>SVGwlx 0.0.2</td>
+      <td>9989</td>
+    </tr>
+    <tr>
+      <td>TC IrfanView Plugin 1.72</td>
+      <td>9768</td>
+    </tr>
+    <tr>
+      <td>CharsOccurrences 1.7.2</td>
+      <td>9698</td>
+    </tr>
+    <tr>
+      <td>AnyCmd 1.2</td>
+      <td>9688</td>
+    </tr>
+    <tr>
+      <td>GSA Lister 1.02.2</td>
+      <td>9685</td>
+    </tr>
+    <tr>
+      <td>ruDWGPreview New 1.0</td>
+      <td>9677</td>
+    </tr>
+    <tr>
+      <td>XML Viewer 1.0.2.1</td>
+      <td>9659</td>
+    </tr>
+    <tr>
+      <td>GSF View 1.0</td>
+      <td>9526</td>
+    </tr>
+    <tr>
+      <td>xmltab 1.0.5</td>
+      <td>9517</td>
+    </tr>
+    <tr>
+      <td>csvtab 1.0.3</td>
+      <td>9458</td>
+    </tr>
+    <tr>
+      <td>WLX Markdown Viewer 2.3</td>
+      <td>9387</td>
+    </tr>
+    <tr>
+      <td>DMF Lister 1.0</td>
+      <td>9125</td>
+    </tr>
+    <tr>
+      <td>MP3 Tag View 1.1.1</td>
+      <td>9039</td>
+    </tr>
+    <tr>
+      <td>jsontab 1.0.5</td>
+      <td>9009</td>
+    </tr>
+    <tr>
+      <td>tcCalendar 1.3 - German files</td>
+      <td>8870</td>
+    </tr>
+    <tr>
+      <td>Folder Picture 1.2.4</td>
+      <td>8743</td>
+    </tr>
+    <tr>
+      <td>MKInfoLS 1.0.5</td>
+      <td>8608</td>
+    </tr>
+    <tr>
+      <td>inAlasm 3.01</td>
+      <td>8599</td>
+    </tr>
+    <tr>
+      <td>odbc-wlx 1.0.4</td>
+      <td>8490</td>
+    </tr>
+    <tr>
+      <td>DDS_DD_Plugin 05.06.2006</td>
+      <td>8331</td>
+    </tr>
+    <tr>
+      <td>wlx_fb2 2.2</td>
+      <td>8326</td>
+    </tr>
+    <tr>
+      <td>dirtyJOE 1.5 (c359)</td>
+      <td>8090</td>
+    </tr>
+    <tr>
+      <td>WDXGuideInLister64 1.04</td>
+      <td>7624</td>
+    </tr>
+    <tr>
+      <td>decJsgWLX</td>
+      <td>7484</td>
+    </tr>
+    <tr>
+      <td>HexViewer 1.1.1.1 Beta</td>
+      <td>7395</td>
+    </tr>
+    <tr>
+      <td>M3U view</td>
+      <td>7243</td>
+    </tr>
+    <tr>
+      <td>PdbView 2 - 1.1</td>
+      <td>7163</td>
+    </tr>
+    <tr>
+      <td>RtfHtml</td>
+      <td>7036</td>
+    </tr>
+    <tr>
+      <td>Aml View 2.02 (2016.06.12)</td>
+      <td>6626</td>
+    </tr>
+    <tr>
+      <td>AKPic 1.6</td>
+      <td>6591</td>
+    </tr>
+    <tr>
+      <td>APlayer v0.1</td>
+      <td>6406</td>
+    </tr>
+    <tr>
+      <td>ObjView 1.2</td>
+      <td>6274</td>
+    </tr>
+    <tr>
+      <td>CertView 2.5.1</td>
+      <td>6141</td>
+    </tr>
+    <tr>
+      <td>PictViewer</td>
+      <td>6034</td>
+    </tr>
+    <tr>
+      <td>decMetaExpertWLX 1.4</td>
+      <td>5985</td>
+    </tr>
+    <tr>
+      <td>decMaffWLX 2015.03.21</td>
+      <td>5870</td>
+    </tr>
+    <tr>
+      <td>decWinCodecWLX 1.1.0.2</td>
+      <td>5311</td>
+    </tr>
+    <tr>
+      <td>mplayer4tc 0.3.1.1</td>
+      <td>5092</td>
+    </tr>
+    <tr>
+      <td>DataView 0.5b</td>
+      <td>5080</td>
+    </tr>
+    <tr>
+      <td>Modules Player 0.3</td>
+      <td>4629</td>
+    </tr>
+    <tr>
+      <td>decID3WLX 2014.12.08</td>
+      <td>4595</td>
+    </tr>
+    <tr>
+      <td>Dune aai 1.0.1</td>
+      <td>4492</td>
+    </tr>
+    <tr>
+      <td>listtap 0.2.4.2</td>
+      <td>4245</td>
+    </tr>
+    <tr>
+      <td>Total DICOM Lister 2.0.0</td>
+      <td>4012</td>
+    </tr>
+    <tr>
+      <td>GisViewer 1.0.1.0</td>
+      <td>3998</td>
+    </tr>
+    <tr>
+      <td>ArchView 0.9.3.0</td>
+      <td>3992</td>
+    </tr>
+    <tr>
+      <td>Autodesk Revit Preview 1.0.0.3</td>
+      <td>3845</td>
+    </tr>
+    <tr>
+      <td>wlx_fb2 1.11</td>
+      <td>3825</td>
+    </tr>
+    <tr>
+      <td>QtUiViewer 1.0.0.0</td>
+      <td>3690</td>
+    </tr>
+    <tr>
+      <td>MarkdownViewer 0.2</td>
+      <td>3221</td>
+    </tr>
+    <tr>
+      <td>LookFits 1.0.1</td>
+      <td>3096</td>
+    </tr>
+    <tr>
+      <td>ExifToolView 1.2</td>
+      <td>2837</td>
+    </tr>
+    <tr>
+      <td>Nothing 1.0</td>
+      <td>2495</td>
+    </tr>
+    <tr>
+      <td>Autodesk Inventor Preview 1.0.0.2</td>
+      <td>2450</td>
+    </tr>
+    <tr>
+      <td>unhide-wlx 0.9.4</td>
+      <td>2394</td>
+    </tr>
+    <tr>
+      <td>Solid Edge Preview 1.0.0.1</td>
+      <td>2084</td>
+    </tr>
+    <tr>
+      <td>TC ModPlug Plugin 1.3</td>
+      <td>1940</td>
+    </tr>
+    <tr>
+      <td>NTFS Stream Viewer 0.9.1 Beta</td>
+      <td>1793</td>
+    </tr>
+    <tr>
+      <td>WLX Edge Viewer 1.0.0</td>
+      <td>806</td>
+    </tr>
+    <tr>
+      <td>TCSumatraPDF Plugin 1.0</td>
+      <td>646</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="packer-plugins-1">Packer plugins</h3>
+
+<p><a href="https://totalcmd.net/directory/packer.html">Packer plugins</a>下载排名。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>name</th>
+      <th>download_times</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>7Zip Plugin 0.7.6.6</td>
+      <td>563816</td>
+    </tr>
+    <tr>
+      <td>Total7zip 0.8.5.6</td>
+      <td>292753</td>
+    </tr>
+    <tr>
+      <td>ISO 1.7.4 beta 1</td>
+      <td>205250</td>
+    </tr>
+    <tr>
+      <td>Game Archive UnPacker 0.6.0.3 PRO</td>
+      <td>195819</td>
+    </tr>
+    <tr>
+      <td>CHMDir 0.41-alpha</td>
+      <td>111894</td>
+    </tr>
+    <tr>
+      <td>DiskDir Extended 1.68</td>
+      <td>92261</td>
+    </tr>
+    <tr>
+      <td>InstallExplorer 0.9.2</td>
+      <td>91233</td>
+    </tr>
+    <tr>
+      <td>DarkCrypt IV 2013.03.16</td>
+      <td>86774</td>
+    </tr>
+    <tr>
+      <td>7z plugin 1.0.1.0</td>
+      <td>85418</td>
+    </tr>
+    <tr>
+      <td>ICLRead 1.5.4.4</td>
+      <td>78886</td>
+    </tr>
+    <tr>
+      <td>MhtUnPack 2.2</td>
+      <td>73467</td>
+    </tr>
+    <tr>
+      <td>Resource Extractor 1.1.1</td>
+      <td>70591</td>
+    </tr>
+    <tr>
+      <td>MPQ Plugin 1.6.0.104</td>
+      <td>68396</td>
+    </tr>
+    <tr>
+      <td>audioconverter 0.992 alpha 1</td>
+      <td>63532</td>
+    </tr>
+    <tr>
+      <td>MSI Plus 0.5</td>
+      <td>54044</td>
+    </tr>
+    <tr>
+      <td>CopyTree 1.3.0.328</td>
+      <td>52056</td>
+    </tr>
+    <tr>
+      <td>MSI 1.2.1</td>
+      <td>51930</td>
+    </tr>
+    <tr>
+      <td>DBX 1.2</td>
+      <td>49837</td>
+    </tr>
+    <tr>
+      <td>TotalISO 1.0.0.155</td>
+      <td>49430</td>
+    </tr>
+    <tr>
+      <td>Blat Mailer 1.3.4.1</td>
+      <td>47565</td>
+    </tr>
+    <tr>
+      <td>CatalogMaker 4.1.3</td>
+      <td>47046</td>
+    </tr>
+    <tr>
+      <td>Access Viewer 0.7.1</td>
+      <td>41105</td>
+    </tr>
+    <tr>
+      <td>InstallExporer Port 2004-06-04</td>
+      <td>40108</td>
+    </tr>
+    <tr>
+      <td>TreeCopyPlus 1.051</td>
+      <td>37888</td>
+    </tr>
+    <tr>
+      <td>7Zip Plugin 0.6.4</td>
+      <td>37345</td>
+    </tr>
+    <tr>
+      <td>MHT Unpacker 0.1.1</td>
+      <td>36503</td>
+    </tr>
+    <tr>
+      <td>AES encryptor plugin 0.6.3</td>
+      <td>36396</td>
+    </tr>
+    <tr>
+      <td>7zip Plugin 0.7.2.1</td>
+      <td>35835</td>
+    </tr>
+    <tr>
+      <td>DirCopy 1.10</td>
+      <td>32322</td>
+    </tr>
+    <tr>
+      <td>WdxInfoPacker 1.4.1</td>
+      <td>32035</td>
+    </tr>
+    <tr>
+      <td>AVIWCX 1.9</td>
+      <td>31716</td>
+    </tr>
+    <tr>
+      <td>IShield 0.9.1</td>
+      <td>31587</td>
+    </tr>
+    <tr>
+      <td>Graphics Converter 1.81</td>
+      <td>31353</td>
+    </tr>
+    <tr>
+      <td>BZIP2 1.5</td>
+      <td>29480</td>
+    </tr>
+    <tr>
+      <td>Graphic Converter 1.8.6</td>
+      <td>28416</td>
+    </tr>
+    <tr>
+      <td>TotalObserver 1.2.0</td>
+      <td>27946</td>
+    </tr>
+    <tr>
+      <td>PUZZLE 3.04</td>
+      <td>27631</td>
+    </tr>
+    <tr>
+      <td>UnLZX 2.2</td>
+      <td>27614</td>
+    </tr>
+    <tr>
+      <td>ISO 1.7.7 beta 4</td>
+      <td>27345</td>
+    </tr>
+    <tr>
+      <td>RPM(+cpio) 1.5</td>
+      <td>27271</td>
+    </tr>
+    <tr>
+      <td>GIFWCX 1.3</td>
+      <td>26183</td>
+    </tr>
+    <tr>
+      <td>NSCopy 2.2</td>
+      <td>26177</td>
+    </tr>
+    <tr>
+      <td>Total SQX 2.11</td>
+      <td>26165</td>
+    </tr>
+    <tr>
+      <td>DiskDir 1.3</td>
+      <td>26146</td>
+    </tr>
+    <tr>
+      <td>Checksum 0.2b</td>
+      <td>24970</td>
+    </tr>
+    <tr>
+      <td>targzbz2 0.02</td>
+      <td>24504</td>
+    </tr>
+    <tr>
+      <td>Wipe plugin 0.2</td>
+      <td>23734</td>
+    </tr>
+    <tr>
+      <td>IMaGinator 1.6</td>
+      <td>23684</td>
+    </tr>
+    <tr>
+      <td>SIS 0.91</td>
+      <td>23684</td>
+    </tr>
+    <tr>
+      <td>Far2wc 1.3</td>
+      <td>23240</td>
+    </tr>
+    <tr>
+      <td>S.T.A.L.K.E.R. db unpacker 0.0.3</td>
+      <td>22915</td>
+    </tr>
+    <tr>
+      <td>Wcrez 1.0.1.1</td>
+      <td>22885</td>
+    </tr>
+    <tr>
+      <td>HA 1.1.0</td>
+      <td>22711</td>
+    </tr>
+    <tr>
+      <td>TotalRSZ 2.5</td>
+      <td>22701</td>
+    </tr>
+    <tr>
+      <td>Z Archiver 1.0</td>
+      <td>22574</td>
+    </tr>
+    <tr>
+      <td>alz Unpacker 0.1i</td>
+      <td>21551</td>
+    </tr>
+    <tr>
+      <td>PSARC 1.4</td>
+      <td>21297</td>
+    </tr>
+    <tr>
+      <td>Mbox 1.10</td>
+      <td>21210</td>
+    </tr>
+    <tr>
+      <td>WordArc [27.02.2013]</td>
+      <td>21153</td>
+    </tr>
+    <tr>
+      <td>CopyLinkTarget 1.10</td>
+      <td>21093</td>
+    </tr>
+    <tr>
+      <td>Total Converter 2.0.1</td>
+      <td>20462</td>
+    </tr>
+    <tr>
+      <td>Treecopy 1.3</td>
+      <td>20417</td>
+    </tr>
+    <tr>
+      <td>Imaginator 2.0 (2010)</td>
+      <td>20233</td>
+    </tr>
+    <tr>
+      <td>AmigaDX 3.3 beta</td>
+      <td>20217</td>
+    </tr>
+    <tr>
+      <td>MakeBat 1.3</td>
+      <td>20142</td>
+    </tr>
+    <tr>
+      <td>IMG 0.9</td>
+      <td>20060</td>
+    </tr>
+    <tr>
+      <td>Disc Maker 1.1</td>
+      <td>20000</td>
+    </tr>
+    <tr>
+      <td>DEB 1.0</td>
+      <td>19571</td>
+    </tr>
+    <tr>
+      <td>DIRCBM 0.12</td>
+      <td>19547</td>
+    </tr>
+    <tr>
+      <td>Cab Packer</td>
+      <td>18743</td>
+    </tr>
+    <tr>
+      <td>DSP Plugin</td>
+      <td>18153</td>
+    </tr>
+    <tr>
+      <td>inTRD 6.52</td>
+      <td>17917</td>
+    </tr>
+    <tr>
+      <td>Mod2Wav 0.5 beta</td>
+      <td>17825</td>
+    </tr>
+    <tr>
+      <td>KillCopy plug-in for Total Commander 0.9 alpha</td>
+      <td>17756</td>
+    </tr>
+    <tr>
+      <td>Cryptonite 1.0</td>
+      <td>17358</td>
+    </tr>
+    <tr>
+      <td>RegXtract 1.6</td>
+      <td>17353</td>
+    </tr>
+    <tr>
+      <td>Webshots plug-in for Total Commander 0.981</td>
+      <td>17322</td>
+    </tr>
+    <tr>
+      <td>CabCE 2.0</td>
+      <td>17300</td>
+    </tr>
+    <tr>
+      <td>Disk Explorer Professional Database Viewer 1.3</td>
+      <td>17256</td>
+    </tr>
+    <tr>
+      <td>inSCL 6.52</td>
+      <td>17181</td>
+    </tr>
+    <tr>
+      <td>DiskDirW (Unicode) 1.2.4</td>
+      <td>16856</td>
+    </tr>
+    <tr>
+      <td>WADFile 1.0</td>
+      <td>16519</td>
+    </tr>
+    <tr>
+      <td>HLP/MVB 1.0.2.0</td>
+      <td>16281</td>
+    </tr>
+    <tr>
+      <td>UnImz 1.0 beta</td>
+      <td>16152</td>
+    </tr>
+    <tr>
+      <td>XBox ISO Plugin ver 1.4</td>
+      <td>15950</td>
+    </tr>
+    <tr>
+      <td>umod.wcx 0.0.6</td>
+      <td>15686</td>
+    </tr>
+    <tr>
+      <td>H4R 1.1</td>
+      <td>15493</td>
+    </tr>
+    <tr>
+      <td>FileFactory 0.3 beta</td>
+      <td>15486</td>
+    </tr>
+    <tr>
+      <td>StegoTC 2012.01.03</td>
+      <td>15231</td>
+    </tr>
+    <tr>
+      <td>Operation Flashpoint PBO 1.0</td>
+      <td>15231</td>
+    </tr>
+    <tr>
+      <td>GPAK 0.1 (beta)</td>
+      <td>15062</td>
+    </tr>
+    <tr>
+      <td>Z4 Archive plugin 0.9.7</td>
+      <td>14847</td>
+    </tr>
+    <tr>
+      <td>MultiArc MVV Build 1.4.3.162</td>
+      <td>14790</td>
+    </tr>
+    <tr>
+      <td>PACK 1.1</td>
+      <td>14521</td>
+    </tr>
+    <tr>
+      <td>fhRAR 0.1</td>
+      <td>14512</td>
+    </tr>
+    <tr>
+      <td>ExtrKarText 0.1</td>
+      <td>14295</td>
+    </tr>
+    <tr>
+      <td>Heroes III wcx Pack 1.0</td>
+      <td>14250</td>
+    </tr>
+    <tr>
+      <td>ert_wcx 0.9.2</td>
+      <td>14247</td>
+    </tr>
+    <tr>
+      <td>CreateHardLink 1.0.0.1</td>
+      <td>14194</td>
+    </tr>
+    <tr>
+      <td>SFF 1.2</td>
+      <td>14073</td>
+    </tr>
+    <tr>
+      <td>ivtdir 0.3</td>
+      <td>13976</td>
+    </tr>
+    <tr>
+      <td>ATR.wcx 0.5 beta</td>
+      <td>13876</td>
+    </tr>
+    <tr>
+      <td>Lib 1.1</td>
+      <td>13850</td>
+    </tr>
+    <tr>
+      <td>GRP 1.02</td>
+      <td>13712</td>
+    </tr>
+    <tr>
+      <td>D64 0.2</td>
+      <td>13588</td>
+    </tr>
+    <tr>
+      <td>PPMd 1.0</td>
+      <td>13482</td>
+    </tr>
+    <tr>
+      <td>btdir 0.1 beta4</td>
+      <td>13201</td>
+    </tr>
+    <tr>
+      <td>Kryptel 8.0.2.0</td>
+      <td>13200</td>
+    </tr>
+    <tr>
+      <td>TRD 1.0</td>
+      <td>13191</td>
+    </tr>
+    <tr>
+      <td>LZOP 1.0</td>
+      <td>12724</td>
+    </tr>
+    <tr>
+      <td>BFC 0.9.2</td>
+      <td>12397</td>
+    </tr>
+    <tr>
+      <td>SCL 1.0</td>
+      <td>12302</td>
+    </tr>
+    <tr>
+      <td>PPMPackTC 2010-07-14</td>
+      <td>12214</td>
+    </tr>
+    <tr>
+      <td>PL Plugin 1.2</td>
+      <td>12114</td>
+    </tr>
+    <tr>
+      <td>UFO VFS plugin 0.1</td>
+      <td>12112</td>
+    </tr>
+    <tr>
+      <td>ICQScheme 2.0 (OpenSource)</td>
+      <td>12106</td>
+    </tr>
+    <tr>
+      <td>decStorageWCX 1.0.1.15</td>
+      <td>12101</td>
+    </tr>
+    <tr>
+      <td>BMC 0.2 (alpha)</td>
+      <td>11633</td>
+    </tr>
+    <tr>
+      <td>RPM_64 1.7</td>
+      <td>11541</td>
+    </tr>
+    <tr>
+      <td>ZPAQ 1.5.5</td>
+      <td>11464</td>
+    </tr>
+    <tr>
+      <td>LISP packer plugin 1.1</td>
+      <td>11422</td>
+    </tr>
+    <tr>
+      <td>Novell DSView 1.0</td>
+      <td>11366</td>
+    </tr>
+    <tr>
+      <td>iniPacker 1.0</td>
+      <td>11297</td>
+    </tr>
+    <tr>
+      <td>Operation Flashpoint PBO Plugin 0.81 beta</td>
+      <td>11228</td>
+    </tr>
+    <tr>
+      <td>UnPSF 1.1</td>
+      <td>11201</td>
+    </tr>
+    <tr>
+      <td>ICO wcx plugin 0.1</td>
+      <td>11164</td>
+    </tr>
+    <tr>
+      <td>WCReg_patched Packer Plugin 1.4</td>
+      <td>11154</td>
+    </tr>
+    <tr>
+      <td>LowTraffic v2.0</td>
+      <td>11154</td>
+    </tr>
+    <tr>
+      <td>Power Packer 1.0</td>
+      <td>11090</td>
+    </tr>
+    <tr>
+      <td>UnArkWCX 1.0</td>
+      <td>10946</td>
+    </tr>
+    <tr>
+      <td>Mover 0.1</td>
+      <td>10681</td>
+    </tr>
+    <tr>
+      <td>Red JPEG XT [06.02.2013]</td>
+      <td>10595</td>
+    </tr>
+    <tr>
+      <td>Webcompiler Unpacker 1.0</td>
+      <td>10433</td>
+    </tr>
+    <tr>
+      <td>TOW 0.1 beta</td>
+      <td>10313</td>
+    </tr>
+    <tr>
+      <td>Java Class Unpacker 0.7.1</td>
+      <td>9833</td>
+    </tr>
+    <tr>
+      <td>CPIO_64 1.6</td>
+      <td>9787</td>
+    </tr>
+    <tr>
+      <td>LZOPackTC 12.02.2013</td>
+      <td>9774</td>
+    </tr>
+    <tr>
+      <td>fobia 1.2.1</td>
+      <td>9657</td>
+    </tr>
+    <tr>
+      <td>WebArc 0.01</td>
+      <td>9358</td>
+    </tr>
+    <tr>
+      <td>xz 1.0</td>
+      <td>9130</td>
+    </tr>
+    <tr>
+      <td>PalmDB zTXT Plugin 1.1</td>
+      <td>8679</td>
+    </tr>
+    <tr>
+      <td>MHTep</td>
+      <td>8551</td>
+    </tr>
+    <tr>
+      <td>executor.wcx 0.0.0.5</td>
+      <td>8534</td>
+    </tr>
+    <tr>
+      <td>SSSR TC 12.10.2011</td>
+      <td>8216</td>
+    </tr>
+    <tr>
+      <td>Sure Copy 20.03.2008</td>
+      <td>8092</td>
+    </tr>
+    <tr>
+      <td>JustZip 21.10.2011</td>
+      <td>7972</td>
+    </tr>
+    <tr>
+      <td>decJpegWCX</td>
+      <td>7740</td>
+    </tr>
+    <tr>
+      <td>TotalZAR 2</td>
+      <td>7552</td>
+    </tr>
+    <tr>
+      <td>MSC 0.1</td>
+      <td>7511</td>
+    </tr>
+    <tr>
+      <td>alz Unpacker 0.65</td>
+      <td>7510</td>
+    </tr>
+    <tr>
+      <td>inHrust 2.10</td>
+      <td>7503</td>
+    </tr>
+    <tr>
+      <td>ABC-TC 14.02.2013</td>
+      <td>7385</td>
+    </tr>
+    <tr>
+      <td>LineCount 0.3</td>
+      <td>7347</td>
+    </tr>
+    <tr>
+      <td>AES plugin 0.6.3 [64-bit port]</td>
+      <td>7165</td>
+    </tr>
+    <tr>
+      <td>wcx_fb2 1.0</td>
+      <td>7139</td>
+    </tr>
+    <tr>
+      <td>JustBZLP 24.10.2011</td>
+      <td>7105</td>
+    </tr>
+    <tr>
+      <td>English Mover wcx plugin 1.0a</td>
+      <td>7104</td>
+    </tr>
+    <tr>
+      <td>ICONew 1.0</td>
+      <td>7090</td>
+    </tr>
+    <tr>
+      <td>UkrPack TC 18.02.2013</td>
+      <td>7017</td>
+    </tr>
+    <tr>
+      <td>X3 resource browser/unpacker 1.0 beta 2</td>
+      <td>7005</td>
+    </tr>
+    <tr>
+      <td>GCA plugin 0.1beta</td>
+      <td>6963</td>
+    </tr>
+    <tr>
+      <td>ELKA TC 12.10.2011</td>
+      <td>6938</td>
+    </tr>
+    <tr>
+      <td>UCComp TC 12.10.2011</td>
+      <td>6892</td>
+    </tr>
+    <tr>
+      <td>APLibTC 14.02.2013</td>
+      <td>6772</td>
+    </tr>
+    <tr>
+      <td>LZRComp TC 12.10.2011</td>
+      <td>6755</td>
+    </tr>
+    <tr>
+      <td>LZ8Comp TC 18.02.2013</td>
+      <td>6674</td>
+    </tr>
+    <tr>
+      <td>dar wcx 4.2012</td>
+      <td>6640</td>
+    </tr>
+    <tr>
+      <td>StegoTC G2 2012.01.03</td>
+      <td>6492</td>
+    </tr>
+    <tr>
+      <td>GCF 1.1</td>
+      <td>6229</td>
+    </tr>
+    <tr>
+      <td>EnsoniqUnpackerEFE 1.23</td>
+      <td>6145</td>
+    </tr>
+    <tr>
+      <td>EnsoniqUnpacker 1.23</td>
+      <td>6121</td>
+    </tr>
+    <tr>
+      <td>fb2wcx 1.0.3</td>
+      <td>6112</td>
+    </tr>
+    <tr>
+      <td>LibView 1.1</td>
+      <td>6070</td>
+    </tr>
+    <tr>
+      <td>tthGen 0.2</td>
+      <td>5958</td>
+    </tr>
+    <tr>
+      <td>fb2wcx_64 1.0.3</td>
+      <td>5785</td>
+    </tr>
+    <tr>
+      <td>SetFolderDate 1.3.0.0</td>
+      <td>5692</td>
+    </tr>
+    <tr>
+      <td>deb_64 1.0</td>
+      <td>5497</td>
+    </tr>
+    <tr>
+      <td>WCX_PDB 0.6</td>
+      <td>5496</td>
+    </tr>
+    <tr>
+      <td>MS-Compress Packer Plugin 1.0</td>
+      <td>5475</td>
+    </tr>
+    <tr>
+      <td>lzma 2.1</td>
+      <td>5370</td>
+    </tr>
+    <tr>
+      <td>MATLab plugin 1.83 beta</td>
+      <td>5344</td>
+    </tr>
+    <tr>
+      <td>PDB_PRC 1.0.0.8</td>
+      <td>5275</td>
+    </tr>
+    <tr>
+      <td>RAF packer 1.2</td>
+      <td>5207</td>
+    </tr>
+    <tr>
+      <td>Zstandard packer plugin 1.1.3.5</td>
+      <td>5072</td>
+    </tr>
+    <tr>
+      <td>RisenPak 1.0</td>
+      <td>5068</td>
+    </tr>
+    <tr>
+      <td>LZOP plugin [12.02.2013]</td>
+      <td>5001</td>
+    </tr>
+    <tr>
+      <td>PDUnSIS 1.0</td>
+      <td>4982</td>
+    </tr>
+    <tr>
+      <td>inTAP 0.71</td>
+      <td>4652</td>
+    </tr>
+    <tr>
+      <td>Zip2Zero 1.0.1.0</td>
+      <td>4607</td>
+    </tr>
+    <tr>
+      <td>LTAR 1.0</td>
+      <td>4551</td>
+    </tr>
+    <tr>
+      <td>decRegWCX 2014.07.07</td>
+      <td>4543</td>
+    </tr>
+    <tr>
+      <td>BS-DOS support bundle 2015.05.10</td>
+      <td>4427</td>
+    </tr>
+    <tr>
+      <td>AlbumPack 1.03</td>
+      <td>4382</td>
+    </tr>
+    <tr>
+      <td>decMpoWCX 2016.09.21</td>
+      <td>4157</td>
+    </tr>
+    <tr>
+      <td>Windows Media Audio 1.0</td>
+      <td>3931</td>
+    </tr>
+    <tr>
+      <td>Mover 2.0.0.2</td>
+      <td>3902</td>
+    </tr>
+    <tr>
+      <td>wcx_storage 1.0</td>
+      <td>3061</td>
+    </tr>
+    <tr>
+      <td>Hard Link meta-packer 1.0</td>
+      <td>2972</td>
+    </tr>
+    <tr>
+      <td>Audioconverter 1.0</td>
+      <td>2847</td>
+    </tr>
+    <tr>
+      <td>urlData 0.1</td>
+      <td>2553</td>
+    </tr>
+    <tr>
+      <td>KillCopy plug-in 0.9.1 alpha</td>
+      <td>2134</td>
+    </tr>
+    <tr>
+      <td>Thousand Types (packer plugin version) 1.0</td>
+      <td>2132</td>
+    </tr>
+    <tr>
+      <td>DiskDirCrc 1.1</td>
+      <td>2009</td>
+    </tr>
+    <tr>
+      <td>Webshots 0.99</td>
+      <td>1992</td>
+    </tr>
+    <tr>
+      <td>Java Decompiler 1.1</td>
+      <td>1879</td>
+    </tr>
+    <tr>
+      <td>M3U/M3U8 1.0.0</td>
+      <td>1759</td>
+    </tr>
+    <tr>
+      <td>Wcrez 2.0</td>
+      <td>1724</td>
+    </tr>
+    <tr>
+      <td>casMSXwcx 1.3</td>
+      <td>1697</td>
+    </tr>
+    <tr>
+      <td>ICQScheme 2.0.2</td>
+      <td>1494</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="content-plugins-1">Content plugins</h3>
+
+<p><a href="https://totalcmd.net/directory/content.html">Content plugins</a>下载排名。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>name</th>
+      <th>download_times</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DirSizeCalc 2.22</td>
+      <td>138485</td>
+    </tr>
+    <tr>
+      <td>ShellDetails 1.26</td>
+      <td>86403</td>
+    </tr>
+    <tr>
+      <td>File Descriptions 2.6.2-x32 / 1.2.3-x64</td>
+      <td>71709</td>
+    </tr>
+    <tr>
+      <td>ImageMetaData for JPG comment, Exif, IPTC and XMP metadata 2.4.0.0</td>
+      <td>64806</td>
+    </tr>
+    <tr>
+      <td>Translit_wdx 1.6</td>
+      <td>57743</td>
+    </tr>
+    <tr>
+      <td>ImgSize 2.03</td>
+      <td>54710</td>
+    </tr>
+    <tr>
+      <td>TextSearch 1.6.4</td>
+      <td>52295</td>
+    </tr>
+    <tr>
+      <td>UnicodeTest/LockedTest 1.2.3</td>
+      <td>48538</td>
+    </tr>
+    <tr>
+      <td>xPDFSearch 1.11</td>
+      <td>47402</td>
+    </tr>
+    <tr>
+      <td>AudioInfo 2019.04.17</td>
+      <td>45871</td>
+    </tr>
+    <tr>
+      <td>super_wdx 2.2 beta</td>
+      <td>41180</td>
+    </tr>
+    <tr>
+      <td>FileX 2.2</td>
+      <td>37197</td>
+    </tr>
+    <tr>
+      <td>anytag.wdx 1.00</td>
+      <td>35806</td>
+    </tr>
+    <tr>
+      <td>MediaInfoWDX 2.03</td>
+      <td>35476</td>
+    </tr>
+    <tr>
+      <td>WDX for Images 0.5</td>
+      <td>35384</td>
+    </tr>
+    <tr>
+      <td>Filename ChrCount 2.02</td>
+      <td>34628</td>
+    </tr>
+    <tr>
+      <td>Exif 2.3</td>
+      <td>33337</td>
+    </tr>
+    <tr>
+      <td>Exif plugin 1.47b</td>
+      <td>33108</td>
+    </tr>
+    <tr>
+      <td>Media 0.6.1</td>
+      <td>32331</td>
+    </tr>
+    <tr>
+      <td>NTLinks 1.6.0.244</td>
+      <td>31730</td>
+    </tr>
+    <tr>
+      <td>Autorun 2.1.1</td>
+      <td>28747</td>
+    </tr>
+    <tr>
+      <td>Opera_Cache 1.2</td>
+      <td>28116</td>
+    </tr>
+    <tr>
+      <td>LotsOfHashes 1.4</td>
+      <td>26741</td>
+    </tr>
+    <tr>
+      <td>NL_Info 1.20</td>
+      <td>23301</td>
+    </tr>
+    <tr>
+      <td>Image Info 1.42</td>
+      <td>23248</td>
+    </tr>
+    <tr>
+      <td>CDocProp 1.10</td>
+      <td>23050</td>
+    </tr>
+    <tr>
+      <td>FileDateTime 2.07</td>
+      <td>21231</td>
+    </tr>
+    <tr>
+      <td>SWF Content 1.2</td>
+      <td>20851</td>
+    </tr>
+    <tr>
+      <td>OpenOfficeInfo 1.3.0</td>
+      <td>20708</td>
+    </tr>
+    <tr>
+      <td>Translit_wdx 2.0.4.1</td>
+      <td>20690</td>
+    </tr>
+    <tr>
+      <td>Script Content Plugin 0.2.0.2</td>
+      <td>20668</td>
+    </tr>
+    <tr>
+      <td>ExeFormat 0.6a</td>
+      <td>20668</td>
+    </tr>
+    <tr>
+      <td>wdx_exeinfo 1.10</td>
+      <td>20079</td>
+    </tr>
+    <tr>
+      <td>wdx_global_diz 0.8b2</td>
+      <td>18894</td>
+    </tr>
+    <tr>
+      <td>File 1.30</td>
+      <td>18604</td>
+    </tr>
+    <tr>
+      <td>WDXTagLib</td>
+      <td>18542</td>
+    </tr>
+    <tr>
+      <td>Fast Fb2 wdx 1.2.14</td>
+      <td>17971</td>
+    </tr>
+    <tr>
+      <td>Torrent_wdx</td>
+      <td>17907</td>
+    </tr>
+    <tr>
+      <td>Directory 1.10</td>
+      <td>17783</td>
+    </tr>
+    <tr>
+      <td>Security Info 1.0.1</td>
+      <td>17682</td>
+    </tr>
+    <tr>
+      <td>id3 1.2</td>
+      <td>17024</td>
+    </tr>
+    <tr>
+      <td>Content plugin JPG-Comment 2.0</td>
+      <td>16946</td>
+    </tr>
+    <tr>
+      <td>crc32tag 0.25beta</td>
+      <td>16466</td>
+    </tr>
+    <tr>
+      <td>MP3Info 1.9</td>
+      <td>16257</td>
+    </tr>
+    <tr>
+      <td>APK-wdx 2.1</td>
+      <td>15988</td>
+    </tr>
+    <tr>
+      <td>TCMediaInfo 1.0.7</td>
+      <td>15530</td>
+    </tr>
+    <tr>
+      <td>RedHat Linux package content plugin 1.0.0</td>
+      <td>15460</td>
+    </tr>
+    <tr>
+      <td>Shortcut 2.10</td>
+      <td>14768</td>
+    </tr>
+    <tr>
+      <td>Debian Linux package plugin 1.02</td>
+      <td>14751</td>
+    </tr>
+    <tr>
+      <td>DateNames 1.03</td>
+      <td>14749</td>
+    </tr>
+    <tr>
+      <td>Simulink 1.1.1.0</td>
+      <td>14562</td>
+    </tr>
+    <tr>
+      <td>RarColumns</td>
+      <td>13387</td>
+    </tr>
+    <tr>
+      <td>XPIInfo 1.1d</td>
+      <td>13381</td>
+    </tr>
+    <tr>
+      <td>EML info 0.9</td>
+      <td>13315</td>
+    </tr>
+    <tr>
+      <td>Office2007wdx 0.0.3</td>
+      <td>13250</td>
+    </tr>
+    <tr>
+      <td>wdHash 1.0</td>
+      <td>13164</td>
+    </tr>
+    <tr>
+      <td>Summary 1.10</td>
+      <td>13026</td>
+    </tr>
+    <tr>
+      <td>regexp_wdx 0.1.0.4</td>
+      <td>12536</td>
+    </tr>
+    <tr>
+      <td>CDR info 0.3 (11)</td>
+      <td>12471</td>
+    </tr>
+    <tr>
+      <td>Permissions 1.11</td>
+      <td>12423</td>
+    </tr>
+    <tr>
+      <td>RarInfo 0.9 beta</td>
+      <td>12183</td>
+    </tr>
+    <tr>
+      <td>NTFS Descriptions 1.2.1</td>
+      <td>12173</td>
+    </tr>
+    <tr>
+      <td>SVNdetails 3.10</td>
+      <td>12128</td>
+    </tr>
+    <tr>
+      <td>expander 0.1</td>
+      <td>12078</td>
+    </tr>
+    <tr>
+      <td>MediaInfo 22.03</td>
+      <td>11976</td>
+    </tr>
+    <tr>
+      <td>URL Grank 1.0.1.0</td>
+      <td>11931</td>
+    </tr>
+    <tr>
+      <td>TypeLib Info 1.0</td>
+      <td>11383</td>
+    </tr>
+    <tr>
+      <td>ExifToolWDX 1.04</td>
+      <td>11365</td>
+    </tr>
+    <tr>
+      <td>EML New 1.3.1</td>
+      <td>11229</td>
+    </tr>
+    <tr>
+      <td>TrID 0.1</td>
+      <td>11219</td>
+    </tr>
+    <tr>
+      <td>Age 1.04</td>
+      <td>10903</td>
+    </tr>
+    <tr>
+      <td>Total SQX Content 2.1</td>
+      <td>10273</td>
+    </tr>
+    <tr>
+      <td>Palm DB File info content plugin 1.0</td>
+      <td>10248</td>
+    </tr>
+    <tr>
+      <td>readGbx 1</td>
+      <td>9838</td>
+    </tr>
+    <tr>
+      <td>MIDlet 1.0.2</td>
+      <td>9724</td>
+    </tr>
+    <tr>
+      <td>decID3WDX 2.0</td>
+      <td>9261</td>
+    </tr>
+    <tr>
+      <td>7zip info 0.2.3</td>
+      <td>9170</td>
+    </tr>
+    <tr>
+      <td>PCREsearch 2.5</td>
+      <td>8907</td>
+    </tr>
+    <tr>
+      <td>NTFS Stream 1.0.1.59</td>
+      <td>8699</td>
+    </tr>
+    <tr>
+      <td>eBookInfo WDX 1.0.4</td>
+      <td>8631</td>
+    </tr>
+    <tr>
+      <td>Expander2 0.5.1</td>
+      <td>8628</td>
+    </tr>
+    <tr>
+      <td>wdx_Eml</td>
+      <td>8569</td>
+    </tr>
+    <tr>
+      <td>ExeFormat_64 0.6c</td>
+      <td>8539</td>
+    </tr>
+    <tr>
+      <td>NTFSFileStreams.wdx 1.5</td>
+      <td>8452</td>
+    </tr>
+    <tr>
+      <td>Office2007wdx_64 0.0.3.1</td>
+      <td>7990</td>
+    </tr>
+    <tr>
+      <td>SEO HTML 2.0</td>
+      <td>7892</td>
+    </tr>
+    <tr>
+      <td>HashSys 0.2</td>
+      <td>7868</td>
+    </tr>
+    <tr>
+      <td>Text Line 1.1.0</td>
+      <td>7739</td>
+    </tr>
+    <tr>
+      <td>cputil 1.2</td>
+      <td>7623</td>
+    </tr>
+    <tr>
+      <td>MediaTime 1.1</td>
+      <td>7618</td>
+    </tr>
+    <tr>
+      <td>Tempus 1.01</td>
+      <td>7595</td>
+    </tr>
+    <tr>
+      <td>Misc 1.06</td>
+      <td>7443</td>
+    </tr>
+    <tr>
+      <td>MhtUnPack 2.2</td>
+      <td>7212</td>
+    </tr>
+    <tr>
+      <td>Similarity 0.02</td>
+      <td>7200</td>
+    </tr>
+    <tr>
+      <td>ZipType 1.0</td>
+      <td>7093</td>
+    </tr>
+    <tr>
+      <td>EmptyCheck 1.0.0.0</td>
+      <td>6942</td>
+    </tr>
+    <tr>
+      <td>Fast Fb2 Epub 2.8.2</td>
+      <td>6899</td>
+    </tr>
+    <tr>
+      <td>CDA File Info 1.0</td>
+      <td>6795</td>
+    </tr>
+    <tr>
+      <td>Group Sort 0.8.2b</td>
+      <td>6754</td>
+    </tr>
+    <tr>
+      <td>WinScript Advanced 1.7</td>
+      <td>6726</td>
+    </tr>
+    <tr>
+      <td>SVGwdx 0.0.1</td>
+      <td>6681</td>
+    </tr>
+    <tr>
+      <td>EncInfo 1.2.1</td>
+      <td>6628</td>
+    </tr>
+    <tr>
+      <td>AKFontInfo 1.5</td>
+      <td>6490</td>
+    </tr>
+    <tr>
+      <td>MKInfoCP 1.0.3</td>
+      <td>6456</td>
+    </tr>
+    <tr>
+      <td>Image 1.10</td>
+      <td>6454</td>
+    </tr>
+    <tr>
+      <td>AKMedia 2.3</td>
+      <td>6295</td>
+    </tr>
+    <tr>
+      <td>SWF Content New 1.0</td>
+      <td>6272</td>
+    </tr>
+    <tr>
+      <td>RegInfo 21.05.2005</td>
+      <td>6137</td>
+    </tr>
+    <tr>
+      <td>wdx_Rename 0.5a</td>
+      <td>6101</td>
+    </tr>
+    <tr>
+      <td>pdfOCR 0.9</td>
+      <td>6057</td>
+    </tr>
+    <tr>
+      <td>EmptyWDX 0.0.2</td>
+      <td>6057</td>
+    </tr>
+    <tr>
+      <td>decIcoWDX 2.0</td>
+      <td>6030</td>
+    </tr>
+    <tr>
+      <td>FileScanner 1.0</td>
+      <td>6024</td>
+    </tr>
+    <tr>
+      <td>wdx_Code</td>
+      <td>5899</td>
+    </tr>
+    <tr>
+      <td>FileTime Delta 1.3</td>
+      <td>5816</td>
+    </tr>
+    <tr>
+      <td>anyXML 0.3.3</td>
+      <td>5783</td>
+    </tr>
+    <tr>
+      <td>Bitchaos 0.1</td>
+      <td>5702</td>
+    </tr>
+    <tr>
+      <td>FileContent 1.10</td>
+      <td>5669</td>
+    </tr>
+    <tr>
+      <td>In4Info 1.3.3</td>
+      <td>5539</td>
+    </tr>
+    <tr>
+      <td>RichText 0.3</td>
+      <td>5494</td>
+    </tr>
+    <tr>
+      <td>TcSvn 1.0</td>
+      <td>5461</td>
+    </tr>
+    <tr>
+      <td>FileGroups 1.10</td>
+      <td>5444</td>
+    </tr>
+    <tr>
+      <td>ShareInfo 1.10</td>
+      <td>5361</td>
+    </tr>
+    <tr>
+      <td>super_wdx 2.4.0.3 beta</td>
+      <td>5241</td>
+    </tr>
+    <tr>
+      <td>FileInDir 2.0.0.2</td>
+      <td>5193</td>
+    </tr>
+    <tr>
+      <td>IsDotNET 1.0.6</td>
+      <td>5182</td>
+    </tr>
+    <tr>
+      <td>ShellInfo 1.10</td>
+      <td>5159</td>
+    </tr>
+    <tr>
+      <td>Jad Info 1.0.2</td>
+      <td>5149</td>
+    </tr>
+    <tr>
+      <td>Volume 1.10</td>
+      <td>5083</td>
+    </tr>
+    <tr>
+      <td>NicePaths 1.10</td>
+      <td>5060</td>
+    </tr>
+    <tr>
+      <td>decRecycleBinWDX 2019.02.03</td>
+      <td>5017</td>
+    </tr>
+    <tr>
+      <td>Attributes 1.50</td>
+      <td>5016</td>
+    </tr>
+    <tr>
+      <td>IconLibrary 1.10</td>
+      <td>4961</td>
+    </tr>
+    <tr>
+      <td>decHexWDX 1.0.0.3</td>
+      <td>4880</td>
+    </tr>
+    <tr>
+      <td>FileInDir 1.1</td>
+      <td>4874</td>
+    </tr>
+    <tr>
+      <td>wdx_nm2_info 0.1</td>
+      <td>4827</td>
+    </tr>
+    <tr>
+      <td>GSF Info 1.0</td>
+      <td>4736</td>
+    </tr>
+    <tr>
+      <td>SkipCompare 1.0.0.30</td>
+      <td>4618</td>
+    </tr>
+    <tr>
+      <td>SVGwdx_64 0.0.1.1</td>
+      <td>4516</td>
+    </tr>
+    <tr>
+      <td>Persian Calendar 0.95 beta</td>
+      <td>4483</td>
+    </tr>
+    <tr>
+      <td>ShedkoBadgesTC 1.0</td>
+      <td>4477</td>
+    </tr>
+    <tr>
+      <td>Today 1.6</td>
+      <td>4430</td>
+    </tr>
+    <tr>
+      <td>Groups 1.0.2.1</td>
+      <td>4414</td>
+    </tr>
+    <tr>
+      <td>firstByte 0.5</td>
+      <td>4341</td>
+    </tr>
+    <tr>
+      <td>NameCompare 1.0.0.24</td>
+      <td>4334</td>
+    </tr>
+    <tr>
+      <td>NFCname 1.1</td>
+      <td>4256</td>
+    </tr>
+    <tr>
+      <td>RPM_wdx_64 1.0.1</td>
+      <td>4159</td>
+    </tr>
+    <tr>
+      <td>decAdobeSaveWDX 1.0</td>
+      <td>4004</td>
+    </tr>
+    <tr>
+      <td>Cert 1.0</td>
+      <td>3995</td>
+    </tr>
+    <tr>
+      <td>AKVegasUsage 1.0.2.1</td>
+      <td>3909</td>
+    </tr>
+    <tr>
+      <td>TrID_Identifier 1.0</td>
+      <td>3822</td>
+    </tr>
+    <tr>
+      <td>Palm DB File info content plugin 2 - 1.0</td>
+      <td>3779</td>
+    </tr>
+    <tr>
+      <td>decPeExtraWDX 2016.02.20</td>
+      <td>3690</td>
+    </tr>
+    <tr>
+      <td>SVGInfo 1.0.2</td>
+      <td>3515</td>
+    </tr>
+    <tr>
+      <td>wdx_global_diz 0.9</td>
+      <td>3373</td>
+    </tr>
+    <tr>
+      <td>decTCPluginInfoWDX 2016.03.22</td>
+      <td>3303</td>
+    </tr>
+    <tr>
+      <td>CDA Info New 1.0.1</td>
+      <td>3258</td>
+    </tr>
+    <tr>
+      <td>wdx_xml 0.3.1</td>
+      <td>3119</td>
+    </tr>
+    <tr>
+      <td>XPI_Info 1.0.2</td>
+      <td>2956</td>
+    </tr>
+    <tr>
+      <td>RarInfoNew 1.2.1</td>
+      <td>2928</td>
+    </tr>
+    <tr>
+      <td>WDX_GitCommander 2.0.1.0</td>
+      <td>2442</td>
+    </tr>
+    <tr>
+      <td>MIME Info 1.0</td>
+      <td>2382</td>
+    </tr>
+    <tr>
+      <td>WebpInfo 1.0.1</td>
+      <td>2100</td>
+    </tr>
+    <tr>
+      <td>kbyte 0.2</td>
+      <td>2086</td>
+    </tr>
+    <tr>
+      <td>7zip Info 2.0.0.0</td>
+      <td>2017</td>
+    </tr>
+    <tr>
+      <td>PngInfo 1.0.3</td>
+      <td>1831</td>
+    </tr>
+    <tr>
+      <td>JpegQuality 1.0.1</td>
+      <td>1796</td>
+    </tr>
+    <tr>
+      <td>ZipType 2.0.1.0</td>
+      <td>1766</td>
+    </tr>
+    <tr>
+      <td>PsdInfo 1.0.1</td>
+      <td>1156</td>
+    </tr>
+    <tr>
+      <td>CertificateInfo 0.3.0</td>
+      <td>951</td>
+    </tr>
+    <tr>
+      <td>TiffInfo 1.0</td>
+      <td>915</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="icon-包">Icon 包</h3>
+
+<p><a href="https://totalcmd.net/directory/iconpack.html">Icon 包</a>下载排名。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>name</th>
+      <th>download_times</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>X-Qute Button Bar Icons 1.60</td>
+      <td>74880</td>
+    </tr>
+    <tr>
+      <td>tcmd.xp</td>
+      <td>59322</td>
+    </tr>
+    <tr>
+      <td>tcmd.vista</td>
+      <td>52632</td>
+    </tr>
+    <tr>
+      <td>TCIcons 1.0</td>
+      <td>42099</td>
+    </tr>
+    <tr>
+      <td>XPStyle Icons Pack 1.0</td>
+      <td>39762</td>
+    </tr>
+    <tr>
+      <td>Windows XP 0.06</td>
+      <td>35468</td>
+    </tr>
+    <tr>
+      <td>ALESY Button Bar 1.0</td>
+      <td>33043</td>
+    </tr>
+    <tr>
+      <td>Object icons TC WinXP 0.9</td>
+      <td>32493</td>
+    </tr>
+    <tr>
+      <td>XPdreams ICL</td>
+      <td>32053</td>
+    </tr>
+    <tr>
+      <td>Drive buttons TC DriveXP 0.3</td>
+      <td>27983</td>
+    </tr>
+    <tr>
+      <td>GANT Icon Pack</td>
+      <td>24543</td>
+    </tr>
+    <tr>
+      <td>tcmd.fullpack</td>
+      <td>23706</td>
+    </tr>
+    <tr>
+      <td>tcmd.op75</td>
+      <td>23022</td>
+    </tr>
+    <tr>
+      <td>TrueXP ICL</td>
+      <td>22463</td>
+    </tr>
+    <tr>
+      <td>Soul_XP_icl 1.0</td>
+      <td>21969</td>
+    </tr>
+    <tr>
+      <td>MS Office 2003 IconLib for Total Commander</td>
+      <td>20207</td>
+    </tr>
+    <tr>
+      <td>Total Se7en v.1.0</td>
+      <td>20067</td>
+    </tr>
+    <tr>
+      <td>tGL ICL</td>
+      <td>19960</td>
+    </tr>
+    <tr>
+      <td>caramel WCMICONS.DLL 0.2 beta</td>
+      <td>18593</td>
+    </tr>
+    <tr>
+      <td>oxy-gnome icon library for TC</td>
+      <td>18000</td>
+    </tr>
+    <tr>
+      <td>flat_wcmicons 1.0.2</td>
+      <td>17776</td>
+    </tr>
+    <tr>
+      <td>Object icons TC WinClassic 0.8</td>
+      <td>17449</td>
+    </tr>
+    <tr>
+      <td>TheBat IconLib for Total Commander</td>
+      <td>17357</td>
+    </tr>
+    <tr>
+      <td>Drivebmp Candy</td>
+      <td>16992</td>
+    </tr>
+    <tr>
+      <td>Total7_icons (Disks &amp; Files) 0.1b</td>
+      <td>16550</td>
+    </tr>
+    <tr>
+      <td>Drivebmp Orion(Amber)</td>
+      <td>14986</td>
+    </tr>
+    <tr>
+      <td>Drivebmp Orion(Universal)</td>
+      <td>14835</td>
+    </tr>
+    <tr>
+      <td>Total7 Fugue icons (Toolbars &amp; Menus) 0.1</td>
+      <td>14618</td>
+    </tr>
+    <tr>
+      <td>tcmd.op72</td>
+      <td>14119</td>
+    </tr>
+    <tr>
+      <td>Fenix icons library 0.1</td>
+      <td>13301</td>
+    </tr>
+    <tr>
+      <td>Imagine Toolbar v.2.0</td>
+      <td>13243</td>
+    </tr>
+    <tr>
+      <td>tc_disk_icons v.1.0</td>
+      <td>12535</td>
+    </tr>
+    <tr>
+      <td>GNOME icon theme 1</td>
+      <td>11314</td>
+    </tr>
+    <tr>
+      <td>tcmd.2013</td>
+      <td>10305</td>
+    </tr>
+    <tr>
+      <td>flat_FileIcons 1.0.0</td>
+      <td>10170</td>
+    </tr>
+    <tr>
+      <td>Mac exe ICL</td>
+      <td>10118</td>
+    </tr>
+    <tr>
+      <td>tcm-plus pack</td>
+      <td>9791</td>
+    </tr>
+    <tr>
+      <td>Flat Drives Icons 1.0</td>
+      <td>9024</td>
+    </tr>
+    <tr>
+      <td>Imagine Toolbar v.1.0</td>
+      <td>6907</td>
+    </tr>
+    <tr>
+      <td>Comicicons2 0.2</td>
+      <td>6430</td>
+    </tr>
+  </tbody>
+</table>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><div class="line-1"><span class="kn">import</span> <span class="n">requests</span>
+</div><div class="line-2"><span class="kn">from</span> <span class="n">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+</div><div class="line-3">
+</div><div class="line-4"><span class="n">url_list</span> <span class="o">=</span> <span class="p">(</span>
+</div><div class="line-5">    <span class="sh">"</span><span class="s">https://totalcmd.net/directory/fsplugin.html</span><span class="sh">"</span><span class="p">,</span>
+</div><div class="line-6">    <span class="sh">"</span><span class="s">https://totalcmd.net/directory/util.html</span><span class="sh">"</span><span class="p">,</span>
+</div><div class="line-7">    <span class="sh">"</span><span class="s">https://totalcmd.net/directory/lister.html</span><span class="sh">"</span><span class="p">,</span>
+</div><div class="line-8">    <span class="sh">"</span><span class="s">https://totalcmd.net/directory/packer.html</span><span class="sh">"</span><span class="p">,</span>
+</div><div class="line-9">    <span class="sh">"</span><span class="s">https://totalcmd.net/directory/content.html</span><span class="sh">"</span><span class="p">,</span>
+</div><div class="line-10">    <span class="sh">"</span><span class="s">https://totalcmd.net/directory/iconpack.html</span><span class="sh">"</span><span class="p">,</span>
+</div><div class="line-11"><span class="p">)</span>
+</div><div class="line-12">
+</div><div class="line-13"><span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">url_list</span><span class="p">:</span>
+</div><div class="line-14">    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</div><div class="line-15">    <span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">content</span><span class="p">,</span> <span class="sh">'</span><span class="s">html.parser</span><span class="sh">'</span><span class="p">)</span>
+</div><div class="line-16">
+</div><div class="line-17">    <span class="n">titles</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="nf">find_all</span><span class="p">(</span><span class="sh">'</span><span class="s">h3</span><span class="sh">'</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">class</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">})</span>
+</div><div class="line-18">    <span class="n">downloads</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="nf">find_all</span><span class="p">(</span><span class="sh">'</span><span class="s">p</span><span class="sh">'</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">class</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">opis</span><span class="sh">'</span><span class="p">})</span>
+</div><div class="line-19">
+</div><div class="line-20">    <span class="n">file_name</span> <span class="o">=</span> <span class="n">url</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">'</span><span class="s">/</span><span class="sh">'</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="nf">split</span><span class="p">(</span><span class="sh">'</span><span class="s">.</span><span class="sh">'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="sh">'</span><span class="s">.csv</span><span class="sh">'</span>
+</div><div class="line-21">    <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">out_file</span><span class="p">:</span>
+</div><div class="line-22">        <span class="n">out_file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sh">'</span><span class="s">name,download_times</span><span class="se">\n</span><span class="sh">'</span><span class="p">)</span>
+</div><div class="line-23">        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">titles</span><span class="p">)):</span>
+</div><div class="line-24">            <span class="n">title</span> <span class="o">=</span> <span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="nf">find</span><span class="p">(</span><span class="sh">'</span><span class="s">a</span><span class="sh">'</span><span class="p">).</span><span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
+</div><div class="line-25">            <span class="n">download_text</span> <span class="o">=</span> <span class="n">downloads</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="nf">find</span><span class="p">(</span><span class="sh">'</span><span class="s">small</span><span class="sh">'</span><span class="p">).</span><span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
+</div><div class="line-26">            <span class="n">downloads_count</span> <span class="o">=</span> <span class="n">download_text</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">'</span><span class="s">Downloaded</span><span class="sh">'</span><span class="p">)[</span><span class="mi">1</span><span class="p">].</span><span class="nf">strip</span><span class="p">().</span><span class="nf">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">].</span><span class="nf">replace</span><span class="p">(</span><span class="sh">"</span><span class="s">,</span><span class="sh">"</span><span class="p">,</span><span class="sh">""</span><span class="p">)</span>
+</div><div class="line-27">            <span class="n">out_file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sa">f</span><span class="sh">'"</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="sh">"</span><span class="s">,</span><span class="si">{</span><span class="n">downloads_count</span><span class="si">}</span><span class="se">\n</span><span class="sh">'</span><span class="p">)</span>
+</div></code></pre></figure>
+
+<h2 id="参考资料">参考资料</h2>
+
+<p><a href="https://xbeta.info/studytc/index.htm" title="善用佳软">TC学堂——最易读的Total Commander教程</a></p>
+
+<p><a href="https://totalcmd.net/">totalcmd.net</a></p>
+
+<p><a href="https://www.ghisler.ch/board/">TC 官方论坛</a></p>
+
+<p><a href="https://www.ghisler.com/addons.htm">TC 官网</a></p>]]></content><author><name></name></author><category term="软件技术" /><category term="TotalCommander" /></entry><entry><title type="html">Docker 使用手册</title><link href="https://algony-tony.github.io/docker-cheatsheet/" rel="alternate" type="text/html" title="Docker 使用手册" /><published>2023-03-25T00:00:00+08:00</published><updated>2023-03-25T00:00:00+08:00</updated><id>https://algony-tony.github.io/docker-cheatsheet</id><content type="html" xml:base="https://algony-tony.github.io/docker-cheatsheet/"><![CDATA[<h2 id="docker-安装">Docker 安装</h2>
+
+<p>安装 <code class="language-plaintext highlighter-rouge">yum-utils</code> 以使用它提供的 <code class="language-plaintext highlighter-rouge">yum-config-manager</code> 工具，添加 Docker 的社区版本仓库 docker-ce。</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1"><span class="nb">sudo </span>yum <span class="nb">install</span> <span class="nt">-y</span> yum-utils
+</div><div class="line-2"><span class="nb">sudo </span>yum-config-manager <span class="se">\</span>
+</div><div class="line-3">    <span class="nt">--add-repo</span> <span class="se">\</span>
+</div><div class="line-4">    https://download.docker.com/linux/centos/docker-ce.repo
+</div><div class="line-5">
+</div><div class="line-6"><span class="c"># Install Docker</span>
+</div><div class="line-7"><span class="nb">sudo </span>yum <span class="nb">install </span>docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+</div><div class="line-8">
+</div><div class="line-9"><span class="c"># Start Docker</span>
+</div><div class="line-10"><span class="nb">sudo </span>systemctl start docker
+</div><div class="line-11"><span class="nb">sudo </span>systemctl <span class="nb">enable </span>docker
+</div><div class="line-12">
+</div><div class="line-13"><span class="c"># Verify</span>
+</div><div class="line-14"><span class="nb">sudo </span>docker run hello-world
+</div></code></pre></figure>
+
+<h2 id="docker-常用命令">Docker 常用命令</h2>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1"><span class="c"># 显示命令帮助文档</span>
+</div><div class="line-2">docker <span class="nb">help</span>
+</div><div class="line-3">docker run <span class="nt">--help</span>
+</div><div class="line-4">
+</div><div class="line-5"><span class="c"># 列出本地镜像</span>
+</div><div class="line-6">docker images
+</div><div class="line-7">
+</div><div class="line-8"><span class="c"># 列出本地已启动容器</span>
+</div><div class="line-9">docker ps
+</div><div class="line-10">
+</div><div class="line-11"><span class="c"># 查看所有容 包括停止的容器</span>
+</div><div class="line-12">docker ps <span class="nt">-a</span>
+</div><div class="line-13">
+</div><div class="line-14"><span class="c"># -q 参数，只显示 container id</span>
+</div><div class="line-15">docker ps <span class="nt">-q</span>
+</div><div class="line-16">
+</div><div class="line-17"><span class="c"># 启动止容器</span>
+</div><div class="line-18">docker start &lt;container-id&gt;
+</div><div class="line-19">
+</div><div class="line-20"><span class="c"># 重启容器</span>
+</div><div class="line-21">docker restart &lt;container-id&gt;
+</div><div class="line-22">
+</div><div class="line-23"><span class="c"># 关闭容器</span>
+</div><div class="line-24">docker <span class="nb">kill</span> &lt;container-id&gt;
+</div><div class="line-25">docker stop &lt;container-id&gt;
+</div><div class="line-26">
+</div><div class="line-27"><span class="c"># 删除容器</span>
+</div><div class="line-28">docker <span class="nb">rm</span> &lt;container-id&gt;
+</div><div class="line-29">
+</div><div class="line-30"><span class="c"># 查看日志文件</span>
+</div><div class="line-31">docker logs <span class="nt">-f</span> &lt;container-name&gt;
+</div></code></pre></figure>
+
+<h2 id="参考资料">参考资料</h2>
+
+<p><a href="https://docs.docker.com/engine/install/centos/">Install Docker Engine on CentOS</a></p>]]></content><author><name></name></author><category term="软件技术" /><category term="Docker" /><summary type="html"><![CDATA[Docker 安装]]></summary></entry></feed>
