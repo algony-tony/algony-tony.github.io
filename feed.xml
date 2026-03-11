@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://algony-tony.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://algony-tony.github.io/" rel="alternate" type="text/html" /><updated>2025-07-04T00:06:53+08:00</updated><id>https://algony-tony.github.io/feed.xml</id><title type="html">Algony Tony</title><subtitle>etvdyn</subtitle><entry><title type="html">SVG 基础形状中的路径 Path</title><link href="https://algony-tony.github.io/wx-svg03/" rel="alternate" type="text/html" title="SVG 基础形状中的路径 Path" /><published>2025-06-15T00:00:00+08:00</published><updated>2025-06-15T00:00:00+08:00</updated><id>https://algony-tony.github.io/wx-svg03</id><content type="html" xml:base="https://algony-tony.github.io/wx-svg03/"><![CDATA[<ul id="markdown-toc">
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://algony-tony.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://algony-tony.github.io/" rel="alternate" type="text/html" /><updated>2026-03-12T00:47:41+08:00</updated><id>https://algony-tony.github.io/feed.xml</id><title type="html">Algony Tony</title><subtitle>etvdyn</subtitle><entry><title type="html">SVG 基础形状中的路径 Path</title><link href="https://algony-tony.github.io/wx-svg03/" rel="alternate" type="text/html" title="SVG 基础形状中的路径 Path" /><published>2025-06-15T00:00:00+08:00</published><updated>2025-06-15T00:00:00+08:00</updated><id>https://algony-tony.github.io/wx-svg03</id><content type="html" xml:base="https://algony-tony.github.io/wx-svg03/"><![CDATA[<ul id="markdown-toc">
   <li><a href="#直线" id="markdown-toc-直线">直线</a></li>
   <li><a href="#曲线" id="markdown-toc-曲线">曲线</a>    <ul>
       <li><a href="#二次贝塞尔曲线-q" id="markdown-toc-二次贝塞尔曲线-q">二次贝塞尔曲线 Q</a></li>
@@ -3231,6 +3231,16 @@ tcp.port == 80 or tcp.port == 443 or tcp.port == 8080
 </div><div class="line-2">    HostName github.com
 </div><div class="line-3">    User git
 </div><div class="line-4">    ProxyCommand connect <span class="nt">-H</span> 127.0.0.1:18889 %h %p
+</div></code></pre></figure>
+
+<p>还可以在配置中指定本地的私钥文件 <code class="language-plaintext highlighter-rouge">IdentityFile</code>，格式如下。</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1">Host github.com
+</div><div class="line-2">    HostName github.com
+</div><div class="line-3">    User git
+</div><div class="line-4">    IdentityFile ~/.ssh/id_ed25519
+</div><div class="line-5">    IdentitiesOnly <span class="nb">yes</span>
+</div><div class="line-6"><span class="nb">    </span>ProxyCommand connect <span class="nt">-H</span> 127.0.0.1:18889 %h %p
 </div></code></pre></figure>]]></content><author><name></name></author><category term="软件技术" /><category term="git" /><summary type="html"><![CDATA[Git 代理]]></summary></entry><entry><title type="html">Total Commander 配置使用</title><link href="https://algony-tony.github.io/totalcommander-cheatsheet/" rel="alternate" type="text/html" title="Total Commander 配置使用" /><published>2023-03-29T00:00:00+08:00</published><updated>2023-03-29T00:00:00+08:00</updated><id>https://algony-tony.github.io/totalcommander-cheatsheet</id><content type="html" xml:base="https://algony-tony.github.io/totalcommander-cheatsheet/"><![CDATA[<ul id="markdown-toc">
   <li><a href="#绿色版-tc" id="markdown-toc-绿色版-tc">绿色版 TC</a></li>
   <li><a href="#快捷键" id="markdown-toc-快捷键">快捷键</a></li>

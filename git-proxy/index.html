@@ -190,6 +190,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div><div class="line-4">    ProxyCommand connect <span class="nt">-H</span> 127.0.0.1:18889 %h %p
 </div></code></pre></figure>
 
+<p>还可以在配置中指定本地的私钥文件 <code class="language-plaintext highlighter-rouge">IdentityFile</code>，格式如下。</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1">Host github.com
+</div><div class="line-2">    HostName github.com
+</div><div class="line-3">    User git
+</div><div class="line-4">    IdentityFile ~/.ssh/id_ed25519
+</div><div class="line-5">    IdentitiesOnly <span class="nb">yes</span>
+</div><div class="line-6"><span class="nb">    </span>ProxyCommand connect <span class="nt">-H</span> 127.0.0.1:18889 %h %p
+</div></code></pre></figure>
+
         </div>
 
         
