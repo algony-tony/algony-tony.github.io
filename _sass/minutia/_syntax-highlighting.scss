@@ -1,4 +1,5 @@
-@import "nimbus-pygments/nimbus-pygments.scss";
+@use 'variables' as *;
+@use 'nimbus-pygments/nimbus-pygments' as *;
 
 /**
  * Code formatting

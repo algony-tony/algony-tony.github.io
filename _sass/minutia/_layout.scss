@@ -1,3 +1,5 @@
+@use 'variables' as *;
+
 /* Site header */
 .site-avatar {
     float: left;
@@ -193,13 +195,13 @@
 
 
 .right {
-    @include media-query($on-laptop) {
-        display: none;
-    }
-
     position: sticky;
     top: calc($spacing-unit / 2);
     margin-left: calc($spacing-unit / 2);
+
+    @include media-query($on-laptop) {
+        display: none;
+    }
 
     // .side-wrap {
     //     overflow-x: hidden;
