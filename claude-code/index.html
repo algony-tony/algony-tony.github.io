@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PQ63V8S');</script>
+<!-- End Google Tag Manager -->
+
+    
+
+
+    <title>Claude Code 使用手册 – Algony Tony – etvdyn</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="" />
+    <meta property="og:description" content="" />
+    
+    <meta name="author" content="Algony Tony" />
+
+    
+    <meta property="og:title" content="Claude Code 使用手册" />
+    <meta property="twitter:title" content="Claude Code 使用手册" />
+    
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+    <link rel="alternate" type="application/rss+xml" title="Algony Tony - etvdyn" href="/feed.xml" />
+
+    
+
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3291441471504209"
+     crossorigin="anonymous"></script>
+
+
+    <link type="application/atom+xml" rel="alternate" href="https://algony-tony.github.io/feed.xml" title="Algony Tony" />
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Claude Code 使用手册 | Algony Tony</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Claude Code 使用手册" />
+<meta property="og:locale" content="zh_CN" />
+<meta name="description" content="etvdyn" />
+<meta property="og:description" content="etvdyn" />
+<link rel="canonical" href="https://algony-tony.github.io/claude-code/" />
+<meta property="og:url" content="https://algony-tony.github.io/claude-code/" />
+<meta property="og:site_name" content="Algony Tony" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-03-18T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Claude Code 使用手册" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-03-18T00:00:00+08:00","datePublished":"2026-03-18T00:00:00+08:00","description":"etvdyn","headline":"Claude Code 使用手册","mainEntityOfPage":{"@type":"WebPage","@id":"https://algony-tony.github.io/claude-code/"},"url":"https://algony-tony.github.io/claude-code/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  </head>
+
+  <body>
+
+    
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQ63V8S"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+    <header class="site-header">
+
+    <div class="wrapper-header">
+      <div class="header-left">
+        <!-- <a href="/" class="site-avatar"><img src="/assets/img/sys/jekyll-logo.png" alt="avatar" /></a> -->
+
+        <a class="site-info" href="/">
+          <span class="site-name">Algony Tony</span>
+          <span class="site-description">etvdyn</span>
+        </a>
+
+      </div>
+
+      <nav class="header-right">
+        
+        <a href="/"  class="page-link"  >
+          首页
+        </a>
+        
+        <a href="/WebMap/"  class="page-link"  >
+          导航
+        </a>
+        
+        <a href="/tools/"  class="page-link"  >
+          工具
+        </a>
+        
+        <a href="/collections/"  class="page-link"  >
+          归档
+        </a>
+        
+      </nav>
+    </div>
+
+</header>
+
+
+    <main class="default-content" aria-label="内容区">
+  <div class="wrapper-content">
+
+    <article class="post">
+      <div class="left">
+        <h1>Claude Code 使用手册</h1>
+        <div class="label">
+
+          <div class="label-date">
+            2026-03-18
+          </div>
+
+          <div class="label-category">
+            <span >类别:</span>
+
+<a class="category-link" href="https://algony-tony.github.io/category/#软件技术" title="Category: 软件技术">
+  软件技术
+</a>
+
+
+          </div>
+
+          <div class="label-tag">
+            <span >标签:</span>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#AI" title="Tag: AI">
+  AI
+</a>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#Claude" title="Tag: Claude">
+  Claude
+</a>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#编程工具" title="Tag: 编程工具">
+  编程工具
+</a>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#LLM" title="Tag: LLM">
+  LLM
+</a>
+
+          </div>
+
+        </div>
+
+        <div class="entry">
+          <ul id="markdown-toc">
+  <li><a href="#安装" id="markdown-toc-安装">安装</a></li>
+  <li><a href="#斜杠命令" id="markdown-toc-斜杠命令">斜杠命令</a></li>
+  <li><a href="#权限模式" id="markdown-toc-权限模式">权限模式</a></li>
+  <li><a href="#大模型-llm" id="markdown-toc-大模型-llm">大模型 LLM</a></li>
+  <li><a href="#核心概念" id="markdown-toc-核心概念">核心概念</a>    <ul>
+      <li><a href="#tool" id="markdown-toc-tool">Tool</a></li>
+      <li><a href="#plugin" id="markdown-toc-plugin">Plugin</a></li>
+      <li><a href="#claudemd" id="markdown-toc-claudemd">CLAUDE.md</a></li>
+      <li><a href="#agent" id="markdown-toc-agent">Agent</a></li>
+      <li><a href="#skill" id="markdown-toc-skill">Skill</a></li>
+      <li><a href="#hook" id="markdown-toc-hook">Hook</a></li>
+      <li><a href="#mcp" id="markdown-toc-mcp">MCP</a></li>
+      <li><a href="#memory" id="markdown-toc-memory">Memory</a></li>
+    </ul>
+  </li>
+  <li><a href="#参考链接" id="markdown-toc-参考链接">参考链接</a></li>
+</ul>
+
+<p>Anthropic 推出的终端 AI 编程工具，直接在命令行中读写文件、执行命令、理解整个代码仓库上下文。其实它可以做更多，可以管理你的电脑，只要你给它足够的权限，可以让它帮你安装软件，整理文件，清理系统等等等等。</p>
+
+<h2 id="安装">安装</h2>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1">npm <span class="nb">install</span> <span class="nt">-g</span> @anthropic-ai/claude-code
+</div></code></pre></figure>
+
+<p>也可以临时从淘宝镜像里安装。</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1">npm <span class="nb">install</span> <span class="nt">-g</span> @anthropic-ai/claude-code <span class="nt">--registry</span><span class="o">=</span>https://registry.npmmirror.com
+</div></code></pre></figure>
+
+<p>在命令行里进入项目目录后敲入 <code class="language-plaintext highlighter-rouge">claude</code> 就启动了，首次启动需要完成认证，可以用他家的 API Key 来使用（这个是按量付费的），也可以用 Anthropic 账号登陆，Claude Pro / Max 订阅用户有免费额度，在 Claude Code 里用命令 <code class="language-plaintext highlighter-rouge">status</code> 里的 Usage 可以查看5小时滚动和周额度使用情况。</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1"><span class="nb">cd </span>your-project
+</div><div class="line-2">claude
+</div></code></pre></figure>
+
+<p>安装好后就可以直接和它对话，有什么想做的事情就让它去做就行了。</p>
+
+<h2 id="斜杠命令">斜杠命令</h2>
+
+<p>官方文档：<a href="https://code.claude.com/docs/en/commands">Commands Reference</a></p>
+
+<p>在提示框中输入 <code class="language-plaintext highlighter-rouge">/</code> 后就跟着命令。自定义 Skill 也以斜杠命令形式调用。MCP 服务接入后还会动态出现 <code class="language-plaintext highlighter-rouge">/mcp__&lt;server&gt;__&lt;prompt&gt;</code> 格式的命令。</p>
+
+<p>下面是一些常用的命令，后面的参数的尖括号是必选，方括号是可选参数。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">命令</th>
+      <th style="text-align: left">说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/login</code></td>
+      <td style="text-align: left">登录 Anthropic 账号</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/theme</code></td>
+      <td style="text-align: left">切换颜色主题</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/model</code></td>
+      <td style="text-align: left">切换模型</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/clear</code></td>
+      <td style="text-align: left">清除上下文，释放上下文（别名：<code class="language-plaintext highlighter-rouge">/reset</code>、<code class="language-plaintext highlighter-rouge">/new</code>）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/btw &lt;question&gt;</code></td>
+      <td style="text-align: left">从当前上下文中岔开问个问题</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/context</code></td>
+      <td style="text-align: left">显示当前上下文里系统提示词，工具，对话消息等各自占了多少比例</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/init</code></td>
+      <td style="text-align: left">分析项目并生成 CLAUDE.md</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/plan</code></td>
+      <td style="text-align: left">直接进入 plan 只读分析模式</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/exit</code></td>
+      <td style="text-align: left">退出 （别名：<code class="language-plaintext highlighter-rouge">/quit</code>）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/status</code></td>
+      <td style="text-align: left">打开设置面板，显示版本、模型、账号、连接状态</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/stats</code></td>
+      <td style="text-align: left">可视化每日用量、历史会话和连续使用天数</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>下面是会话相关的一些命令，默认情况下每次启动 Claude Code 都会开启一个新的会话，这些会话都会被保存下来</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">命令</th>
+      <th style="text-align: left">说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/rename [name]</code></td>
+      <td style="text-align: left">给当前会话重命名</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/resume [session]</code></td>
+      <td style="text-align: left">恢复历史会话的命令</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/export [filename]</code></td>
+      <td style="text-align: left">把当前对话导出到一个文本文件里</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>一些进阶的命令</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">命令</th>
+      <th style="text-align: left">说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/sandbox</code></td>
+      <td style="text-align: left">启用沙盒模式，在沙盒中可以设置自动允许，目前只在 macOS，Linux WSL2 可以开启，这种模式默认可以读写当前工作目录，只能以只读的权限读取目录外文件</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/compact [instructions]</code></td>
+      <td style="text-align: left">压缩对话历史，可附加关注点说明，这个命令可以压缩上下文节省 token 使用</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/insights</code></td>
+      <td style="text-align: left">生成 Claude Code 会话分析报告</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/tasks</code></td>
+      <td style="text-align: left">查看和管理后台任务</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/vim</code></td>
+      <td style="text-align: left">切换 Vim 与普通编辑模式</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/plugin</code></td>
+      <td style="text-align: left">管理 Claude Code 的 plugins</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/hooks</code></td>
+      <td style="text-align: left">查看当前生效的 Hook 配置</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/agents</code></td>
+      <td style="text-align: left">查看和管理自定义 subagent 配置</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/skills</code></td>
+      <td style="text-align: left">列出当前可用的 Skill</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/mcp</code></td>
+      <td style="text-align: left">管理 MCP 服务连接和 OAuth 认证</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="权限模式">权限模式</h2>
+
+<p>官方文档：<a href="https://code.claude.com/docs/en/permissions.md">Permissions</a></p>
+
+<p>启动时通过 <code class="language-plaintext highlighter-rouge">--permission-mode &lt;模式&gt;</code> 指定，或在会话中按 <code class="language-plaintext highlighter-rouge">Shift+Tab</code> 循环切换：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>模式</th>
+      <th>状态栏显示</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">default</code></td>
+      <td>（无标记）</td>
+      <td>每次敏感操作前询问</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">acceptEdits</code></td>
+      <td><code class="language-plaintext highlighter-rouge">⏵⏵ accept edits on</code></td>
+      <td>自动允许文件读写，执行命令仍询问</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">plan</code></td>
+      <td><code class="language-plaintext highlighter-rouge">⏸ plan mode on</code></td>
+      <td>只读分析，不修改文件也不执行命令</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">bypassPermissions</code></td>
+      <td>—</td>
+      <td>跳过所有询问，适合 CI 等可信环境</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><code class="language-plaintext highlighter-rouge">Shift+Tab</code> 在会话中循环切换 <code class="language-plaintext highlighter-rouge">default → acceptEdits → plan</code>。<code class="language-plaintext highlighter-rouge">bypassPermissions</code> 只能通过启动参数或 <code class="language-plaintext highlighter-rouge">settings.json</code> 的 <code class="language-plaintext highlighter-rouge">defaultMode</code> 字段设置。</p>
+
+<figure class="highlight"><pre><code class="language-sh" data-lang="sh"><div class="line-1"><span class="c"># 设置 bypassPermissions 模式</span>
+</div><div class="line-2">claude <span class="nt">--permission-mode</span> bypassPermissions
+</div><div class="line-3">
+</div><div class="line-4"><span class="c"># 和上面等价的参数</span>
+</div><div class="line-5">claude <span class="nt">--dangerously-skip-permissions</span>
+</div></code></pre></figure>
+
+<p>也可以在 <code class="language-plaintext highlighter-rouge">settings.json</code> 里配置细粒度的 <code class="language-plaintext highlighter-rouge">permissions.allow</code> / <code class="language-plaintext highlighter-rouge">permissions.deny</code> 规则，对特定工具或路径永久放行或屏蔽。</p>
+
+<h2 id="大模型-llm">大模型 LLM</h2>
+
+<p>Claude Code 使用他们自己家的大模型，主要是三类，推理能力最强的 Opus，推理和响应速度平衡的 Sonnet，这个适合日常使用，还有一个以响应快为特点的 Haiku。</p>
+
+<p>根据 Anthropic 官网的介绍，他家的大模型有一些不错的能力：</p>
+<ul>
+  <li><a href="https://platform.claude.com/docs/en/build-with-claude/extended-thinking">扩展性思考（extended thinking）的能力</a>，对于复杂的任务把得到答案的一步步思考过程透明地呈现出来；</li>
+  <li><a href="https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking">自适应思考（adaptive thinking）的能力</a>，让模型自主决定何时和以何种程度使用扩展性思考；</li>
+  <li><a href="https://platform.claude.com/docs/en/build-with-claude/effort">调节努力程度（effort）的能力</a>，对同一个模型可以调节努力程度来解决不同难度的问题；</li>
+  <li><a href="https://platform.claude.com/docs/en/build-with-claude/fast-mode">快速模式（fast mode）</a>，这个是对 Claude 当前的最强 Opus 4.6 推出的模式，能高效地提高返回 token 的速度；</li>
+  <li><a href="https://platform.claude.com/docs/en/build-with-claude/structured-outputs">结构化输出（structured outputs）</a>，能按照你要求的格式返回有效的 json 数据，可以直接使用，不用担心有幻觉会出现返回无法解析的 json；</li>
+  <li><a href="https://platform.claude.com/docs/en/build-with-claude/citations">引用（citation）的能力</a>，你给大模型文档和问题，它会在返回的答案里返回引用的内容和出处；</li>
+  <li><a href="https://platform.claude.com/docs/en/build-with-claude/streaming">流式输出（streaming messages）</a>，用 SSE 流式一点一点返回内容；</li>
+  <li><a href="https://platform.claude.com/docs/en/build-with-claude/batch-processing">批量处理（batch processiong）的能力</a>，有可以跑批的接口，可以一次处理批量的数据，一批最大可以有 10 万条或者 256 MB 大小；</li>
+  <li><a href="https://platform.claude.com/docs/en/build-with-claude/pdf-support">支持 PDF</a>，能直接从标准 PDF 文件中提取文字，分析图表，理解视觉内容；</li>
+  <li><a href="https://platform.claude.com/docs/en/build-with-claude/search-results">搜索结果（search results）</a>，提供带有来源归属信息的搜索结果；</li>
+  <li><a href="https://platform.claude.com/docs/en/build-with-claude/multilingual-support">多语言支持（multilingual support）</a>，英语肯定结果是最好的，以英文为基准，链接里有对其他语言的表现百分比评分，中文有 97% 的表现，</li>
+  <li><a href="https://platform.claude.com/docs/en/build-with-claude/embeddings">文本嵌入（embeddings）</a>，Anthropic 没有自己的 embedding 模型，他推荐的是 Voyage AI 的 voyage 模型；</li>
+  <li><a href="https://platform.claude.com/docs/en/build-with-claude/vision">视觉（vision）</a>，Claude 的视觉能力使其能够理解和分析图像。</li>
+</ul>
+
+<h2 id="核心概念">核心概念</h2>
+
+<p>用户在终端直接与 Claude 模型对话，Claude 通过反复调用 <strong>Tool（工具）</strong> 来完成任务，形成「思考 → 调用工具 → 观察结果 → 继续」的循环。</p>
+
+<h3 id="tool">Tool</h3>
+
+<p>工具（Tool）是最底层的基础能力，Claude 与系统交互的原子操作，所有更高层功能都建立在工具之上。工具都是系统内置，不可自定义，只能授权或者拒绝。
+内置工具官方文档：<a href="https://code.claude.com/docs/en/tools-reference">Tools</a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">工具</th>
+      <th style="text-align: left">说明</th>
+      <th style="text-align: left">需要权限</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Agent</code></td>
+      <td style="text-align: left">派生子代理，拥有独立上下文窗口来处理任务</td>
+      <td style="text-align: left">否</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">AskUserQuestion</code></td>
+      <td style="text-align: left">通过多选题收集需求或澄清歧义</td>
+      <td style="text-align: left">否</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Bash</code></td>
+      <td style="text-align: left">在当前环境中执行 shell 命令</td>
+      <td style="text-align: left">是</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">CronCreate</code></td>
+      <td style="text-align: left">在当前会话中安排定期或一次性任务（退出 Claude 后失效）</td>
+      <td style="text-align: left">否</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">CronDelete</code></td>
+      <td style="text-align: left">根据 ID 取消已安排的任务</td>
+      <td style="text-align: left">否</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">CronList</code></td>
+      <td style="text-align: left">列出会话中所有已安排的任务</td>
+      <td style="text-align: left">否</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Edit</code></td>
+      <td style="text-align: left">对指定文件进行精确编辑</td>
+      <td style="text-align: left">是</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">EnterPlanMode</code></td>
+      <td style="text-align: left">切换到计划模式，在编码前设计方案</td>
+      <td style="text-align: left">否</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">EnterWorktree</code></td>
+      <td style="text-align: left">创建独立的 git worktree 并切换进入</td>
+      <td style="text-align: left">否</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ExitPlanMode</code></td>
+      <td style="text-align: left">展示计划并请求确认，然后退出计划模式</td>
+      <td style="text-align: left">是</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ExitWorktree</code></td>
+      <td style="text-align: left">退出 worktree 会话，返回原始目录</td>
+      <td style="text-align: left">否</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Glob</code></td>
+      <td style="text-align: left">按模式匹配查找文件</td>
+      <td style="text-align: left">否</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Grep</code></td>
+      <td style="text-align: left">在文件内容中搜索匹配模式</td>
+      <td style="text-align: left">否</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ListMcpResourcesTool</code></td>
+      <td style="text-align: left">列出已连接 MCP 服务器暴露的资源</td>
+      <td style="text-align: left">否</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">LSP</code></td>
+      <td style="text-align: left">通过语言服务器提供代码智能功能，文件编辑后自动报告类型错误和警告，支持跳转定义、查找引用等导航操作</td>
+      <td style="text-align: left">否</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">NotebookEdit</code></td>
+      <td style="text-align: left">修改 Jupyter notebook 单元格</td>
+      <td style="text-align: left">是</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">PowerShell</code></td>
+      <td style="text-align: left">在 Windows 上执行 PowerShell 命令（预览功能，需手动开启）</td>
+      <td style="text-align: left">是</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Read</code></td>
+      <td style="text-align: left">读取文件内容</td>
+      <td style="text-align: left">否</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ReadMcpResourceTool</code></td>
+      <td style="text-align: left">通过 URI 读取指定的 MCP 资源</td>
+      <td style="text-align: left">否</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Skill</code></td>
+      <td style="text-align: left">在主对话中执行技能（Skill）</td>
+      <td style="text-align: left">是</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">TaskCreate</code></td>
+      <td style="text-align: left">在任务列表中创建新任务</td>
+      <td style="text-align: left">否</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">TaskGet</code></td>
+      <td style="text-align: left">获取指定任务的完整详情</td>
+      <td style="text-align: left">否</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">TaskList</code></td>
+      <td style="text-align: left">列出所有任务及其当前状态</td>
+      <td style="text-align: left">否</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">TaskOutput</code></td>
+      <td style="text-align: left">（已弃用）获取后台任务的输出，建议改用 <code class="language-plaintext highlighter-rouge">Read</code> 读取任务输出文件</td>
+      <td style="text-align: left">否</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">TaskStop</code></td>
+      <td style="text-align: left">根据 ID 终止正在运行的后台任务</td>
+      <td style="text-align: left">否</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">TaskUpdate</code></td>
+      <td style="text-align: left">更新任务状态、依赖、详情或删除任务</td>
+      <td style="text-align: left">否</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">TodoWrite</code></td>
+      <td style="text-align: left">管理会话任务清单（非交互模式和 Agent SDK 中使用；交互式会话改用 TaskCreate 等）</td>
+      <td style="text-align: left">否</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ToolSearch</code></td>
+      <td style="text-align: left">启用工具搜索时，搜索并加载延迟工具</td>
+      <td style="text-align: left">否</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">WebFetch</code></td>
+      <td style="text-align: left">抓取指定 URL 的网页内容</td>
+      <td style="text-align: left">是</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">WebSearch</code></td>
+      <td style="text-align: left">联网搜索</td>
+      <td style="text-align: left">是</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Write</code></td>
+      <td style="text-align: left">创建或覆盖文件</td>
+      <td style="text-align: left">是</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="plugin">Plugin</h3>
+
+<p><a href="https://code.claude.com/docs/en/plugins-reference">Plugins Reference</a></p>
+
+<p>插件是最高层的能力单位，可以把 Skills，Agents，Hooks，MCP 服务器，LSP 服务器等打包为一个整体分发，Claude 有一个<a href="https://claude.com/plugins">官方的插件市场</a>，里面有很多功能强大的插件。</p>
+
+<h3 id="claudemd">CLAUDE.md</h3>
+
+<p>项目根目录下放置 <code class="language-plaintext highlighter-rouge">CLAUDE.md</code>，Claude Code 每次启动自动读取，如果你有关于这个项目的什么信息是希望每次 Claude Code 启动都记住的，就把它放在 <code class="language-plaintext highlighter-rouge">CLAUDE.md</code> 文件里，比如关于这个项目是做什么的，这个项目应该用哪些技术栈，有哪些规范。</p>
+
+<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown"><div class="line-1"><span class="gu">## 构建命令</span>
+</div><div class="line-2"><span class="p">-</span> 构建: <span class="sb">`npm run build`</span>
+</div><div class="line-3"><span class="p">-</span> 测试: <span class="sb">`npm test`</span>
+</div><div class="line-4">
+</div><div class="line-5"><span class="gu">## 约定</span>
+</div><div class="line-6"><span class="p">-</span> commit message 用英文，遵循 Conventional Commits
+</div><div class="line-7"><span class="p">-</span> 不要修改 generated/ 目录下的文件
+</div></code></pre></figure>
+
+<h3 id="agent">Agent</h3>
+
+<p>官方文档：<a href="https://code.claude.com/docs/en/sub-agents">Sub-agents</a></p>
+
+<p>与用户对话的是 Claude 大模型本身，不是 agent。Agent 是 Claude 主动通过 <code class="language-plaintext highlighter-rouge">Agent</code> tool 派生的子进程，子代理有独立的上下文窗口，只把摘要返回给主对话，避免撑爆主上下文。Claude 的内置 subagents 有如下几个：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">子代理</th>
+      <th style="text-align: left">说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Explore</td>
+      <td style="text-align: left">只读、快速探索代码库（用 Haiku 省 token）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Plan</td>
+      <td style="text-align: left">只读、制定实现方案</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">general-purpose</td>
+      <td style="text-align: left">全工具通用</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">statusline-setup</td>
+      <td style="text-align: left">当使用命令 <code class="language-plaintext highlighter-rouge">/statusline</code> 来设置 Claude Code 的状态栏时会启动这个 agent</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">claude-code-guide</td>
+      <td style="text-align: left">回答 Claude Code 本身的使用问题</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>自定义 agent 可以在 <code class="language-plaintext highlighter-rouge">.claude/agents/</code>（当前项目）或 <code class="language-plaintext highlighter-rouge">~/.claude/agents/</code>（所有项目）下新建 <code class="language-plaintext highlighter-rouge">.md</code> 文件来创建，用 <code class="language-plaintext highlighter-rouge">/agents</code> 命令会指导你一步一步地创建一个新的自定义 agent。</p>
+
+<h3 id="skill">Skill</h3>
+
+<p>官方文档：<a href="https://code.claude.com/docs/en/skills">Skills</a></p>
+
+<p>可复用的指令集，它和内置命令不同的是，内置命令是执行固定的逻辑，而 skill 其实是给大模型的 prompt，是给大模型的一套做事的方法流程说明。Skill 可以放在 <code class="language-plaintext highlighter-rouge">.claude/skills/&lt;name&gt;/SKILL.md</code>（当前项目）或 <code class="language-plaintext highlighter-rouge">~/.claude/skills/&lt;name&gt;/SKILL.md</code>（所有项目）下，可以通过斜杠命令显式调用，也可由 Claude 根据任务描述自动触发。</p>
+
+<h3 id="hook">Hook</h3>
+
+<p>官方文档：<a href="https://code.claude.com/docs/en/hooks-guide">Hooks Guide</a> · <a href="https://code.claude.com/docs/en/hooks">Hooks Reference</a></p>
+
+<p>在 Claude Code 生命周期特定事件上触发的操作，保证某些操作<strong>一定</strong>发生，不依赖 Claude 的判断。配置在 <code class="language-plaintext highlighter-rouge">settings.json</code> 的 <code class="language-plaintext highlighter-rouge">hooks</code> 字段里。用 <code class="language-plaintext highlighter-rouge">/hooks</code> 命令查看当前生效的所有钩子。</p>
+
+<p>常用事件：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">事件</th>
+      <th style="text-align: left">触发时机</th>
+      <th style="text-align: left">典型用途</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">PreToolUse</code></td>
+      <td style="text-align: left">工具执行前</td>
+      <td style="text-align: left">拦截危险命令、校验参数</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">PostToolUse</code></td>
+      <td style="text-align: left">工具成功后</td>
+      <td style="text-align: left">自动格式化代码、运行 lint</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">PermissionRequest</code></td>
+      <td style="text-align: left">权限询问弹出时</td>
+      <td style="text-align: left">自动放行特定操作</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Stop</code></td>
+      <td style="text-align: left">Claude 完成回复</td>
+      <td style="text-align: left">桌面通知、验证任务是否完成</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">SessionStart</code></td>
+      <td style="text-align: left">会话启动</td>
+      <td style="text-align: left">注入额外上下文</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Hook 类型使用最多的是 <code class="language-plaintext highlighter-rouge">command</code>（shell 命令），还有 <code class="language-plaintext highlighter-rouge">http</code>（POST 到 webhook）、<code class="language-plaintext highlighter-rouge">prompt</code>（让模型做是否判断）、<code class="language-plaintext highlighter-rouge">agent</code>（运行带工具的 subagent）。</p>
+
+<h3 id="mcp">MCP</h3>
+
+<p>官方文档：<a href="https://code.claude.com/docs/en/mcp">MCP</a></p>
+
+<p>Model Context Protocol，连接外部系统的标准协议。通过 MCP Server 可以让 Claude 直接操作 GitHub、Slack、数据库等服务。用 <code class="language-plaintext highlighter-rouge">/mcp</code> 命令查看已连接的服务。</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1"><span class="c"># 添加 MCP 服务（HTTP 方式）</span>
+</div><div class="line-2">claude mcp add <span class="nt">--transport</span> http github https://api.githubcopilot.com/mcp/
+</div><div class="line-3">
+</div><div class="line-4"><span class="c"># 查看已配置的服务</span>
+</div><div class="line-5">claude mcp list
+</div></code></pre></figure>
+
+<p>连接范围：<code class="language-plaintext highlighter-rouge">local</code>（仅当前项目，默认）、<code class="language-plaintext highlighter-rouge">project</code>（团队共享，写入 <code class="language-plaintext highlighter-rouge">.mcp.json</code> 提交到 repo）、<code class="language-plaintext highlighter-rouge">user</code>（个人所有项目）。</p>
+
+<p>社区 MCP Server 索引：<a href="https://github.com/modelcontextprotocol/servers">github.com/modelcontextprotocol/servers</a>，包含 GitHub、Sentry、PostgreSQL、Notion、Figma 等数百个可直接使用的服务。</p>
+
+<h3 id="memory">Memory</h3>
+
+<p>和用户自己写的 <code class="language-plaintext highlighter-rouge">CLAUDE.md</code> 文档不同，Memory（记忆）是 Claude 自己写的笔记，它存在 <code class="language-plaintext highlighter-rouge">~/.claude/projects/&lt;项目&gt;/memory/</code> 下，每次会话启动自动加载前 200 行。用 <code class="language-plaintext highlighter-rouge">/memory</code> 命令查看和编辑。在 <code class="language-plaintext highlighter-rouge">settings.json</code> 里设置 <code class="language-plaintext highlighter-rouge">autoMemoryEnabled: false</code> 可以关闭。</p>
+
+<h2 id="参考链接">参考链接</h2>
+
+<p><a href="https://code.claude.com/docs/en/cli-reference">Claude CLI reference</a></p>
+
+<p><a href="https://code.claude.com/docs/en/best-practices">Best Practices</a></p>
+
+<p><a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices">Prompting best practices</a></p>
+
+        </div>
+
+        
+<div class="comments" id="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+
+	    var disqus_shortname = 'https-algony-tony-github-io';
+
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+      </div>
+
+      
+      <div class="right">
+    <div class="side-wrap">
+        <!-- Content -->
+        <nav class="side-content">
+            <ul id="content-side" class="content-ul">
+                <li><a href="#comments">评论区</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<script src="/assets/js/postContent.js" charset="utf-8"></script>
+      
+
+      
+
+    </article>
+
+  </div>
+</main>
+
+    
+      <footer class="site-footer">
+
+  <div class="wrapper-footer">
+    <div class="social-wrapper">
+      
+
+
+
+
+
+
+
+<a href="/feed.xml"><i class="svg-icon rss"></i></a>
+
+
+
+
+    </div>
+
+    <div>
+      <p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+    </div>
+
+    <div>Site powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://pages.github.com/">Github Pages</a>.</div>
+  </div>
+
+</footer>
+
+    
+
+  </body>
+</html>
+

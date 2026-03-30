@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PQ63V8S');</script>
+<!-- End Google Tag Manager -->
+
+    
+
+
+    <title>SVG 样例解析 – Algony Tony – etvdyn</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="
+
+" />
+    <meta property="og:description" content="
+
+" />
+    
+    <meta name="author" content="Algony Tony" />
+
+    
+    <meta property="og:title" content="SVG 样例解析" />
+    <meta property="twitter:title" content="SVG 样例解析" />
+    
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+    <link rel="alternate" type="application/rss+xml" title="Algony Tony - etvdyn" href="/feed.xml" />
+
+    
+
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3291441471504209"
+     crossorigin="anonymous"></script>
+
+
+    <link type="application/atom+xml" rel="alternate" href="https://algony-tony.github.io/feed.xml" title="Algony Tony" />
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>SVG 样例解析 | Algony Tony</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="SVG 样例解析" />
+<meta property="og:locale" content="zh_CN" />
+<meta name="description" content="etvdyn" />
+<meta property="og:description" content="etvdyn" />
+<link rel="canonical" href="https://algony-tony.github.io/wx-svg04/" />
+<meta property="og:url" content="https://algony-tony.github.io/wx-svg04/" />
+<meta property="og:site_name" content="Algony Tony" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-07-01T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="SVG 样例解析" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-07-01T00:00:00+08:00","datePublished":"2025-07-01T00:00:00+08:00","description":"etvdyn","headline":"SVG 样例解析","mainEntityOfPage":{"@type":"WebPage","@id":"https://algony-tony.github.io/wx-svg04/"},"url":"https://algony-tony.github.io/wx-svg04/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  </head>
+
+  <body>
+
+    
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQ63V8S"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+    <header class="site-header">
+
+    <div class="wrapper-header">
+      <div class="header-left">
+        <!-- <a href="/" class="site-avatar"><img src="/assets/img/sys/jekyll-logo.png" alt="avatar" /></a> -->
+
+        <a class="site-info" href="/">
+          <span class="site-name">Algony Tony</span>
+          <span class="site-description">etvdyn</span>
+        </a>
+
+      </div>
+
+      <nav class="header-right">
+        
+        <a href="/"  class="page-link"  >
+          首页
+        </a>
+        
+        <a href="/WebMap/"  class="page-link"  >
+          导航
+        </a>
+        
+        <a href="/tools/"  class="page-link"  >
+          工具
+        </a>
+        
+        <a href="/collections/"  class="page-link"  >
+          归档
+        </a>
+        
+      </nav>
+    </div>
+
+</header>
+
+
+    <main class="default-content" aria-label="内容区">
+  <div class="wrapper-content">
+
+    <article class="post">
+      <div class="left">
+        <h1>SVG 样例解析</h1>
+        <div class="label">
+
+          <div class="label-date">
+            2025-07-01
+          </div>
+
+          <div class="label-category">
+            <span >类别:</span>
+
+<a class="category-link" href="https://algony-tony.github.io/category/#软件技术" title="Category: 软件技术">
+  软件技术
+</a>
+
+
+          </div>
+
+          <div class="label-tag">
+            <span >标签:</span>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#SVG" title="Tag: SVG">
+  SVG
+</a>
+
+          </div>
+
+        </div>
+
+        <div class="entry">
+          <svg width="600px" height="600px" viewBox="-300 -300 600 600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+
+  <style>
+    /*** SVG demonstration ***/
+
+/* page */
+svg {
+  background-color: beige;
+}
+
+#heading {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#caption {
+  font-size: 12px;
+}
+
+/* flower */
+#flower:hover {
+  cursor: crosshair;
+}
+
+/* gradient */
+#fade-stop-1 {
+  stop-color: blue;
+}
+
+#fade-stop-2 {
+  stop-color: white;
+}
+
+/* petals */
+.segment-fill {
+  fill: var(--segment-fill-fill);
+  stroke: var(--segment-fill-stroke);
+  stroke-width: var(--segment-fill-stroke-width);
+}
+
+.segment-fill:hover {
+  fill: var(--segment-fill-fill-hover);
+  stroke: var(--segment-fill-stroke-hover);
+}
+
+.segment-edge {
+  fill: var(--segment-edge-fill);
+  stroke: var(--segment-edge-stroke);
+  stroke-width: var(--segment-edge-stroke-width);
+}
+
+.segment-edge:hover {
+  stroke: var(--segment-edge-stroke-hover);
+}
+
+/* outer petals */
+#outer-petals {
+  opacity: 0.75;
+  --segment-fill-fill: azure;
+  --segment-fill-stroke: lightsteelblue;
+  --segment-fill-stroke-width: 1;
+  --segment-edge-fill: none;
+  --segment-edge-stroke: deepskyblue;
+  --segment-edge-stroke-width: 3;
+  --segment-fill-fill-hover: plum;
+  --segment-fill-stroke-hover: none;
+  --segment-edge-stroke-hover: slateblue;
+}
+
+/*
+ Non-standard way of styling elements referenced via <use> elements,
+ supported by some older browsers
+*/
+#outer-petals .segment-fill {
+  fill: azure;
+  stroke: lightsteelblue;
+  stroke-width: 1;
+}
+
+#outer-petals .segment-edge {
+  fill: none;
+  stroke: deepskyblue;
+  stroke-width: 3;
+}
+
+#outer-petals .segment:hover > .segment-fill {
+  fill: plum;
+  stroke: none;
+}
+
+#outer-petals .segment:hover > .segment-edge {
+  stroke: slateblue;
+}
+
+/* inner petals */
+#inner-petals {
+  --segment-fill-fill: yellow;
+  --segment-fill-stroke: yellow;
+  --segment-fill-stroke-width: 1;
+  --segment-edge-fill: none;
+  --segment-edge-stroke: yellowgreen;
+  --segment-edge-stroke-width: 9;
+  --segment-fill-fill-hover: darkseagreen;
+  --segment-fill-stroke-hover: none;
+  --segment-edge-stroke-hover: green;
+}
+
+/*
+ Non-standard way of styling elements referenced via <use> elements,
+ supported by some older browsers
+*/
+#inner-petals .segment-fill {
+  fill: yellow;
+  stroke: yellow;
+  stroke-width: 1;
+}
+
+#inner-petals .segment-edge {
+  fill: none;
+  stroke: yellowgreen;
+  stroke-width: 9;
+}
+
+#inner-petals .segment:hover > .segment-fill {
+  fill: darkseagreen;
+  stroke: none;
+}
+
+#inner-petals .segment:hover > .segment-edge {
+  stroke: green;
+}
+
+    </style>
+
+  <title>SVG demonstration</title>
+  <desc>Mozilla CSS Getting Started - SVG demonstration</desc>
+
+  <defs>
+    <radialGradient id="fade" cx="0" cy="0" r="200" gradientUnits="userSpaceOnUse">
+      <stop id="fade-stop-1" offset="33%" />
+      <stop id="fade-stop-2" offset="95%" />
+    </radialGradient>
+  </defs>
+
+  <text id="heading" x="-280" y="-270">SVG demonstration</text>
+  <text id="caption" x="-280" y="-250">
+    把鼠标放在花瓣上看看效果
+  </text>
+
+  <g id="flower">
+    <circle id="overlay" cx="0" cy="0" r="200" stroke="none" fill="url(#fade)" />
+
+    <g id="outer-petals">
+      <g class="quadrant">
+        <g class="segment">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(18)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(36)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(54)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(72)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+      </g>
+
+      <g class="quadrant">
+        <g class="segment" transform="rotate(90)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(108)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(126)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(144)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(162)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+      </g>
+
+      <g class="quadrant">
+        <g class="segment" transform="rotate(180)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(198)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(216)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(234)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(252)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+      </g>
+
+      <g class="quadrant">
+        <g class="segment" transform="rotate(270)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(288)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(306)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(324)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(342)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+      </g>
+    </g>
+
+    <g id="inner-petals" transform="rotate(9) scale(0.33)">
+      <g class="quadrant">
+        <g class="segment">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(18)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(36)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(54)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(72)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+      </g>
+
+      <g class="quadrant">
+        <g class="segment" transform="rotate(90)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(108)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(126)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(144)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(162)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+      </g>
+
+      <g class="quadrant">
+        <g class="segment" transform="rotate(180)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(198)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(216)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(234)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(252)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+      </g>
+
+      <g class="quadrant">
+        <g class="segment" transform="rotate(270)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(288)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(306)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(324)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+        <g class="segment" transform="rotate(342)">
+          <path class="segment-fill" d="M0,0 v-200 a40,40 0 0,0 -62,10 z" />
+          <path class="segment-edge" d="M0,-200 a40,40 0 0,0 -62,10" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
+
+<h2 id="生成逻辑">生成逻辑</h2>
+
+<h3 id="坐标系与画布">坐标系与画布</h3>
+
+<p>SVG 的 <code class="language-plaintext highlighter-rouge">viewBox="-300 -300 600 600"</code> 将坐标原点移到画布中心，整个花朵以 (0,0) 为圆心向外绘制。</p>
+
+<h3 id="整体层次结构">整体层次结构</h3>
+
+<p>花朵 <code class="language-plaintext highlighter-rouge">#flower</code> 由三层叠加而成：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#flower
+├── #outer-petals     外层20片花瓣
+├── #inner-petals     内层20片花瓣（旋转9°，缩放0.33）
+└── #overlay          径向渐变蒙层（压在最上面）
+</code></pre></div></div>
+
+<h3 id="单片花瓣的构成">单片花瓣的构成</h3>
+
+<p>每片花瓣是一个 <code class="language-plaintext highlighter-rouge">&lt;g class="segment"&gt;</code>，由两个 path 叠加：</p>
+
+<p><strong>填充路径 <code class="language-plaintext highlighter-rouge">.segment-fill</code></strong>：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>d="M0,0 v-200 a40,40 0 0,0 -62,10 z"
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">M0,0</code>：从圆心出发</li>
+  <li><code class="language-plaintext highlighter-rouge">v-200</code>：向上画竖线到 (0,-200)，即花瓣的主干轴</li>
+  <li><code class="language-plaintext highlighter-rouge">a40,40 0 0,0 -62,10</code>：画一段圆弧，rx=ry=40，逆时针（sweep=0），终点偏移 (-62,10)，即到达 (-62,-190)，这段弧形成花瓣的弯曲外缘</li>
+  <li><code class="language-plaintext highlighter-rouge">z</code>：闭合回原点，形成扇形花瓣面</li>
+</ul>
+
+<p><strong>边缘路径 <code class="language-plaintext highlighter-rouge">.segment-edge</code></strong>：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>d="M0,-200 a40,40 0 0,0 -62,10"
+</code></pre></div></div>
+
+<p>与 segment-fill 中的圆弧完全重合，单独绘制以便用更粗的描边（<code class="language-plaintext highlighter-rouge">stroke-width:3/9</code>）突出花瓣轮廓，无填充。</p>
+
+<h3 id="20片花瓣的排列">20片花瓣的排列</h3>
+
+<p>花瓣每隔 18° 旋转一次（360°/20片=18°），分4个 <code class="language-plaintext highlighter-rouge">.quadrant</code> 组，每组5片，旋转角度从 0° 到 342°。旋转变换作用在 <code class="language-plaintext highlighter-rouge">&lt;g class="segment"&gt;</code> 上，以坐标原点为中心旋转，使所有花瓣均匀分布一圈。</p>
+
+<h3 id="内外两层的差异">内外两层的差异</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>外层 <code class="language-plaintext highlighter-rouge">#outer-petals</code></th>
+      <th>内层 <code class="language-plaintext highlighter-rouge">#inner-petals</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>尺寸</td>
+      <td>原始大小（半径约200）</td>
+      <td><code class="language-plaintext highlighter-rouge">scale(0.33)</code> 缩到约1/3</td>
+    </tr>
+    <tr>
+      <td>旋转偏移</td>
+      <td>0°</td>
+      <td><code class="language-plaintext highlighter-rouge">rotate(9°)</code>，正好错位在外层花瓣之间</td>
+    </tr>
+    <tr>
+      <td>颜色</td>
+      <td>azure / deepskyblue</td>
+      <td>yellow / yellowgreen</td>
+    </tr>
+    <tr>
+      <td>hover 颜色</td>
+      <td>plum / slateblue</td>
+      <td>darkseagreen / green</td>
+    </tr>
+    <tr>
+      <td>透明度</td>
+      <td>opacity: 0.75</td>
+      <td>默认 1.0</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="径向渐变蒙层">径向渐变蒙层</h3>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;defs&gt;</code> 中定义了 <code class="language-plaintext highlighter-rouge">&lt;radialGradient id="fade"&gt;</code>，圆心在 (0,0)，半径200，渐变从33%处的蓝色过渡到95%处的白色。一个半径200的圆 <code class="language-plaintext highlighter-rouge">#overlay</code> 引用此渐变 <code class="language-plaintext highlighter-rouge">fill="url(#fade)"</code>，覆盖在所有花瓣之上，制造出花朵中央深蓝、边缘淡白的光晕效果。</p>
+
+<h3 id="css-交互样式">CSS 交互样式</h3>
+
+<p>用 CSS 变量（<code class="language-plaintext highlighter-rouge">var(--xxx)</code>）统一配置内外层的颜色，<code class="language-plaintext highlighter-rouge">:hover</code> 伪类实现鼠标悬停变色。同时保留了兼容旧浏览器的直接 class 样式写法（注释中说明这是非标准的旧方式）。</p>
+
+<h2 id="参考链接">参考链接</h2>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/SVG">SVG: Scalable Vector Graphics</a></p>
+
+<p><a href="https://www.w3.org/TR/SVG/">Scalable Vector Graphics (SVG) 2</a></p>
+
+
+        </div>
+
+        
+<div class="comments" id="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+
+	    var disqus_shortname = 'https-algony-tony-github-io';
+
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+      </div>
+
+      
+
+      
+
+    </article>
+
+  </div>
+</main>
+
+    
+      <footer class="site-footer">
+
+  <div class="wrapper-footer">
+    <div class="social-wrapper">
+      
+
+
+
+
+
+
+
+<a href="/feed.xml"><i class="svg-icon rss"></i></a>
+
+
+
+
+    </div>
+
+    <div>
+      <p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+    </div>
+
+    <div>Site powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://pages.github.com/">Github Pages</a>.</div>
+  </div>
+
+</footer>
+
+    
+
+  </body>
+</html>
+
