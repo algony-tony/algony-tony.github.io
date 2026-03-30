@@ -120,3 +120,4 @@ exclude:
   - CNAME
   - "script"
   - TODO
+  - CLAUDE.md
