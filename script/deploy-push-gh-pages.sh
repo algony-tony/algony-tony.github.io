@@ -23,6 +23,7 @@ bundle exec jekyll build --future --trace
 # deploy
 rm -rf ${site_dir}/*
 cp -rf ${project_dir}/_site/* "${site_dir}/"
+touch "${site_dir}/.nojekyll"
 
 cd "${site_dir}/"
 git add -A
