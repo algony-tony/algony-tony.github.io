@@ -10,3 +10,8 @@ node_modules
 package.json
 temp_data
 .swp
+
+# Local AI tooling / agent runtime state
+.omx/
+.claude/
+.codex
