@@ -113,6 +113,10 @@ include:
 
 # Exclude these files from your production _site
 exclude:
+  - .claude
+  - .git
+  - .jekyll-cache
+  - .omx
   - Gemfile
   - Gemfile.lock
   - LICENSE
@@ -121,3 +125,4 @@ exclude:
   - "script"
   - TODO
   - CLAUDE.md
+  - _site
