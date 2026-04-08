@@ -1,3033 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://algony-tony.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://algony-tony.github.io/" rel="alternate" type="text/html" /><updated>2026-04-09T02:50:10+08:00</updated><id>https://algony-tony.github.io/feed.xml</id><title type="html">Algony Tony</title><subtitle>etvdyn</subtitle><entry><title type="html">Gemini CLI 使用手册</title><link href="https://algony-tony.github.io/gemini-cli/" rel="alternate" type="text/html" title="Gemini CLI 使用手册" /><published>2026-04-04T00:00:00+08:00</published><updated>2026-04-04T00:00:00+08:00</updated><id>https://algony-tony.github.io/gemini-cli</id><content type="html" xml:base="https://algony-tony.github.io/gemini-cli/"><![CDATA[<ul id="markdown-toc">
-  <li><a href="#安装" id="markdown-toc-安装">安装</a></li>
-  <li><a href="#认证方式" id="markdown-toc-认证方式">认证方式</a>    <ul>
-      <li><a href="#方式一个人-google-账号" id="markdown-toc-方式一个人-google-账号">方式一：个人 Google 账号</a></li>
-      <li><a href="#方式二api-key" id="markdown-toc-方式二api-key">方式二：API Key</a></li>
-      <li><a href="#方式三vertex-ai" id="markdown-toc-方式三vertex-ai">方式三：Vertex AI</a></li>
-    </ul>
-  </li>
-  <li><a href="#最基本的用法" id="markdown-toc-最基本的用法">最基本的用法</a></li>
-  <li><a href="#常用斜杠命令" id="markdown-toc-常用斜杠命令">常用斜杠命令</a></li>
-  <li><a href="#geminimd它的项目记忆" id="markdown-toc-geminimd它的项目记忆">GEMINI.md：它的“项目记忆”</a></li>
-  <li><a href="#mcp" id="markdown-toc-mcp">MCP</a></li>
-  <li><a href="#sandboxing-和-yolo" id="markdown-toc-sandboxing-和-yolo">Sandboxing 和 YOLO</a></li>
-  <li><a href="#为什么-gemini-cli-值得看" id="markdown-toc-为什么-gemini-cli-值得看">为什么 Gemini CLI 值得看</a></li>
-  <li><a href="#参考链接" id="markdown-toc-参考链接">参考链接</a></li>
-</ul>
-
-<p>Google 的 <strong>Gemini CLI</strong>，定位也非常直接：<strong>把 Gemini 这个 agent 直接塞进你的终端里</strong>。</p>
-
-<p>项目地址：<a href="https://github.com/google-gemini/gemini-cli">google-gemini/gemini-cli</a></p>
-
-<p>它和一般“命令行聊天工具”的区别在于，它不是只接收一段 prompt 然后吐一段文字，而是已经做成了完整 agent：会读文件、改文件、跑 shell、抓网页、接 MCP，还支持 <code class="language-plaintext highlighter-rouge">GEMINI.md</code> 分层记忆、custom commands、hooks、skills、sandbox。</p>
-
-<p>截至 <strong>2026-04-04</strong>，我打开 GitHub 仓库页时看到：</p>
-
-<ul>
-  <li>仓库 star 大约 <strong>100k</strong>；</li>
-  <li>最新 stable release 是 <strong>v0.36.0</strong>，发布日期 <strong>2026-04-01</strong>；</li>
-  <li>README 对它的定义是：<strong>“An open-source AI agent that brings the power of Gemini directly into your terminal.”</strong></li>
-</ul>
-
-<h2 id="安装">安装</h2>
-
-<p>官方 README：<a href="https://github.com/google-gemini/gemini-cli">google-gemini/gemini-cli</a></p>
-
-<p>Gemini CLI 的安装方式比很多同类工具还更全一点。</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1"><span class="c"># 直接用 npx 跑</span>
-</div><div class="line-2">npx @google/gemini-cli
-</div><div class="line-3">
-</div><div class="line-4"><span class="c"># 全局安装</span>
-</div><div class="line-5">npm <span class="nb">install</span> <span class="nt">-g</span> @google/gemini-cli
-</div><div class="line-6">
-</div><div class="line-7"><span class="c"># Homebrew</span>
-</div><div class="line-8">brew <span class="nb">install </span>gemini-cli
-</div></code></pre></figure>
-
-<p>README 里甚至还给了 MacPorts 和 Anaconda 的装法，所以它明显是认真把“终端工具分发”这件事当产品在做。</p>
-
-<h2 id="认证方式">认证方式</h2>
-
-<p>官方 README：<a href="https://github.com/google-gemini/gemini-cli">google-gemini/gemini-cli</a></p>
-
-<p>Gemini CLI 现在支持好几种认证路径。</p>
-
-<h3 id="方式一个人-google-账号">方式一：个人 Google 账号</h3>
-
-<p>README 里把这个当作很重要的入口来写，优点是门槛低。</p>
-
-<p>截至 <strong>2026-04-04</strong>，README 里写的免费额度是：</p>
-
-<ul>
-  <li><strong>60 requests / minute</strong></li>
-  <li><strong>1,000 requests / day</strong></li>
-</ul>
-
-<p>这对个人日常试用已经不算低了。</p>
-
-<h3 id="方式二api-key">方式二：API Key</h3>
-
-<p>README 给的示例是：</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1"><span class="nb">export </span><span class="nv">GEMINI_API_KEY</span><span class="o">=</span><span class="s2">"YOUR_API_KEY"</span>
-</div><div class="line-2">gemini
-</div></code></pre></figure>
-
-<h3 id="方式三vertex-ai">方式三：Vertex AI</h3>
-
-<p>面向企业或生产场景时，可以走 Google Cloud / Vertex AI：</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1"><span class="nb">export </span><span class="nv">GOOGLE_API_KEY</span><span class="o">=</span><span class="s2">"YOUR_API_KEY"</span>
-</div><div class="line-2"><span class="nb">export </span><span class="nv">GOOGLE_GENAI_USE_VERTEXAI</span><span class="o">=</span><span class="nb">true</span>
-</div><div class="line-3">gemini
-</div></code></pre></figure>
-
-<h2 id="最基本的用法">最基本的用法</h2>
-
-<p>官方 README：<a href="https://github.com/google-gemini/gemini-cli">google-gemini/gemini-cli</a></p>
-
-<p>最简单就是进入项目后直接跑：</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1">gemini
-</div></code></pre></figure>
-
-<p>README 里还列了几个很实用的命令行入口。</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1"><span class="c"># 把多个目录一起纳入上下文</span>
-</div><div class="line-2">gemini <span class="nt">--include-directories</span> ../lib,../docs
-</div><div class="line-3">
-</div><div class="line-4"><span class="c"># 指定模型</span>
-</div><div class="line-5">gemini <span class="nt">-m</span> gemini-2.5-flash
-</div><div class="line-6">
-</div><div class="line-7"><span class="c"># 非交互模式，直接输出文本</span>
-</div><div class="line-8">gemini <span class="nt">-p</span> <span class="s2">"Explain the architecture of this codebase"</span>
-</div><div class="line-9">
-</div><div class="line-10"><span class="c"># 输出结构化 JSON</span>
-</div><div class="line-11">gemini <span class="nt">-p</span> <span class="s2">"Explain the architecture of this codebase"</span> <span class="nt">--output-format</span> json
-</div><div class="line-12">
-</div><div class="line-13"><span class="c"># 事件流 JSON</span>
-</div><div class="line-14">gemini <span class="nt">-p</span> <span class="s2">"Run tests and deploy"</span> <span class="nt">--output-format</span> stream-json
-</div></code></pre></figure>
-
-<p>这一点很重要：Gemini CLI 不只是给人手工交互，它也明显考虑了脚本化、CI、自动化消费输出的场景。</p>
-
-<h2 id="常用斜杠命令">常用斜杠命令</h2>
-
-<p>官方文档：<a href="https://github.com/google-gemini/gemini-cli/blob/main/docs/cli/commands.md">CLI commands</a></p>
-
-<p>Gemini CLI 的内建命令非常多，下面只挑一些日常最有用的。</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">命令</th>
-      <th style="text-align: left">说明</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/auth</code></td>
-      <td style="text-align: left">切换认证方式</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/chat</code></td>
-      <td style="text-align: left">保存、恢复、分享会话检查点</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/clear</code></td>
-      <td style="text-align: left">清空界面</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/commands</code></td>
-      <td style="text-align: left">重新加载自定义命令</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/compress</code></td>
-      <td style="text-align: left">压缩上下文，省 token</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/directory</code></td>
-      <td style="text-align: left">管理多目录工作区</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/extensions</code></td>
-      <td style="text-align: left">查看当前启用的扩展</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/hooks</code></td>
-      <td style="text-align: left">查看和启停 hooks</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/init</code></td>
-      <td style="text-align: left">分析当前目录并生成 <code class="language-plaintext highlighter-rouge">GEMINI.md</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/mcp</code></td>
-      <td style="text-align: left">管理 MCP server</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/memory</code></td>
-      <td style="text-align: left">查看、追加、刷新分层记忆</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/model</code></td>
-      <td style="text-align: left">切换 Gemini 模型</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/plan</code></td>
-      <td style="text-align: left">切到只读 plan mode</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/resume</code></td>
-      <td style="text-align: left">恢复历史会话</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/settings</code></td>
-      <td style="text-align: left">打开 settings 编辑器</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/shells</code></td>
-      <td style="text-align: left">查看后台 shell</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/skills</code></td>
-      <td style="text-align: left">管理 agent skills</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/stats</code></td>
-      <td style="text-align: left">看本次会话统计</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/tools</code></td>
-      <td style="text-align: left">查看当前可用工具</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/vim</code></td>
-      <td style="text-align: left">开关 vim 模式</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>除了 slash commands，它还支持：</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">@路径</code>：把文件或目录内容注入提示词；</li>
-  <li>自定义 commands：从 <code class="language-plaintext highlighter-rouge">.toml</code> 里加载快捷命令。</li>
-</ul>
-
-<p>所以它的可编排程度已经相当高了。</p>
-
-<h2 id="geminimd它的项目记忆">GEMINI.md：它的“项目记忆”</h2>
-
-<p>官方文档：<a href="https://github.com/google-gemini/gemini-cli/blob/main/docs/cli/configuration.md">CLI Configuration</a></p>
-
-<p>Gemini CLI 很有特点的一点，是它把 <code class="language-plaintext highlighter-rouge">GEMINI.md</code> 做成了 <strong>hierarchical instructional context</strong>。</p>
-
-<p>文档里写得很明确：默认上下文文件名是 <code class="language-plaintext highlighter-rouge">GEMINI.md</code>，但也可以改成别的，比如 <code class="language-plaintext highlighter-rouge">AGENTS.md</code>。</p>
-
-<p>它的层级加载顺序大概是：</p>
-
-<ol>
-  <li><code class="language-plaintext highlighter-rouge">~/.gemini/GEMINI.md</code> 这样的全局上下文；</li>
-  <li>当前项目根目录以及父目录上的 context file；</li>
-  <li>当前目录下面子目录里的 context file。</li>
-</ol>
-
-<p>而且 <code class="language-plaintext highlighter-rouge">/memory show</code> 可以直接把最终拼接出来的上下文看出来。</p>
-
-<p>这套设计很实用，因为它允许你：</p>
-
-<ul>
-  <li>全局写通用习惯；</li>
-  <li>项目根目录写项目约定；</li>
-  <li>某个子目录再写更细的局部规则。</li>
-</ul>
-
-<p>这比“所有提示词都塞一个文件里”高级不少。</p>
-
-<h2 id="mcp">MCP</h2>
-
-<p>官方文档：<a href="https://github.com/google-gemini/gemini-cli/blob/main/docs/tools/mcp-server.md">MCP Server</a></p>
-
-<p>Gemini CLI 对 MCP 的支持很完整，内建了 <code class="language-plaintext highlighter-rouge">gemini mcp add</code>、<code class="language-plaintext highlighter-rouge">gemini mcp list</code> 这套命令。</p>
-
-<p>比如：</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1"><span class="c"># 添加 HTTP MCP server</span>
-</div><div class="line-2">gemini mcp add <span class="nt">--transport</span> http http-server https://api.example.com/mcp/
-</div><div class="line-3">
-</div><div class="line-4"><span class="c"># 添加 SSE MCP server</span>
-</div><div class="line-5">gemini mcp add <span class="nt">--transport</span> sse sse-server https://api.example.com/sse/
-</div><div class="line-6">
-</div><div class="line-7"><span class="c"># 查看所有 MCP server</span>
-</div><div class="line-8">gemini mcp list
-</div></code></pre></figure>
-
-<p>文档里还有一个很细的点：</p>
-
-<ul>
-  <li>对于 <code class="language-plaintext highlighter-rouge">stdio</code> 型 MCP server，只有在<strong>当前文件夹被信任</strong>时，它才会被测试并显示为 Connected；</li>
-  <li>如果目录不被信任，它会显示 Disconnected；</li>
-  <li>这时可以用 <code class="language-plaintext highlighter-rouge">gemini trust</code> 把当前目录设为 trusted。</li>
-</ul>
-
-<p>这说明 Gemini CLI 对本地安全边界是有认真设计的。</p>
-
-<h2 id="sandboxing-和-yolo">Sandboxing 和 YOLO</h2>
-
-<p>官方文档：<a href="https://github.com/google-gemini/gemini-cli/blob/main/docs/cli/configuration.md">CLI Configuration</a></p>
-
-<p>Gemini CLI 也支持沙盒，而且文档里写得很清楚：</p>
-
-<ul>
-  <li><strong>sandbox 默认是关闭的</strong>；</li>
-  <li>可以通过 <code class="language-plaintext highlighter-rouge">--sandbox</code> 或 <code class="language-plaintext highlighter-rouge">-s</code> 启用；</li>
-  <li>也可以用 <code class="language-plaintext highlighter-rouge">GEMINI_SANDBOX</code> 环境变量控制；</li>
-  <li>在 <code class="language-plaintext highlighter-rouge">--yolo</code> 模式下，会自动批准所有 tool calls；</li>
-  <li>文档还写到：<strong>sandbox 在 <code class="language-plaintext highlighter-rouge">--yolo</code> 模式下默认启用</strong>。</li>
-</ul>
-
-<p>最基础的开法：</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1">gemini <span class="nt">--sandbox</span>
-</div><div class="line-2">
-</div><div class="line-3"><span class="c"># 或者</span>
-</div><div class="line-4"><span class="nv">BUILD_SANDBOX</span><span class="o">=</span>1 gemini <span class="nt">-s</span>
-</div></code></pre></figure>
-
-<p>如果项目有特殊需要，还可以在项目根目录下放一个：</p>
-
-<figure class="highlight"><pre><code class="language-text" data-lang="text"><div class="line-1">.gemini/sandbox.Dockerfile
-</div></code></pre></figure>
-
-<p>这样 Gemini CLI 就能构建一个定制沙盒镜像。</p>
-
-<p>这个设计思路和很多 agent 工具是一致的：<strong>越自动，越要认真做隔离</strong>。</p>
-
-<h2 id="为什么-gemini-cli-值得看">为什么 Gemini CLI 值得看</h2>
-
-<p>我觉得它最有意思的地方不是“Google 也出了个 CLI”，而是它已经把很多 agent runtime 的关键零件都做齐了：</p>
-
-<ul>
-  <li>命令行交互和非交互模式；</li>
-  <li><code class="language-plaintext highlighter-rouge">GEMINI.md</code> 分层记忆；</li>
-  <li>MCP；</li>
-  <li>hooks；</li>
-  <li>skills；</li>
-  <li>extensions；</li>
-  <li>sandbox；</li>
-  <li>会话恢复；</li>
-  <li>自定义 commands。</li>
-</ul>
-
-<p>也就是说，它不是一个轻量 demo，而是明显朝着“<strong>可以长期挂在开发者终端里的 agent 平台</strong>”去做的。</p>
-
-<h2 id="参考链接">参考链接</h2>
-
-<ul>
-  <li>GitHub 仓库：<a href="https://github.com/google-gemini/gemini-cli">google-gemini/gemini-cli</a></li>
-  <li>官方文档站：<a href="https://www.geminicli.com/">geminicli.com</a></li>
-  <li>CLI 命令文档：<a href="https://github.com/google-gemini/gemini-cli/blob/main/docs/cli/commands.md">commands.md</a></li>
-  <li>配置文档：<a href="https://github.com/google-gemini/gemini-cli/blob/main/docs/cli/configuration.md">configuration.md</a></li>
-  <li>MCP 文档：<a href="https://github.com/google-gemini/gemini-cli/blob/main/docs/tools/mcp-server.md">mcp-server.md</a></li>
-</ul>]]></content><author><name></name></author><category term="软件技术" /><category term="AI" /><category term="Gemini" /><category term="Google" /><category term="编程工具" /><category term="LLM" /><category term="Agent" /></entry><entry><title type="html">oh-my-codex（OMX）介绍</title><link href="https://algony-tony.github.io/oh-my-codex/" rel="alternate" type="text/html" title="oh-my-codex（OMX）介绍" /><published>2026-04-04T00:00:00+08:00</published><updated>2026-04-04T00:00:00+08:00</updated><id>https://algony-tony.github.io/oh-my-codex</id><content type="html" xml:base="https://algony-tony.github.io/oh-my-codex/"><![CDATA[<ul id="markdown-toc">
-  <li><a href="#omx-是什么" id="markdown-toc-omx-是什么">OMX 是什么</a></li>
-  <li><a href="#它是不是类似-superpowers" id="markdown-toc-它是不是类似-superpowers">它是不是类似 Superpowers</a>    <ul>
-      <li><a href="#相同点" id="markdown-toc-相同点">相同点</a></li>
-      <li><a href="#不同点" id="markdown-toc-不同点">不同点</a></li>
-    </ul>
-  </li>
-  <li><a href="#安装" id="markdown-toc-安装">安装</a></li>
-  <li><a href="#推荐工作流" id="markdown-toc-推荐工作流">推荐工作流</a></li>
-  <li><a href="#omx-增加了什么" id="markdown-toc-omx-增加了什么">OMX 增加了什么</a>    <ul>
-      <li><a href="#1-统一工作流关键词" id="markdown-toc-1-统一工作流关键词">1. 统一工作流关键词</a></li>
-      <li><a href="#2-omx-持久化状态" id="markdown-toc-2-omx-持久化状态">2. <code class="language-plaintext highlighter-rouge">.omx/</code> 持久化状态</a></li>
-      <li><a href="#3-团队运行时" id="markdown-toc-3-团队运行时">3. 团队运行时</a></li>
-      <li><a href="#4-操作面工具" id="markdown-toc-4-操作面工具">4. 操作面工具</a></li>
-    </ul>
-  </li>
-  <li><a href="#它的简单心智模型" id="markdown-toc-它的简单心智模型">它的简单心智模型</a></li>
-  <li><a href="#适合谁" id="markdown-toc-适合谁">适合谁</a></li>
-  <li><a href="#参考链接" id="markdown-toc-参考链接">参考链接</a></li>
-</ul>
-
-<p>如果说 Codex CLI 本体已经是一个很强的终端 agent，那么 <strong>oh-my-codex（OMX）</strong> 做的事情，就是在 Codex 外面再包一层更完整的工作流和运行时。</p>
-
-<p>它不是另一个模型，也不是一个单独的聊天界面，而是作者自己在 README 里定义的：<strong>“a workflow layer for OpenAI Codex CLI”</strong>。</p>
-
-<p>项目地址：<a href="https://github.com/Yeachan-Heo/oh-my-codex">Yeachan-Heo/oh-my-codex</a></p>
-
-<p>截至 <strong>2026-04-04</strong>，我打开仓库页时看到：</p>
-
-<ul>
-  <li>仓库 star 大约 <strong>15k</strong>；</li>
-  <li>最新 release 是 <strong>v0.11.12</strong>，发布日期 <strong>2026-04-02</strong>；</li>
-  <li>README 里主打的一句话是：<strong>Start Codex stronger, then let OMX add better prompts, workflows, and runtime help when the work grows.</strong></li>
-</ul>
-
-<h2 id="omx-是什么">OMX 是什么</h2>
-
-<p>官方 README：<a href="https://github.com/Yeachan-Heo/oh-my-codex">oh-my-codex</a></p>
-
-<p>README 里写得很直白：OMX 不是替代 Codex，而是保留 <strong>Codex 作为执行引擎</strong>，再额外补上这些东西：</p>
-
-<ul>
-  <li>更强的默认启动方式；</li>
-  <li>一套从澄清需求到完成交付的统一工作流；</li>
-  <li>一批可复用的技能入口，比如 <code class="language-plaintext highlighter-rouge">$deep-interview</code>、<code class="language-plaintext highlighter-rouge">$ralplan</code>、<code class="language-plaintext highlighter-rouge">$team</code>、<code class="language-plaintext highlighter-rouge">$ralph</code>；</li>
-  <li>把项目 guidance、plan、log、memory、state 固化到 <code class="language-plaintext highlighter-rouge">.omx/</code> 目录。</li>
-</ul>
-
-<p>所以它最像的不是“给 Codex 多一个命令”，而是：<strong>给 Codex 增加一个工程化操作系统外壳</strong>。</p>
-
-<h2 id="它是不是类似-superpowers">它是不是类似 Superpowers</h2>
-
-<p>短答案：<strong>是，方向上很像；但 OMX 的范围更大。</strong></p>
-
-<p>我觉得可以这么理解。</p>
-
-<h3 id="相同点">相同点</h3>
-
-<p>OMX 和我前面写过的 Claude Code 插件 Superpowers，核心思想是一样的：</p>
-
-<ul>
-  <li>都不是换模型；</li>
-  <li>都不是强调 UI；</li>
-  <li>都是在给 coding agent <strong>加流程、加纪律、加方法论</strong>；</li>
-  <li>都希望把“需求澄清 → 计划 → 实现 → 验证”这套节奏固定下来。</li>
-</ul>
-
-<p>换句话说，二者都属于“<strong>让 agent 别一上来瞎写代码</strong>”这一派。</p>
-
-<h3 id="不同点">不同点</h3>
-
-<p>但 OMX 明显比 Superpowers 更重一些。</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">维度</th>
-      <th style="text-align: left">Superpowers</th>
-      <th style="text-align: left">OMX</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">依附对象</td>
-      <td style="text-align: left">Claude Code</td>
-      <td style="text-align: left">Codex CLI</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">主要形态</td>
-      <td style="text-align: left">Claude 插件 / skills / hooks</td>
-      <td style="text-align: left">独立 workflow layer + runtime</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">核心目标</td>
-      <td style="text-align: left">给 Claude Code 加方法论</td>
-      <td style="text-align: left">给 Codex 加方法论 + 编排能力 + 状态管理</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">持久化</td>
-      <td style="text-align: left">主要靠 skill / plugin 约束</td>
-      <td style="text-align: left">明确把计划、日志、memory、state 放进 <code class="language-plaintext highlighter-rouge">.omx/</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left">多 agent 协作</td>
-      <td style="text-align: left">有，但更偏 Claude 自身能力</td>
-      <td style="text-align: left">明确有 <code class="language-plaintext highlighter-rouge">$team</code>、tmux runtime、团队编排</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">运行时辅助</td>
-      <td style="text-align: left">相对轻</td>
-      <td style="text-align: left">还有 HUD、explore、sparkshell、doctor 等操作面</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>所以如果非要打个比方：</p>
-
-<ul>
-  <li><strong>Superpowers</strong> 更像是“Claude Code 的流程强化插件”；</li>
-  <li><strong>OMX</strong> 更像是“Codex 的工程化工作流发行版”。</li>
-</ul>
-
-<h2 id="安装">安装</h2>
-
-<p>官方 README：<a href="https://github.com/Yeachan-Heo/oh-my-codex">oh-my-codex</a></p>
-
-<p>README 给的推荐起手式是：</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1">npm <span class="nb">install</span> <span class="nt">-g</span> @openai/codex oh-my-codex
-</div><div class="line-2">omx setup
-</div><div class="line-3">omx <span class="nt">--madmax</span> <span class="nt">--high</span>
-</div></code></pre></figure>
-
-<p>它的前提也写得很清楚：</p>
-
-<ul>
-  <li>Node.js 20+</li>
-  <li>已安装 Codex CLI</li>
-  <li>已完成 Codex 认证</li>
-  <li>如果你要用 team runtime，在 macOS / Linux 上还需要 <code class="language-plaintext highlighter-rouge">tmux</code></li>
-</ul>
-
-<p>也就是说，<strong>OMX 不是替代 Codex 的安装包，而是建在 Codex 之上的一层增强</strong>。</p>
-
-<h2 id="推荐工作流">推荐工作流</h2>
-
-<p>官方 README：<a href="https://github.com/Yeachan-Heo/oh-my-codex">oh-my-codex</a></p>
-
-<p>OMX 最重要的不是具体命令，而是它推荐的默认节奏。</p>
-
-<p>README 里给出的 canonical flow 基本就是四步：</p>
-
-<figure class="highlight"><pre><code class="language-text" data-lang="text"><div class="line-1">$deep-interview "clarify the authentication change"
-</div><div class="line-2">$ralplan "approve the auth plan and review tradeoffs"
-</div><div class="line-3">$ralph "carry the approved plan to completion"
-</div><div class="line-4">$team 3:executor "execute the approved plan in parallel"
-</div></code></pre></figure>
-
-<p>这四个入口分别对应：</p>
-
-<ol>
-  <li><strong><code class="language-plaintext highlighter-rouge">$deep-interview</code></strong>：先澄清范围、边界、非目标；</li>
-  <li><strong><code class="language-plaintext highlighter-rouge">$ralplan</code></strong>：把澄清后的需求压成可批准的方案；</li>
-  <li><strong><code class="language-plaintext highlighter-rouge">$ralph</code></strong>：单 owner 持续推进直到完成并验证；</li>
-  <li><strong><code class="language-plaintext highlighter-rouge">$team</code></strong>：如果任务适合并行，就拉多 agent 协作执行。</li>
-</ol>
-
-<p>这个设计思路非常明显：<strong>先把“想做什么”讲清楚，再决定“一个 agent 做”还是“多个 agent 并行做”</strong>。</p>
-
-<h2 id="omx-增加了什么">OMX 增加了什么</h2>
-
-<h3 id="1-统一工作流关键词">1. 统一工作流关键词</h3>
-
-<p>对最终用户来说，最容易记住的其实不是具体目录结构，而是这些会话内 surface：</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">$deep-interview</code></li>
-  <li><code class="language-plaintext highlighter-rouge">$ralplan</code></li>
-  <li><code class="language-plaintext highlighter-rouge">$ralph</code></li>
-  <li><code class="language-plaintext highlighter-rouge">$team</code></li>
-  <li><code class="language-plaintext highlighter-rouge">/skills</code></li>
-</ul>
-
-<p>这和 Superpowers 有一点像：都是用一套清晰的工作流名词去约束 agent 行为。</p>
-
-<h3 id="2-omx-持久化状态">2. <code class="language-plaintext highlighter-rouge">.omx/</code> 持久化状态</h3>
-
-<p>README 里明确写了，OMX 会把这些东西放进 <code class="language-plaintext highlighter-rouge">.omx/</code>：</p>
-
-<ul>
-  <li>plans</li>
-  <li>logs</li>
-  <li>memory</li>
-  <li>runtime state</li>
-</ul>
-
-<p>这件事非常重要，因为很多 agent 工具的问题不是“不会写代码”，而是：</p>
-
-<ul>
-  <li>过程没有持久化；</li>
-  <li>计划和执行割裂；</li>
-  <li>一次会话结束后就忘了。</li>
-</ul>
-
-<p>OMX 是明显在补这一层。</p>
-
-<h3 id="3-团队运行时">3. 团队运行时</h3>
-
-<p>README 里专门把 <strong>team runtime</strong> 单独列出来了。</p>
-
-<p>比如：</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1">omx team 3:executor <span class="s2">"fix the failing tests with verification"</span>
-</div><div class="line-2">omx team status
-</div><div class="line-3">omx team resume
-</div><div class="line-4">omx team shutdown
-</div></code></pre></figure>
-
-<p>这说明 OMX 不只是“让 Codex 偶尔派个 subagent”，而是认真在做一层 <strong>durable 的多 agent 编排运行时</strong>。</p>
-
-<h3 id="4-操作面工具">4. 操作面工具</h3>
-
-<p>README 里还列了几类比较 operator-oriented 的命令：</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">omx setup</code></li>
-  <li><code class="language-plaintext highlighter-rouge">omx doctor</code></li>
-  <li><code class="language-plaintext highlighter-rouge">omx hud --watch</code></li>
-  <li><code class="language-plaintext highlighter-rouge">omx explore --prompt "..."</code></li>
-  <li><code class="language-plaintext highlighter-rouge">omx sparkshell ...</code></li>
-</ul>
-
-<p>这就更像一整套工作环境了，而不只是 prompt 包。</p>
-
-<h2 id="它的简单心智模型">它的简单心智模型</h2>
-
-<p>我觉得 README 里那句总结非常好：</p>
-
-<blockquote>
-  <p><strong>Codex 做实际 agent 工作，OMX 负责更好的 task routing、更好的 workflow、更好的 runtime。</strong></p>
-</blockquote>
-
-<p>把它翻成更口语的话就是：</p>
-
-<ul>
-  <li><strong>Codex</strong> 负责“干活”；</li>
-  <li><strong>OMX</strong> 负责“让它按工程化流程干活”。</li>
-</ul>
-
-<p>所以我自己会把 OMX 看成下面这几样东西的组合：</p>
-
-<ol>
-  <li><strong>流程模板</strong>：什么时候先澄清，什么时候先计划；</li>
-  <li><strong>角色系统</strong>：不同任务交给不同 agent surface；</li>
-  <li><strong>状态系统</strong>：计划、日志、memory、mode 都落盘；</li>
-  <li><strong>协作运行时</strong>：需要时可以拉 team 做并行执行。</li>
-</ol>
-
-<h2 id="适合谁">适合谁</h2>
-
-<p>README 里有一句我很赞同：</p>
-
-<blockquote>
-  <p>如果你只是想要 plain Codex、不要额外 workflow layer，那你可能并不需要 OMX。</p>
-</blockquote>
-
-<p>也就是说，OMX 最适合的是这类人：</p>
-
-<ul>
-  <li>你已经在用 Codex；</li>
-  <li>你觉得单纯聊天式 agent 不够稳定；</li>
-  <li>你希望任务更像正式软件开发流程；</li>
-  <li>你想把多 agent 协作、计划、验证这些东西固定下来。</li>
-</ul>
-
-<p>如果你只是想“偶尔让 agent 改个小文件”，那纯 Codex 可能已经够了。</p>
-
-<h2 id="参考链接">参考链接</h2>
-
-<ul>
-  <li>GitHub 仓库：<a href="https://github.com/Yeachan-Heo/oh-my-codex">Yeachan-Heo/oh-my-codex</a></li>
-  <li>官方网站：<a href="https://yeachan-heo.github.io/oh-my-codex-website/">oh-my-codex website</a></li>
-  <li>Getting Started：<a href="https://yeachan-heo.github.io/oh-my-codex-website/docs/getting-started.html">Getting Started</a></li>
-  <li>Skills 文档：<a href="https://yeachan-heo.github.io/oh-my-codex-website/docs/skills.html">Skills</a></li>
-  <li>Demo：<a href="https://github.com/Yeachan-Heo/oh-my-codex/blob/main/DEMO.md">DEMO.md</a></li>
-</ul>]]></content><author><name></name></author><category term="软件技术" /><category term="AI" /><category term="OpenAI" /><category term="Codex" /><category term="OMX" /><category term="编程工具" /><category term="LLM" /><category term="Agent" /></entry><entry><title type="html">OpenAI Codex 使用手册</title><link href="https://algony-tony.github.io/openai-codex/" rel="alternate" type="text/html" title="OpenAI Codex 使用手册" /><published>2026-04-04T00:00:00+08:00</published><updated>2026-04-04T00:00:00+08:00</updated><id>https://algony-tony.github.io/openai-codex</id><content type="html" xml:base="https://algony-tony.github.io/openai-codex/"><![CDATA[<ul id="markdown-toc">
-  <li><a href="#安装" id="markdown-toc-安装">安装</a></li>
-  <li><a href="#认证" id="markdown-toc-认证">认证</a></li>
-  <li><a href="#最基本的用法" id="markdown-toc-最基本的用法">最基本的用法</a></li>
-  <li><a href="#会话恢复" id="markdown-toc-会话恢复">会话恢复</a></li>
-  <li><a href="#常用斜杠命令" id="markdown-toc-常用斜杠命令">常用斜杠命令</a></li>
-  <li><a href="#模型" id="markdown-toc-模型">模型</a></li>
-  <li><a href="#核心概念" id="markdown-toc-核心概念">核心概念</a>    <ul>
-      <li><a href="#agentsmd" id="markdown-toc-agentsmd">AGENTS.md</a></li>
-      <li><a href="#subagents" id="markdown-toc-subagents">Subagents</a></li>
-      <li><a href="#mcp--apps--skills--plugins" id="markdown-toc-mcp--apps--skills--plugins">MCP / Apps / Skills / Plugins</a></li>
-    </ul>
-  </li>
-  <li><a href="#它和-claude-code-的差别最值得看的是什么" id="markdown-toc-它和-claude-code-的差别最值得看的是什么">它和 Claude Code 的差别，最值得看的是什么</a></li>
-  <li><a href="#参考链接" id="markdown-toc-参考链接">参考链接</a></li>
-</ul>
-
-<p>OpenAI 的 Codex 现在已经不只是一个“会补全代码的模型名”，而是一整套 coding agent 产品：有 Web、桌面 App、IDE 扩展，也有最适合程序员折腾的 <strong>Codex CLI</strong>。</p>
-
-<p>这篇主要讲终端里的 Codex，也就是仓库 <a href="https://github.com/openai/codex">openai/codex</a> 对应的 CLI。它的定位很直接：<strong>让 agent 在你的本地仓库里读文件、改文件、跑命令、开子代理，并把整个过程放在终端里完成</strong>。</p>
-
-<p>截至 <strong>2026-04-04</strong>，我打开 GitHub 仓库页 <a href="https://github.com/openai/codex">openai/codex</a> 时看到：</p>
-
-<ul>
-  <li>仓库 star 大约 <strong>73k</strong>；</li>
-  <li>最新 release 是 <strong>0.118.0</strong>；</li>
-  <li>官方 README 里的描述是：<strong>“Lightweight coding agent that runs in your terminal”</strong>。</li>
-</ul>
-
-<h2 id="安装">安装</h2>
-
-<p>官方仓库 README：<a href="https://github.com/openai/codex">openai/codex</a></p>
-
-<p>安装方式很简单，官方 README 给了两种最直接的方式：</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1"><span class="c"># npm 安装</span>
-</div><div class="line-2">npm <span class="nb">install</span> <span class="nt">-g</span> @openai/codex
-</div><div class="line-3">
-</div><div class="line-4"><span class="c"># Homebrew 安装</span>
-</div><div class="line-5">brew <span class="nb">install</span> <span class="nt">--cask</span> codex
-</div></code></pre></figure>
-
-<p>装好后直接运行：</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1">codex
-</div></code></pre></figure>
-
-<p>如果你只是想立刻试一下，也可以直接去 GitHub release 页面下二进制包。</p>
-
-<h2 id="认证">认证</h2>
-
-<p>官方 README：<a href="https://github.com/openai/codex">openai/codex</a></p>
-
-<p>Codex CLI 现在最推荐的用法不是一上来就配 API Key，而是直接用 <strong>ChatGPT 账号登录</strong>。</p>
-
-<p>README 里写得很清楚：运行 <code class="language-plaintext highlighter-rouge">codex</code> 之后，可以选择 <strong>Sign in with ChatGPT</strong>。官方建议把它作为 ChatGPT Plus、Pro、Team、Edu、Enterprise 计划的一部分来用。</p>
-
-<p>当然，也还是可以走 API Key 模式，只是这个需要额外配置。</p>
-
-<h2 id="最基本的用法">最基本的用法</h2>
-
-<p>官方文档：<a href="https://developers.openai.com/codex/cli/features">Codex CLI features</a></p>
-
-<p>Codex CLI 最核心的工作方式是 <strong>交互式全屏终端 UI</strong>。</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1"><span class="c"># 进入交互界面</span>
-</div><div class="line-2">codex
-</div><div class="line-3">
-</div><div class="line-4"><span class="c"># 带一个初始问题启动</span>
-</div><div class="line-5">codex <span class="s2">"Explain this codebase to me"</span>
-</div></code></pre></figure>
-
-<p>官方文档里对 interactive mode 的总结我觉得很准：</p>
-
-<ul>
-  <li>它可以直接读取仓库；</li>
-  <li>可以修改文件；</li>
-  <li>可以执行命令；</li>
-  <li>你能在终端里实时看到它先解释计划，再执行动作；</li>
-  <li>每一步都可以在会话中直接批准或拒绝。</li>
-</ul>
-
-<p>也就是说，它不是“把网页聊天窗口搬到终端里”，而是真正的本地 agent。</p>
-
-<h2 id="会话恢复">会话恢复</h2>
-
-<p>官方文档：<a href="https://developers.openai.com/codex/cli/features">Codex CLI features</a></p>
-
-<p>Codex 会把本地会话存下来，所以你不用每次都重新解释项目背景。</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1"><span class="c"># 交互式挑选历史会话</span>
-</div><div class="line-2">codex resume
-</div><div class="line-3">
-</div><div class="line-4"><span class="c"># 直接恢复最近一次会话</span>
-</div><div class="line-5">codex resume <span class="nt">--last</span>
-</div></code></pre></figure>
-
-<p>文档里还提到，非交互式 <code class="language-plaintext highlighter-rouge">codex exec</code> 运行也支持 resume，所以它并不是“开一次用一次”的一次性工具。</p>
-
-<h2 id="常用斜杠命令">常用斜杠命令</h2>
-
-<p>官方文档：<a href="https://developers.openai.com/codex/cli/slash-commands">Slash commands in Codex CLI</a></p>
-
-<p>Codex CLI 的斜杠命令不算特别花哨，但很实用，基本都是“在当前会话里动态调整 agent 行为”。下面挑几个日常最常用的。</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">命令</th>
-      <th style="text-align: left">说明</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/permissions</code></td>
-      <td style="text-align: left">调整当前会话里哪些动作可以不经询问直接执行</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/agent</code></td>
-      <td style="text-align: left">查看或切换当前 agent thread</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/apps</code></td>
-      <td style="text-align: left">浏览 connector / app，并把它插入当前提示词</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/clear</code></td>
-      <td style="text-align: left">清空当前对话，重新开始</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/compact</code></td>
-      <td style="text-align: left">压缩对话上下文，节省 token</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/copy</code></td>
-      <td style="text-align: left">复制最近一次完成的输出</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/diff</code></td>
-      <td style="text-align: left">查看当前改动 diff，包括未跟踪文件</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/init</code></td>
-      <td style="text-align: left">在当前目录生成一个 <code class="language-plaintext highlighter-rouge">AGENTS.md</code> 模板</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/mcp</code></td>
-      <td style="text-align: left">查看已配置的 MCP 工具</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/mention</code></td>
-      <td style="text-align: left">把文件或目录显式附到当前对话里</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/model</code></td>
-      <td style="text-align: left">切换模型和 reasoning effort</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/fast</code></td>
-      <td style="text-align: left">给 GPT-5.4 切换 Fast mode</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/plan</code></td>
-      <td style="text-align: left">切到只读 planning 模式先出方案</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/personality</code></td>
-      <td style="text-align: left">改 Codex 的回答风格</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/ps</code></td>
-      <td style="text-align: left">查看后台终端及最近输出</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/resume</code></td>
-      <td style="text-align: left">恢复历史会话</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/new</code></td>
-      <td style="text-align: left">新开一段对话</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/quit</code></td>
-      <td style="text-align: left">退出</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>这一套命令的思路非常明显：<strong>Codex 把“模型本身”和“会话控制”分开了</strong>。</p>
-
-<p>模型负责做事，slash commands 负责调度当前工作环境。</p>
-
-<h2 id="模型">模型</h2>
-
-<p>官方文档：<a href="https://developers.openai.com/codex/cli/features">Codex CLI features</a></p>
-
-<p>截至 <strong>2026-04-04</strong>，我在官方文档里看到，Codex 里日常推荐模型是 <strong><code class="language-plaintext highlighter-rouge">gpt-5.4</code></strong>。</p>
-
-<p>文档里的原话大意是：对于大多数任务，<code class="language-plaintext highlighter-rouge">gpt-5.4</code> 是推荐模型；它结合了更强推理能力、原生 computer use，以及更广的专业工作流能力。对特别追求速度的任务，ChatGPT Pro 用户还能用 <strong>GPT-5.3-Codex-Spark</strong> 的 research preview。</p>
-
-<p>所以现在的 Codex 其实不是“只能绑死一个 coding model”，而是：</p>
-
-<ul>
-  <li>主力模型用 <code class="language-plaintext highlighter-rouge">gpt-5.4</code>；</li>
-  <li>有更快的 spark 型选择；</li>
-  <li>在 CLI 里可以用 <code class="language-plaintext highlighter-rouge">/model</code> 动态切换。</li>
-</ul>
-
-<h2 id="核心概念">核心概念</h2>
-
-<h3 id="agentsmd">AGENTS.md</h3>
-
-<p>官方文档导航里把它单独列成了一项配置能力；CLI 里也可以用 <code class="language-plaintext highlighter-rouge">/init</code> 直接生成。</p>
-
-<p>这玩意可以粗暴理解成：<strong>给 Codex 的项目内长期提示词</strong>。</p>
-
-<p>也就是你希望它每次进入这个仓库时都知道的东西，比如：</p>
-
-<ul>
-  <li>测试命令；</li>
-  <li>commit 规范；</li>
-  <li>哪些目录不能动；</li>
-  <li>代码风格；</li>
-  <li>团队约定；</li>
-  <li>PR 提交流程。</li>
-</ul>
-
-<p>这点和 <code class="language-plaintext highlighter-rouge">CLAUDE.md</code>、<code class="language-plaintext highlighter-rouge">GEMINI.md</code> 的思路是同一类：把“口头交代”变成“项目内常驻上下文”。</p>
-
-<h3 id="subagents">Subagents</h3>
-
-<p>官方文档：<a href="https://developers.openai.com/codex/subagents">Subagents</a></p>
-
-<p>Codex 现在已经支持相当完整的 subagent 工作流。</p>
-
-<p>文档里给的核心点有几个：</p>
-
-<ul>
-  <li>Codex 可以显式按你的要求并行拉起多个 subagent；</li>
-  <li>这些 subagent 各自做自己的工具调用和推理，再把结果汇总回来；</li>
-  <li>默认内置了 <code class="language-plaintext highlighter-rouge">default</code>、<code class="language-plaintext highlighter-rouge">worker</code>、<code class="language-plaintext highlighter-rouge">explorer</code> 三类 agent；</li>
-  <li>自定义 agent 可以放在 <code class="language-plaintext highlighter-rouge">~/.codex/agents/</code> 或项目内 <code class="language-plaintext highlighter-rouge">.codex/agents/</code>；</li>
-  <li><code class="language-plaintext highlighter-rouge">/agent</code> 可以查看和切换 agent thread。</li>
-</ul>
-
-<p>这个能力很关键，因为它让 Codex 不再只是“一个大模型串行做所有事”，而是开始像一个小型 orchestrator。</p>
-
-<h3 id="mcp--apps--skills--plugins">MCP / Apps / Skills / Plugins</h3>
-
-<p>从官方文档导航看，Codex 现在把这几个层面都已经补齐了：</p>
-
-<ul>
-  <li><strong>MCP</strong>：连接 GitHub、Slack、数据库之类外部系统；</li>
-  <li><strong>Apps / Connectors</strong>：更偏“把外部能力插到当前任务里”；</li>
-  <li><strong>Skills</strong>：可复用工作流提示；</li>
-  <li><strong>Plugins</strong>：更像一个完整扩展包；</li>
-  <li><strong>Hooks</strong>：把某些动作固化成一定会执行的自动步骤。</li>
-</ul>
-
-<p>所以 Codex CLI 的真实定位，不是“终端里的聊天工具”，而是 <strong>OpenAI 自己的本地 agent runtime</strong>。</p>
-
-<h2 id="它和-claude-code-的差别最值得看的是什么">它和 Claude Code 的差别，最值得看的是什么</h2>
-
-<p>我觉得不是表面上的“命令长得像不像”，而是默认设计取向。</p>
-
-<p>Codex 现在给我的感觉是：</p>
-
-<ul>
-  <li>把 <strong>AGENTS.md</strong> 放得很核心；</li>
-  <li>把 <strong>subagents</strong> 做成正式能力，而不是隐藏技巧；</li>
-  <li>把 <strong>slash commands</strong> 当作运行时控制面板；</li>
-  <li>把 <strong>CLI / IDE / App / Web</strong> 做成一个统一的产品族。</li>
-</ul>
-
-<p>所以如果你已经习惯 agent 编程，那 Codex 值得看的地方，不只是“它能不能改代码”，而是它把 <strong>“项目规则、运行时安全、子代理协作、会话恢复”</strong> 这些东西做得越来越像一个正式开发环境。</p>
-
-<h2 id="参考链接">参考链接</h2>
-
-<ul>
-  <li>OpenAI 官方仓库：<a href="https://github.com/openai/codex">openai/codex</a></li>
-  <li>官方文档总入口：<a href="https://developers.openai.com/codex">Codex Documentation</a></li>
-  <li>CLI 功能说明：<a href="https://developers.openai.com/codex/cli/features">Codex CLI features</a></li>
-  <li>斜杠命令：<a href="https://developers.openai.com/codex/cli/slash-commands">Slash commands in Codex CLI</a></li>
-  <li>Subagents：<a href="https://developers.openai.com/codex/subagents">Subagents</a></li>
-</ul>]]></content><author><name></name></author><category term="软件技术" /><category term="AI" /><category term="OpenAI" /><category term="Codex" /><category term="编程工具" /><category term="LLM" /></entry><entry><title type="html">插件 Code Review 介绍</title><link href="https://algony-tony.github.io/cc-plugin-code-review/" rel="alternate" type="text/html" title="插件 Code Review 介绍" /><published>2026-04-03T00:00:00+08:00</published><updated>2026-04-03T00:00:00+08:00</updated><id>https://algony-tony.github.io/cc-plugin-code-review</id><content type="html" xml:base="https://algony-tony.github.io/cc-plugin-code-review/"><![CDATA[<ul id="markdown-toc">
-  <li><a href="#它是什么" id="markdown-toc-它是什么">它是什么</a></li>
-  <li><a href="#安装" id="markdown-toc-安装">安装</a></li>
-  <li><a href="#怎么用" id="markdown-toc-怎么用">怎么用</a></li>
-  <li><a href="#它到底会做什么" id="markdown-toc-它到底会做什么">它到底会做什么</a>    <ul>
-      <li><a href="#审查-agent-怎么分工" id="markdown-toc-审查-agent-怎么分工">审查 agent 怎么分工</a></li>
-      <li><a href="#它怎么减少误报" id="markdown-toc-它怎么减少误报">它怎么减少误报</a></li>
-    </ul>
-  </li>
-  <li><a href="#它开源了吗" id="markdown-toc-它开源了吗">它开源了吗</a>    <ul>
-      <li><a href="#第一层关键实现是否公开可读" id="markdown-toc-第一层关键实现是否公开可读">第一层：关键实现是否公开可读？</a></li>
-      <li><a href="#第二层能不能严格说它是标准开源许可证项目" id="markdown-toc-第二层能不能严格说它是标准开源许可证项目">第二层：能不能严格说它是标准开源许可证项目？</a></li>
-    </ul>
-  </li>
-  <li><a href="#它的工作原理能看懂吗" id="markdown-toc-它的工作原理能看懂吗">它的工作原理，能看懂吗</a>    <ul>
-      <li><a href="#第一层它是一个命令型插件" id="markdown-toc-第一层它是一个命令型插件">第一层：它是一个命令型插件</a></li>
-      <li><a href="#第二层核心是一个严格编排过的审查脚本" id="markdown-toc-第二层核心是一个严格编排过的审查脚本">第二层：核心是一个严格编排过的审查脚本</a></li>
-      <li><a href="#第三层它依赖-github-cli而不是-web-fetch" id="markdown-toc-第三层它依赖-github-cli而不是-web-fetch">第三层：它依赖 GitHub CLI，而不是 Web Fetch</a></li>
-      <li><a href="#第四层它不是追求找到更多问题而是追求只发值得发的问题" id="markdown-toc-第四层它不是追求找到更多问题而是追求只发值得发的问题">第四层：它不是追求“找到更多问题”，而是追求“只发值得发的问题”</a></li>
-    </ul>
-  </li>
-  <li><a href="#一个典型使用场景" id="markdown-toc-一个典型使用场景">一个典型使用场景</a></li>
-  <li><a href="#适合谁" id="markdown-toc-适合谁">适合谁</a></li>
-  <li><a href="#我的判断" id="markdown-toc-我的判断">我的判断</a></li>
-  <li><a href="#参考链接" id="markdown-toc-参考链接">参考链接</a></li>
-</ul>
-
-<p>Code Review 是 Anthropic 官方做的一个 Claude Code 插件，作用很直接：<strong>把 pull request 的代码审查流程自动化</strong>。</p>
-
-<p>它不是那种泛泛地“帮你看看代码有没有问题”的插件，而是一个相对工程化的 reviewer pipeline：会看 PR 是否值得审查，会找相关 <code class="language-plaintext highlighter-rouge">CLAUDE.md</code> 规范，会总结变更，然后拉起多路 reviewer agents 并行审查，最后再对每条 issue 做一轮 confidence scoring，只把高置信度的问题发回 GitHub。</p>
-
-<p>截至 <strong>2026-04-03</strong>，我打开官方插件页 <a href="https://claude.com/plugins/code-review">claude.com/plugins/code-review</a> 时，它显示：</p>
-
-<ul>
-  <li>Anthropic Verified</li>
-  <li>Made by Anthropic</li>
-  <li>Installs: <strong>191,903</strong></li>
-</ul>
-
-<p>而在我同一天看到的 <a href="https://claude.com/plugins">claude.com/plugins</a> 浏览列表里，它排在前列，位于 Frontend Design、Superpowers、Context7 之后。</p>
-
-<h2 id="它是什么">它是什么</h2>
-
-<p>官方插件页：<a href="https://claude.com/plugins/code-review">Code Review</a></p>
-
-<p>这个插件的定位是：</p>
-
-<ul>
-  <li>面向 pull request；</li>
-  <li>使用多个 specialized agents 并行审查；</li>
-  <li>对每个发现的问题做 confidence-based filtering；</li>
-  <li>尽量减少 false positives；</li>
-  <li>最终把 actionable feedback 直接发到 GitHub。</li>
-</ul>
-
-<p>说白一点，它不是在替代人类 reviewer，而是在做一轮“高置信度预审”。</p>
-
-<p>这个思路其实很对，因为 PR review 最大的痛点往往不是“没东西查”，而是：</p>
-
-<ul>
-  <li>误报太多；</li>
-  <li>reviewer comment 太吵；</li>
-  <li>小毛病太多，真正重要的问题反而被淹掉；</li>
-  <li>项目规范分散在 <code class="language-plaintext highlighter-rouge">CLAUDE.md</code>、代码注释、历史上下文里，普通 lint 根本抓不到。</li>
-</ul>
-
-<p>Code Review 插件解决的就是这类问题。</p>
-
-<h2 id="安装">安装</h2>
-
-<p>官方插件页：<a href="https://claude.com/plugins/code-review">Code Review</a></p>
-
-<p>它在 Anthropic 官方市场里，安装命令可以按官方 marketplace 统一格式来写：</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1">/plugin <span class="nb">install </span>code-review@claude-plugins-official
-</div></code></pre></figure>
-
-<p>官方 marketplace README：</p>
-
-<p><a href="https://github.com/anthropics/claude-plugins-official/blob/main/README.md">anthropics/claude-plugins-official</a></p>
-
-<p>README 里的统一格式是：</p>
-
-<figure class="highlight"><pre><code class="language-text" data-lang="text"><div class="line-1">/plugin install {plugin-name}@claude-plugins-official
-</div></code></pre></figure>
-
-<p>所以这个插件对应的名字就是 <code class="language-plaintext highlighter-rouge">code-review</code>。</p>
-
-<h2 id="怎么用">怎么用</h2>
-
-<p>官方插件页：<a href="https://claude.com/plugins/code-review">Code Review</a></p>
-
-<p>这个插件最核心的入口是：</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1">/code-review
-</div></code></pre></figure>
-
-<p>公开 README 里写得也非常明确：你在一个 PR branch 上运行它，它就会启动完整的自动审查流程。</p>
-
-<p>最基本的用法：</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1">/code-review
-</div></code></pre></figure>
-
-<p>它适合这些场景：</p>
-
-<ul>
-  <li>非 trivial 的 PR；</li>
-  <li>涉及关键路径的改动；</li>
-  <li>多人协作仓库；</li>
-  <li>项目里已经有比较明确的 <code class="language-plaintext highlighter-rouge">CLAUDE.md</code> 规范。</li>
-</ul>
-
-<p>不太适合的场景：</p>
-
-<ul>
-  <li>draft PR；</li>
-  <li>已关闭 PR；</li>
-  <li>很小的自动化 PR；</li>
-  <li>急着马上 merge 的紧急 hotfix。</li>
-</ul>
-
-<p>而且这些场景里，有不少它会<strong>自动跳过</strong>。</p>
-
-<h2 id="它到底会做什么">它到底会做什么</h2>
-
-<p>公开 README：</p>
-
-<ul>
-  <li>插件 README：<a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/code-review/README.md">plugins/code-review/README.md</a></li>
-  <li>命令实现：<a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/code-review/commands/code-review.md">plugins/code-review/commands/code-review.md</a></li>
-</ul>
-
-<p>README 给的总结是：</p>
-
-<ol>
-  <li>检查这个 PR 是否值得 review；</li>
-  <li>找相关的 <code class="language-plaintext highlighter-rouge">CLAUDE.md</code> 指南文件；</li>
-  <li>总结 PR 改了什么；</li>
-  <li>启动多路 agent 并行审查；</li>
-  <li>对每个 issue 做 0-100 的 confidence scoring；</li>
-  <li>把低于阈值的 issue 过滤掉；</li>
-  <li>最后把高置信度问题评论回 GitHub。</li>
-</ol>
-
-<h3 id="审查-agent-怎么分工">审查 agent 怎么分工</h3>
-
-<p>从 <code class="language-plaintext highlighter-rouge">commands/code-review.md</code> 看，真正的分工其实更细。</p>
-
-<p>它会先用 Haiku agent 做几件准备工作：</p>
-
-<ul>
-  <li>判断这个 PR 是不是该 review；</li>
-  <li>找相关 <code class="language-plaintext highlighter-rouge">CLAUDE.md</code>；</li>
-  <li>给 PR 做一个 change summary。</li>
-</ul>
-
-<p>然后再拉起 <strong>5 个并行 Sonnet agents</strong> 去看不同维度：</p>
-
-<ol>
-  <li>检查是否违反 <code class="language-plaintext highlighter-rouge">CLAUDE.md</code></li>
-  <li>只盯变更本身找 obvious bugs</li>
-  <li>看 <code class="language-plaintext highlighter-rouge">git blame</code> / history 找上下文问题</li>
-  <li>看以前相关 PR 的评论里有没有相同模式</li>
-  <li>看被修改文件里的代码注释有没有明确约束</li>
-</ol>
-
-<p>这套拆法非常实用，因为它避免让一个 reviewer 一次背太多任务。</p>
-
-<h3 id="它怎么减少误报">它怎么减少误报</h3>
-
-<p>这插件最重要的一层，不是多 agent，而是后面的 <strong>confidence scoring</strong>。</p>
-
-<p>命令实现里写得很死：</p>
-
-<ul>
-  <li>每个 issue 再交给一个 Haiku agent 去打分；</li>
-  <li>分数是 0 到 100；</li>
-  <li>默认只保留 <strong>80 以上</strong> 的问题；</li>
-  <li>低于 80 的，直接过滤掉，不发回去。</li>
-</ul>
-
-<p>这个机制的价值非常大。</p>
-
-<p>因为普通 AI code review 工具最常见的问题就是：</p>
-
-<ul>
-  <li>会说得头头是道；</li>
-  <li>但里面很多问题其实只是“可能有问题”；</li>
-  <li>最后让人类 reviewer 疲劳。</li>
-</ul>
-
-<p>Code Review 这个插件就是在专门抑制这种噪音。</p>
-
-<h2 id="它开源了吗">它开源了吗</h2>
-
-<p>公开文件：</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">plugin.json</code>：<a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/code-review/.claude-plugin/plugin.json">plugins/code-review/.claude-plugin/plugin.json</a></li>
-  <li><code class="language-plaintext highlighter-rouge">README.md</code>：<a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/code-review/README.md">plugins/code-review/README.md</a></li>
-  <li><code class="language-plaintext highlighter-rouge">commands/code-review.md</code>：<a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/code-review/commands/code-review.md">plugins/code-review/commands/code-review.md</a></li>
-</ul>
-
-<p>和 Frontend Design 一样，我这里也分两层说。</p>
-
-<h3 id="第一层关键实现是否公开可读">第一层：关键实现是否公开可读？</h3>
-
-<p><strong>是的。</strong></p>
-
-<p>这次我能直接看到：</p>
-
-<ul>
-  <li>插件 manifest</li>
-  <li>插件 README</li>
-  <li>核心命令实现 <code class="language-plaintext highlighter-rouge">commands/code-review.md</code></li>
-</ul>
-
-<p>所以它不是完全黑盒。</p>
-
-<h3 id="第二层能不能严格说它是标准开源许可证项目">第二层：能不能严格说它是标准开源许可证项目？</h3>
-
-<p>我这次没有单独核实到这个插件目录下完整明确的 license 文件，所以我还是用保守说法：</p>
-
-<blockquote>
-  <p><strong>至少它的关键实现是公开可读的，工作原理能看明白；但我这次没有完整确认到独立、明确的许可证文本。</strong></p>
-</blockquote>
-
-<h2 id="它的工作原理能看懂吗">它的工作原理，能看懂吗</h2>
-
-<p>可以，而且这次比 Frontend Design 更“工程化”，也更像一个真正的自动化 workflow。</p>
-
-<h3 id="第一层它是一个命令型插件">第一层：它是一个命令型插件</h3>
-
-<p><code class="language-plaintext highlighter-rouge">plugin.json</code> 很短：</p>
-
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><div class="line-1"><span class="p">{</span>
-</div><div class="line-2"><span class="w">  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"code-review"</span><span class="p">,</span>
-</div><div class="line-3"><span class="w">  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Automated code review for pull requests using multiple specialized agents with confidence-based scoring"</span><span class="p">,</span>
-</div><div class="line-4"><span class="w">  </span><span class="nl">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-</div><div class="line-5"><span class="w">    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anthropic"</span><span class="p">,</span>
-</div><div class="line-6"><span class="w">    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"support@anthropic.com"</span>
-</div><div class="line-7"><span class="w">  </span><span class="p">}</span>
-</div><div class="line-8"><span class="p">}</span>
-</div></code></pre></figure>
-
-<p>但真正的逻辑在 <code class="language-plaintext highlighter-rouge">commands/code-review.md</code> 里。</p>
-
-<p>也就是说，它不是单靠一个 skill 影响模型习惯，而是提供了一个<strong>结构化命令</strong>：<code class="language-plaintext highlighter-rouge">/code-review</code>。</p>
-
-<h3 id="第二层核心是一个严格编排过的审查脚本">第二层：核心是一个严格编排过的审查脚本</h3>
-
-<p>如果你去看 <code class="language-plaintext highlighter-rouge">commands/code-review.md</code>，会发现它不是“随便 review 一下”，而是把步骤写得非常死：</p>
-
-<ul>
-  <li>先 eligibility check；</li>
-  <li>再找 CLAUDE.md；</li>
-  <li>再总结 PR；</li>
-  <li>再 5 路并行 review；</li>
-  <li>再 issue 逐条打分；</li>
-  <li>再按阈值过滤；</li>
-  <li>再二次 eligibility check；</li>
-  <li>最后用 <code class="language-plaintext highlighter-rouge">gh pr comment</code> 发评论。</li>
-</ul>
-
-<p>这其实已经不是一个简单 prompt，而更像一个审查流程 DSL。</p>
-
-<h3 id="第三层它依赖-github-cli而不是-web-fetch">第三层：它依赖 GitHub CLI，而不是 Web Fetch</h3>
-
-<p>命令 frontmatter 里明确允许的工具是 <code class="language-plaintext highlighter-rouge">gh</code> 相关 Bash 命令，比如：</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">gh pr view</code></li>
-  <li><code class="language-plaintext highlighter-rouge">gh pr diff</code></li>
-  <li><code class="language-plaintext highlighter-rouge">gh pr list</code></li>
-  <li><code class="language-plaintext highlighter-rouge">gh pr comment</code></li>
-</ul>
-
-<p>而命令正文里还特别强调：</p>
-
-<blockquote>
-  <p>用 <code class="language-plaintext highlighter-rouge">gh</code> 和 GitHub 交互，不要用 web fetch。</p>
-</blockquote>
-
-<p>这说明它的设计前提就是：</p>
-
-<ul>
-  <li>运行环境在本地开发机 / CI / Claude Code 终端；</li>
-  <li>当前仓库已经有 GitHub remote；</li>
-  <li><code class="language-plaintext highlighter-rouge">gh</code> 已经登录好。</li>
-</ul>
-
-<p>这也解释了为什么它很适合真正的 PR review workflow，而不是纯静态代码分析。</p>
-
-<h3 id="第四层它不是追求找到更多问题而是追求只发值得发的问题">第四层：它不是追求“找到更多问题”，而是追求“只发值得发的问题”</h3>
-
-<p>我觉得这是这个插件最值得学的地方。</p>
-
-<p>从实现里看，它明确把这些都当成 false positives 或无需发回的问题：</p>
-
-<ul>
-  <li>pre-existing issues</li>
-  <li>lint/typecheck/compiler 会抓到的问题</li>
-  <li>pedantic nitpicks</li>
-  <li>没改到的代码上的历史问题</li>
-  <li>很可能是 intentional behavior change 的东西</li>
-</ul>
-
-<p>这其实是一种很成熟的 code review 价值观：</p>
-
-<blockquote>
-  <p>不要因为“能说”就都说出来，review comment 是一种稀缺注意力资源。</p>
-</blockquote>
-
-<h2 id="一个典型使用场景">一个典型使用场景</h2>
-
-<p>假设你提了一个包含认证改动的 PR。</p>
-
-<p>你在 PR branch 上运行：</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1">/code-review
-</div></code></pre></figure>
-
-<p>然后它大致会这样做：</p>
-
-<ol>
-  <li>看这个 PR 是不是 draft / closed / 已经 review 过；</li>
-  <li>找当前仓库里根目录和改动目录下的 <code class="language-plaintext highlighter-rouge">CLAUDE.md</code>；</li>
-  <li>总结这个 PR 改了哪些文件、做了什么；</li>
-  <li>并行派 5 个 reviewer 去看；</li>
-  <li>再对每个 issue 做独立置信度打分；</li>
-  <li>只留下 &gt;=80 的问题；</li>
-  <li>把结果评论回 GitHub。</li>
-</ol>
-
-<p>最后 GitHub comment 会包含：</p>
-
-<ul>
-  <li>简短的问题描述；</li>
-  <li>问题为什么成立；</li>
-  <li>对应 <code class="language-plaintext highlighter-rouge">CLAUDE.md</code> 或 bug 依据；</li>
-  <li>直接跳到具体代码行的 GitHub 链接。</li>
-</ul>
-
-<h2 id="适合谁">适合谁</h2>
-
-<p>我觉得它特别适合：</p>
-
-<ul>
-  <li>GitHub PR 流程已经比较规范的团队；</li>
-  <li>项目里本来就维护 <code class="language-plaintext highlighter-rouge">CLAUDE.md</code> 规范；</li>
-  <li>想用 AI 做第一轮 reviewer，但很怕噪音；</li>
-  <li>想把“规则审查 + obvious bug 审查 + 历史上下文审查”组合起来。</li>
-</ul>
-
-<p>如果你是：</p>
-
-<ul>
-  <li>单人项目；</li>
-  <li>不怎么走 PR；</li>
-  <li>没有 GitHub CLI；</li>
-  <li>不维护 <code class="language-plaintext highlighter-rouge">CLAUDE.md</code>；</li>
-</ul>
-
-<p>那这个插件的价值会下降很多。</p>
-
-<h2 id="我的判断">我的判断</h2>
-
-<p>如果只看公开实现，我会把 Code Review 归类成一个非常“实战派”的官方插件：</p>
-
-<ul>
-  <li>它不是靠一段审美 prompt 起作用；</li>
-  <li>也不是靠 hooks 改会话默认行为；</li>
-  <li>它本质上是一个 <strong>PR review orchestration command</strong>；</li>
-  <li>多 agent 并行只是第一层；</li>
-  <li>真正让它有用的是后面的 confidence scoring 和噪音过滤。</li>
-</ul>
-
-<p>也就是说，它最核心的价值不是“更聪明”，而是“更克制”。</p>
-
-<p>而大多数 AI code review 工具，恰恰缺的就是这种克制。</p>
-
-<h2 id="参考链接">参考链接</h2>
-
-<p><a href="https://claude.com/plugins/code-review">Code Review 官方插件页</a></p>
-
-<p><a href="https://claude.com/plugins">Anthropic 官方插件目录页</a></p>
-
-<p><a href="https://github.com/anthropics/claude-plugins-official/blob/main/README.md">anthropics/claude-plugins-official 仓库 README</a></p>
-
-<p><a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/code-review/.claude-plugin/plugin.json">Code Review plugin.json</a></p>
-
-<p><a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/code-review/README.md">Code Review README</a></p>
-
-<p><a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/code-review/commands/code-review.md">Code Review command 实现</a></p>]]></content><author><name></name></author><category term="软件技术" /><category term="AI" /><category term="Claude" /><category term="编程工具" /><category term="LLM" /><category term="代码审查" /><category term="GitHub" /></entry><entry><title type="html">插件 Code Simplifier 介绍</title><link href="https://algony-tony.github.io/cc-plugin-code-simplifier/" rel="alternate" type="text/html" title="插件 Code Simplifier 介绍" /><published>2026-04-03T00:00:00+08:00</published><updated>2026-04-03T00:00:00+08:00</updated><id>https://algony-tony.github.io/cc-plugin-code-simplifier</id><content type="html" xml:base="https://algony-tony.github.io/cc-plugin-code-simplifier/"><![CDATA[<ul id="markdown-toc">
-  <li><a href="#它是什么" id="markdown-toc-它是什么">它是什么</a></li>
-  <li><a href="#安装" id="markdown-toc-安装">安装</a></li>
-  <li><a href="#怎么用" id="markdown-toc-怎么用">怎么用</a>    <ul>
-      <li><a href="#最自然的用法" id="markdown-toc-最自然的用法">最自然的用法</a></li>
-      <li><a href="#适合什么时候用" id="markdown-toc-适合什么时候用">适合什么时候用</a></li>
-    </ul>
-  </li>
-  <li><a href="#它开源了吗" id="markdown-toc-它开源了吗">它开源了吗</a></li>
-  <li><a href="#它的工作原理能看懂吗" id="markdown-toc-它的工作原理能看懂吗">它的工作原理，能看懂吗</a>    <ul>
-      <li><a href="#第一层它本质上是一个-agent-prompt" id="markdown-toc-第一层它本质上是一个-agent-prompt">第一层：它本质上是一个 agent prompt</a></li>
-      <li><a href="#第二层它强调行为不变" id="markdown-toc-第二层它强调行为不变">第二层：它强调“行为不变”</a></li>
-      <li><a href="#第三层它不是追求更短而是追求更清楚" id="markdown-toc-第三层它不是追求更短而是追求更清楚">第三层：它不是追求“更短”，而是追求“更清楚”</a></li>
-      <li><a href="#第四层它默认只盯最近改动" id="markdown-toc-第四层它默认只盯最近改动">第四层：它默认只盯最近改动</a></li>
-      <li><a href="#第五层它会参考项目标准" id="markdown-toc-第五层它会参考项目标准">第五层：它会参考项目标准</a></li>
-    </ul>
-  </li>
-  <li><a href="#它会具体改什么" id="markdown-toc-它会具体改什么">它会具体改什么</a></li>
-  <li><a href="#一个典型使用场景" id="markdown-toc-一个典型使用场景">一个典型使用场景</a></li>
-  <li><a href="#适合谁" id="markdown-toc-适合谁">适合谁</a></li>
-  <li><a href="#我的判断" id="markdown-toc-我的判断">我的判断</a></li>
-  <li><a href="#参考链接" id="markdown-toc-参考链接">参考链接</a></li>
-</ul>
-
-<p>Code Simplifier 是 Anthropic 官方做的一个 Claude Code 插件，目标也非常直接：<strong>在不改变功能的前提下，把刚刚改过的代码再收拾一遍，让它更清晰、更一致、更容易维护。</strong></p>
-
-<p>它不是做 bug 修复主流程的，也不是做 PR review 编排的。它更像一个“收尾型 agent”：当你已经写完一段代码，或者刚修改完几个函数之后，它会从可读性、复杂度、命名、一致性这些维度出发，再做一次 refinement。</p>
-
-<p>截至 <strong>2026-04-03</strong>，我打开官方插件页 <a href="https://claude.com/plugins/code-simplifier">claude.com/plugins/code-simplifier</a> 时，它显示：</p>
-
-<ul>
-  <li>Anthropic Verified</li>
-  <li>Made by Anthropic</li>
-  <li>Installs: <strong>159,908</strong></li>
-</ul>
-
-<p>同一天我在 <a href="https://claude.com/plugins">claude.com/plugins</a> 的浏览列表里看到，它也排在前排，位于 Code Review 之后。</p>
-
-<h2 id="它是什么">它是什么</h2>
-
-<p>官方插件页：<a href="https://claude.com/plugins/code-simplifier">Code Simplifier</a></p>
-
-<p>这个插件页给它的定义很短，但非常清楚：</p>
-
-<ul>
-  <li>simplifies and refines recently modified code</li>
-  <li>preserving functionality and consistency</li>
-</ul>
-
-<p>这两句其实已经把边界说完了：</p>
-
-<ol>
-  <li><strong>只动最近改过的代码</strong>，默认不扫全仓；</li>
-  <li><strong>不改变行为</strong>，只是优化实现方式。</li>
-</ol>
-
-<p>所以它解决的不是“代码不能跑”，而是另一类很常见的问题：</p>
-
-<blockquote>
-  <p>代码能跑，但写得拧巴，或者刚好跨过了“以后会越来越难读”的那条线。</p>
-</blockquote>
-
-<p>比如：</p>
-
-<ul>
-  <li>嵌套层级太深；</li>
-  <li>多个条件写成了可读性很差的三元表达式；</li>
-  <li>变量名很随手；</li>
-  <li>有点重复，但还没严重到值得单开一个 refactor task；</li>
-  <li>风格和项目已有代码不一致。</li>
-</ul>
-
-<p>Code Simplifier 做的，就是把这些“小别扭”在代码刚出炉的时候顺手处理掉。</p>
-
-<h2 id="安装">安装</h2>
-
-<p>官方插件页：<a href="https://claude.com/plugins/code-simplifier">Code Simplifier</a></p>
-
-<p>按官方 marketplace 的统一格式来安装：</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1">/plugin <span class="nb">install </span>code-simplifier@claude-plugins-official
-</div></code></pre></figure>
-
-<p>对应的官方 marketplace README：</p>
-
-<p><a href="https://github.com/anthropics/claude-plugins-official/blob/main/README.md">anthropics/claude-plugins-official</a></p>
-
-<h2 id="怎么用">怎么用</h2>
-
-<p>官方插件页：<a href="https://claude.com/plugins/code-simplifier">Code Simplifier</a></p>
-
-<p>这个插件的使用方式和 Code Review 不太一样。</p>
-
-<p>它没有一个公开可见、非常明确的 <code class="language-plaintext highlighter-rouge">/something</code> 命令入口；官方插件页写的是：</p>
-
-<ul>
-  <li>它会 <strong>proactively</strong> 地作用在 recently modified code 上；</li>
-  <li>你也可以直接要求它看特定文件或代码段；</li>
-  <li>示例 prompt 类似：
-    <ul>
-      <li>“simplify this component”</li>
-      <li>“refine the recently changed functions for clarity”</li>
-    </ul>
-  </li>
-</ul>
-
-<p>所以它更像一个 agent / subagent，而不是一个大工作流命令。</p>
-
-<h3 id="最自然的用法">最自然的用法</h3>
-
-<p>你写完一轮代码后，直接说：</p>
-
-<figure class="highlight"><pre><code class="language-text" data-lang="text"><div class="line-1">请用 code-simplifier 把我刚刚改过的代码再精简一下，
-</div><div class="line-2">前提是不改变任何行为。
-</div></code></pre></figure>
-
-<p>或者：</p>
-
-<figure class="highlight"><pre><code class="language-text" data-lang="text"><div class="line-1">Simplify this component for clarity, but keep functionality unchanged.
-</div></code></pre></figure>
-
-<p>再比如：</p>
-
-<figure class="highlight"><pre><code class="language-text" data-lang="text"><div class="line-1">Refine the recently changed functions for readability and consistency.
-</div></code></pre></figure>
-
-<h3 id="适合什么时候用">适合什么时候用</h3>
-
-<p>这个插件特别适合：</p>
-
-<ul>
-  <li>你刚写完一段功能；</li>
-  <li>你知道代码能跑，但还不够顺；</li>
-  <li>你想做一次小型 clean-up；</li>
-  <li>你不想开一个很大的 refactor 分支；</li>
-  <li>你想让 Claude 按项目风格收一下边角。</li>
-</ul>
-
-<p>它不太适合：</p>
-
-<ul>
-  <li>你还没把功能写对；</li>
-  <li>你现在最需要的是 debug；</li>
-  <li>你要重构的是整个模块；</li>
-  <li>你想重新做架构，不只是简化实现。</li>
-</ul>
-
-<h2 id="它开源了吗">它开源了吗</h2>
-
-<p>公开文件：</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">plugin.json</code>：<a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/code-simplifier/.claude-plugin/plugin.json">plugins/code-simplifier/.claude-plugin/plugin.json</a></li>
-  <li>核心 agent：<a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/code-simplifier/agents/code-simplifier.md"><code class="language-plaintext highlighter-rouge">agents/code-simplifier.md</code></a></li>
-</ul>
-
-<p>这次我没有查到单独公开的 README，但核心 agent prompt 是公开的。</p>
-
-<p>所以比较稳妥的说法是：</p>
-
-<ul>
-  <li><strong>关键实现是公开可读的；</strong></li>
-  <li><strong>至少插件 manifest 和核心 agent prompt 能直接看到；</strong></li>
-  <li><strong>但我这次没有额外确认到完整许可证文本。</strong></li>
-</ul>
-
-<p>也就是说，和前两篇一样，我更愿意把它叫做：</p>
-
-<blockquote>
-  <p><strong>源码公开可见的官方插件实现</strong>。</p>
-</blockquote>
-
-<h2 id="它的工作原理能看懂吗">它的工作原理，能看懂吗</h2>
-
-<p>可以，而且它比 Code Review 还要简单。</p>
-
-<h3 id="第一层它本质上是一个-agent-prompt">第一层：它本质上是一个 agent prompt</h3>
-
-<p><code class="language-plaintext highlighter-rouge">plugin.json</code> 很短：</p>
-
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><div class="line-1"><span class="p">{</span>
-</div><div class="line-2"><span class="w">  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"code-simplifier"</span><span class="p">,</span>
-</div><div class="line-3"><span class="w">  </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span>
-</div><div class="line-4"><span class="w">  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Agent that simplifies and refines code for clarity, consistency, and maintainability while preserving functionality"</span><span class="p">,</span>
-</div><div class="line-5"><span class="w">  </span><span class="nl">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-</div><div class="line-6"><span class="w">    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anthropic"</span><span class="p">,</span>
-</div><div class="line-7"><span class="w">    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"support@anthropic.com"</span>
-</div><div class="line-8"><span class="w">  </span><span class="p">}</span>
-</div><div class="line-9"><span class="p">}</span>
-</div></code></pre></figure>
-
-<p>而真正有内容的，是：</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">agents/code-simplifier.md</code></li>
-</ul>
-
-<p>也就是说，从公开实现看，它不是一个复杂的 workflow plugin，更像一个专职 agent。</p>
-
-<h3 id="第二层它强调行为不变">第二层：它强调“行为不变”</h3>
-
-<p>这个 agent prompt 里第一条就是：</p>
-
-<ul>
-  <li>Never change what the code does - only how it does it.</li>
-</ul>
-
-<p>这条其实就是整个插件的地基。</p>
-
-<p>因为 code simplification 最大的风险就在这里：</p>
-
-<blockquote>
-  <p>你以为你是在让代码更优雅，结果其实把逻辑改了。</p>
-</blockquote>
-
-<p>这个插件一上来就把边界钉死了：</p>
-
-<ul>
-  <li>原始行为不能变；</li>
-  <li>feature / output / behavior 都要保留；</li>
-  <li>它只能动实现方式。</li>
-</ul>
-
-<h3 id="第三层它不是追求更短而是追求更清楚">第三层：它不是追求“更短”，而是追求“更清楚”</h3>
-
-<p>这是我觉得它最好的地方。</p>
-
-<p>很多“简化代码”的工具，最后都容易滑向一个坑：</p>
-
-<ul>
-  <li>行数更少；</li>
-  <li>表达更紧；</li>
-  <li>但也更难读。</li>
-</ul>
-
-<p>而 <code class="language-plaintext highlighter-rouge">agents/code-simplifier.md</code> 里专门强调了：</p>
-
-<ul>
-  <li>readable, explicit code over overly compact solutions</li>
-  <li>avoid nested ternary operators</li>
-  <li>choose clarity over brevity</li>
-  <li>不要为了 fewer lines 牺牲可读性</li>
-</ul>
-
-<p>也就是说，它不是在做 code golf，而是在做 maintainability-oriented cleanup。</p>
-
-<h3 id="第四层它默认只盯最近改动">第四层：它默认只盯最近改动</h3>
-
-<p>prompt 里还写得很清楚：</p>
-
-<ul>
-  <li>默认只 refine recently modified code</li>
-  <li>除非用户明确要求，不扩大 scope</li>
-</ul>
-
-<p>这一点很关键，因为它把这个插件控制在一个很好用的范围里：</p>
-
-<ul>
-  <li>不会动不该动的老代码；</li>
-  <li>不会一上来就变成全仓风格战；</li>
-  <li>更适合放在“刚改完一轮代码之后”。</li>
-</ul>
-
-<h3 id="第五层它会参考项目标准">第五层：它会参考项目标准</h3>
-
-<p>agent prompt 里还要求它遵守项目里已有的 <code class="language-plaintext highlighter-rouge">CLAUDE.md</code> 规范，比如：</p>
-
-<ul>
-  <li>import 排序</li>
-  <li>ES modules</li>
-  <li>function declaration 风格</li>
-  <li>top-level return type</li>
-  <li>React props pattern</li>
-  <li>naming conventions</li>
-</ul>
-
-<p>所以它并不是在凭空输出“它觉得更漂亮的代码”，而是：</p>
-
-<blockquote>
-  <p><strong>先读项目标准，再在标准内做简化。</strong></p>
-</blockquote>
-
-<p>这让它比纯粹的格式化器更聪明，又比完全自由发挥的 AI 更克制。</p>
-
-<h2 id="它会具体改什么">它会具体改什么</h2>
-
-<p>从公开 agent prompt 看，它主要会盯这些点：</p>
-
-<ul>
-  <li>减少不必要的复杂度和 nesting</li>
-  <li>消除冗余代码和多余抽象</li>
-  <li>改善变量和函数命名</li>
-  <li>合并相关逻辑</li>
-  <li>移除解释显而易见代码的无用注释</li>
-  <li>避免 nested ternary</li>
-  <li>保持调试和扩展友好</li>
-</ul>
-
-<p>但它也明确写了不要过度简化，比如不能：</p>
-
-<ul>
-  <li>把多个关注点硬塞进一个函数；</li>
-  <li>为了短而写得太 clever；</li>
-  <li>去掉本来有帮助的 abstraction；</li>
-  <li>让代码更难 debug。</li>
-</ul>
-
-<p>所以这个插件整体非常像一个有经验的 senior engineer 在做这件事，而不是一个“压缩代码字节数”的工具。</p>
-
-<h2 id="一个典型使用场景">一个典型使用场景</h2>
-
-<p>比如你刚让 Claude 帮你改完一个 React 组件。</p>
-
-<p>功能已经对了，但你看了一眼，发现：</p>
-
-<ul>
-  <li>条件判断有点乱；</li>
-  <li>props 处理不够统一；</li>
-  <li>有几个变量名很随意；</li>
-  <li>某个 render 分支用了嵌套三元表达式。</li>
-</ul>
-
-<p>这时候你不一定想重做整个组件，也不一定想单开一个重构任务。你只需要说：</p>
-
-<figure class="highlight"><pre><code class="language-text" data-lang="text"><div class="line-1">请用 code-simplifier 收一下刚才改过的组件，
-</div><div class="line-2">保持行为不变，但让代码更清楚。
-</div></code></pre></figure>
-
-<p>这个时候它最有价值。</p>
-
-<h2 id="适合谁">适合谁</h2>
-
-<p>我觉得它最适合：</p>
-
-<ul>
-  <li>已经让 Claude 帮你完成了功能实现的人；</li>
-  <li>你认可“先做对，再做顺”这个节奏；</li>
-  <li>你不想每次都手工写一大堆“请顺手再优化代码风格”；</li>
-  <li>你项目里本来就有比较明确的代码规范。</li>
-</ul>
-
-<p>如果你想要的是：</p>
-
-<ul>
-  <li>自动修 bug；</li>
-  <li>自动做大型架构重构；</li>
-  <li>自动做 PR comment；</li>
-</ul>
-
-<p>那这不是它的方向。</p>
-
-<h2 id="我的判断">我的判断</h2>
-
-<p>如果只看公开实现，Code Simplifier 是一个非常典型的“后处理型官方 agent”：</p>
-
-<ul>
-  <li>结构很轻；</li>
-  <li>没有复杂 orchestration；</li>
-  <li>主要靠一个 agent prompt 起作用；</li>
-  <li>但 prompt 的边界设得很好；</li>
-  <li>核心价值在于“清晰优先、行为不变、范围克制”。</li>
-</ul>
-
-<p>也就是说，它并不是那种惊艳型插件，但它很容易成为日常 workflow 里一个很实用的小工具。</p>
-
-<p>它适合放在这样的位置：</p>
-
-<blockquote>
-  <p><strong>写完一轮代码之后，在 commit 之前，再让它做一轮维护性打磨。</strong></p>
-</blockquote>
-
-<h2 id="参考链接">参考链接</h2>
-
-<p><a href="https://claude.com/plugins/code-simplifier">Code Simplifier 官方插件页</a></p>
-
-<p><a href="https://claude.com/plugins">Anthropic 官方插件目录页</a></p>
-
-<p><a href="https://github.com/anthropics/claude-plugins-official/blob/main/README.md">anthropics/claude-plugins-official 仓库 README</a></p>
-
-<p><a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/code-simplifier/.claude-plugin/plugin.json">Code Simplifier plugin.json</a></p>
-
-<p><a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/code-simplifier/agents/code-simplifier.md">Code Simplifier 核心 agent</a></p>]]></content><author><name></name></author><category term="软件技术" /><category term="AI" /><category term="Claude" /><category term="编程工具" /><category term="LLM" /><category term="重构" /><category term="代码质量" /></entry><entry><title type="html">插件 Feature Dev 介绍</title><link href="https://algony-tony.github.io/cc-plugin-feature-dev/" rel="alternate" type="text/html" title="插件 Feature Dev 介绍" /><published>2026-04-03T00:00:00+08:00</published><updated>2026-04-03T00:00:00+08:00</updated><id>https://algony-tony.github.io/cc-plugin-feature-dev</id><content type="html" xml:base="https://algony-tony.github.io/cc-plugin-feature-dev/"><![CDATA[<ul id="markdown-toc">
-  <li><a href="#它是什么" id="markdown-toc-它是什么">它是什么</a></li>
-  <li><a href="#安装" id="markdown-toc-安装">安装</a></li>
-  <li><a href="#怎么用" id="markdown-toc-怎么用">怎么用</a></li>
-  <li><a href="#它的-7-个阶段" id="markdown-toc-它的-7-个阶段">它的 7 个阶段</a>    <ul>
-      <li><a href="#phase-1-discovery" id="markdown-toc-phase-1-discovery">Phase 1: Discovery</a></li>
-      <li><a href="#phase-2-codebase-exploration" id="markdown-toc-phase-2-codebase-exploration">Phase 2: Codebase Exploration</a></li>
-      <li><a href="#phase-3-clarifying-questions" id="markdown-toc-phase-3-clarifying-questions">Phase 3: Clarifying Questions</a></li>
-      <li><a href="#phase-4-architecture-design" id="markdown-toc-phase-4-architecture-design">Phase 4: Architecture Design</a></li>
-      <li><a href="#phase-5-implementation" id="markdown-toc-phase-5-implementation">Phase 5: Implementation</a></li>
-      <li><a href="#phase-6-quality-review" id="markdown-toc-phase-6-quality-review">Phase 6: Quality Review</a></li>
-      <li><a href="#phase-7-summary" id="markdown-toc-phase-7-summary">Phase 7: Summary</a></li>
-    </ul>
-  </li>
-  <li><a href="#它开源了吗" id="markdown-toc-它开源了吗">它开源了吗</a></li>
-  <li><a href="#它的工作原理能看懂吗" id="markdown-toc-它的工作原理能看懂吗">它的工作原理，能看懂吗</a>    <ul>
-      <li><a href="#第一层它本质上是一个-workflow-command" id="markdown-toc-第一层它本质上是一个-workflow-command">第一层：它本质上是一个 workflow command</a></li>
-      <li><a href="#第二层它把做功能拆成阶段机" id="markdown-toc-第二层它把做功能拆成阶段机">第二层：它把“做功能”拆成阶段机</a></li>
-      <li><a href="#第三层核心-agent-分工很清楚" id="markdown-toc-第三层核心-agent-分工很清楚">第三层：核心 agent 分工很清楚</a>        <ul>
-          <li><a href="#code-explorer" id="markdown-toc-code-explorer"><code class="language-plaintext highlighter-rouge">code-explorer</code></a></li>
-          <li><a href="#code-architect" id="markdown-toc-code-architect"><code class="language-plaintext highlighter-rouge">code-architect</code></a></li>
-          <li><a href="#code-reviewer" id="markdown-toc-code-reviewer"><code class="language-plaintext highlighter-rouge">code-reviewer</code></a></li>
-        </ul>
-      </li>
-      <li><a href="#第四层它最核心的价值其实不是更会写代码而是更晚开始写代码" id="markdown-toc-第四层它最核心的价值其实不是更会写代码而是更晚开始写代码">第四层：它最核心的价值其实不是“更会写代码”，而是“更晚开始写代码”</a></li>
-    </ul>
-  </li>
-  <li><a href="#一个典型使用场景" id="markdown-toc-一个典型使用场景">一个典型使用场景</a></li>
-  <li><a href="#适合谁" id="markdown-toc-适合谁">适合谁</a></li>
-  <li><a href="#我的判断" id="markdown-toc-我的判断">我的判断</a></li>
-  <li><a href="#参考链接" id="markdown-toc-参考链接">参考链接</a></li>
-</ul>
-
-<p>Feature Dev 是 Anthropic 官方做的一个 Claude Code 插件，它的目标不是帮你写某一段具体代码，而是：<strong>把“开发一个新功能”这件事情，流程化成一个带阶段、带 agent 分工、带审查和确认点的工作流。</strong></p>
-
-<p>如果说 Frontend Design 是在纠正审美默认值，Code Review 是在自动化 PR 审查，Code Simplifier 是在做代码收尾打磨，那么 Feature Dev 就是在解决另一个很典型的问题：</p>
-
-<blockquote>
-  <p>Claude 一接到“做个新功能”这种任务，太容易直接冲进代码里。</p>
-</blockquote>
-
-<p>截至 <strong>2026-04-03</strong>，我打开官方插件页 <a href="https://claude.com/plugins/feature-dev">claude.com/plugins/feature-dev</a> 时，它显示：</p>
-
-<ul>
-  <li>Anthropic Verified</li>
-  <li>Made by Anthropic</li>
-  <li>Installs: <strong>143,911</strong></li>
-</ul>
-
-<h2 id="它是什么">它是什么</h2>
-
-<p>官方插件页：<a href="https://claude.com/plugins/feature-dev">Feature Dev</a></p>
-
-<p>插件页对它的总结很准确：</p>
-
-<ul>
-  <li>它是一个 structured 7-phase workflow；</li>
-  <li>不鼓励直接开始写代码；</li>
-  <li>会先理解代码库；</li>
-  <li>会澄清需求；</li>
-  <li>会做架构设计；</li>
-  <li>会在实现前后做 quality review。</li>
-</ul>
-
-<p>这其实是一种很“软件工程流程化”的插件。</p>
-
-<p>它不追求最短路径，而是追求：</p>
-
-<ul>
-  <li>先理解上下文；</li>
-  <li>再消除歧义；</li>
-  <li>再设计实现方案；</li>
-  <li>再实施；</li>
-  <li>再复查质量。</li>
-</ul>
-
-<p>所以它特别适合“新增功能”这种任务，而不太适合那种一眼能做完的小改动。</p>
-
-<h2 id="安装">安装</h2>
-
-<p>官方插件页：<a href="https://claude.com/plugins/feature-dev">Feature Dev</a></p>
-
-<p>按 Anthropic 官方 marketplace 的统一格式安装：</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1">/plugin <span class="nb">install </span>feature-dev@claude-plugins-official
-</div></code></pre></figure>
-
-<p>对应官方 marketplace README：</p>
-
-<p><a href="https://github.com/anthropics/claude-plugins-official/blob/main/README.md">anthropics/claude-plugins-official</a></p>
-
-<h2 id="怎么用">怎么用</h2>
-
-<p>官方插件页：<a href="https://claude.com/plugins/feature-dev">Feature Dev</a></p>
-
-<p>它的主入口是：</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1">/feature-dev Add user authentication with OAuth
-</div></code></pre></figure>
-
-<p>或者直接：</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1">/feature-dev
-</div></code></pre></figure>
-
-<p>然后它会一步一步带你走完整个流程。</p>
-
-<p>这点和普通 prompt 最大的区别在于：</p>
-
-<ul>
-  <li>它不是只让 Claude“回答你”；</li>
-  <li>它是在驱动 Claude 进入一个有 phase 的 feature workflow。</li>
-</ul>
-
-<p>如果你用自然语言触发，也可以说成：</p>
-
-<figure class="highlight"><pre><code class="language-text" data-lang="text"><div class="line-1">请用 feature-dev 帮我做这个功能：
-</div><div class="line-2">给系统增加 OAuth 登录。
-</div></code></pre></figure>
-
-<h2 id="它的-7-个阶段">它的 7 个阶段</h2>
-
-<p>公开 README：</p>
-
-<ul>
-  <li>插件 README：<a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/feature-dev/README.md">plugins/feature-dev/README.md</a></li>
-  <li>命令实现：<a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/feature-dev/commands/feature-dev.md">plugins/feature-dev/commands/feature-dev.md</a></li>
-</ul>
-
-<p>这个插件最核心的价值，就在这 7 个阶段里。</p>
-
-<h3 id="phase-1-discovery">Phase 1: Discovery</h3>
-
-<p>先搞清楚你到底要做什么。</p>
-
-<p>如果需求本身是模糊的，它会先问：</p>
-
-<ul>
-  <li>你要解决什么问题；</li>
-  <li>这个 feature 到底应该做什么；</li>
-  <li>有没有约束或额外要求。</li>
-</ul>
-
-<h3 id="phase-2-codebase-exploration">Phase 2: Codebase Exploration</h3>
-
-<p>这是它和一般 agent 最大的差别之一。</p>
-
-<p>它不会马上改代码，而是先派 2~3 个 <code class="language-plaintext highlighter-rouge">code-explorer</code> agents 并行探索：</p>
-
-<ul>
-  <li>有没有类似功能；</li>
-  <li>当前架构怎么分层；</li>
-  <li>有没有相关抽象和 extension points；</li>
-  <li>现有代码是怎么流转的。</li>
-</ul>
-
-<p>而且 explorer agents 不只是扫一眼文件名，它们会 trace execution path、map architecture layers、列出关键文件清单。</p>
-
-<h3 id="phase-3-clarifying-questions">Phase 3: Clarifying Questions</h3>
-
-<p>这是整个插件里我觉得最重要的一步之一。</p>
-
-<p>它会在理解代码库以后，把还不明确的地方一次性列出来问你，比如：</p>
-
-<ul>
-  <li>edge cases</li>
-  <li>error handling</li>
-  <li>integration points</li>
-  <li>backward compatibility</li>
-  <li>performance expectations</li>
-</ul>
-
-<p>重点是：<strong>它在开始设计前，先尽量把歧义收敛掉。</strong></p>
-
-<h3 id="phase-4-architecture-design">Phase 4: Architecture Design</h3>
-
-<p>这个阶段它会再派 2~3 个 <code class="language-plaintext highlighter-rouge">code-architect</code> agents，从不同视角给出实现思路：</p>
-
-<ul>
-  <li>最小改动</li>
-  <li>更干净的架构</li>
-  <li>pragmatic balance</li>
-</ul>
-
-<p>然后对比 trade-off，再向你给 recommendation。</p>
-
-<h3 id="phase-5-implementation">Phase 5: Implementation</h3>
-
-<p>这里才开始真正写代码。</p>
-
-<p>而且命令实现里写得非常明确：</p>
-
-<blockquote>
-  <p><strong>没有用户批准，不要开始实现。</strong></p>
-</blockquote>
-
-<p>也就是说，它不只是探索和设计，还把“什么时候允许动手”也做成了 gate。</p>
-
-<h3 id="phase-6-quality-review">Phase 6: Quality Review</h3>
-
-<p>实现完以后，它还会再派 3 个 <code class="language-plaintext highlighter-rouge">code-reviewer</code> agents 并行从不同角度看：</p>
-
-<ul>
-  <li>simplicity / DRY / elegance</li>
-  <li>bugs / correctness</li>
-  <li>conventions / abstractions</li>
-</ul>
-
-<p>然后把结果汇总给你，再问你：</p>
-
-<ul>
-  <li>现在修</li>
-  <li>以后修</li>
-  <li>还是就这样继续</li>
-</ul>
-
-<h3 id="phase-7-summary">Phase 7: Summary</h3>
-
-<p>最后收尾：</p>
-
-<ul>
-  <li>标记 todo 完成；</li>
-  <li>总结做了什么；</li>
-  <li>记录关键决策；</li>
-  <li>列出改动文件；</li>
-  <li>给出 next steps。</li>
-</ul>
-
-<h2 id="它开源了吗">它开源了吗</h2>
-
-<p>公开文件：</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">plugin.json</code>：<a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/feature-dev/.claude-plugin/plugin.json">plugins/feature-dev/.claude-plugin/plugin.json</a></li>
-  <li><code class="language-plaintext highlighter-rouge">README.md</code>：<a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/feature-dev/README.md">plugins/feature-dev/README.md</a></li>
-  <li>主命令：<a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/feature-dev/commands/feature-dev.md">plugins/feature-dev/commands/feature-dev.md</a></li>
-  <li>关键 agents：
-    <ul>
-      <li><a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/feature-dev/agents/code-explorer.md"><code class="language-plaintext highlighter-rouge">agents/code-explorer.md</code></a></li>
-      <li><a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/feature-dev/agents/code-architect.md"><code class="language-plaintext highlighter-rouge">agents/code-architect.md</code></a></li>
-      <li><a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/feature-dev/agents/code-reviewer.md"><code class="language-plaintext highlighter-rouge">agents/code-reviewer.md</code></a></li>
-    </ul>
-  </li>
-</ul>
-
-<p>这次可以比较明确地说：</p>
-
-<ul>
-  <li><strong>关键实现已经公开可读；</strong></li>
-  <li><strong>README、命令文件、agent prompt 都能看到；</strong></li>
-  <li><strong>工作原理基本不算黑盒。</strong></li>
-</ul>
-
-<p>不过和前两篇一样，关于许可证文本我这次没有单独再核实一个完整结论，所以我还是保持保守表述：</p>
-
-<blockquote>
-  <p><strong>它至少是一个源码公开可读的官方插件实现。</strong></p>
-</blockquote>
-
-<h2 id="它的工作原理能看懂吗">它的工作原理，能看懂吗</h2>
-
-<p>可以，而且这是三个插件里最容易看出“工程编排感”的一个。</p>
-
-<h3 id="第一层它本质上是一个-workflow-command">第一层：它本质上是一个 workflow command</h3>
-
-<p><code class="language-plaintext highlighter-rouge">plugin.json</code> 只有元数据，真正有内容的是：</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">commands/feature-dev.md</code></li>
-</ul>
-
-<p>这意味着它的核心不是单个 skill，也不是单个 reviewer agent，而是一个 orchestrated command：<code class="language-plaintext highlighter-rouge">/feature-dev</code>。</p>
-
-<h3 id="第二层它把做功能拆成阶段机">第二层：它把“做功能”拆成阶段机</h3>
-
-<p>如果你看 <code class="language-plaintext highlighter-rouge">commands/feature-dev.md</code>，会发现它写得像一份流程手册，不像普通 prompt：</p>
-
-<ul>
-  <li>每个阶段有 Goal；</li>
-  <li>每个阶段有 Actions；</li>
-  <li>哪一步要 wait for user answers；</li>
-  <li>哪一步不要在没批准前实现；</li>
-  <li>哪一步要并行派 agent。</li>
-</ul>
-
-<p>也就是说，它其实是在把 Claude Code 变成一个按 phase 跑的 feature PM + architect + implementer + reviewer 组合体。</p>
-
-<h3 id="第三层核心-agent-分工很清楚">第三层：核心 agent 分工很清楚</h3>
-
-<p>Feature Dev 公开出来的 3 个 agent，各自职责很明确：</p>
-
-<h4 id="code-explorer"><code class="language-plaintext highlighter-rouge">code-explorer</code></h4>
-
-<p>作用是深挖现有代码库：</p>
-
-<ul>
-  <li>找 entry points；</li>
-  <li>trace code flow；</li>
-  <li>map architecture layers；</li>
-  <li>找 dependencies 和 side effects；</li>
-  <li>列出必须阅读的关键文件。</li>
-</ul>
-
-<p>它本质上是在替 Claude 做“先摸清地形”。</p>
-
-<h4 id="code-architect"><code class="language-plaintext highlighter-rouge">code-architect</code></h4>
-
-<p>作用是基于现有模式做架构设计：</p>
-
-<ul>
-  <li>分析现有 conventions；</li>
-  <li>做 architecture decision；</li>
-  <li>明确组件设计；</li>
-  <li>明确 implementation map；</li>
-  <li>给 phased build sequence。</li>
-</ul>
-
-<p>它其实是在做“把探索结果转成设计蓝图”。</p>
-
-<h4 id="code-reviewer"><code class="language-plaintext highlighter-rouge">code-reviewer</code></h4>
-
-<p>作用是实现后看质量：</p>
-
-<ul>
-  <li>看项目规范；</li>
-  <li>看 bug；</li>
-  <li>看代码质量；</li>
-  <li>只报高置信度问题。</li>
-</ul>
-
-<p>所以这三个 agent 组合起来，基本就是：</p>
-
-<blockquote>
-  <p>先理解，再设计，再复查。</p>
-</blockquote>
-
-<h3 id="第四层它最核心的价值其实不是更会写代码而是更晚开始写代码">第四层：它最核心的价值其实不是“更会写代码”，而是“更晚开始写代码”</h3>
-
-<p>我觉得这点特别关键。</p>
-
-<p>普通 Claude Code 最常见的问题，是它太容易在信息不全的时候就开始动手。</p>
-
-<p>Feature Dev 用 7-phase workflow 在强行压制这种冲动：</p>
-
-<ul>
-  <li>需求不清？先问。</li>
-  <li>代码库没懂？先探索。</li>
-  <li>设计没定？先比方案。</li>
-  <li>用户没批准？先别实现。</li>
-</ul>
-
-<p>这让它特别适合复杂 feature，而不是简单 patch。</p>
-
-<h2 id="一个典型使用场景">一个典型使用场景</h2>
-
-<p>假设你想在一个已有系统里新增 OAuth 登录。</p>
-
-<p>你运行：</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1">/feature-dev Add user authentication with OAuth
-</div></code></pre></figure>
-
-<p>然后它可能会这样走：</p>
-
-<ol>
-  <li>先确认你要支持哪些 provider；</li>
-  <li>派 explorer agents 去看现有 auth、session、security middleware；</li>
-  <li>汇总后问你：
-    <ul>
-      <li>要不要和现有 auth 共存？</li>
-      <li>token 存什么？</li>
-      <li>error handling 怎么做？</li>
-    </ul>
-  </li>
-  <li>再派 architect agents 给出几种方案；</li>
-  <li>让你选方案；</li>
-  <li>你批准后开始实现；</li>
-  <li>实现后再派 reviewer agents 查质量；</li>
-  <li>最后给你 summary。</li>
-</ol>
-
-<p>这个过程比直接“帮我加 OAuth”慢，但出错概率会低很多。</p>
-
-<h2 id="适合谁">适合谁</h2>
-
-<p>这个插件特别适合：</p>
-
-<ul>
-  <li>要做的 feature 比较大；</li>
-  <li>改动会涉及多个文件或模块；</li>
-  <li>你不想让 Claude 一上来就乱改；</li>
-  <li>你希望它先做 codebase study；</li>
-  <li>你认可“先设计后实现”的节奏。</li>
-</ul>
-
-<p>它不太适合：</p>
-
-<ul>
-  <li>单行小修；</li>
-  <li>简单 bug fix；</li>
-  <li>你已经把要求说得极度清楚、只想赶紧改完；</li>
-  <li>你不想被问 clarifying questions。</li>
-</ul>
-
-<h2 id="我的判断">我的判断</h2>
-
-<p>如果只看公开实现，Feature Dev 是一个非常典型的 Anthropic 官方 workflow 插件：</p>
-
-<ul>
-  <li>它不是单纯 prompt；</li>
-  <li>也不是一个单点技能；</li>
-  <li>它是一个 command-driven orchestration；</li>
-  <li>通过 explorer / architect / reviewer 三类 agents，把 feature development 这件事拆阶段执行；</li>
-  <li>最核心的价值是：<strong>延迟实现，先理解、先澄清、先设计。</strong></li>
-</ul>
-
-<p>所以如果你问我它最适合什么任务，我会说：</p>
-
-<blockquote>
-  <p><strong>“不是不会写，而是容易写太快”的那类功能开发任务。</strong></p>
-</blockquote>
-
-<p>对于复杂功能，它很有价值；
-对于简单任务，它会显得有点重。</p>
-
-<h2 id="参考链接">参考链接</h2>
-
-<p><a href="https://claude.com/plugins/feature-dev">Feature Dev 官方插件页</a></p>
-
-<p><a href="https://claude.com/plugins">Anthropic 官方插件目录页</a></p>
-
-<p><a href="https://github.com/anthropics/claude-plugins-official/blob/main/README.md">anthropics/claude-plugins-official 仓库 README</a></p>
-
-<p><a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/feature-dev/.claude-plugin/plugin.json">Feature Dev plugin.json</a></p>
-
-<p><a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/feature-dev/README.md">Feature Dev README</a></p>
-
-<p><a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/feature-dev/commands/feature-dev.md">Feature Dev 主命令实现</a></p>
-
-<p><a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/feature-dev/agents/code-explorer.md">Feature Dev code-explorer agent</a></p>
-
-<p><a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/feature-dev/agents/code-architect.md">Feature Dev code-architect agent</a></p>
-
-<p><a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/feature-dev/agents/code-reviewer.md">Feature Dev code-reviewer agent</a></p>]]></content><author><name></name></author><category term="软件技术" /><category term="AI" /><category term="Claude" /><category term="编程工具" /><category term="LLM" /><category term="软件工程" /><category term="工作流" /></entry><entry><title type="html">插件 Frontend Design 介绍</title><link href="https://algony-tony.github.io/cc-plugin-frontend-design/" rel="alternate" type="text/html" title="插件 Frontend Design 介绍" /><published>2026-04-03T00:00:00+08:00</published><updated>2026-04-03T00:00:00+08:00</updated><id>https://algony-tony.github.io/cc-plugin-frontend-design</id><content type="html" xml:base="https://algony-tony.github.io/cc-plugin-frontend-design/"><![CDATA[<ul id="markdown-toc">
-  <li><a href="#它是什么" id="markdown-toc-它是什么">它是什么</a></li>
-  <li><a href="#为什么它会排到第一" id="markdown-toc-为什么它会排到第一">为什么它会排到第一</a></li>
-  <li><a href="#安装" id="markdown-toc-安装">安装</a></li>
-  <li><a href="#怎么用" id="markdown-toc-怎么用">怎么用</a>    <ul>
-      <li><a href="#更好的提问方式" id="markdown-toc-更好的提问方式">更好的提问方式</a></li>
-    </ul>
-  </li>
-  <li><a href="#它开源了吗" id="markdown-toc-它开源了吗">它开源了吗</a>    <ul>
-      <li><a href="#第一层源码是否公开可读" id="markdown-toc-第一层源码是否公开可读">第一层：源码是否公开可读？</a></li>
-      <li><a href="#第二层能不能严格说它是标准意义上的开源项目" id="markdown-toc-第二层能不能严格说它是标准意义上的开源项目">第二层：能不能严格说它是标准意义上的开源项目？</a></li>
-    </ul>
-  </li>
-  <li><a href="#它的工作原理能看懂吗" id="markdown-toc-它的工作原理能看懂吗">它的工作原理，能看懂吗</a>    <ul>
-      <li><a href="#第一层它是一个很轻的-plugin" id="markdown-toc-第一层它是一个很轻的-plugin">第一层：它是一个很轻的 plugin</a></li>
-      <li><a href="#第二层公开可见的核心就是一个-skill" id="markdown-toc-第二层公开可见的核心就是一个-skill">第二层：公开可见的核心就是一个 skill</a></li>
-      <li><a href="#第三层它靠-skill-description-自动触发" id="markdown-toc-第三层它靠-skill-description-自动触发">第三层：它靠 skill description 自动触发</a></li>
-      <li><a href="#第四层真正的逻辑就是一段审美纠偏-prompt" id="markdown-toc-第四层真正的逻辑就是一段审美纠偏-prompt">第四层：真正的逻辑就是一段“审美纠偏 prompt”</a>        <ul>
-          <li><a href="#1-先定设计方向再写代码" id="markdown-toc-1-先定设计方向再写代码">1. 先定设计方向，再写代码</a></li>
-          <li><a href="#2-强制做有风格的选择" id="markdown-toc-2-强制做有风格的选择">2. 强制做“有风格的选择”</a></li>
-          <li><a href="#3-明确列出该关注的设计维度" id="markdown-toc-3-明确列出该关注的设计维度">3. 明确列出该关注的设计维度</a></li>
-          <li><a href="#4-明确列出不要做什么" id="markdown-toc-4-明确列出不要做什么">4. 明确列出“不要做什么”</a></li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><a href="#它和官方-cookbook-的关系" id="markdown-toc-它和官方-cookbook-的关系">它和官方 cookbook 的关系</a></li>
-  <li><a href="#所以它到底是怎么起作用的" id="markdown-toc-所以它到底是怎么起作用的">所以它到底是怎么起作用的</a></li>
-  <li><a href="#实际上适合谁" id="markdown-toc-实际上适合谁">实际上适合谁</a></li>
-  <li><a href="#我的判断" id="markdown-toc-我的判断">我的判断</a></li>
-  <li><a href="#参考链接" id="markdown-toc-参考链接">参考链接</a></li>
-</ul>
-
-<p>Frontend Design 是 Anthropic 自己做的一个 Claude Code 插件，目标非常明确：<strong>让 Claude 写出来的前端，不要一眼看上去就是那种“标准 AI 味”的页面</strong>。</p>
-
-<p>它不负责接数据库，不负责跑浏览器自动化，也不负责项目管理。它做的事情其实很集中：当你让 Claude 生成页面、组件、landing page、dashboard 这类前端界面时，它会把 Claude 往“更有设计感、更有审美判断、更敢做风格选择”的方向推一把。</p>
-
-<p>截至 <strong>2026-04-03</strong>，我打开 Anthropic 官方插件目录页 <a href="https://claude.com/plugins">claude.com/plugins</a> 时，在 <code class="language-plaintext highlighter-rouge">Browse plugins</code> 的 Claude Code 列表里，<strong>Frontend Design 排在第一个</strong>，显示安装量是 <strong>413,623</strong>。它自己的插件页 <a href="https://claude.com/plugins/frontend-design">claude.com/plugins/frontend-design</a> 上显示的信息也是：Anthropic Verified、Made by Anthropic、413,623 installs。</p>
-
-<p>这篇主要讲四件事：</p>
-
-<ol>
-  <li>它是什么，适合什么时候用；</li>
-  <li>它到底怎么用；</li>
-  <li>它开源了没有；</li>
-  <li>从公开信息里，能不能看懂它的工作原理。</li>
-</ol>
-
-<h2 id="它是什么">它是什么</h2>
-
-<p>官方插件页：<a href="https://claude.com/plugins/frontend-design">Frontend Design</a></p>
-
-<p>这个插件页给它的定位很直接：</p>
-
-<ul>
-  <li>生成 production-grade 的前端；</li>
-  <li>强调 distinctive design；</li>
-  <li>避免 generic AI aesthetics；</li>
-  <li>会在编码前先建立设计方向；</li>
-  <li>会主动考虑 typography、color palette、motion、layout、visual details。</li>
-</ul>
-
-<p>说白一点，它想解决的是这个问题：</p>
-
-<blockquote>
-  <p>Claude 会写页面，但默认经常写得太安全、太平均、太模板化。</p>
-</blockquote>
-
-<p>你如果直接让大模型“做一个 SaaS 落地页”，它很容易写出：</p>
-
-<ul>
-  <li>白底；</li>
-  <li>紫色渐变；</li>
-  <li>Inter 字体；</li>
-  <li>标准 hero section；</li>
-  <li>两排 feature cards；</li>
-  <li>一个很像所有模板站拼出来的页面。</li>
-</ul>
-
-<p>Frontend Design 就是在专门对抗这种收敛。</p>
-
-<h2 id="为什么它会排到第一">为什么它会排到第一</h2>
-
-<p>官方目录页：<a href="https://claude.com/plugins">Plugins for Claude Code and Cowork</a></p>
-
-<p>从 2026-04-03 我看到的官方目录页来看，它在 <code class="language-plaintext highlighter-rouge">Browse plugins</code> 列表里排第一，前几名是：</p>
-
-<ol>
-  <li><code class="language-plaintext highlighter-rouge">Frontend Design</code> — 413,623 installs</li>
-  <li><code class="language-plaintext highlighter-rouge">Superpowers</code> — 294,839 installs</li>
-  <li><code class="language-plaintext highlighter-rouge">Context7</code> — 212,236 installs</li>
-  <li><code class="language-plaintext highlighter-rouge">Code Review</code> — 191,903 installs</li>
-  <li><code class="language-plaintext highlighter-rouge">Code Simplifier</code> — 159,908 installs</li>
-</ol>
-
-<p>这里我不敢武断说 Anthropic 的排序算法一定就是“按安装量降序”，因为页面上虽然有 <code class="language-plaintext highlighter-rouge">Filter and sort</code>，但公开 HTML 里没直接告诉我完整排序逻辑。不过<strong>至少在 2026-04-03 这一天，官方浏览页把它放在第一位，而且它显示的安装量也是我看到的最高值</strong>。</p>
-
-<p>这其实挺好理解，因为这个插件命中了 Claude Code 很高频的一个场景：</p>
-
-<ul>
-  <li>写 landing page</li>
-  <li>写 dashboard</li>
-  <li>写 marketing site</li>
-  <li>写 settings panel</li>
-  <li>写活动页</li>
-  <li>写可交互 demo</li>
-</ul>
-
-<p>而且它又是 Anthropic 自己出的，安装心理成本比第三方插件低很多。</p>
-
-<h2 id="安装">安装</h2>
-
-<p>官方插件页：<a href="https://claude.com/plugins/frontend-design">Frontend Design</a></p>
-
-<p>它在官方市场里，直接安装就行：</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1">/plugin <span class="nb">install </span>frontend-design@claude-plugins-official
-</div></code></pre></figure>
-
-<p>这个命令不是插件页明文写出来的，而是根据官方 marketplace 仓库 README 给出的统一安装格式推出来的：</p>
-
-<ul>
-  <li>官方 marketplace README：<a href="https://github.com/anthropics/claude-plugins-official/blob/main/README.md">anthropics/claude-plugins-official</a></li>
-  <li>插件名：<code class="language-plaintext highlighter-rouge">frontend-design</code></li>
-</ul>
-
-<p>README 里写的是：</p>
-
-<figure class="highlight"><pre><code class="language-text" data-lang="text"><div class="line-1">/plugin install {plugin-name}@claude-plugins-official
-</div></code></pre></figure>
-
-<p>所以对应到这个插件，就是上面那条安装命令。</p>
-
-<h2 id="怎么用">怎么用</h2>
-
-<p>官方插件页：<a href="https://claude.com/plugins/frontend-design">Frontend Design</a></p>
-
-<p>这个插件最大的优点是：<strong>基本不需要你记命令</strong>。</p>
-
-<p>插件页和公开 README 都写得很清楚：它会在你做 frontend work 的时候自动触发。也就是说，你通常直接提需求就行。</p>
-
-<p>比如：</p>
-
-<figure class="highlight"><pre><code class="language-text" data-lang="text"><div class="line-1">Create a dashboard for a music streaming app
-</div></code></pre></figure>
-
-<figure class="highlight"><pre><code class="language-text" data-lang="text"><div class="line-1">Build a landing page for an AI security startup
-</div></code></pre></figure>
-
-<figure class="highlight"><pre><code class="language-text" data-lang="text"><div class="line-1">Design a settings panel with dark mode support
-</div></code></pre></figure>
-
-<p>如果你想更稳定地触发它，也可以把话说得更像“明确的前端设计任务”：</p>
-
-<ul>
-  <li>帮我做一个有强烈视觉风格的 landing page；</li>
-  <li>用 React 写一个 dashboard，风格要大胆一点，不要太模板化；</li>
-  <li>做一个复古未来主义风格的 pricing page；</li>
-  <li>帮我把这个设置页面重做成更有设计感的版本。</li>
-</ul>
-
-<h3 id="更好的提问方式">更好的提问方式</h3>
-
-<p>虽然它会自动触发，但想让它效果更好，最好还是给这几类信息：</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">信息</th>
-      <th style="text-align: left">例子</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">产品类型</td>
-      <td style="text-align: left">AI 安全公司、音乐 App、设计工具、消费品牌</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">目标用户</td>
-      <td style="text-align: left">开发者、设计师、B 端管理者、年轻消费者</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">技术约束</td>
-      <td style="text-align: left">React / Vue / Tailwind / 纯 HTML</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">风格方向</td>
-      <td style="text-align: left">brutalist、editorial、luxury、playful、retro-futuristic</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">重点区域</td>
-      <td style="text-align: left">hero、定价区、数据表、导航、卡片、动效</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>比如这种 prompt 就会比一句“做个首页”强很多：</p>
-
-<figure class="highlight"><pre><code class="language-text" data-lang="text"><div class="line-1">用 React 和 Tailwind 做一个 AI 安全创业公司的 landing page。
-</div><div class="line-2">目标用户是技术负责人和安全团队。
-</div><div class="line-3">风格想要偏 editorial + dark luxury，不要通用 SaaS 模板感。
-</div><div class="line-4">请重点把 hero、feature section 和 CTA 做得有记忆点。
-</div></code></pre></figure>
-
-<h2 id="它开源了吗">它开源了吗</h2>
-
-<p>公开仓库：</p>
-
-<ul>
-  <li>官方 marketplace 仓库：<a href="https://github.com/anthropics/claude-plugins-official">anthropics/claude-plugins-official</a></li>
-  <li>插件 manifest：<a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/frontend-design/.claude-plugin/plugin.json"><code class="language-plaintext highlighter-rouge">plugins/frontend-design/.claude-plugin/plugin.json</code></a></li>
-  <li>插件 README：<a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/frontend-design/README.md"><code class="language-plaintext highlighter-rouge">plugins/frontend-design/README.md</code></a></li>
-  <li>核心 skill：<a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/frontend-design/skills/frontend-design/SKILL.md"><code class="language-plaintext highlighter-rouge">plugins/frontend-design/skills/frontend-design/SKILL.md</code></a></li>
-</ul>
-
-<p>答案分两层说更准确。</p>
-
-<h3 id="第一层源码是否公开可读">第一层：源码是否公开可读？</h3>
-
-<p><strong>是的，至少插件本体的关键文件是公开可读的。</strong></p>
-
-<p>我能直接读到：</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">plugin.json</code></li>
-  <li><code class="language-plaintext highlighter-rouge">README.md</code></li>
-  <li><code class="language-plaintext highlighter-rouge">skills/frontend-design/SKILL.md</code></li>
-</ul>
-
-<p>也就是说，这个插件不是完全黑盒，至少它最核心的“提示词逻辑”已经公开了。</p>
-
-<h3 id="第二层能不能严格说它是标准意义上的开源项目">第二层：能不能严格说它是标准意义上的开源项目？</h3>
-
-<p>这里我觉得要保守一点。</p>
-
-<p>因为我这次查到的是：</p>
-
-<ul>
-  <li>仓库是 public；</li>
-  <li>代码是可读的；</li>
-  <li>skill frontmatter 里写了 <code class="language-plaintext highlighter-rouge">license: Complete terms in LICENSE.txt</code>；</li>
-  <li>但我<strong>没有直接查到这个插件目录下公开可读的 <code class="language-plaintext highlighter-rouge">LICENSE.txt</code> 文件</strong>。</li>
-</ul>
-
-<p>所以更稳妥的说法是：</p>
-
-<blockquote>
-  <p><strong>它至少是“公开源码 / 源码可见”的官方插件实现。至于是否具备完整、明确、可复用的开源许可证文本，我这次没有查实。</strong></p>
-</blockquote>
-
-<p>如果只回答“有没有公开出来”，答案是：<strong>有</strong>。
-如果严格问“能不能毫无保留地称为标准开源许可证项目”，我会保守一点。</p>
-
-<h2 id="它的工作原理能看懂吗">它的工作原理，能看懂吗</h2>
-
-<p>可以，而且其实比 Superpowers 简单很多。</p>
-
-<p>关键公开文件：</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">plugin.json</code>：<a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/frontend-design/.claude-plugin/plugin.json"><code class="language-plaintext highlighter-rouge">plugin.json</code></a></li>
-  <li>插件 README：<a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/frontend-design/README.md"><code class="language-plaintext highlighter-rouge">README.md</code></a></li>
-  <li>核心 skill：<a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/frontend-design/skills/frontend-design/SKILL.md"><code class="language-plaintext highlighter-rouge">SKILL.md</code></a></li>
-  <li>配套 cookbook：<a href="https://github.com/anthropics/claude-cookbooks/blob/main/coding/prompting_for_frontend_aesthetics.ipynb"><code class="language-plaintext highlighter-rouge">prompting_for_frontend_aesthetics.ipynb</code></a></li>
-</ul>
-
-<p>我看下来，它的核心不是 MCP、不是 hooks、不是 agent 编排，而是：</p>
-
-<blockquote>
-  <p><strong>一个设计得很用力的 frontend skill prompt。</strong></p>
-</blockquote>
-
-<h3 id="第一层它是一个很轻的-plugin">第一层：它是一个很轻的 plugin</h3>
-
-<p><code class="language-plaintext highlighter-rouge">plugin.json</code> 非常短：</p>
-
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><div class="line-1"><span class="p">{</span>
-</div><div class="line-2"><span class="w">  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"frontend-design"</span><span class="p">,</span>
-</div><div class="line-3"><span class="w">  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Frontend design skill for UI/UX implementation"</span><span class="p">,</span>
-</div><div class="line-4"><span class="w">  </span><span class="nl">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-</div><div class="line-5"><span class="w">    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anthropic"</span><span class="p">,</span>
-</div><div class="line-6"><span class="w">    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"support@anthropic.com"</span>
-</div><div class="line-7"><span class="w">  </span><span class="p">}</span>
-</div><div class="line-8"><span class="p">}</span>
-</div></code></pre></figure>
-
-<p>这说明它不是那种“带 MCP server、带 hooks、带 commands、带一堆 agents”的重插件。</p>
-
-<h3 id="第二层公开可见的核心就是一个-skill">第二层：公开可见的核心就是一个 skill</h3>
-
-<p>我能直接读到的核心实现，是：</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">skills/frontend-design/SKILL.md</code></li>
-</ul>
-
-<p>而我去试探这些常见扩展路径时，没有找到公开文件：</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">hooks/hooks.json</code></li>
-  <li><code class="language-plaintext highlighter-rouge">.mcp.json</code></li>
-  <li><code class="language-plaintext highlighter-rouge">commands/frontend-design.md</code></li>
-  <li><code class="language-plaintext highlighter-rouge">agents/frontend-designer.md</code></li>
-</ul>
-
-<p>所以从公开实现来看，<strong>它大概率主要就是一个 skill 型插件</strong>。</p>
-
-<p>这点和 Superpowers 那种靠 SessionStart hook 抢上下文主导权的插件，非常不一样。</p>
-
-<h3 id="第三层它靠-skill-description-自动触发">第三层：它靠 skill description 自动触发</h3>
-
-<p>这个 skill 的 frontmatter 是这样的：</p>
-
-<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown"><div class="line-1"><span class="nn">---</span>
-</div><div class="line-2"><span class="na">name</span><span class="pi">:</span> <span class="s">frontend-design</span>
-</div><div class="line-3"><span class="na">description</span><span class="pi">:</span> <span class="s">Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, or applications. Generates creative, polished code that avoids generic AI aesthetics.</span>
-</div><div class="line-4"><span class="na">license</span><span class="pi">:</span> <span class="s">Complete terms in LICENSE.txt</span>
-</div><div class="line-5"><span class="nn">---</span>
-</div></code></pre></figure>
-
-<p>这里最关键的是 <code class="language-plaintext highlighter-rouge">description</code>。</p>
-
-<p>它实际上已经把触发条件写明白了：</p>
-
-<ul>
-  <li>用户让你做 web components；</li>
-  <li>用户让你做 pages；</li>
-  <li>用户让你做 applications；</li>
-  <li>而且目标是高设计质量、避免 generic AI aesthetics。</li>
-</ul>
-
-<p>Claude Code 的 skill 系统本来就会根据 description 来判断“这个 skill 什么时候可能适用”，所以它能自动触发，本质上就是因为：</p>
-
-<ol>
-  <li>这是一个安装进系统的 skill；</li>
-  <li>这个 skill 的描述写得很明确；</li>
-  <li>当前任务和它的描述高度匹配。</li>
-</ol>
-
-<h3 id="第四层真正的逻辑就是一段审美纠偏-prompt">第四层：真正的逻辑就是一段“审美纠偏 prompt”</h3>
-
-<p><code class="language-plaintext highlighter-rouge">SKILL.md</code> 里的核心思想非常清楚：</p>
-
-<h4 id="1-先定设计方向再写代码">1. 先定设计方向，再写代码</h4>
-
-<p>它明确要求 Claude 在编码前先想四件事：</p>
-
-<ul>
-  <li>Purpose</li>
-  <li>Tone</li>
-  <li>Constraints</li>
-  <li>Differentiation</li>
-</ul>
-
-<p>也就是说，它不是让模型直接把页面拼出来，而是先问自己：</p>
-
-<ul>
-  <li>这是给谁的；</li>
-  <li>应该是什么气质；</li>
-  <li>技术上有什么约束；</li>
-  <li>最后别人记住它的点是什么。</li>
-</ul>
-
-<p>这个步骤非常关键，因为没有它，模型就特别容易退回安全模板。</p>
-
-<h4 id="2-强制做有风格的选择">2. 强制做“有风格的选择”</h4>
-
-<p>skill 里要求 Claude 要 commit to a <strong>BOLD aesthetic direction</strong>，甚至直接给了很多极端风格方向：</p>
-
-<ul>
-  <li>brutally minimal</li>
-  <li>maximalist chaos</li>
-  <li>retro-futuristic</li>
-  <li>luxury/refined</li>
-  <li>playful</li>
-  <li>editorial/magazine</li>
-  <li>industrial/utilitarian</li>
-</ul>
-
-<p>这相当于明确告诉模型：</p>
-
-<blockquote>
-  <p>不要做一个平均值页面，要先选一个风格立场。</p>
-</blockquote>
-
-<h4 id="3-明确列出该关注的设计维度">3. 明确列出该关注的设计维度</h4>
-
-<p>它让 Claude 在这几件事情上有意识地下功夫：</p>
-
-<ul>
-  <li>Typography</li>
-  <li>Color &amp; Theme</li>
-  <li>Motion</li>
-  <li>Spatial Composition</li>
-  <li>Backgrounds &amp; Visual Details</li>
-</ul>
-
-<p>这其实很像把人类设计师常看的检查表，压成了一个 prompt checklist。</p>
-
-<h4 id="4-明确列出不要做什么">4. 明确列出“不要做什么”</h4>
-
-<p>这部分特别重要。它直接点名禁止一些高频 AI 默认项：</p>
-
-<ul>
-  <li>Inter、Roboto、Arial、system fonts</li>
-  <li>紫色渐变白底那种 cliché 色彩组合</li>
-  <li>predictable layouts</li>
-  <li>cookie-cutter components</li>
-</ul>
-
-<p>这就是它最有效的地方之一：</p>
-
-<p>不是只说“请做得更好看”，而是明确说“这些默认坏答案不要再给我了”。</p>
-
-<h2 id="它和官方-cookbook-的关系">它和官方 cookbook 的关系</h2>
-
-<p>配套文档：<a href="https://github.com/anthropics/claude-cookbooks/blob/main/coding/prompting_for_frontend_aesthetics.ipynb">Frontend Aesthetics: A Prompting Guide</a></p>
-
-<p>这个 cookbook 很有意思，因为它几乎把 Frontend Design 的“幕后思路”讲透了。</p>
-
-<p>cookbook 里先说了一个核心观察：</p>
-
-<blockquote>
-  <p>Claude 其实懂设计原则、字体、配色，但如果不特别提醒，它会默认走保守、安全、通用的路线。</p>
-</blockquote>
-
-<p>然后它总结出三条更好用的 prompting 策略：</p>
-
-<ol>
-  <li>明确引导 specific design dimensions</li>
-  <li>给 design inspirations</li>
-  <li>明确点出 common defaults 要避免</li>
-</ol>
-
-<p>如果你去对照 cookbook 里的 <code class="language-plaintext highlighter-rouge">DISTILLED_AESTHETICS_PROMPT</code>，再去看 Frontend Design 插件里的 <code class="language-plaintext highlighter-rouge">SKILL.md</code>，会发现两者的精神非常一致：</p>
-
-<ul>
-  <li>强调 typography</li>
-  <li>强调 cohesive color/theme</li>
-  <li>强调 motion</li>
-  <li>强调背景与氛围</li>
-  <li>明确避免 Inter / Arial / Roboto / 紫色渐变 / 模板化布局</li>
-</ul>
-
-<p>所以我觉得可以比较有把握地说：</p>
-
-<blockquote>
-  <p><strong>Frontend Design 本质上就是把 Anthropic 那套“如何把 Claude 提示成更会做前端审美”的 cookbook，产品化成了一个可安装、可自动触发的 skill 插件。</strong></p>
-</blockquote>
-
-<p>这不是官方明文写的“实现原理”，但从公开 skill 内容和 cookbook 的一致性来看，这个判断很合理。</p>
-
-<h2 id="所以它到底是怎么起作用的">所以它到底是怎么起作用的</h2>
-
-<p>如果把它压缩成一句最短的话：</p>
-
-<blockquote>
-  <p><strong>它不是给 Claude 新增“设计能力”，而是通过 skill prompt 改变 Claude 在做前端时的默认审美偏好。</strong></p>
-</blockquote>
-
-<p>更具体一点，是这几步：</p>
-
-<ol>
-  <li>你装上 plugin；</li>
-  <li>Claude Code 获得一个名叫 <code class="language-plaintext highlighter-rouge">frontend-design</code> 的 skill；</li>
-  <li>当你要求它构建页面、组件、应用界面时，这个 skill 因为 description 匹配而容易被自动调用；</li>
-  <li>skill 要求它先选清楚风格方向；</li>
-  <li>skill 强迫它把注意力放在字体、色彩、动效、空间关系、背景细节上；</li>
-  <li>同时明确压制它那些最常见、最模板化的默认答案。</li>
-</ol>
-
-<p>所以它的原理一点也不神秘，本质就是：</p>
-
-<p><strong>一个写得非常有针对性的前端审美系统提示词。</strong></p>
-
-<p>但正因为它足够针对，所以效果反而很明显。</p>
-
-<h2 id="实际上适合谁">实际上适合谁</h2>
-
-<p>我觉得这个插件最适合几类人：</p>
-
-<ul>
-  <li>你经常让 Claude 帮你出 landing page</li>
-  <li>你常做 demo page / 活动页 / 宣传页</li>
-  <li>你嫌 Claude 默认做出来的界面太“模板站”</li>
-  <li>你自己有产品感觉，但懒得把审美要求一条条手写给模型</li>
-</ul>
-
-<p>如果你做的是：</p>
-
-<ul>
-  <li>内部管理后台</li>
-  <li>标准 B 端表单</li>
-  <li>设计系统严格约束下的企业页面</li>
-  <li>只要功能完整、不需要风格冒险的 UI</li>
-</ul>
-
-<p>那它未必总是必要。因为它的目标不是“更稳”，而是“更有辨识度”。</p>
-
-<h2 id="我的判断">我的判断</h2>
-
-<p>如果只看公开实现，Frontend Design 是一个很典型的 Anthropic 官方插件：</p>
-
-<ul>
-  <li>目标非常单一；</li>
-  <li>不靠复杂工程结构；</li>
-  <li>主要靠 skill prompt 发挥作用；</li>
-  <li>但 prompt 写得很有针对性；</li>
-  <li>最终把一个 cookbook 级别的 prompting 技巧，做成了可复用产品。</li>
-</ul>
-
-<p>它开源这件事，我会保守地说成：</p>
-
-<ul>
-  <li><strong>实现公开了；</strong></li>
-  <li><strong>关键 skill 可读了；</strong></li>
-  <li><strong>工作原理基本能看懂；</strong></li>
-  <li><strong>但我这次没有确认到一个很完整、明确的 license 文件，所以“源码公开”比“严格确认开源许可完备”更稳妥。</strong></li>
-</ul>
-
-<p>如果你平时就爱让 Claude 帮你写前端，而且经常嫌它“太像 AI 做的”，那这个插件确实很值得装。</p>
-
-<h2 id="参考链接">参考链接</h2>
-
-<p><a href="https://claude.com/plugins">Anthropic 官方插件目录页</a></p>
-
-<p><a href="https://claude.com/plugins/frontend-design">Frontend Design 官方插件页</a></p>
-
-<p><a href="https://github.com/anthropics/claude-plugins-official/blob/main/README.md">anthropics/claude-plugins-official 仓库 README</a></p>
-
-<p><a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/frontend-design/.claude-plugin/plugin.json">Frontend Design plugin.json</a></p>
-
-<p><a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/frontend-design/README.md">Frontend Design README</a></p>
-
-<p><a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/frontend-design/skills/frontend-design/SKILL.md">Frontend Design SKILL.md</a></p>
-
-<p><a href="https://github.com/anthropics/claude-cookbooks/blob/main/coding/prompting_for_frontend_aesthetics.ipynb">Anthropic Frontend Aesthetics Cookbook</a></p>]]></content><author><name></name></author><category term="软件技术" /><category term="AI" /><category term="Claude" /><category term="编程工具" /><category term="LLM" /><category term="前端" /><category term="UI" /><category term="UX" /></entry><entry><title type="html">Claude Code 官方插件：排名前几名介绍</title><link href="https://algony-tony.github.io/cc-plugin-official-top/" rel="alternate" type="text/html" title="Claude Code 官方插件：排名前几名介绍" /><published>2026-04-03T00:00:00+08:00</published><updated>2026-04-03T00:00:00+08:00</updated><id>https://algony-tony.github.io/cc-plugin-official-top</id><content type="html" xml:base="https://algony-tony.github.io/cc-plugin-official-top/"><![CDATA[<ul id="markdown-toc">
-  <li><a href="#frontend-design" id="markdown-toc-frontend-design">Frontend Design</a>    <ul>
-      <li><a href="#怎么用" id="markdown-toc-怎么用">怎么用</a></li>
-      <li><a href="#工作原理" id="markdown-toc-工作原理">工作原理</a></li>
-      <li><a href="#适合谁" id="markdown-toc-适合谁">适合谁</a></li>
-    </ul>
-  </li>
-  <li><a href="#code-review" id="markdown-toc-code-review">Code Review</a>    <ul>
-      <li><a href="#怎么用-1" id="markdown-toc-怎么用-1">怎么用</a></li>
-      <li><a href="#工作原理-1" id="markdown-toc-工作原理-1">工作原理</a></li>
-      <li><a href="#适合谁-1" id="markdown-toc-适合谁-1">适合谁</a></li>
-    </ul>
-  </li>
-  <li><a href="#code-simplifier" id="markdown-toc-code-simplifier">Code Simplifier</a>    <ul>
-      <li><a href="#怎么用-2" id="markdown-toc-怎么用-2">怎么用</a></li>
-      <li><a href="#工作原理-2" id="markdown-toc-工作原理-2">工作原理</a></li>
-      <li><a href="#适合谁-2" id="markdown-toc-适合谁-2">适合谁</a></li>
-    </ul>
-  </li>
-  <li><a href="#feature-dev" id="markdown-toc-feature-dev">Feature Dev</a>    <ul>
-      <li><a href="#怎么用-3" id="markdown-toc-怎么用-3">怎么用</a></li>
-      <li><a href="#7-个阶段" id="markdown-toc-7-个阶段">7 个阶段</a></li>
-      <li><a href="#工作原理-3" id="markdown-toc-工作原理-3">工作原理</a></li>
-      <li><a href="#适合谁-3" id="markdown-toc-适合谁-3">适合谁</a></li>
-    </ul>
-  </li>
-  <li><a href="#参考链接" id="markdown-toc-参考链接">参考链接</a></li>
-</ul>
-
-<p>Anthropic 在 <a href="https://claude.com/plugins">claude.com/plugins</a> 提供了官方插件目录。截至 <strong>2026-04-03</strong>，在 <code class="language-plaintext highlighter-rouge">Browse plugins</code> 的 Claude Code 列表里，安装量前几名的官方插件依次是：</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">排名</th>
-      <th style="text-align: left">插件</th>
-      <th style="text-align: left">安装量</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">1</td>
-      <td style="text-align: left">Frontend Design</td>
-      <td style="text-align: left">413,623</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">2</td>
-      <td style="text-align: left">Superpowers</td>
-      <td style="text-align: left">294,839</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">3</td>
-      <td style="text-align: left">Context7</td>
-      <td style="text-align: left">212,236</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">4</td>
-      <td style="text-align: left">Code Review</td>
-      <td style="text-align: left">191,903</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">5</td>
-      <td style="text-align: left">Code Simplifier</td>
-      <td style="text-align: left">159,908</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">6</td>
-      <td style="text-align: left">Feature Dev</td>
-      <td style="text-align: left">143,911</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>其中 Superpowers 和 Context7 不是 Anthropic 自己出的。这篇介绍 Anthropic 官方做的四个：<strong>Frontend Design、Code Review、Code Simplifier、Feature Dev</strong>。</p>
-
-<h2 id="frontend-design">Frontend Design</h2>
-
-<p>官方插件页：<a href="https://claude.com/plugins/frontend-design">claude.com/plugins/frontend-design</a></p>
-
-<p>安装量 <strong>413,623</strong>，排名第一。</p>
-
-<p>这个插件的目标非常明确：<strong>让 Claude 写出来的前端，不要一眼看上去就是”标准 AI 味”的页面</strong>。</p>
-
-<p>它不负责接数据库、跑浏览器自动化，也不负责项目管理。它做的事情很集中：当你让 Claude 生成页面、组件、landing page、dashboard 这类界面时，把 Claude 往”更有设计感、更敢做风格选择”的方向推一把。</p>
-
-<h3 id="怎么用">怎么用</h3>
-
-<p>基本不需要记命令。插件会在你做 frontend work 的时候自动触发，直接提需求就行：</p>
-
-<figure class="highlight"><pre><code class="language-text" data-lang="text"><div class="line-1">Create a dashboard for a music streaming app
-</div></code></pre></figure>
-
-<figure class="highlight"><pre><code class="language-text" data-lang="text"><div class="line-1">Build a landing page for an AI security startup
-</div></code></pre></figure>
-
-<p>想让效果更好，最好给这几类信息：</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">信息</th>
-      <th style="text-align: left">例子</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">产品类型</td>
-      <td style="text-align: left">AI 安全公司、音乐 App、设计工具、消费品牌</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">目标用户</td>
-      <td style="text-align: left">开发者、设计师、B 端管理者、年轻消费者</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">技术约束</td>
-      <td style="text-align: left">React / Vue / Tailwind / 纯 HTML</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">风格方向</td>
-      <td style="text-align: left">brutalist、editorial、luxury、playful、retro-futuristic</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">重点区域</td>
-      <td style="text-align: left">hero、定价区、数据表、导航、卡片、动效</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>比如：</p>
-
-<figure class="highlight"><pre><code class="language-text" data-lang="text"><div class="line-1">用 React 和 Tailwind 做一个 AI 安全创业公司的 landing page。
-</div><div class="line-2">目标用户是技术负责人和安全团队。
-</div><div class="line-3">风格想要偏 editorial + dark luxury，不要通用 SaaS 模板感。
-</div><div class="line-4">请重点把 hero、feature section 和 CTA 做得有记忆点。
-</div></code></pre></figure>
-
-<h3 id="工作原理">工作原理</h3>
-
-<p>从公开实现来看，它是一个非常轻的 skill 型插件：没有 MCP server、没有 hooks、没有 commands，主要靠 <code class="language-plaintext highlighter-rouge">skills/frontend-design/SKILL.md</code> 起作用。</p>
-
-<p>skill 的 description 写得非常明确——”Use this skill when the user asks to build web components, pages, or applications”——Claude Code 根据 description 匹配自动触发。</p>
-
-<p>SKILL.md 里做了几件事：</p>
-
-<p><strong>先定设计方向，再写代码。</strong> 它要求 Claude 在编码前先确认四件事：Purpose、Tone、Constraints、Differentiation，避免模型直接退回安全模板。</p>
-
-<p><strong>强制做有风格的选择。</strong> skill 要求 Claude 必须选定一个明确的审美方向，给出了很多极端风格供参考：brutally minimal、maximalist chaos、retro-futuristic、luxury/refined、editorial/magazine 等，并明确说：</p>
-
-<blockquote>
-  <p>不要做一个平均值页面，要先选一个风格立场。</p>
-</blockquote>
-
-<p><strong>明确列出不要做什么。</strong> 这是最有效的部分：直接点名禁止一些高频 AI 默认项——Inter、Roboto、Arial 字体、紫色渐变白底配色、predictable layouts、cookie-cutter components。</p>
-
-<p>它不是给 Claude 新增”设计能力”，而是通过 skill prompt 改变 Claude 在做前端时的默认审美偏好。</p>
-
-<p>Anthropic 有一个配套 cookbook：<a href="https://github.com/anthropics/claude-cookbooks/blob/main/coding/prompting_for_frontend_aesthetics.ipynb">Frontend Aesthetics: A Prompting Guide</a>，精神和 SKILL.md 高度一致，可以理解为这个插件就是把那套 cookbook 产品化了。</p>
-
-<h3 id="适合谁">适合谁</h3>
-
-<p>适合：经常让 Claude 出 landing page、做 demo 页、嫌 Claude 默认做出来的界面”太像 AI 做的”。</p>
-
-<p>不太适合：内部管理后台、标准 B 端表单、设计系统严格约束下的企业页面——那类场景要”稳”，不需要风格冒险。</p>
-
-<h2 id="code-review">Code Review</h2>
-
-<p>官方插件页：<a href="https://claude.com/plugins/code-review">claude.com/plugins/code-review</a></p>
-
-<p>安装量 <strong>191,903</strong>，排名第四。</p>
-
-<p>这个插件的作用很直接：<strong>把 pull request 的代码审查流程自动化</strong>。它不是”帮你看看代码有没有问题”，而是一个工程化的 reviewer pipeline：会判断 PR 是否值得审查，会找相关 <code class="language-plaintext highlighter-rouge">CLAUDE.md</code> 规范，会总结变更，然后拉起多路 reviewer agents 并行审查，最后对每条 issue 做 confidence scoring，只把高置信度的问题发回 GitHub。</p>
-
-<h3 id="怎么用-1">怎么用</h3>
-
-<p>主入口是：</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1">/code-review
-</div></code></pre></figure>
-
-<p>在 PR branch 上运行，它就会启动完整的自动审查流程。</p>
-
-<p>适合：非 trivial 的 PR、涉及关键路径的改动、多人协作仓库、项目里有明确 <code class="language-plaintext highlighter-rouge">CLAUDE.md</code> 规范的场景。</p>
-
-<p>不太适合：draft PR、已关闭 PR、很小的自动化 PR、急着马上 merge 的紧急 hotfix——很多这类情况它会自动跳过。</p>
-
-<h3 id="工作原理-1">工作原理</h3>
-
-<p><strong>审查分工非常细。</strong> 它先用 Haiku agent 做三件准备工作：判断 PR 是否该 review、找相关 <code class="language-plaintext highlighter-rouge">CLAUDE.md</code>、给 PR 做 change summary。然后再拉起 5 个并行 Sonnet agents 审查不同维度：</p>
-
-<ol>
-  <li>检查是否违反 <code class="language-plaintext highlighter-rouge">CLAUDE.md</code></li>
-  <li>只盯变更本身找 obvious bugs</li>
-  <li>看 <code class="language-plaintext highlighter-rouge">git blame</code> / history 找上下文问题</li>
-  <li>看以前相关 PR 的评论里有没有相同模式</li>
-  <li>看被修改文件里的代码注释有没有明确约束</li>
-</ol>
-
-<p>这套拆法避免了让单个 reviewer 一次背太多任务。</p>
-
-<p><strong>最重要的一层是 confidence scoring。</strong> 每个 issue 再交给一个 Haiku agent 打分，0 到 100，默认只保留 <strong>80 以上</strong> 的问题，低于阈值的直接过滤。</p>
-
-<p>这个机制非常关键。普通 AI code review 工具最常见的问题，就是会说得头头是道，但很多”问题”其实只是”可能有问题”，最后让人类 reviewer 疲劳。Code Review 专门在抑制这种噪音。</p>
-
-<p><strong>它依赖 GitHub CLI，不用 web fetch。</strong> 命令里明确指定允许的工具是 <code class="language-plaintext highlighter-rouge">gh</code> 相关 Bash 命令（<code class="language-plaintext highlighter-rouge">gh pr view</code>、<code class="language-plaintext highlighter-rouge">gh pr diff</code>、<code class="language-plaintext highlighter-rouge">gh pr comment</code> 等），运行前提是本地已登录 <code class="language-plaintext highlighter-rouge">gh</code>，当前仓库有 GitHub remote。</p>
-
-<p>从实现里看，它明确把这些当成 false positives 不发出去：pre-existing issues、lint/typecheck 会抓到的问题、pedantic nitpicks、没改到的代码上的历史问题、很可能是 intentional 的行为变更。这体现了一种成熟的 code review 价值观：</p>
-
-<blockquote>
-  <p>不要因为”能说”就都说出来，review comment 是一种稀缺注意力资源。</p>
-</blockquote>
-
-<h3 id="适合谁-1">适合谁</h3>
-
-<p>适合：GitHub PR 流程规范的团队、项目里本来就维护 <code class="language-plaintext highlighter-rouge">CLAUDE.md</code> 规范、想用 AI 做第一轮 reviewer 但很怕噪音。</p>
-
-<p>不太适合：单人项目、不走 PR、没有 GitHub CLI、不维护 <code class="language-plaintext highlighter-rouge">CLAUDE.md</code>。</p>
-
-<h2 id="code-simplifier">Code Simplifier</h2>
-
-<p>官方插件页：<a href="https://claude.com/plugins/code-simplifier">claude.com/plugins/code-simplifier</a></p>
-
-<p>安装量 <strong>159,908</strong>，排名第五。</p>
-
-<p>这个插件的目标：<strong>在不改变功能的前提下，把刚刚改过的代码再收拾一遍，让它更清晰、更一致、更容易维护。</strong></p>
-
-<p>它不是做 bug 修复主流程的，也不是做 PR review 编排的。它更像一个”收尾型 agent”：当你已经写完一段代码，或者刚修改完几个函数之后，它会从可读性、复杂度、命名、一致性这些维度出发，再做一次 refinement。</p>
-
-<p>它解决的不是”代码不能跑”，而是另一类很常见的问题：</p>
-
-<blockquote>
-  <p>代码能跑，但写得拧巴，或者刚好跨过了”以后会越来越难读”的那条线。</p>
-</blockquote>
-
-<h3 id="怎么用-2">怎么用</h3>
-
-<p>它没有一个固定命令入口，官方插件页写的是：它会 <strong>proactively</strong> 地作用在 recently modified code 上，也可以直接要求它看特定文件或代码段。</p>
-
-<p>最自然的用法是写完一轮代码后，直接说：</p>
-
-<figure class="highlight"><pre><code class="language-text" data-lang="text"><div class="line-1">请用 code-simplifier 把我刚刚改过的代码再精简一下，
-</div><div class="line-2">前提是不改变任何行为。
-</div></code></pre></figure>
-
-<p>或者：</p>
-
-<figure class="highlight"><pre><code class="language-text" data-lang="text"><div class="line-1">Refine the recently changed functions for readability and consistency.
-</div></code></pre></figure>
-
-<p>适合：你刚写完一段功能、代码能跑但还不够顺、想做一次小型 clean-up、不想开一个大重构分支。</p>
-
-<p>不太适合：功能还没写对、现在最需要 debug、要重构整个模块或重新做架构。</p>
-
-<h3 id="工作原理-2">工作原理</h3>
-
-<p>从公开实现看，它的结构非常轻——主要就是 <code class="language-plaintext highlighter-rouge">agents/code-simplifier.md</code> 一个 agent prompt。</p>
-
-<p><strong>行为不变是第一条。</strong> agent prompt 里开门见山：</p>
-
-<blockquote>
-  <p>Never change what the code does - only how it does it.</p>
-</blockquote>
-
-<p>这条是整个插件的地基，因为 code simplification 最大的风险就是：你以为在让代码更优雅，结果把逻辑改了。</p>
-
-<p><strong>追求的是”更清楚”，不是”更短”。</strong> 很多简化代码的工具最终都滑向：行数更少、表达更紧、但也更难读。这个 agent prompt 里专门强调：</p>
-
-<ul>
-  <li>readable, explicit code over overly compact solutions</li>
-  <li>avoid nested ternary operators</li>
-  <li>choose clarity over brevity</li>
-  <li>不要为了 fewer lines 牺牲可读性</li>
-</ul>
-
-<p>它不是在做 code golf，而是在做 maintainability-oriented cleanup。</p>
-
-<p><strong>默认只盯最近改动。</strong> prompt 里写明：默认只 refine recently modified code，除非用户明确要求，不扩大 scope。这让它不会动不该动的老代码，不会变成全仓风格战。</p>
-
-<p><strong>会参考项目标准。</strong> 它要求遵守项目里已有的 <code class="language-plaintext highlighter-rouge">CLAUDE.md</code> 规范，比如 import 排序、ES modules、function declaration 风格、naming conventions 等。先读项目标准，再在标准内做简化。</p>
-
-<p>它主要会盯：减少不必要的复杂度和 nesting、消除冗余代码、改善变量和函数命名、合并相关逻辑、移除解释显而易见代码的无用注释。同时明确不过度简化——不能把多个关注点硬塞进一个函数，不能去掉本来有帮助的 abstraction。</p>
-
-<h3 id="适合谁-2">适合谁</h3>
-
-<p>适合：已经让 Claude 帮你完成功能实现、认可”先做对，再做顺”这个节奏、不想每次都手工写一大堆”请顺手再优化代码风格”的人。</p>
-
-<p>它最适合放在这个位置：<strong>写完一轮代码之后，在 commit 之前，再让它做一轮维护性打磨。</strong></p>
-
-<h2 id="feature-dev">Feature Dev</h2>
-
-<p>官方插件页：<a href="https://claude.com/plugins/feature-dev">claude.com/plugins/feature-dev</a></p>
-
-<p>安装量 <strong>143,911</strong>。</p>
-
-<p>这个插件的目标不是帮你写某一段具体代码，而是：<strong>把”开发一个新功能”这件事，流程化成一个带阶段、带 agent 分工、带审查和确认点的工作流。</strong></p>
-
-<p>它要解决的是一个很典型的问题：</p>
-
-<blockquote>
-  <p>Claude 一接到”做个新功能”这种任务，太容易直接冲进代码里。</p>
-</blockquote>
-
-<h3 id="怎么用-3">怎么用</h3>
-
-<p>主入口是：</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1">/feature-dev Add user authentication with OAuth
-</div></code></pre></figure>
-
-<p>或者直接 <code class="language-plaintext highlighter-rouge">/feature-dev</code>，然后它会一步一步带你走完整个流程。也可以用自然语言触发：</p>
-
-<figure class="highlight"><pre><code class="language-text" data-lang="text"><div class="line-1">请用 feature-dev 帮我做这个功能：给系统增加 OAuth 登录。
-</div></code></pre></figure>
-
-<h3 id="7-个阶段">7 个阶段</h3>
-
-<p>这个插件最核心的价值就在这 7 个阶段里。</p>
-
-<p><strong>Phase 1: Discovery。</strong> 先搞清楚你到底要做什么。需求模糊时，先问你要解决什么问题、这个 feature 应该做什么、有没有约束。</p>
-
-<p><strong>Phase 2: Codebase Exploration。</strong> 不马上改代码，而是先派 2~3 个 <code class="language-plaintext highlighter-rouge">code-explorer</code> agents 并行探索：有没有类似功能、当前架构怎么分层、有没有相关抽象和 extension points、现有代码是怎么流转的。explorer agents 不只是扫文件名，它们会 trace execution path、map architecture layers、列出关键文件清单。</p>
-
-<p><strong>Phase 3: Clarifying Questions。</strong> 理解代码库之后，把还不明确的地方一次性列出来问你：edge cases、error handling、integration points、backward compatibility、performance expectations。重点是在开始设计前，先尽量把歧义收敛掉。</p>
-
-<p><strong>Phase 4: Architecture Design。</strong> 再派 2~3 个 <code class="language-plaintext highlighter-rouge">code-architect</code> agents，从不同视角给出实现思路（最小改动、更干净的架构、pragmatic balance），对比 trade-off，再给 recommendation。</p>
-
-<p><strong>Phase 5: Implementation。</strong> 这里才开始真正写代码。命令实现里写得非常明确：<strong>没有用户批准，不要开始实现。</strong></p>
-
-<p><strong>Phase 6: Quality Review。</strong> 实现完以后，再派 3 个 <code class="language-plaintext highlighter-rouge">code-reviewer</code> agents 并行从不同角度看（simplicity/DRY/elegance、bugs/correctness、conventions/abstractions），汇总结果后问你：现在修、以后修、还是就这样继续。</p>
-
-<p><strong>Phase 7: Summary。</strong> 最后收尾：标记 todo 完成、总结做了什么、记录关键决策、列出改动文件、给出 next steps。</p>
-
-<h3 id="工作原理-3">工作原理</h3>
-
-<p>Feature Dev 的实现是三类 agent 组合的 orchestrated command。</p>
-
-<p><code class="language-plaintext highlighter-rouge">code-explorer</code> 负责深挖现有代码库：找 entry points、trace code flow、map architecture layers、找 dependencies 和 side effects、列出必须阅读的关键文件。</p>
-
-<p><code class="language-plaintext highlighter-rouge">code-architect</code> 负责基于现有模式做架构设计：分析现有 conventions、做 architecture decision、明确组件设计、给 phased build sequence。</p>
-
-<p><code class="language-plaintext highlighter-rouge">code-reviewer</code> 负责实现后看质量：看项目规范、看 bug、看代码质量，只报高置信度问题。</p>
-
-<p>这三个 agent 组合起来就是：先理解，再设计，再复查。</p>
-
-<p><strong>它最核心的价值其实不是”更会写代码”，而是”更晚开始写代码”。</strong> 普通 Claude Code 最常见的问题，是它太容易在信息不全的时候就开始动手。Feature Dev 用 7-phase workflow 在强行压制这种冲动：需求不清先问、代码库没懂先探索、设计没定先比方案、用户没批准先别实现。</p>
-
-<h3 id="适合谁-3">适合谁</h3>
-
-<p>适合：要做的 feature 比较大、改动会涉及多个文件或模块、你不想让 Claude 一上来就乱改、你希望它先做 codebase study、你认可”先设计后实现”的节奏。</p>
-
-<p>不太适合：单行小修、简单 bug fix、你已经把要求说得极度清楚只想赶紧改完、你不想被问 clarifying questions。</p>
-
-<p>对于复杂功能，它很有价值；对于简单任务，它会显得有点重。</p>
-
-<h2 id="参考链接">参考链接</h2>
-
-<p><a href="https://claude.com/plugins">Anthropic 官方插件目录页</a></p>
-
-<p><a href="https://claude.com/plugins/frontend-design">Frontend Design 官方插件页</a></p>
-
-<p><a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/frontend-design/skills/frontend-design/SKILL.md">Frontend Design SKILL.md</a></p>
-
-<p><a href="https://github.com/anthropics/claude-cookbooks/blob/main/coding/prompting_for_frontend_aesthetics.ipynb">Anthropic Frontend Aesthetics Cookbook</a></p>
-
-<p><a href="https://claude.com/plugins/code-review">Code Review 官方插件页</a></p>
-
-<p><a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/code-review/commands/code-review.md">Code Review 命令实现</a></p>
-
-<p><a href="https://claude.com/plugins/code-simplifier">Code Simplifier 官方插件页</a></p>
-
-<p><a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/code-simplifier/agents/code-simplifier.md">Code Simplifier 核心 agent</a></p>
-
-<p><a href="https://claude.com/plugins/feature-dev">Feature Dev 官方插件页</a></p>
-
-<p><a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/feature-dev/commands/feature-dev.md">Feature Dev 主命令实现</a></p>]]></content><author><name></name></author><category term="软件技术" /><category term="AI" /><category term="Claude" /><category term="编程工具" /><category term="LLM" /><category term="前端" /><category term="代码审查" /><category term="重构" /><category term="软件工程" /><category term="工作流" /></entry><entry><title type="html">Claude Code 的插件以及 superpowers 介绍</title><link href="https://algony-tony.github.io/cc-plugin-superpowers/" rel="alternate" type="text/html" title="Claude Code 的插件以及 superpowers 介绍" /><published>2026-04-02T00:00:00+08:00</published><updated>2026-04-02T00:00:00+08:00</updated><id>https://algony-tony.github.io/cc-plugin-superpowers</id><content type="html" xml:base="https://algony-tony.github.io/cc-plugin-superpowers/"><![CDATA[<ul id="markdown-toc">
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://algony-tony.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://algony-tony.github.io/" rel="alternate" type="text/html" /><updated>2026-04-09T03:14:21+08:00</updated><id>https://algony-tony.github.io/feed.xml</id><title type="html">Algony Tony</title><subtitle>etvdyn</subtitle><entry><title type="html">Claude Code 的插件以及 superpowers 介绍</title><link href="https://algony-tony.github.io/cc-plugin-superpowers/" rel="alternate" type="text/html" title="Claude Code 的插件以及 superpowers 介绍" /><published>2026-04-02T00:00:00+08:00</published><updated>2026-04-02T00:00:00+08:00</updated><id>https://algony-tony.github.io/cc-plugin-superpowers</id><content type="html" xml:base="https://algony-tony.github.io/cc-plugin-superpowers/"><![CDATA[<ul id="markdown-toc">
   <li><a href="#superpowers-介绍" id="markdown-toc-superpowers-介绍">Superpowers 介绍</a>    <ul>
       <li><a href="#superpowers-的工作流程" id="markdown-toc-superpowers-的工作流程">superpowers 的工作流程</a></li>
       <li><a href="#pluginjson-插件身份证" id="markdown-toc-pluginjson-插件身份证"><code class="language-plaintext highlighter-rouge">plugin.json</code> 插件身份证</a></li>
@@ -5618,4 +2589,1813 @@ a rx ry x-axis-rotation large-arc-flag sweep-flag dx dy
 
 <p><a href="http://www.szse.cn/aboutus/trends/news/t20210331_585344.html">深交所主板与中小板合并4月6日正式实施</a></p>
 
-<p><a href="http://investor.szse.cn/institute/products/graphic/t20210208_584718.html">一图看懂深交所主板与中小板合并要点</a></p>]]></content><author><name></name></author><category term="金融" /><category term="投资" /><category term="法律" /><summary type="html"><![CDATA[业绩预披露有两种主要方式，业绩预告和业绩快报。业绩预告披露内容较少，主要是盈利区间及原因，业绩快报的内容较多，需要包含营收和资产负债相关一些主要财务指标，这些在交易所的上市规则里有相应规定。]]></summary></entry></feed>
+<p><a href="http://investor.szse.cn/institute/products/graphic/t20210208_584718.html">一图看懂深交所主板与中小板合并要点</a></p>]]></content><author><name></name></author><category term="金融" /><category term="投资" /><category term="法律" /><summary type="html"><![CDATA[业绩预披露有两种主要方式，业绩预告和业绩快报。业绩预告披露内容较少，主要是盈利区间及原因，业绩快报的内容较多，需要包含营收和资产负债相关一些主要财务指标，这些在交易所的上市规则里有相应规定。]]></summary></entry><entry><title type="html">Git 钩子使用</title><link href="https://algony-tony.github.io/git-hook/" rel="alternate" type="text/html" title="Git 钩子使用" /><published>2023-12-01T00:00:00+08:00</published><updated>2023-12-01T00:00:00+08:00</updated><id>https://algony-tony.github.io/git-hook</id><content type="html" xml:base="https://algony-tony.github.io/git-hook/"><![CDATA[<p>Git 里的钩子 hook 就是在 git 的运行流程中，在指定的节点上会自动执行的脚本。</p>
+
+<p>钩子默认是放在 git 仓库路径下的 <code class="language-plaintext highlighter-rouge">$GIT_DIR/hooks</code> 里，每个钩子都有固定的名字，并要加上可执行权限。钩子的存放路径可以通过配置 <code class="language-plaintext highlighter-rouge">git config core.hooksPath</code> 来更改。</p>
+
+<p>常用的一些钩子如下，附件的参考链接里有两个 Github 仓库收集了一些常用的钩子脚本：</p>
+<ul>
+  <li>pre-commit：在 commit 前执行，如果钩子执行失败则不会提交 commit，这个应该是最常用的一种钩子；</li>
+  <li>pre-merge-commit：在 merge 前执行；</li>
+  <li>pre-rebase</li>
+  <li>pre-push</li>
+  <li>commit-msg：在 commit 和 merge 前触发，可以根据项目的提交规范来规范化 message，也可以拒绝提交；</li>
+  <li>post-commit</li>
+  <li>post-checkout</li>
+  <li>post-merge</li>
+</ul>
+
+<p><a href="https://pre-commit.com/">pre-commit</a> 是一个管理和维护多语言钩子的框架，虽然名字叫 pre-commit 但是它支持多种类型的钩子。它是一个 python 库，通过命令 <code class="language-plaintext highlighter-rouge">pip install pre-commit</code> 安装，在项目的根目录中添加配置文件 <code class="language-plaintext highlighter-rouge">.pre-commit-config.yaml</code>，写入需要加入的钩子地址等相关信息，而后通过命令 <code class="language-plaintext highlighter-rouge">pre-commit install</code> 自动安装钩子到 <code class="language-plaintext highlighter-rouge">.git/hooks</code> 目录下，新加入的钩子可以用命令 <code class="language-plaintext highlighter-rouge">pre-commit run --all-files</code> 来对所有文件执行一遍钩子。</p>
+
+<h2 id="参考链接">参考链接</h2>
+
+<p><a href="https://git-scm.com/docs/githooks">githooks - Hooks used by Git</a></p>
+
+<p><a href="https://github.com/aitemr/awesome-git-hooks">Awesome Git Hooks</a></p>
+
+<p><a href="https://github.com/CompSciLauren/awesome-git-hooks">Awesome Git Hooks</a></p>
+
+<p><a href="https://github.com/pre-commit/pre-commit">pre-commit</a></p>]]></content><author><name></name></author><category term="软件技术" /><category term="git" /><summary type="html"><![CDATA[介绍 Git hook 的使用]]></summary></entry><entry><title type="html">【旧闻】新加坡总理李显龙在彭博创新经济论坛欢迎晚宴对话内容文字版</title><link href="https://algony-tony.github.io/news-lee-hsien-loong/" rel="alternate" type="text/html" title="【旧闻】新加坡总理李显龙在彭博创新经济论坛欢迎晚宴对话内容文字版" /><published>2023-11-11T00:00:00+08:00</published><updated>2023-11-11T00:00:00+08:00</updated><id>https://algony-tony.github.io/news-lee-hsien-loong</id><content type="html" xml:base="https://algony-tony.github.io/news-lee-hsien-loong/"><![CDATA[<p>2023 年 11 月彭博创新经济论坛在新加坡举行，本届主题是“拥抱不稳定”，李显龙总理 11 月 8 日在欢迎晚宴上同彭博社总编辑米思伟（John Micklethwait）分享他对中美关系未来走向的看法，<a href="https://www.youtube.com/watch?v=NxxaWgd-Hw4">这是 YouTube 视频链接</a>。</p>
+
+<p>李显龙（Lee Hsien Loong）是新加坡第三任总理，出生于 1952 年，2004 年 52岁开始任职总理，他在今年宣布将开始移交权力，据新加坡宪法相关条例，下一次大选最迟将在 2025 年 11 月举行，这意味正常情况下李显龙将在 2025 年卸任总理。李显龙是新加坡第一任总理李光耀（Lee Kuan Yew，1923 年– 2015 年）的长子，李光耀在 1990 年卸任总理后交棒给吴作栋（Goh Chok Tong），目前新加坡三任总理都来自人民行动党。</p>
+
+<p>下面是李显龙晚宴对话视频的文字版。</p>
+
+<p>【关于巴以冲突】</p>
+
+<p><strong>米思伟</strong>：李总理，感谢您接待，我们，再加上迈克的感谢。我们会尝试在严肃性中加入一些幽默，但通常如你所知，我们从中美之间的冷战开始这些对话，但这次我们有两场热战，我们有哈马斯和以色列，俄罗斯和乌克兰，所以我们可以首先从哈马斯和以色列开始。10
+月 7
+日，您大声谴责哈马斯此后所做的事情，自那以后，随着对加沙的轰炸仍在继续，您已经呼吁对于休战或停火，您还说也许有必要调查可能的战争罪行，您谈到需要更新两国解决方案，这与美国的立场略有不同，我想知道您是否可以为我们解释一下你是如何形成这一立场的。</p>
+
+<p><strong>李</strong>：我们必须采取有原则的立场，即要考虑到我们的国家利益，也考虑到我们人情感和人们的反应。我们的原则是边界不受侵犯，人民和国家拥有自卫权，杀戮无辜平民、妇女、儿童、老人或任何其他平民的行为违反了国际人道主义法。10
+月 7
+日发生的事情不仅违反了国际法，而且是大规模的可怕恐怖袭击，因此我们完全理解以色列人对此的感受以及为什么他们会做出这样的反应，但自那时以来，由于以色列的行动，加沙发生的事情是一场巨大的人类悲剧，我的意思是，数字每天都在不断增加，但比
+10 月 7
+日所造成的多出很多倍，妇女儿童和许多无辜平民遭受了大规模的破坏，世界各地的每个人都绝望地看着这一点，并说这肯定必须停止。无论对错如何，你们都必须有人道主义考虑。我们试图在我们的声明中表达，我认为重要的是我们即要认识到
+10 月 7
+日第一次袭击中所做的邪恶事情也要认识到现在加沙正在发生的非常悲惨的事情。我们必须劝告以色列人和其他所有人遵守国际准则，并为无辜平民着想。</p>
+
+<p><strong>米思伟</strong>：你认为有一个长期的解决方案吗？你一直是两国方案的支持者，现在还有可能吗？</p>
+
+<p><strong>李</strong>：除此之外别无选择，这看起来很困难，看起来遥不可及，但两国方案的替代方案是一国方案，这意味着一方或另一方必须被挤出，并且
+是不可想象的，所以如果你不能努力实现两国方案，你的子孙后代将陷入相互毁灭的循环中。</p>
+
+<p><strong>米思伟</strong>：你担心这个地区的安全吗？我是说邻国马来西亚的首相安华，你知道，他多次公开支持巴勒斯坦人，我想有些人担心，我看到你已经对这个地区更多的恐怖主义采取了一些预防措施。</p>
+
+<p><strong>李</strong>：我认为外交立场是一回事，一些国家支持巴勒斯坦一些国家支持以色列，新加坡与以色列有外交关系，我们与巴勒斯坦权力机构也有友好关系，因此外交支持并不难，但恐怖主义是一种危险。在欧洲，在法国，我想在比利时等地，你们已经看到了独狼式袭击事件，在美国发生过一起袭击事件，一名无辜的巴勒斯坦男孩被杀害，这也可能发生在这里。我们在新加坡发现了一些自我激进化的人，包括想做可怕事情的青少年，他们去买了防弹背心和刀，并进行练习，其中一些人想代表伊斯兰组织在中东作战，有些人想效仿基督教会恐怖分子，攻击新加坡的两座清真寺的穆斯林。因此，该地区仍然有一些恐怖组织没有消失，我们在新加坡发现了伊斯兰贾马尔组织，他们隶属于基地组织，他们准备在新加坡发动七次卡车炸弹袭击。但他们仍然存在，他们在监视，他们的一些追随者肯定会被激怒，他们可能会计划一些事情，所以我们必须非常认真地对待它。</p>
+
+<p>【关于俄乌战争】</p>
+
+<p><strong>米思伟</strong>：你说你赞成加沙停火，你认为我们什么时候会停火乌克兰，你现在担心俄罗斯正在获胜吗？</p>
+
+<p><strong>李</strong>：我认为乌克兰将是一场漫长的战斗，这将是一场非常艰难的战斗，因为俄罗斯不会宣布他们输了，乌克兰也要凭借自己的资源，甚至欧洲和美国的支持，能够继续战斗并坚持下去，你可以补充你的枪支、你的炮弹、你的飞机和坦克，但人类死亡、伤亡，这些可以继续，但不可能永远持续下去，所以我认为俄罗斯已经未能实现其战胜乌克兰的目标，这对世界来说是一个很大的好处，因为如果他们真的能够突然发起压倒性的成功攻占行动，那么就会有一个新的边界，那么我认为世界会变得更加危险，但事实上他们失败了，他们付出了可怕的代价，这是一个优点。但这个事情会在哪里结束，乌克兰的支持者能坚持多久，美国国内的情绪又将如何变化？对于这届政府，我想大家知道拜登总统的立场，但明年就要大选了。</p>
+
+<p><strong>米思伟</strong>：我们将回来讨论这个问题，但我只想简单问一个关于乌克兰的问题，你认为你所描述的俄罗斯的可怕经历是否改变了中国可能进攻台湾的想法？</p>
+
+<p><strong>李</strong>：我不认为中国人会轻率地考虑进入台湾，他们肯定知道，他们的陆军、海军和空军都会告诉他们，两栖攻击进攻台湾不像硫磺岛战役那样，那一战已经够血腥了，所以我确信他们必须做出考量。但我不相信他们会以“扣动扳机”为乐，他们有一个问题，他们希望台湾成为一个中国的一部分，但如何达成呢？我相信，如果他们没有被挑衅，如果事态没有失控，我不相信他们会…你不会在某天醒来时发现他们已经决定发起大规模行动。</p>
+
+<p>【关于南中国海问题】</p>
+
+<p><strong>米思伟</strong>：你现在是否更担心，我来到这个地区的感受是，是的，关于台湾的讨论仍然存在，但也有关于菲律宾的一些讨论，在南中国海，小马科斯总统对中国咄咄逼人，他们是美国的盟友，这肯定会非常困难。</p>
+
+<p><strong>李</strong>：这是另一个可能的爆发点，因为亚洲四国在南中国海都有主权主张，这与中国的主权主张重叠，菲律宾、文莱、马来西亚和越南。所有这些国家首先都希望在自己之间达成某种安排，而最想与中国达成某种安排，因为中国确实是最大的声索国，也是最有实力的。但与此同时，他们所有人都与中国有其他利害关系。与中国的贸易，中国是他们最大的贸易伙伴，我认为对他们所有人来说都是这样，因此，南海问题固然重要，但它不是唯一的利害关系，我不相信他们中的任何人真的想要把它推到边缘</p>
+
+<p><strong>米思伟</strong>：但也没人料到普京…</p>
+
+<p><strong>李</strong>：但我想说的是，就东南亚国家而言，他们对前苏联人常说的“力量对比”的认识，换句话说，谁站在你这边，谁站在我这边，谁的部队更大，我认为他们有一种非常健康的现实主义意识，因此会有一些限制，甚至菲律宾人，我的意思是美国人是他们的条约盟友，但你确定你想参加一场让自己的国家成为战场的战斗吗？</p>
+
+<p>【关于中国的看法】</p>
+
+<p><strong>米思伟</strong>：在中国国内，你所说的中国似乎变得更加现实，习近平想得更多，他准备扮演一种更长期的角色，你是这样看的吗？</p>
+
+<p><strong>李</strong>：我认为中国想要发展，中国决心发展，他们相信，我认为这是正确的，他们迟早会以某种方式实现这一目标，你可以让他们落后几年，你可以剥夺他们的技术，但他们会开发出自己的技术，也许没有那么好，但他们会有自己的东西，而且他们决心向自己的人民展示并向世界展示这是可以做到。挑战在于他们如何做到这一点并感到自豪同时激发世界其他地区的信心，并让他们感到某种安心，这非常困难，因为你可能认为你没有做任何不合理的事情，这是你的权利，大小国家都有权这样做，但当一个小国做了某件事时，其他人可以说好没关系，我的意思是没有造成伤害，但是当一个大国做出同样的行为时，你可能会在不知不觉中引起各地的反响。我认为，中国人需要一段时间才能找到正确的感觉，才能变得更高、更强大，同时又能让所有人都站在一边保持良好的关系。我认为他们正在努力，你看澳大利亚总理阿尔巴尼斯今年来曾于中方有过一些困难的时刻，但他最近去了中国，双方都希望向前迈进，希望建立关系。中国知道澳大利亚是美国的盟友，他们正在购买美国核潜艇，但他们仍然需要这种关系。</p>
+
+<p><strong>米思伟</strong>：有趣的是，这个新的、成熟的中国可能与你和我开始的想法略有不同。</p>
+
+<p><strong>李</strong>：不，我不确定这是否应该由我们来判断他们是否成熟。他们处于不同的阶段。</p>
+
+<p><strong>米思伟</strong>：我是一名记者…</p>
+
+<p><strong>李</strong>：你可以使用语言，但我必须使用自己的语言。</p>
+
+<p>【关于中美关系，以及印度的影响】</p>
+
+<p><strong>米思伟</strong>：拜登即将去旧金山与习近平会面，这就是这种关系的核心。</p>
+
+<p><strong>李</strong>：不，这是两国关系在这一困难时刻的必要步骤。他们去年在巴厘岛会面，那是一次很好的会晤，他们就一些原则达成了一致，即互相尊重，相互合作，实现共赢。但在那之后的
+12 个月里，事实上还不到 12
+个月，事情偏离了轨道，他们正在努力让事情再次回到正轨，我认为，为了使会议能够举行并取得成效，双方经历了很多周折。但我认为这是两国之间非常深刻的矛盾，你需要一次会议来朝着正确的方向前进，但你不能指望一次会议能让一切重回甜蜜和光明，这肯定是不可能的。</p>
+
+<p><strong>米思伟</strong>：那么，结局肯定会和上次一样，可能会在芬太尼等问题上达成协议，但一切又会卷土重来，贵国的外交部长在今天的会议上说得很好，天气可能会变好，但是气候，如果你想想我们之间的所有对话，气候会继续变得越来越糟糕吗？</p>
+
+<p><strong>李</strong>：我认为气候非常困难，双方都有根深蒂固的观点。在美国，两党唯一达成共识的是中国是一个严重的威胁。在中国，也有一个非常强烈的共识，即美国会阻止他们，与美国共存很困难，你不应该尝试，你应该准备好保护自己，抵御美国。所以当双方都有这样的观点时，即使想要考虑延申和谈论一个更具建设性的未来都是困难的。</p>
+
+<p><strong>米思伟</strong>：另一个不可估量的问题就是美国大选。我注意到你刚刚宣布，正如迈克所说，你宣布明年你将在临近党的第 70 周年纪念日之前将权力交给黄循财副总理。</p>
+
+<p><strong>李</strong>：不，我不是说要在临近纪念日之前，我说的是在这之前。</p>
+
+<p><strong>米思伟</strong>：但你也知道，那是 11 月，奇怪的是，这也是美国大选的日子，如果我们看看民意调查，现在一个叫特朗普的人领先，你看了之后会不会想，天哪，又是他？我会把他交给…</p>
+
+<p><strong>李</strong>：那不是我的主要考虑。</p>
+
+<p><strong>米思伟</strong>：但这是否是一种额外的激励？</p>
+
+<p><strong>李</strong>：不，这个世界很困难。我的意思是无论我明年还是 5
+年后移交都会有一些事情悬而未决，地平线上也会乌云密布，这恰好是最接近你、最突出的一个问题。</p>
+
+<p><strong>米思伟</strong>：但如果特朗普当选，我认为会给中国带来更大的压力，让中国成为房间里的大人，我知道这也是你一直希望他们做的。</p>
+
+<p><strong>李</strong>：我不知道。我认为特朗普采取了一些拜登至今没有转向的政策，比如对中国产品征收关税，总体上使两国关系变得更不可预测。拜登的做法更可预测，但在中国的问题上，他没有改变特朗普时期的做法，我认为他的态度也相当坚定，一种他不想发生冲突的感觉，但他也不会在他强烈反对的事情上让步。如果你回顾一下特朗普先生之前的表现，我想这可以让你对他的外交政策有所了解。但这是一场漫长的博弈，四年在政治上是很长的一段时间，但在两个大国的关系史上并不是很长的时间。因此，即使在美国，你们也要忙于处理世界上最重要的双边关系以外的事情。在另一方面，在世界其他地方，这仍然应该是一个主要关注点，希望我们能有这样的视角、平和的心态和能力，我的伙伴正处于困难时刻，让我们看看我如何能够在不吃大亏的情况下处理这个事情，但也不会把事情弄得更糟。</p>
+
+<p><strong>米思伟</strong>：这听起来有点像房间里的大人，但现在是否还有第三个人，那就是印度。</p>
+
+<p><strong>李</strong>：我认为印度正在迅速发展。去年，他们是世界上增长最快的国家之一。莫迪先生的经济改革和数字化推动正在取得进展，推动印度再上一个台阶，但还有一段距离。因为印度经济是中国的
+1/5，他们的国际贸易大约是中国的
+1/5，他们的人口更年轻，而且仍在增长，不像中国，中国人口年龄更大，已经稳定，而且正在开始增长下降。但印度必须充分利用它，必须将影响力扩展到次大陆之外，以影响东亚、东南亚和更广阔的世界，我想你可以看到他们开始用四国联盟这样做了，但我不认为他们在次大陆以外的更广泛的竞争中投入了同样多的资源。</p>
+
+<p><strong>米思伟</strong>：在这方面，他们落后于中国，他们没有通过一种…</p>
+
+<p><strong>李</strong>：我认为，如果他们决定建设“一带一路”，那么他们的体系也无法与中国的体系相适应，例如，我不认为他们会说，“好吧，我想投资基础设施”，然后突然你发现港口、公路、机场、火车在世界各地涌现。这是好事，也可能是坏事。</p>
+
+<p><strong>米思伟</strong>：你能否告诉我，我是说，我们已经通过你谈论了新加坡，你在这里的时间你一直在美国和中国的中间，此外，你们是象征全球化的伟大代表，然而，你看，在我们进行的所有对话中，每年都感觉到世界的区域性更强，全球性更弱。我提到过特朗普，特朗普现在表示如果他上台，他将对所有货品征收
+10% 的关税，这样肯定会是全球化时代的终结。</p>
+
+<p><strong>李</strong>：现在的趋势并不乐观，即使没有特朗普，有了劳资关系法，你们也在制定产业政策，你们在为芯片制定规则，在为环保科技制定规则，但从根本上说，你们决定要为自己制定规则，而不是依赖于多边谈判的所达成的规则。如果我们谈论的是基于规则的秩序，那么就很难理解规则究竟是如何指定的，如果每个人都采取这种方法，那么实际上就不会有任何规则，我们都会陷入困境，我认为欧洲人已经非常有力地阐述了这一点。</p>
+
+<p>【关于人工智能的看法】</p>
+
+<p><strong>米思伟</strong>：我可以问你一些人们希望制定规则的领域吗？就是人工智能，我查了一下，你是第一个，在所谓的领导人里，你是第一个在剑桥大学获得最高数学学分的人，迈克没有提到。遗憾的是，我在牛津没能拿到，但你是第一个来自新加坡拿到最高分的人，所以你懂数学，我想问你的是，你是否认为人工智能是互联网更大的变革吗？</p>
+
+<p><strong>李</strong>：首先，你得明白有很多事情是你不了解的。对于人工智能，我们大多数人都不知道它会走向何方，我认为即使是研究人员也不知道它会走向何方，我也不假装理解它是如何发展的。我对它的原理有一个模糊的概念，但我不明白他们是如何使所有这些神奇的结果发生的，我也不知道目前的方法可以走多远。当人工智能的想法出现时，人们开始发明像 Lisp 这样的计算机语言，用于人工智能编程聊天再到 ChatGPT，我们花了 50、70 年的时间。 从上世纪 50 年代到现在是一个漫长的过程，在这条路上，人们一直在想，我们即将取得突破，最终确实发生了，现在你认为已经在迅速发展了，但它是否会发展到可以进行对话，并且聊天机器人可以采访我，或者我可以采访聊天机器人的地步吗？两个聊天机器人之间的对话可能比我们更好，我们不知道，可能只要多投入 10 倍以上的芯片和 10 倍以上的算力来实现这一目标，也可能是你达到的一个极限，然后你需要在理论上有另一个突破，将其提升到一个新的水平，它具有洞察力、理解、判断、推理、同理心，但我认为原则上 没有理由不能建造一个可以思考、行动、说话、看起来也像人类的机器。有些哲学家认为这不可能的，我不这样认为，我认为这是可能的，但我不知道这需要多长时间，我只知道，如果它真正出现时，我们将有非常深刻的问题需要回答。那将是一个非常难回答的问题，因为如果它像你一样聪明，你将无法预设程序让它愚蠢到能被消灭，这是一个根本矛盾。我是说，你认为可以在某个地方做个特殊按钮，按了之后，它会突然“是，先生”并服从你，但如果它真的那么聪明，他就不会想到所有的后果。</p>
+
+<p><strong>米思伟</strong>：但在这技术力量平衡中，你是否感觉到美国遥遥领先于中国，还是…</p>
+
+<p><strong>李</strong>：我认为现在他们领先，一方面是因为技术，他们能制造芯片的技术，另一方面他们吸引了如此多人才，即使是亚裔、华裔、印度研究人员他们也在美国取得突破，这也是因为美国的自由企业制度。我的意思是，在硅谷，你可能对科技公司有自己的看法，但他们能够接受一个新的想法并用它来改变世界，变得更好或更糟。现在我们有了一些正在发生的事情已经对世界产生了影响，它不是要成为一个超级机器人，而只是要成为你的人工智能助手，帮助你起草一段话或写一篇简短的便条。我们需要积累操作经验，了解其中的隐患，以便我们能够做出明智决定，对其进行监管。现在，我可以有把握地说，在我国政府，我认为在大多数政府中，技术人才比政府人员更了解这方面的情况。这是固有的方式，突破正在发生，我们不是取得突破的人。大学和企业里的人们在主导这件事，他们比我们知道得多，他们中的一些人很担心，我认为我们有理由予以关注。</p>
+
+<p>【关于新加坡和李显龙接班的问题】</p>
+
+<p><strong>米思伟</strong>：我可以快速问一下新加坡的情况，然后再问一下您自己吗？关于新加坡，今年形势比往年要严峻一些。在新加坡，一些中国商人涉嫌洗钱。你们甚至有一两名政府官员，不是被牵扯进洗钱，但却受到了调查等等，我知道与某些南欧国家相比，这并不会让人太过担心。</p>
+
+<p><strong>李</strong>：不，我们不会与某些南欧国家相比，甚至不与任何北欧国家相比，我们只是想保持高标准，当标准达不达标时，我们就必须处理。偶尔，你会发现我们中的某个人没有完全达到他应该达到的标准，或者似乎做了一些不太正确的事情，我们必须做正确的事，而且我们必须让人们看到我们这样做了。我们目前正在这样做。我不认为中国商人洗钱案是丑闻，这是一个刑事案件。罪犯做了坏事，我们发现了，我们进行调查，我们做了需要做的，我们没收了他们的钱、汽车、手袋和其他一切，然后我们在法庭上起诉他们，他们必须证明这些是合法拥有的，他们没有做错任何事。但就新加坡的体制而言，体制是干净的，体制做了它应该做的事情，并将保持自己的纯洁性。如果我们的系统被腐败了，那就有麻烦了。</p>
+
+<p><strong>米思伟</strong>：那您就会回到欧洲国家的层面。</p>
+
+<p><strong>李</strong>：我不知道欧洲国家处于什么水平。</p>
+
+<p><strong>米思伟</strong>：我可以问你一个问题吗？正如你和迈克指出的，明年，在人民行动党成立 70 周年之前的某个时候，你将会把权力移交给黄循财。所以到那时你已经执政 20 年了，我想知道你认为这期间发生了多少变化？我的意思是，如果看看你的父亲，你的父亲是著名的社会主义者，最后却成为了撒切尔主义者。我现在一直在新加坡闲逛，这里有很多大型计划，向退休人士发放更多的钱抵御通货膨胀。你是否已经向左翼转变吗？</p>
+
+<p><strong>李</strong>：我们一直在小心翼翼地航行到一个更舒适的地方。不，当经济增长，所有的船都被潮汐抬起时，我们可以承受得起，我们需要非常严格地帮助那些还没有完全跟上的人，你可以告诉他们跑得更快，更加努力，给更多的激励，让他们出人头地，大多数情况下这样做效果很好，我们这样做了很长一段时间，但随着时间的推移，竞争继续，队伍散开，有些人跑得更快了，有些人没有那么领先，然后他们的孩子也没有那么领先，你必须思考如何让这个团队团结在一起，有时，有人做得很好，但世界在他身上产生了变化，突然，第一名变成了最后一名。你该怎么办，你说世界就是这样吗，或者我可以做些什么来帮助他再次回到比赛并做出贡献？我认为，我们正处于这样一个阶段，我们必须共同做更多事情的阶段，我们必须互相帮助，政府必须在那里，我们也必须非常努力地避免政府成为所有问题的唯一解决方案。</p>
+
+<p><strong>米思伟</strong>：所以，新加坡政府不会大规模扩大，但会变大一些？</p>
+
+<p><strong>李</strong>：我们可能是发达国家中规模最小的政府，因为我们的支出不到 GDP 的 20%，这就是我们政府的预算。新加坡政府预算与一些欧洲国家在国家养老金上的支出占国内生产总值的比例大致相同。我的意思是，你们的制度不同，但我们的制度非常精简。我们也需要非常精简，但老龄化的压力、更高的医疗成本、更高的社会需求正在逐渐推高我们，我们面临的挑战是我们如何为他们提供资金，以及如何在必要时允许这种情况发生，而不至于失控。这就意味着我们要不时地说出“税收”这个禁忌词。我们现在正在这样做，现在我们有像增值税一样的商品和服务税，原来是 7%，今年 1 月 1 日将其提高到 8%，并将在明年 1 月 1 日提高到 9%，我们会实现这一目标的，但我们正在做的是向 2/3 的低收入人口提供相当慷慨的实际现金补贴，以便我能够将这一制度付诸实施。就收入而言，我们现在处于一个新的位置，但就对家庭的影响而言，这还要推迟一段时间。</p>
+
+<p><strong>米思伟</strong>：您希望如何被记住？您是否希望被人们记住的是…</p>
+
+<p><strong>李</strong>：不，我只想专注于做好我的工作，我还没到坐下来谈论我过去做过什么的时候。</p>
+
+<p><strong>米思伟</strong>：这就是我的最后一个问题了，有人说你会成为国务资政，多年前我第一次见到你时，你刚刚接任总理，然后我去见了你的父亲，据说他已经半退休了，然后是国务资政。我惊讶地发现他住在你的内阁之上，这让我惊讶，我觉得离你很近…</p>
+
+<p><strong>李</strong>：他不住在那里，他在那里工作</p>
+
+<p><strong>米思伟</strong>：对不起，他在那里工作，但是，如果我正在主持内阁会议，而他在那之上…</p>
+
+<p><strong>李</strong>：这并没有发生，我正在主持内阁会议，而他在内阁会议室里，它运行得很好，我的前任也在内阁房间，所以有两位前总理在参加会议。某位别国前总理给我说，我无法想象你们的内阁会议是什么样的，但它是奏效的，这是件非常微妙的事情，既要监督，又不能专横，并且能够给予建议和有益的推动又要恰到好处地说出睿智地话语，而不是一味给你的继任者灌输风格。我听从我的继任者的安排，我已经说过，无论他要我做什么，我都会帮助他取得成功，所以你得问问他，他要我做什么。</p>
+
+<p><strong>米思伟</strong>：李总理，希望我们明年还能见到您</p>
+
+<p><strong>李</strong>：不，我会在观众席上听你讲话。</p>
+
+<p><strong>米思伟</strong>：从上位听，谢谢你</p>
+
+<p><strong>李</strong>：哈哈</p>]]></content><author><name></name></author><category term="新闻" /><category term="经济" /><category term="政治" /><summary type="html"><![CDATA[2023 年 11 月彭博创新经济论坛在新加坡举行，本届主题是“拥抱不稳定”，李显龙总理 11 月 8 日在欢迎晚宴上同彭博社总编辑米思伟（John Micklethwait）分享他对中美关系未来走向的看法，这是 YouTube 视频链接。]]></summary></entry><entry><title type="html">个人养老金基金简介及个人选基记录</title><link href="https://algony-tony.github.io/pension-fund/" rel="alternate" type="text/html" title="个人养老金基金简介及个人选基记录" /><published>2023-11-09T00:00:00+08:00</published><updated>2023-11-09T00:00:00+08:00</updated><id>https://algony-tony.github.io/pension-fund</id><content type="html" xml:base="https://algony-tony.github.io/pension-fund/"><![CDATA[<ul id="markdown-toc">
+  <li><a href="#基础知识" id="markdown-toc-基础知识">基础知识</a></li>
+  <li><a href="#基金统计数据" id="markdown-toc-基金统计数据">基金统计数据</a></li>
+  <li><a href="#个人选基记录" id="markdown-toc-个人选基记录">个人选基记录</a>    <ul>
+      <li><a href="#第一步筛选" id="markdown-toc-第一步筛选">第一步筛选</a></li>
+      <li><a href="#第二步筛选" id="markdown-toc-第二步筛选">第二步筛选</a></li>
+      <li><a href="#个人结论" id="markdown-toc-个人结论">个人结论</a></li>
+    </ul>
+  </li>
+  <li><a href="#其他基金推荐" id="markdown-toc-其他基金推荐">其他基金推荐</a>    <ul>
+      <li><a href="#雪球懒人养基" id="markdown-toc-雪球懒人养基">雪球：懒人养基</a></li>
+      <li><a href="#雪球polly投资" id="markdown-toc-雪球polly投资">雪球：Polly投资</a></li>
+      <li><a href="#雪球阡陌说" id="markdown-toc-雪球阡陌说">雪球：阡陌说</a></li>
+      <li><a href="#雪球fof老顽童" id="markdown-toc-雪球fof老顽童">雪球：FOF老顽童</a></li>
+      <li><a href="#雪球望京博格" id="markdown-toc-雪球望京博格">雪球：望京博格</a></li>
+    </ul>
+  </li>
+  <li><a href="#数据获取" id="markdown-toc-数据获取">数据获取</a>    <ul>
+      <li><a href="#基金数据下载" id="markdown-toc-基金数据下载">基金数据下载</a></li>
+      <li><a href="#基金比较" id="markdown-toc-基金比较">基金比较</a></li>
+      <li><a href="#基金持仓基金数据下载" id="markdown-toc-基金持仓基金数据下载">基金持仓基金数据下载</a></li>
+    </ul>
+  </li>
+  <li><a href="#基金招募说明摘要" id="markdown-toc-基金招募说明摘要">基金招募说明摘要</a>    <ul>
+      <li><a href="#中欧2050" id="markdown-toc-中欧2050">中欧2050</a></li>
+      <li><a href="#工银2050" id="markdown-toc-工银2050">工银2050</a></li>
+      <li><a href="#嘉实2050" id="markdown-toc-嘉实2050">嘉实2050</a></li>
+      <li><a href="#兴全积极" id="markdown-toc-兴全积极">兴全积极</a></li>
+      <li><a href="#华安积极" id="markdown-toc-华安积极">华安积极</a></li>
+      <li><a href="#泰康积极" id="markdown-toc-泰康积极">泰康积极</a></li>
+      <li><a href="#东方红积极" id="markdown-toc-东方红积极">东方红积极</a></li>
+      <li><a href="#广发2050" id="markdown-toc-广发2050">广发2050</a></li>
+      <li><a href="#汇添富2050" id="markdown-toc-汇添富2050">汇添富2050</a></li>
+      <li><a href="#华夏2050" id="markdown-toc-华夏2050">华夏2050</a></li>
+      <li><a href="#鹏华2045" id="markdown-toc-鹏华2045">鹏华2045</a></li>
+      <li><a href="#华夏养老2045" id="markdown-toc-华夏养老2045">华夏养老2045</a></li>
+      <li><a href="#南方2045" id="markdown-toc-南方2045">南方2045</a></li>
+      <li><a href="#中欧2035" id="markdown-toc-中欧2035">中欧2035</a></li>
+      <li><a href="#中欧2025" id="markdown-toc-中欧2025">中欧2025</a></li>
+      <li><a href="#华夏保守" id="markdown-toc-华夏保守">华夏保守</a></li>
+      <li><a href="#交银稳健" id="markdown-toc-交银稳健">交银稳健</a></li>
+      <li><a href="#兴全安泰平衡" id="markdown-toc-兴全安泰平衡">兴全安泰平衡</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="基础知识">基础知识</h2>
+
+<p>2022 年国家推行个人养老金制度，这里简单记录下自己对于<strong>个人养老金基金</strong>的选择方法。个人养老金基金目录公布在<a href="https://www.amac.org.cn/fwdt/wyc/jgcprycx/cpcx/PensionFundBusiness/">基金业协会网站</a>，截止到2023 年第三季度共有 161 个基金，都是 FOF，而且专门给养老基金创立了 Y 份额，Y 份额是专供个人养老金账户投资使用，目前 Y 份额的管理费和托管费普遍打了五折且免收销售服务费，在不同的销售渠道上也有不同的申购费折扣，工商银行上是一折申购费，雪球上申购是免申购费的。</p>
+
+<p>再介绍一点关于份额的知识，目前除了一些小众类型的份额和已退出历史舞台的分级基金 B 份额，<strong>常见的份额一般有 A 份额和 C 份额，它们只是收费方式不同，在投资运作上没有区别，一般说法是“短 C 长 A”</strong>，就是在一般情况下 A 份额会收取认/申购费，不收销售服务费，适合长期投资，而 C 份额每天收销售服务费不收认/申购费，适合短期投资，他们都会收取赎回费、管理费和托管费，对于具体的基金份额及销售渠道这些收费策略都有可能发生变化。</p>
+
+<p>个人养老金基金主要分为两种，<strong>目标日期 FOF</strong> 和<strong>目标风险 FOF</strong>。</p>
+
+<p><strong>目标日期产品</strong>是设定一个领取养老金的目标年份，随着目标年份的临近会不断降基金中权益资产的配置比例。</p>
+
+<p><strong>目标风险产品</strong>只设定基金的风险特征，目前有“保守型”，“稳健型”，“均衡/平衡型”，“积极型”四种目标风险，大致就是债性资产比例从左到右逐渐降低，权益资产比例逐渐升高。</p>
+
+<h2 id="基金统计数据">基金统计数据</h2>
+
+<p>下面是截至 2023 年 9 月 28 日全市场的 161 支养老基金的统计数据分析。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>基金数</th>
+      <th>占比%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>目标风险</strong></td>
+      <td><strong>103</strong></td>
+      <td><strong>64%</strong></td>
+    </tr>
+    <tr>
+      <td>保守型</td>
+      <td>1</td>
+      <td>1%</td>
+    </tr>
+    <tr>
+      <td>稳健型</td>
+      <td>70</td>
+      <td>43%</td>
+    </tr>
+    <tr>
+      <td>平衡型</td>
+      <td>28</td>
+      <td>17%</td>
+    </tr>
+    <tr>
+      <td>积极型</td>
+      <td>4</td>
+      <td>2%</td>
+    </tr>
+    <tr>
+      <td><strong>目标日期</strong></td>
+      <td><strong>58</strong></td>
+      <td><strong>36%</strong></td>
+    </tr>
+    <tr>
+      <td>2025</td>
+      <td>4</td>
+      <td>2%</td>
+    </tr>
+    <tr>
+      <td>2030</td>
+      <td>8</td>
+      <td>5%</td>
+    </tr>
+    <tr>
+      <td>2033</td>
+      <td>1</td>
+      <td>1%</td>
+    </tr>
+    <tr>
+      <td>2035</td>
+      <td>14</td>
+      <td>9%</td>
+    </tr>
+    <tr>
+      <td>2038</td>
+      <td>1</td>
+      <td>1%</td>
+    </tr>
+    <tr>
+      <td>2040</td>
+      <td>14</td>
+      <td>9%</td>
+    </tr>
+    <tr>
+      <td>2043</td>
+      <td>1</td>
+      <td>1%</td>
+    </tr>
+    <tr>
+      <td>2045</td>
+      <td>9</td>
+      <td>6%</td>
+    </tr>
+    <tr>
+      <td>2050</td>
+      <td>6</td>
+      <td>4%</td>
+    </tr>
+    <tr>
+      <td><strong>总计</strong></td>
+      <td><strong>161</strong></td>
+      <td><strong>100%</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>基于基金锁定期的统计数据：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>锁定期</th>
+      <th>基金数</th>
+      <th>占比%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>一年</td>
+      <td>72</td>
+      <td>45%</td>
+    </tr>
+    <tr>
+      <td>两年</td>
+      <td>1</td>
+      <td>1%</td>
+    </tr>
+    <tr>
+      <td>三年</td>
+      <td>73</td>
+      <td>45%</td>
+    </tr>
+    <tr>
+      <td>五年</td>
+      <td>15</td>
+      <td>9%</td>
+    </tr>
+    <tr>
+      <td><strong>总计</strong></td>
+      <td><strong>161</strong></td>
+      <td><strong>100%</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>目前规模前十的养老基金：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>基金代码</th>
+      <th>基金名称（全称）</th>
+      <th>持有锁定期</th>
+      <th>FOF一级分类</th>
+      <th>二级分类</th>
+      <th>基金经理</th>
+      <th>基金规模(亿，23年11月)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>017386</td>
+      <td>兴全安泰积极养老五年持有混合(FOF)Y</td>
+      <td>五年</td>
+      <td>目标风险</td>
+      <td>积极型</td>
+      <td>林国怀</td>
+      <td>5.67</td>
+    </tr>
+    <tr>
+      <td>017247</td>
+      <td>华夏养老2040三年持有混合(FOF)Y</td>
+      <td>三年</td>
+      <td>目标日期</td>
+      <td>2040</td>
+      <td>许利明</td>
+      <td>5.11</td>
+    </tr>
+    <tr>
+      <td>017248</td>
+      <td>华夏养老2045三年持有混合(FOF)Y</td>
+      <td>三年</td>
+      <td>目标日期</td>
+      <td>2045</td>
+      <td>许利明</td>
+      <td>3.00</td>
+    </tr>
+    <tr>
+      <td>017317</td>
+      <td>中欧预见养老2050五年持有(FOF)Y</td>
+      <td>五年</td>
+      <td>目标日期</td>
+      <td>2050</td>
+      <td>桑磊</td>
+      <td>2.58</td>
+    </tr>
+    <tr>
+      <td>017253</td>
+      <td>易方达汇诚养老2043三年持有混合(FOF)Y</td>
+      <td>三年</td>
+      <td>目标日期</td>
+      <td>2043</td>
+      <td>汪玲</td>
+      <td>2.40</td>
+    </tr>
+    <tr>
+      <td>017340</td>
+      <td>易方达汇智平衡养老目标三年持有混合(FOF)Y</td>
+      <td>三年</td>
+      <td>目标风险</td>
+      <td>平衡型</td>
+      <td>汪玲</td>
+      <td>1.93</td>
+    </tr>
+    <tr>
+      <td>017270</td>
+      <td>招商和悦稳健养老一年持有期混合(FOF)Y</td>
+      <td>一年</td>
+      <td>目标风险</td>
+      <td>稳健型</td>
+      <td>章鸽武</td>
+      <td>1.93</td>
+    </tr>
+    <tr>
+      <td>017277</td>
+      <td>中欧预见养老2035(FOF)Y</td>
+      <td>三年</td>
+      <td>目标日期</td>
+      <td>2035</td>
+      <td>桑磊</td>
+      <td>1.75</td>
+    </tr>
+    <tr>
+      <td>017251</td>
+      <td>工银养老2035(FOF)Y</td>
+      <td>三年</td>
+      <td>目标日期</td>
+      <td>2035</td>
+      <td>蒋华安</td>
+      <td>1.52</td>
+    </tr>
+    <tr>
+      <td>017252</td>
+      <td>工银稳健养老目标一年持有混合发起(FOF)Y</td>
+      <td>一年</td>
+      <td>目标风险</td>
+      <td>稳健型</td>
+      <td>蒋华安</td>
+      <td>1.50</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>下面是从 Choice 上截取的几个统计数据。</p>
+
+<p>全市场 FOF 基金统计：</p>
+
+<p><img src="/assets/img/post/pension-fund-01.png" alt="&quot;截止 23 年 11 月全市场 FOF 基金统计&quot;" title="截止 23 年 11 月全市场 FOF 基金统计" /></p>
+
+<p>FOF 基金公司规模统计：</p>
+
+<p><img src="/assets/img/post/pension-fund-02.png" alt="&quot;全市场 FOF 基金公司规模统计&quot;" title="全市场 FOF 基金公司规模统计" /></p>
+
+<p>全市场 FOF 基金经理指数规模排名</p>
+
+<p><img src="/assets/img/post/pension-fund-03.png" alt="&quot;FOF 基金经理指数-规模排名&quot;" title="FOF 基金经理指数-规模排名" /></p>
+
+<p>养老 FOF 基金经理指数规模排名</p>
+
+<p><img src="/assets/img/post/pension-fund-04.png" alt="&quot;养老目标 FOF 基金经理指数-规模排名&quot;" title="养老目标 FOF 基金经理指数-规模排名" /></p>
+
+<h2 id="个人选基记录">个人选基记录</h2>
+
+<p>选择基金产品有很多量化的指标，下面只是我个人主观上挑选基金的一个记录，不构成任何投资推荐。</p>
+
+<h3 id="第一步筛选">第一步筛选</h3>
+
+<p>养老金基金我会主要关注长期收益性，不太在乎锁定期，风险偏好高，所以我会从远目标日期和积极基金开始翻石头。先筛选出目标日期 2045 和 2050 和积极型基金，共 19 只如下，通过 Choice 的基金比较功能对比它们对应的 A 份额基金情况（因为 A 份额成立时间会更早有更多数据方便比较）。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>基金代码</th>
+      <th>基金名称（全称）</th>
+      <th>基金经理</th>
+      <th>基金规模(亿,23年11月)</th>
+      <th>基金主代码</th>
+      <th>基金总规模 23年11月</th>
+      <th>24年权益资产比例范围</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>017353</td>
+      <td>工银瑞信养老目标日期2050五年持有期混合型发起式基金中基金(FOF)</td>
+      <td>周崟</td>
+      <td>1.00</td>
+      <td>006886</td>
+      <td>3.06</td>
+      <td>55%-80%</td>
+    </tr>
+    <tr>
+      <td>017317</td>
+      <td>中欧预见养老目标日期2050五年持有期混合型发起式基金中基金(FOF)</td>
+      <td>桑磊</td>
+      <td>2.58</td>
+      <td>007241</td>
+      <td>4.76</td>
+      <td>52%-80%</td>
+    </tr>
+    <tr>
+      <td>017248</td>
+      <td>华夏养老目标日期2045三年持有期混合型基金中基金(FOF)</td>
+      <td>许利明</td>
+      <td>3.00</td>
+      <td>006620</td>
+      <td>12.85</td>
+      <td>35%-60%</td>
+    </tr>
+    <tr>
+      <td>017386</td>
+      <td>兴全安泰积极养老目标五年持有期混合型发起式基金中基金(FOF)</td>
+      <td>林国怀</td>
+      <td>5.67</td>
+      <td>010267</td>
+      <td>15.59</td>
+      <td>60%-75%</td>
+    </tr>
+    <tr>
+      <td>017249</td>
+      <td>嘉实养老目标日期2050五年持有期混合型发起式基金中基金(FOF)</td>
+      <td>张静</td>
+      <td>0.55</td>
+      <td>007188</td>
+      <td>3.00</td>
+      <td>55%-80%</td>
+    </tr>
+    <tr>
+      <td>017352</td>
+      <td>工银瑞信养老目标日期2045三年持有期混合型发起式基金中基金(FOF)</td>
+      <td>蒋华安</td>
+      <td>0.53</td>
+      <td>007651</td>
+      <td>1.85</td>
+      <td>45%-60%</td>
+    </tr>
+    <tr>
+      <td>017403</td>
+      <td>广发养老目标日期2050五年持有期混合型发起式基金中基金(FOF)</td>
+      <td>朱坤</td>
+      <td>0.49</td>
+      <td>007250</td>
+      <td>2.52</td>
+      <td>42%-75%</td>
+    </tr>
+    <tr>
+      <td>017381</td>
+      <td>鹏华养老目标日期2045三年持有期混合型发起式基金中基金(FOF)</td>
+      <td>孙博斐</td>
+      <td>0.43</td>
+      <td>007271</td>
+      <td>2.81</td>
+      <td>45%-60%</td>
+    </tr>
+    <tr>
+      <td>017254</td>
+      <td>汇添富养老目标日期2050五年持有期混合型发起式基金中基金(FOF)</td>
+      <td>李彪</td>
+      <td>0.40</td>
+      <td>007060</td>
+      <td>2.58</td>
+      <td>60%-80%</td>
+    </tr>
+    <tr>
+      <td>017362</td>
+      <td>华夏养老目标日期2050五年持有期混合型发起式基金中基金(FOF)</td>
+      <td>李晓易</td>
+      <td>0.31</td>
+      <td>006891</td>
+      <td>2.45</td>
+      <td>55%-80%</td>
+    </tr>
+    <tr>
+      <td>017365</td>
+      <td>华夏福源养老目标日期2045三年持有期混合型发起式基金中基金(FOF)</td>
+      <td>许利明</td>
+      <td>0.26</td>
+      <td>015682</td>
+      <td>9.57</td>
+      <td>35%-60%</td>
+    </tr>
+    <tr>
+      <td>017242</td>
+      <td>南方养老目标日期2045三年持有期混合型发起式基金中基金(FOF)</td>
+      <td>黄俊</td>
+      <td>0.23</td>
+      <td>009573</td>
+      <td>1.86</td>
+      <td>35%-60%</td>
+    </tr>
+    <tr>
+      <td>017675</td>
+      <td>东方红颐和积极养老目标五年持有期混合型基金中基金（FOF）</td>
+      <td>陈文扬</td>
+      <td>0.13</td>
+      <td>009184</td>
+      <td>2.42</td>
+      <td>65%-80%</td>
+    </tr>
+    <tr>
+      <td>017411</td>
+      <td>农银养老目标日期2045五年持有期混合型发起式基金中基金(FOF)</td>
+      <td>周永冠</td>
+      <td>0.10</td>
+      <td>010193</td>
+      <td>0.66</td>
+      <td>55%-80%</td>
+    </tr>
+    <tr>
+      <td>017393</td>
+      <td>泰康福泽积极养老目标五年持有期混合型发起式基金中基金(FOF)</td>
+      <td>潘漪</td>
+      <td>0.02</td>
+      <td>012513</td>
+      <td>1.04</td>
+      <td>65%-80%</td>
+    </tr>
+    <tr>
+      <td>017905</td>
+      <td>国泰君安善吾养老目标日期2045五年持有期混合型发起式基金中基金(FOF)</td>
+      <td>陈义进</td>
+      <td>0.00</td>
+      <td>016907</td>
+      <td>2.06</td>
+      <td>53%-78%</td>
+    </tr>
+    <tr>
+      <td>017942</td>
+      <td>银华尊和养老目标日期2045三年持有期混合型发起式基金中基金（FOF）</td>
+      <td>肖侃宁</td>
+      <td>0.00</td>
+      <td>013928</td>
+      <td>1.96</td>
+      <td>45%-60%</td>
+    </tr>
+    <tr>
+      <td>019012</td>
+      <td>富国鑫汇养老目标日期2045五年持有期混合型发起式基金中基金（FOF）</td>
+      <td>王登元</td>
+      <td>0.00</td>
+      <td>013420</td>
+      <td>0.61</td>
+      <td>60%-80%</td>
+    </tr>
+    <tr>
+      <td>019459</td>
+      <td>华安积极养老目标五年持有期混合型发起式基金中基金（FOF）</td>
+      <td>何移直</td>
+      <td>0.00</td>
+      <td>016121</td>
+      <td>0.48</td>
+      <td>65%-80%</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>可以看到目标日期 2045 的基金的权益资产比例一般还是低一些，只有农银2045，国泰2045，富国2045 比例较高。</p>
+
+<p>基金比较一次最多只能 10 只，所以拆分成两次分别比较，选取的区间 2021 年到 2023 年 11 月，选取的基准是沪深300，下面是业绩走势对比：</p>
+
+<p><img src="/assets/img/post/pension-fund-06.png" alt="&quot;业绩走势对比&quot;" title="业绩走势对比" /></p>
+
+<p><img src="/assets/img/post/pension-fund-35.png" alt="&quot;业绩走势对比&quot;" title="业绩走势对比" /></p>
+
+<p>年化回报对比：</p>
+
+<p><img src="/assets/img/post/pension-fund-05.png" alt="&quot;年化回报对比&quot;" title="年化回报对比" /></p>
+
+<p><img src="/assets/img/post/pension-fund-36.png" alt="&quot;年化回报对比&quot;" title="年化回报对比" /></p>
+
+<p>区间阶段回报对比：</p>
+
+<p><img src="/assets/img/post/pension-fund-07.png" alt="&quot;区间阶段回报对比&quot;" title="区间阶段回报对比" /></p>
+
+<p><img src="/assets/img/post/pension-fund-37.png" alt="&quot;区间阶段回报对比&quot;" title="区间阶段回报对比" /></p>
+
+<p>今年绩效评估：</p>
+
+<p><img src="/assets/img/post/pension-fund-08.png" alt="&quot;今年绩效评估&quot;" title="今年绩效评估" /></p>
+
+<p><img src="/assets/img/post/pension-fund-38.png" alt="&quot;今年绩效评估&quot;" title="今年绩效评估" /></p>
+
+<p>区间绩效评估：</p>
+
+<p><img src="/assets/img/post/pension-fund-09.png" alt="&quot;区间绩效评估&quot;" title="区间绩效评估" /></p>
+
+<p><img src="/assets/img/post/pension-fund-39.png" alt="&quot;区间绩效评估&quot;" title="区间绩效评估" /></p>
+
+<p>资产配置图：</p>
+
+<p><img src="/assets/img/post/pension-fund-10.png" alt="&quot;资产配置图&quot;" title="资产配置图" /></p>
+
+<p><img src="/assets/img/post/pension-fund-40.png" alt="&quot;资产配置图&quot;" title="资产配置图" /></p>
+
+<p>持有人结构：</p>
+
+<p><img src="/assets/img/post/pension-fund-11.png" alt="&quot;持有人结构&quot;" title="持有人结构" /></p>
+
+<p><img src="/assets/img/post/pension-fund-41.png" alt="&quot;持有人结构&quot;" title="持有人结构" /></p>
+
+<p>基金经理信息：</p>
+
+<p><img src="/assets/img/post/pension-fund-12.png" alt="&quot;基金经理信息&quot;" title="基金经理信息" /></p>
+
+<p><img src="/assets/img/post/pension-fund-42.png" alt="&quot;基金经理信息&quot;" title="基金经理信息" /></p>
+
+<p>重仓持股对比：</p>
+
+<p><img src="/assets/img/post/pension-fund-43.png" alt="&quot;重仓持股对比&quot;" title="重仓持股对比" /></p>
+
+<p><img src="/assets/img/post/pension-fund-44.png" alt="&quot;重仓持股对比&quot;" title="重仓持股对比" /></p>
+
+<p>重仓债券对比：</p>
+
+<p><img src="/assets/img/post/pension-fund-45.png" alt="&quot;重仓债券对比&quot;" title="重仓债券对比" /></p>
+
+<p><img src="/assets/img/post/pension-fund-46.png" alt="&quot;重仓债券对比&quot;" title="重仓债券对比" /></p>
+
+<h3 id="第二步筛选">第二步筛选</h3>
+
+<p>在上述 19 只基金中去掉成立时间较短的华安积极，富国2045，银华2045，国泰2045，华夏福源2045，再从基金经理维度去掉换人太频繁，业绩太短等主观因素，最后保留 7 只基金比较，如下长图，其中兴全积极这三年收益最高，回撤控制也好，中欧业绩目前业绩最差，但是弹性较好，其他四个目标日期2045 的基金权益资产配置范围低一些所以整体也会更平稳。</p>
+
+<p><img src="/assets/img/post/pension-fund-47.png" alt="&quot;主要基金对比图&quot;" title="主要基金对比图" /></p>
+
+<p>从下面持仓基金的近一年明细可以看到各基金的持仓集中度，偏好基金类型，换手情况等。其中兴全积极持仓最分散，前十总仓位不到 30%，而且这两个季度持有货币基金较多，很好地控制了回撤，中欧2050倾向于光伏的新能源，南方2045对指数 ETF 持仓较重，华夏2045的持仓更倾向于科技，而且如上图他对股票的仓位也更重。各养老基金的持仓都会更倾向于买自家的基金产品，这也是给本基金公司带了一个很稳定的增量。</p>
+
+<p><img src="/assets/img/post/pension-fund-48.png" alt="&quot;主要基金近一年持有基金Top 10&quot;" title="主要基金近一年持有基金Top 10" /></p>
+
+<h3 id="个人结论">个人结论</h3>
+
+<p>整体比较，今年我会全部买入兴全积极。选基金感觉比选股还要难，信息量少，而且很依赖基金经理。</p>
+
+<blockquote>
+  <p>研究基金主要是研究人。 — 林国怀</p>
+</blockquote>
+
+<blockquote>
+  <p>FOF 其实不是一个球员，更像一个教练，去布局场上所有合适的人去做。 — 林国怀</p>
+</blockquote>
+
+<p>这里是雪球<a href="https://xueqiu.com/u/7245734636">大马哈投资</a>介绍林国怀的分析文章“<a href="https://xueqiu.com/7245734636/216190033">如何获得高性价比的投资回报？</a>”。</p>
+
+<h2 id="其他基金推荐">其他基金推荐</h2>
+
+<h3 id="雪球懒人养基">雪球：懒人养基</h3>
+
+<p>雪球平台的<a href="https://xueqiu.com/u/2356382715">懒人养基</a>在 2022 年 12 月写的文章做了相关推荐：<a href="https://xueqiu.com/2356382715/236971660">如何选择个人养老金产品进行投资？</a></p>
+
+<blockquote>
+  <p><strong>选择投研实力强的基金公司产品</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>在管资产规模、在管资产排名（最好是非货币基金管理规模及排名）、基金经理数量都是“投研实力强的基金公司”重要的评价指标。</p>
+</blockquote>
+
+<blockquote>
+  <p>保守型目标风险养老FOF，只有华夏保守养老一年持有期混合Y</p>
+
+  <p>平衡型目标风险养老FOF，只有华商嘉悦平衡养老目标三年持有期混合Y</p>
+
+  <p>我倾向于给三只稳健型目标风险养老FOF这样的排名：招商和悦稳健养老一年持有混合Y居首，广发安泰稳健养老一年持有混合Y次之，交银安享稳健养老一年持有混合Y殿后。</p>
+
+  <p>积极型目标风险养老FOF，只有兴全安泰积极养老目标五年持有期混合Y</p>
+</blockquote>
+
+<blockquote>
+  <p>目标日期2025：平安养老2025一年持有期混合Y；</p>
+
+  <p>目标日期2030：华安养老2030三年持有期混合Y；</p>
+
+  <p>目标日期2035：中欧预见养老2035三年持有期混合Y；</p>
+
+  <p>目标日期2040：华夏养老2040三年持有期混合Y；</p>
+
+  <p>目标日期2045：华夏养老2045三年持有期混合Y；</p>
+
+  <p>目标日期2050：嘉实养老2050五年持有期混合Y</p>
+</blockquote>
+
+<blockquote>
+  <p>当然我的这个短期排名只是说明我的一个选基思路，可能带有一定的主观色彩，肯定也不能预示未来表现，不构成投资推荐，有机会读到我文章的朋友应该审慎采信。</p>
+</blockquote>
+
+<h3 id="雪球polly投资">雪球：Polly投资</h3>
+
+<p><a href="https://xueqiu.com/u/8228564016">Polly投资</a>在 2022 年 12 月写的<a href="https://xueqiu.com/8228564016/237165789">笔记：养老FOF的有效筛选指标是什么？</a></p>
+
+<blockquote>
+  <p><strong>养老FOF投资期限较长，应优先选择高风险、高股票仓位的FOF，关注中长期业绩。</strong></p>
+
+  <p><strong>和普通偏股基金不同，规模对FOF的业绩可能没有负面影响。</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>如果只看雪球本次圈定的12支养老基金，可以从上面的表格中找到同名、具有Y份额的FOF，例如：</p>
+
+  <p>$兴全安泰积极养老发起式五年FOF-Y(F017386)$
+$中欧预见养老目标日期2035三年持有期混合型(F017277)$</p>
+</blockquote>
+
+<h3 id="雪球阡陌说">雪球：阡陌说</h3>
+
+<p><a href="https://xueqiu.com/u/5679199459">阡陌说</a>在 2023 年 11 月文章<a href="https://xueqiu.com/5679199459/267735704">个人养老基金一周年，今年的1万2你准备怎么买？</a> 中很推崇中欧预见养老2025一年持有（FOF）Y（017318）：</p>
+
+<blockquote>
+  <p>总的来说，中欧预见养老2025一年持有（FOF）Y是一只权益仓位没那么重的FOF，特别适合风险偏好不高的投资者。</p>
+</blockquote>
+
+<p>10 月的文章中<a href="https://xueqiu.com/5679199459/264119367">重阳节之际，聚焦“养老基金”怎么选</a>显示，他个人投资全仓了兴全积极：</p>
+
+<blockquote>
+  <p>我个人风险偏好比较“积极”，目前选择的是兴全安泰积极养老五年持有混合（FOF）Y，2022年12月买了12000元，上个月加仓了1000元，计划年底之前再补足11000元（每个人每年可以买12000元）。$兴全安泰积极养老五年（FOF）Y(F017386)$</p>
+</blockquote>
+
+<p>他在 22 年 12 月的文章中<a href="https://xueqiu.com/5679199459/238070920">我看中了这只养老基金，看看您猜中没</a>就推荐了兴全积极：</p>
+
+<blockquote>
+  <p>我个人会选择林国怀的兴全安泰积极养老五年持有混合(FOF)Y（017386），股票仓位会比股债平衡的基金高一些，毕竟未来还有20年的时间，我相信权益类的资产通过20年的复利下来会更划算。</p>
+</blockquote>
+
+<h3 id="雪球fof老顽童">雪球：FOF老顽童</h3>
+
+<p><a href="https://xueqiu.com/u/4420164592">FOF老顽童</a>在 2022 年 12 月的文章<a href="">都叫养老2050，区别还真不少</a>中详细比较了几只目标日期 2050 基金：</p>
+
+<blockquote>
+  <p>嘉实养老2050主要靠均衡，中欧预见养老2050则主要靠集中。</p>
+</blockquote>
+
+<blockquote>
+  <p>几乎完全不同的持仓</p>
+</blockquote>
+
+<blockquote>
+  <p>它就是中欧预见养老2050， 因为它的前十大重仓基金， 除了证券ETF， 其他清一色中欧自家的产品。</p>
+
+  <p>重仓自家产品其实倒也没什么问题 ，毕竟它成立以来的收益率 、最大回撤 、今年以来的收益率都仅次于嘉实养老2050。</p>
+</blockquote>
+
+<h3 id="雪球望京博格">雪球：望京博格</h3>
+
+<p><a href="https://xueqiu.com/u/4579887327">望京博格</a>是集思录的副总裁郑志勇，他在<a href="https://xueqiu.com/4579887327/261586766">帖子</a>中说买了两个中欧基金因为“股票仓位都是最高”的，可能他指的是在目标日期 2050 和目标日期 2035 的基金里这两个基金的股票持仓最高？其实华夏2045 的股票持仓更高，这个买入理由不是很理解。</p>
+
+<blockquote>
+  <p>2022年养老金12000元额度买的中欧预见养老2050，2023年养老金12000元额度买的中欧养老2035，因为这两个养老Y份额股票仓位都是最高的。</p>
+</blockquote>
+
+<h2 id="数据获取">数据获取</h2>
+
+<p>Choice 金融终端操作：</p>
+
+<h3 id="基金数据下载">基金数据下载</h3>
+
+<p>入口：基金 -&gt; 多维数据 -&gt; 基金数据浏览器</p>
+
+<p>选取指标：基金主代码，基金规模，基金规模合并值，基金经理，基金代码(无后缀)，投资风格，投资策略，投资原则，收益分配原则，基金经理(现任)，基金经理(历任)，性别，出生年份，基金成立日，基金全称，业绩比较基准</p>
+
+<h3 id="基金比较">基金比较</h3>
+
+<p>入口：基金 -&gt; 多维数据 -&gt; 基金比较</p>
+
+<h3 id="基金持仓基金数据下载">基金持仓基金数据下载</h3>
+
+<p>入口：基金 -&gt; 专题统计 -&gt; FOF专题 -&gt; FOF持有基金明细</p>
+
+<p>筛选目标基金和报告期范围。</p>
+
+<h2 id="基金招募说明摘要">基金招募说明摘要</h2>
+
+<h3 id="中欧2050">中欧2050</h3>
+
+<p>下面摘取自”中欧预见养老2050五年持有(FOF)Y (017317)”的招募说明书中的部分内容。</p>
+
+<p>对目标日期的说明：</p>
+
+<blockquote>
+  <p>本基金是目标日期为 2050 年 12 月 31 日的养老目标日期基金，最适宜退休日期为 2045 年至 2055 年左右的投资者购买。</p>
+</blockquote>
+
+<p>对锁定期的说明：</p>
+
+<blockquote>
+  <p>本基金的各类基金份额均设置锁定持有期，原则上每份基金份额的锁定持有期为 5 年，基金份额在锁定持有期内不办理赎回及转换转出业务。锁定持有期到期后进入开放持有期，每份基金份额自其开放持有期首日起才能办理赎回及转换转出业务。因此基金份额持有人面临在锁定持有期内不能赎回基金份额的风险。</p>
+</blockquote>
+
+<p>关于权益资产配置比例的下滑曲线说明：</p>
+
+<blockquote>
+  <p>本基金权益类资产配置比例依照下滑曲线配置并逐年调整，但在实际运作过程中，本基金通过综合分析投资者的年龄结构、风险偏好及资本市场各类资产的长期风险收益情况变化，可能会调整下滑曲线，从而使下滑曲线与投资者申购基金时产生差异。若基金管理人调整本基金的下滑曲线，则应当在季度报告、中期报告、年度报告等定期报告和招募说明书（更新）等文件中披露下滑曲线的调整情况并说明调整的原因。</p>
+</blockquote>
+
+<p>权益类资产在不同时间段的比例：</p>
+
+<p><img src="/assets/img/post/pension-fund-17.png" alt="&quot;中欧2050 权益资产下降曲线&quot;" title="中欧2050 权益资产下降曲线" /></p>
+
+<p>业绩比较基准：</p>
+
+<blockquote>
+  <p>本基金业绩比较基准：沪深 300 指数收益率×下滑曲线值+中债综合指数收益率×（1-下滑曲线值），其中本基金各年的下滑曲线值按招募说明书的规定执行。</p>
+</blockquote>
+
+<h3 id="工银2050">工银2050</h3>
+
+<p>工银瑞信养老目标日期2050五年持有期混合型发起式基金中基金(FOF) 017353</p>
+
+<p>基金投资的说明</p>
+
+<blockquote>
+  <p>目标退休日期到期日前本基金的投资组合比例为：中国证监会依法核准或注册的公开募集证券投资基金（含 QDII、香港互认基金、公募 REITs）占基金资产的比例不低于 80%，其中，投资于股票、股票型基、混合型基金和商品基金（含商品期货基金和黄金 ETF）等品种的比例合计原则上不超过 80%。</p>
+</blockquote>
+
+<blockquote>
+  <p>基金下滑通道对应的权益类资产比例</p>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th>日期</th>
+      <th>中枢配置比例</th>
+      <th>权益类资产比例上限</th>
+      <th>权益类资产比例下限</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>成立日-2029/12/31</td>
+      <td>70%</td>
+      <td>80%</td>
+      <td>55%</td>
+    </tr>
+    <tr>
+      <td>2030/01/01-2031/12/31</td>
+      <td>66%</td>
+      <td>76%</td>
+      <td>51%</td>
+    </tr>
+    <tr>
+      <td>2032/01/01-2033/12/31</td>
+      <td>57%</td>
+      <td>67%</td>
+      <td>42%</td>
+    </tr>
+    <tr>
+      <td>2034/01/01-2035/12/31</td>
+      <td>49%</td>
+      <td>59%</td>
+      <td>34%</td>
+    </tr>
+    <tr>
+      <td>2036/01/01-2038/12/31</td>
+      <td>41%</td>
+      <td>51%</td>
+      <td>26%</td>
+    </tr>
+    <tr>
+      <td>2039/01/01-2041/12/31</td>
+      <td>34%</td>
+      <td>44%</td>
+      <td>19%</td>
+    </tr>
+    <tr>
+      <td>2042/01/01-2044/12/31</td>
+      <td>30%</td>
+      <td>40%</td>
+      <td>15%</td>
+    </tr>
+    <tr>
+      <td>2045/01/01-2047/12/31</td>
+      <td>27%</td>
+      <td>37%</td>
+      <td>12%</td>
+    </tr>
+    <tr>
+      <td>2048/01/01-2050/12/31</td>
+      <td>24%</td>
+      <td>34%</td>
+      <td>9%</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>业绩比较基准</p>
+
+  <p>中证 800 指数收益率×X+中债新综合（财富）指数收益率×(1-X)；</p>
+
+  <p>其中 X 的取值如下表列示：</p>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th>时间段</th>
+      <th>X 的取值</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>成立日-2029/12/31</td>
+      <td>70%</td>
+    </tr>
+    <tr>
+      <td>2030/01/01-2031/12/31</td>
+      <td>66%</td>
+    </tr>
+    <tr>
+      <td>2032/01/01-2033/12/31</td>
+      <td>57%</td>
+    </tr>
+    <tr>
+      <td>2034/01/01-2035/12/31</td>
+      <td>49%</td>
+    </tr>
+    <tr>
+      <td>2036/01/01-2038/12/31</td>
+      <td>41%</td>
+    </tr>
+    <tr>
+      <td>2039/01/01-2041/12/31</td>
+      <td>34%</td>
+    </tr>
+    <tr>
+      <td>2042/01/01-2044/12/31</td>
+      <td>30%</td>
+    </tr>
+    <tr>
+      <td>2045/01/01-2047/12/31</td>
+      <td>27%</td>
+    </tr>
+    <tr>
+      <td>2048/01/01-2050/12/31</td>
+      <td>24%</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="嘉实2050">嘉实2050</h3>
+
+<p>嘉实养老目标日期2050五年持有期混合型发起式基金中基金(FOF) 017249</p>
+
+<p>权益类资产在不同时间段的比例：</p>
+
+<p><img src="/assets/img/post/pension-fund-15.png" alt="&quot;嘉实2050 权益资产下降曲线&quot;" title="嘉实2050 权益资产下降曲线" /></p>
+
+<p>业绩比较基准：</p>
+
+<p><img src="/assets/img/post/pension-fund-16.png" alt="&quot;嘉实2050 业绩比较基准&quot;" title="嘉实2050 业绩比较基准" /></p>
+
+<h3 id="兴全积极">兴全积极</h3>
+
+<p>兴全安泰积极养老目标五年持有期混合型发起式基金中基金(FOF) 017386</p>
+
+<p>权益类资产配置策略：</p>
+
+<p><img src="/assets/img/post/pension-fund-13.png" alt="&quot;兴全积极 权益类资产配置策略&quot;" title="兴全积极 权益类资产配置策略" /></p>
+
+<p>业绩比较基准：</p>
+
+<p><img src="/assets/img/post/pension-fund-14.png" alt="&quot;兴全积极 业绩比较基准&quot;" title="兴全积极 业绩比较基准" /></p>
+
+<h3 id="华安积极">华安积极</h3>
+
+<p>华安积极养老目标五年持有期混合型发起式基金中基金（FOF） 019459</p>
+
+<p>权益类资产配置策略：</p>
+
+<p><img src="/assets/img/post/pension-fund-18.png" alt="&quot;华安积极 权益类资产配置策略&quot;" title="华安积极 权益类资产配置策略" /></p>
+
+<p><img src="/assets/img/post/pension-fund-19.png" alt="&quot;华安积极 权益类资产配置策略&quot;" title="华安积极 权益类资产配置策略" /></p>
+
+<p>业绩比较基准：</p>
+
+<blockquote>
+  <p>本基金的业绩比较基准为：中证 800 指数收益率×75% +中债综合财富（总值）指数收益率×25%</p>
+</blockquote>
+
+<h3 id="泰康积极">泰康积极</h3>
+
+<p>泰康福泽积极养老目标五年持有期混合型发起式基金中基金(FOF)  017393</p>
+
+<p>权益类资产配置策略：</p>
+
+<p><img src="/assets/img/post/pension-fund-20.png" alt="&quot;泰康积极 权益类资产配置策略&quot;" title="泰康积极 权益类资产配置策略" /></p>
+
+<p>业绩比较基准：</p>
+
+<blockquote>
+  <p>本基金的业绩比较基准为：沪深 300 指数收益率<em>75%+中债新综合全价（总值）指数收益率</em>20％+金融机构人民币活期存款利率(税后)*5%</p>
+</blockquote>
+
+<h3 id="东方红积极">东方红积极</h3>
+
+<p>东方红颐和积极养老目标五年持有期混合型基金中基金（FOF） 017675</p>
+
+<p>权益类资产在不同时间段的比例：</p>
+
+<p><img src="/assets/img/post/pension-fund-23.png" alt="&quot;东方红积极 权益资产下降曲线&quot;" title="东方红积极 权益资产下降曲线" /></p>
+
+<p>业绩比较基准：</p>
+
+<blockquote>
+  <p>本基金业绩比较基准：沪深300指数收益率<em>60%+恒生指数收益率</em>15%+中国债券总指数收益率<em>20%+银行活期存款利率（税后）</em>5%。</p>
+</blockquote>
+
+<h3 id="广发2050">广发2050</h3>
+
+<p>广发养老目标日期2050五年持有期混合型发起式基金中基金(FOF)  017403</p>
+
+<p>权益类资产在不同时间段的比例：</p>
+
+<p><img src="/assets/img/post/pension-fund-28.png" alt="&quot;广发2050 权益资产下降曲线&quot;" title="广发2050 权益资产下降曲线" /></p>
+
+<p><img src="/assets/img/post/pension-fund-29.png" alt="&quot;广发2050 权益资产下降曲线&quot;" title="广发2050 权益资产下降曲线" /></p>
+
+<p>业绩比较基准：</p>
+
+<p><img src="/assets/img/post/pension-fund-30.png" alt="&quot;广发2050 业绩比较基准&quot;" title="广发2050 业绩比较基准" /></p>
+
+<h3 id="汇添富2050">汇添富2050</h3>
+
+<p>汇添富养老目标日期2050五年持有期混合型发起式基金中基金(FOF)  017254</p>
+
+<p>权益类资产在不同时间段的比例：</p>
+
+<p><img src="/assets/img/post/pension-fund-31.png" alt="&quot;汇添富2050 权益资产下降曲线&quot;" title="汇添富2050 权益资产下降曲线" /></p>
+
+<p>业绩比较基准：</p>
+
+<p><img src="/assets/img/post/pension-fund-32.png" alt="&quot;汇添富2050 业绩比较基准&quot;" title="汇添富2050 业绩比较基准" /></p>
+
+<h3 id="华夏2050">华夏2050</h3>
+
+<p>华夏养老目标日期2050五年持有期混合型发起式基金中基金(FOF) 017362</p>
+
+<p>权益类资产在不同时间段的比例：</p>
+
+<p><img src="/assets/img/post/pension-fund-33.png" alt="&quot;华夏2050 权益资产下降曲线&quot;" title="华夏2050 权益资产下降曲线" /></p>
+
+<p>业绩比较基准：</p>
+
+<p><img src="/assets/img/post/pension-fund-34.png" alt="&quot;华夏2050 业绩比较基准&quot;" title="华夏2050 业绩比较基准" /></p>
+
+<h3 id="鹏华2045">鹏华2045</h3>
+
+<p>鹏华养老目标日期2045三年持有期混合型发起式基金中基金(FOF)  017381</p>
+
+<p>权益类资产在不同时间段的比例：</p>
+
+<p><img src="/assets/img/post/pension-fund-24.png" alt="&quot;鹏华2045 权益资产下降曲线&quot;" title="鹏华2045 权益资产下降曲线" /></p>
+
+<p>业绩比较基准：</p>
+
+<p><img src="/assets/img/post/pension-fund-25.png" alt="&quot;鹏华2045 业绩比较基准&quot;" title="鹏华2045 业绩比较基准" /></p>
+
+<h3 id="华夏养老2045">华夏养老2045</h3>
+
+<p>华夏养老目标日期2045三年持有期混合型基金中基金(FOF)  017248</p>
+
+<p>权益类资产在不同时间段的比例：</p>
+
+<p><img src="/assets/img/post/pension-fund-26.png" alt="&quot;华夏养老2045 权益资产下降曲线&quot;" title="华夏养老2045 权益资产下降曲线" /></p>
+
+<p>业绩比较基准：</p>
+
+<p><img src="/assets/img/post/pension-fund-27.png" alt="&quot;华夏养老2045 业绩比较基准&quot;" title="华夏养老2045 业绩比较基准" /></p>
+
+<h3 id="南方2045">南方2045</h3>
+
+<p>南方养老目标日期2045三年持有期混合型发起式基金中基金(FOF) 017242</p>
+
+<p>权益类资产在不同时间段的比例：</p>
+
+<p><img src="/assets/img/post/pension-fund-13.png" alt="&quot;南方2045 权益资产下降曲线&quot;" title="南方2045 权益资产下降曲线" /></p>
+
+<p>业绩比较基准：</p>
+
+<p><img src="/assets/img/post/pension-fund-14.png" alt="&quot;南方2045 业绩比较基准&quot;" title="南方2045 业绩比较基准" /></p>
+
+<h3 id="中欧2035">中欧2035</h3>
+
+<p>中欧预见养老目标日期2035三年持有期混合型基金中基金(FOF) 017277</p>
+
+<p>权益类资产在不同时间段的比例：</p>
+
+<p><img src="/assets/img/post/pension-fund-21.png" alt="&quot;中欧2035 权益资产下降曲线&quot;" title="中欧2035 权益资产下降曲线" /></p>
+
+<p><img src="/assets/img/post/pension-fund-22.png" alt="&quot;中欧2035 权益资产下降曲线&quot;" title="中欧2035 权益资产下降曲线" /></p>
+
+<p>业绩比较基准：</p>
+
+<blockquote>
+  <p>本基金业绩比较基准：沪深 300 指数收益率×下滑曲线值+中债综合指数收益率×（1-下滑曲线值），其中本基金各年的下滑曲线值按本招募说明书的规定执行。</p>
+</blockquote>
+
+<h3 id="中欧2025">中欧2025</h3>
+
+<p>中欧预见养老目标日期2025一年持有期混合型基金中基金(FOF)  017318</p>
+
+<p><img src="/assets/img/post/pension-fund-49.png" alt="&quot;中欧2025 权益资产下降曲线&quot;" title="中欧2025 权益资产下降曲线" /></p>
+
+<p><img src="/assets/img/post/pension-fund-50.png" alt="&quot;中欧2025 权益资产下降曲线&quot;" title="中欧2025 权益资产下降曲线" /></p>
+
+<blockquote>
+  <p>本基金业绩比较基准：沪深 300 指数收益率×下滑曲线值+中债综合指数收益率×（1-下滑曲线值），其中本基金各年的下滑曲线值按招募说明书的规定执行。</p>
+</blockquote>
+
+<h3 id="华夏保守">华夏保守</h3>
+
+<p>华夏保守养老目标一年持有期混合型发起式基金中基金(FOF) 017359</p>
+
+<blockquote>
+  <p>本基金采用目标风险策略，为保守目标风险型基金。本基金投资于股票、股票型基金、混合型基金和商品基金（含商品期货基金和黄金 ETF）等品种的比例合计原则上不超过 15%，投资于权益类资产的比例为基金资产的 0-15%。</p>
+</blockquote>
+
+<blockquote>
+  <p>本基金的业绩比较基准：沪深 300 指数收益率×10%＋中债综合（全价）指数收益率×90%。</p>
+</blockquote>
+
+<h3 id="交银稳健">交银稳健</h3>
+
+<p>交银施罗德安享稳健养老目标一年持有期混合型基金中基金(FOF)  017235</p>
+
+<blockquote>
+  <p>本基金投资于权益类资产（包括股票（含存托凭证）、股票型基金、混合型基金）的战略配置目标比例为25%，投资比例为基金资产的15%-30%。其中混合型基金需符合下列两个条件之一：</p>
+
+  <p>1、基金合同中明确约定股票投资占基金资产的比例为50%以上；</p>
+
+  <p>2、最近4个季度披露的股票投资占基金资产的比例均在50%以上的混合型基金。</p>
+</blockquote>
+
+<p>业绩比较基准</p>
+
+<blockquote>
+  <p>80%×中债综合全价指数收益率+20%×沪深300指数收益率</p>
+</blockquote>
+
+<h3 id="兴全安泰平衡">兴全安泰平衡</h3>
+
+<p>兴全安泰平衡养老目标三年持有期混合型基金中基金(FOF) 017672</p>
+
+<blockquote>
+  <p>由于本基金是一只平衡型目标风险基金，主要面向风险偏好中等及以上的投资者，所以在战略资产配置层面，本基金原则上会以 50%的基金资产投资于权益类资产。在基金运作过程中，为了确保资产配置的有效性，本基金会采取战术资产配置策略作为有效补充，基于宏观经济发展趋势、政策导向、市场未来的发展趋势以及各大类资产未来的风险收益比等因素，判断权益类资产和非权益类资产之间的相对吸引力，在一定范围内调整大类资产配置的比例，权益类资产占比的区间因此控制在 40%-55%的范围。</p>
+</blockquote>
+
+<blockquote>
+  <p>本基金业绩比较基准：中证偏股型基金指数收益率×50％＋中债综合（全价）指数收益率×50％。</p>
+</blockquote>]]></content><author><name></name></author><category term="金融" /><category term="基金" /><category term="FOF" /><category term="养老" /></entry><entry><title type="html">用 Vim 查找重复行的几种办法</title><link href="https://algony-tony.github.io/vi-find-duplicate-lines/" rel="alternate" type="text/html" title="用 Vim 查找重复行的几种办法" /><published>2023-10-24T00:00:00+08:00</published><updated>2023-10-24T00:00:00+08:00</updated><id>https://algony-tony.github.io/vi-find-duplicate-lines</id><content type="html" xml:base="https://algony-tony.github.io/vi-find-duplicate-lines/"><![CDATA[<p>如果你有一个文本文件，现在想看下里面有没有重复内容的行，最简单的一个思路就是先用 vim 对文本排序，再直接正则匹配前后两个内容相同的行，代码如下（下面假设已经通过 <code class="language-plaintext highlighter-rouge">ESC</code> 键进入了命令模式）：</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><div class="line-1"><span class="p">:</span><span class="k">sort</span>
+</div><div class="line-2"><span class="p">:</span><span class="k">g</span><span class="sr">/^\(.*\)$\n\1$/</span><span class="k">p</span>
+</div></code></pre></figure>
+
+<p>上面第一行就是对文本排序，再解释下第二行的正则匹配内容，就是匹配一行行首 <code class="language-plaintext highlighter-rouge">^</code> 和行尾 <code class="language-plaintext highlighter-rouge">$</code> 中的所有内容 <code class="language-plaintext highlighter-rouge">.*</code> 放入第一组中 <code class="language-plaintext highlighter-rouge">\(\)</code>，接着匹配一个换行符 <code class="language-plaintext highlighter-rouge">\n</code>，紧接着把上面匹配到的第一组内容拿出来继续匹配 <code class="language-plaintext highlighter-rouge">\1</code>，最后的一个 <code class="language-plaintext highlighter-rouge">p</code> 就是把满足这个正则模式的内容高亮出来。</p>
+
+<p>上面的正则只能匹配连续两行内容相同的行，如果有三行或者多行内容相同的情况只会高亮出前两行，问了下 ChatGPT 得到了一个匹配多行的代码，略复杂了一些：</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><div class="line-1"><span class="p">:</span><span class="k">g</span><span class="sr">/^\(.*\)$\n\(\(.*\n\)*\)\1$/</span><span class="k">p</span>
+</div></code></pre></figure>
+
+<p>这个改进版的代码前面和前面一样，在匹配好第一行之后加了一个匹配任意内容的多行 <code class="language-plaintext highlighter-rouge">\(\(.*\n\)*\)</code>，再紧接着匹配与第一组内容完全相同的行 <code class="language-plaintext highlighter-rouge">\1</code>，这样就可以匹配多行内容了。但是这里对中间行是不做校验的，在这个问题里因为前面加了 <code class="language-plaintext highlighter-rouge">:sort</code> 排序所以是没有问题的。自己修改了下把中间行的内容也加上匹配校验也是可以的，如下：</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><div class="line-1"><span class="p">:</span><span class="k">g</span><span class="sr">/^\(.*\)$\n\(\(\1\n\)*\)\1$/</span><span class="k">p</span>
+</div></code></pre></figure>
+
+<p>上面给的都是通过 Vim 的一次性的快捷操作，知道了思路后正则匹配命令基本现场就能写出来，下面是 <a href="https://stackoverflow.com/questions/1268032/how-can-i-mark-highlight-duplicate-lines-in-vi-editor">StackOverflow</a> 上网友给出的高级玩法：</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><div class="line-1"><span class="p">:</span><span class="k">syn</span> clear Repeat <span class="p">|</span> <span class="k">g</span><span class="sr">/^\(.*\)\n\ze\%(.*\n\)*\1$/</span>exe <span class="s1">'syn match Repeat "^'</span> <span class="p">.</span> <span class="nb">escape</span><span class="p">(</span><span class="nb">getline</span><span class="p">(</span><span class="s1">'.'</span><span class="p">),</span> <span class="s1">'".\^$*[]'</span><span class="p">)</span> <span class="p">.</span> <span class="s1">'$"'</span> <span class="p">|</span> <span class="k">nohlsearch</span>
+</div></code></pre></figure>
+
+<p>如果需要经常匹配相同的行，也可以在 vimrc 文件中写成一个函数通过快捷键去调用。</p>
+
+<p>换种思路，用着 Vim 应该离 Linux 也不远，那就直接用 shell 命令也一样实现起来：</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1"><span class="nb">sort</span> &lt;file&gt; | <span class="nb">uniq</span> <span class="nt">-c</span>
+</div></code></pre></figure>
+
+<p>上面命令会把文件中每个行和它在文件中出现的次数打印出来，如果只需要打印出重复的行就再加个参数 <code class="language-plaintext highlighter-rouge">sort &lt;file&gt; | uniq -cd</code>。</p>
+
+<h2 id="参考链接">参考链接</h2>
+
+<p><a href="https://stackoverflow.com/questions/1268032/how-can-i-mark-highlight-duplicate-lines-in-vi-editor">How can I mark/highlight duplicate lines in VI editor?</a></p>]]></content><author><name></name></author><category term="软件技术" /><category term="Vim" /><category term="Linux" /><category term="shell" /><summary type="html"><![CDATA[如果你有一个文本文件，现在想看下里面有没有重复内容的行，最简单的一个思路就是先用 vim 对文本排序，再直接正则匹配前后两个内容相同的行，代码如下（下面假设已经通过 ESC 键进入了命令模式）：]]></summary></entry><entry><title type="html">40 位 AI 公司创始人谈论目前的 AI 技术</title><link href="https://algony-tony.github.io/ai-founder-talk/" rel="alternate" type="text/html" title="40 位 AI 公司创始人谈论目前的 AI 技术" /><published>2023-09-29T00:00:00+08:00</published><updated>2023-09-29T00:00:00+08:00</updated><id>https://algony-tony.github.io/ai-founder-talk</id><content type="html" xml:base="https://algony-tony.github.io/ai-founder-talk/"><![CDATA[<p><a href="https://video.h5.weibo.cn/1034:4950435027419155/4950435657417037">这个视频</a>采访了 40 位 AI 初创公司创始人，他们分享了在日常生活中的 AI 使用经验，这里是文字版。</p>
+
+<p>这段采访主要介绍了近期基于大语言模型的 AI 典型应用场景，如写稿，语音机器人，用 AI 来编程，AI 生成图片等，以及目前 AI 的优势和典型问题，
+它可以做创造性的工作，擅长阅读和处理数据，但是它会有“幻觉”（hallucinate），无法保证结果的正确性。构建一个可靠的 AI 应用就需要在确定性的软件和不确定性的概率模型中间做好协同，常用的办法的包括拆解问题步骤，适当的引导，以及持续迭代和调试。</p>
+
+<p><strong>提问：在你的日常生活中，你以最意想不到的方式使用 AI 的方式是什么？</strong></p>
+
+<p>A: 是的，我不知道是否应该说这个，但是我用它来写婚礼的演讲稿。</p>
+
+<p>B: 是的，我们两个都把电话答录机设置成了我们的语音机器人。</p>
+
+<p>现场打电话。</p>
+<blockquote>
+  <p>人类：嗨，最近怎么样？</p>
+
+  <p>人工智能：部落很强大，Padawan。（前半句来源于《魔兽世界》，Padawan 指《星球大战》中未经训练的绝地武士）</p>
+
+  <p>不错。</p>
+</blockquote>
+
+<p>C: 我认为这个机器人被编程成谈论“部落”。</p>
+
+<p>D: 现在我们每天都打开它来帮助我们编程。</p>
+
+<p>E: 帮助我们编码。</p>
+
+<p>F: 它在编码方面非常出色。</p>
+
+<p>G: 它使我编码的速度加快了很多。</p>
+
+<p>A: 你可以告诉 AI 你想对用户界面进行什么样的更改，比如加入深色模式，它就能自动修改代码来实现这个功能。</p>
+
+<p>H: 这些工具将使人类越来越像解说员，告诉它们我们想要的，然后，模型实际上会创造出比人类自己做得还要好的东西。</p>
+
+<p>I: 我认为基本的问题解决技能始终会非常重要。了解这项技术及其限制，并充分利用它是至关重要的。</p>
+
+<p><strong>提问：从总体上看，当前的人工智能工具擅长做什么？</strong></p>
+
+<p>J: 是的，非常好的问题。有趣的是，生成式 AI 工具在我们原以为它们可能表现不佳的领域，例如讲创意的故事和创意 AI 的方面，实际上做得很好。</p>
+
+<p>K: 用于创造性的人工智能。</p>
+
+<p>L: 我们的目标是使任何人都可以在自己的卧室里制作像《南方公园》这样的作品。</p>
+
+<p>M: 例如，你可以制作一张我、Eric 和 Rihanna 在海滩上打排球的照片。</p>
+
+<p>看着人工智能生成的照片。</p>
+<blockquote>
+  <p>我喜欢这个。</p>
+
+  <p>这个是我最喜欢的，或者我喜欢这个。</p>
+
+  <p>我喜欢这个。</p>
+</blockquote>
+
+<p>H: 我们正在构建真正像人类一样的 AI 语音，对话能力很强，就像人类一样。</p>
+
+<p>O: 没有 AI 之前，声音听起来很差劲。现在它与人类声音几乎无法区分。</p>
+
+<p>P: 就我们个人而言，AI 在语义搜索方面非常出色，以前这方面的效果不尽人意。现在只需要输入一段随机文本，它就能找到相关内容。</p>
+
+<p>Q: LLMs 具有出色的阅读能力。</p>
+
+<p>R: 它们非常擅长能够处理任意数据并回答相关问题。</p>
+
+<p>S: 因为有很多新类型的数据，所以很难进行适应，因此我们目前正在对所有这些新类型的数据进行微调，以使其尽可能准确。</p>
+
+<p>T: 对于时尚来说，非常具体地说，每时每刻都会出现新的术语，你必须不断更新这些模型，知道，噢，这个月的潮流是“美人鱼裙”，但下个月可能是“芭蕾裙”。</p>
+
+<p>U: AI 工具在提供大约 85% 到 90% 的解决方案方面非常出色，但在其上需要进行更多的微调或更多的技巧来确保您可以提供真正的价值。</p>
+
+<p>V: 你可以使用一系列简单的操作来完成一些非常复杂的事情。</p>
+
+<p>W: 要为它们设定明确的结构和方向，只需要给它们一个明确的任务，它们就能做得很好。</p>
+
+<p>V: 如果你能够思考你经历的过程，那么你实际上可以设计一个提示或一系列步骤，以便整个过程更可靠，而不仅仅是依赖它们自己。</p>
+
+<p>A: 在你的流程中持续迭代和调试时很重要的。</p>
+
+<p>Y: 你认为的解决方案可能随着时间的变化而改变。你的数据可能会变，模型的质量也可能会变，所以这需要持续的迭代。</p>
+
+<p>Z: <strong>我认为最困难的部分是你试图将确定性的软件与不确定的概率模型相结合，而我们正处于其中间。</strong></p>
+
+<p>Q：这是一个令人兴奋的工作，因为过去，计算机只是严格按照你的指令执行，可以预期在给定相同输入的情况下获得相同的结果，现在，相同的输入可能会产生不同的结果。</p>
+
+<p>N：如果我们可以在输出中引入一些随机性，这有助于更好地探索并完善模型，我们的模型将会从众多选择中不断学习和进化。</p>
+
+<p>M：它不像你期望的那样可靠，这对我们做娱乐的来说是好事，因为只要内容有趣，其他都不重要。但如果你在操作汽车，情况就复杂了。</p>
+
+<p>Q：所以这是一把双刃剑，有时它会产生<strong>幻觉</strong>（hallucinate），创造出一些原本不存在的东西。</p>
+
+<p>A: 我会把“幻觉”定义为 AI 生成一些不存在的东西，但看起来像是可能存在或者应该存在的东西。</p>
+
+<p>J：它们在区分事实和虚构上仍然很差，虽然它们是好的创意故事编写者，但是知道什么是真实和虚假的区别上却令人意外地差。</p>
+
+<p>1：如果你是医生，你可能需要花很长时间来确认 GPT 的诊断，如果出现任何错误，那么你可能会陷入麻烦。</p>
+
+<p>X：在什么时候你会信任 AI 而不是专业医生呢？</p>
+
+<p>J：近期，业界付出了大量努力来避免这些幻觉，但这已经产生了相反的问题，现在它经常会认为事物不真实，或者假装不知道它真的应该知道的事情，对吧？它会告诉你它从未听说过那篇文章，尽管它明显在训练集中，对吧？它就是在那里。</p>
+
+<p>2: 有点像人类，你知道，当你阅读东西并从中得出一些结论并内化它时，你不能确切地记得你在哪里读到它，所以当你使用这些模型来处理现实世界的数据时，实际上更难区分什么是幻觉什么是真实的数据，你不能一直要求它提供一致的引用，这仍然是一个挑战。因此，在这方面的信任度还有一段路要走。</p>
+
+<p>X：仅仅说准确率提高了是不够的，这背后有更多因素需要考虑，特别是涉及人们的信任时。如果你想开发一种最终被大众接受和使用的技术，信任是关键。</p>
+
+<p>Q：我们仍然需要在细节上为它们提供指导，这就是为什么你会听到很多关于“人机协同”。</p>
+
+<p>N：保持人的参与是非常重要的。</p>
+
+<p>U：在 AI 修正过程中，始终需要有人参与以确保其准确性。</p>
+
+<p>N：现在，有人需要监督并确保没有产生错误的信息。</p>
+
+<p>Q：因此，有很多利弊，真正的挑战在于找到正确的引导方式，我认为所有在 AI 上工作的 YC 公司都面临这个挑战。我们得到了这个新工具，我们都在努力弄清楚。</p>
+
+<p>Z: 我永远不想忘记，最终这项技术是为人类服务的，我们不能忘记其核心意义。我们可以让人类说出“那又怎么样”。</p>
+
+<p>3：理想情况下，它实际上是在加深人与人之间的联系，更多地是与人互动，找出对他们来说实际上有价值的东西。</p>
+
+<p><strong>Question: What is the most unexpected way that you use AI in your regular life?</strong></p>
+
+<p>Yeah, I don’t know if I should say this, but writing speeches for weddings.</p>
+
+<p>Yeah, we both set our answering machines to our voice bot.</p>
+
+<p>Human: Hey, how’s it going?</p>
+
+<p>AI: The Horde is strong, Padawan.</p>
+
+<p>Nice.</p>
+
+<p>This was, I think, prgrammed to talk about Horde.</p>
+
+<p>Now we have it open every day to help us code.</p>
+
+<p>Helps us code. It’s great at coding.</p>
+
+<p>It’s just making me code infinitely faster.</p>
+
+<p>You can describe to the AI what change you want to make to your UI, like build dark mode, and it’ll edit all the code to implement that feature.</p>
+
+<p>These tools will make humans more and more like narrators, like people who are describing what they want. Then the models will actually create something that’s even better than what humans would do if they’re doing it themselves.</p>
+
+<p>And I think the fundamental problem-solving skills are always going to be really needed. And understanding the technology and its constraints and how to leverage it is going to be so important.</p>
+
+<p><strong>Question: What are the current AI tools good at in a general sense?</strong></p>
+
+<p>Yeah, really, really good questions. I think one of the things that’s really counterintuitive about generative AI tools is that they’re really good at what we thought they would be really bad at, which is sort of creative storytelling work.</p>
+
+<p>AI for creativity.</p>
+
+<p>The goal to make software so that anyone can make South Park from their bedroom.</p>
+
+<p>Example, you can make a photo of me, Eric and Rihanna playing volleyball on the beach.</p>
+
+<p>I like this.</p>
+
+<p>That one’s my favorite, or I like this one.</p>
+
+<p>I like this one.</p>
+
+<p>We are building truly human like AI voices, that’s very conversational, like humans.</p>
+
+<p>Without AI, the voices sounded horrible. Now it’s just indistinguishable from from a human voice.</p>
+
+<p>For us personally, what it’s amazing at is semantic search, that’s something that didn’t really work before. Just like taking a random piece of text and finding relevant things.</p>
+
+<p>LLM have great ability to read.</p>
+
+<p>They’re pretty good at being able to take arbitrary data and be able to answer questions about it.</p>
+
+<p>Because there’s so much new type of data, it’s really hard to adapt and so we are currently fine-tuning all of our models on these new types of data to make it as accurate as possible.</p>
+
+<p>For fashion, very specifically, there are new terms popping up all the time, you have to like keep updating these models to know, oh, for this month, the trend is mermaid court, but for next month, maybe it’s ballet courts.</p>
+
+<p>AI tools are pretty good in giving you around like an 85% to 90% solution, but there’s a lot more fine-tuning or a lot more hacks that you need to put in place on top of them to ensure that you can deliver genuine value.</p>
+
+<p>You can use a bunch of simple operations to actually do something really complicated.</p>
+
+<p>You need to really like give them structure about like how it should look like and give them one particular task to do and then they do it very well.</p>
+
+<p>If you’re able to think through the process that you go through, then you can actually engineer a prompt or engineer a sequence of steps so that you can have that entire process be even more reliable than you would be.</p>
+
+<p>It’s important to just be very iterative in your process and just debug and iterate on your prompts as you go.</p>
+
+<p>If you think you have a solution, it may not be the same solution over time, your data can change the actual underlying model quality can change with that, and so the biggest difference is just there’s this sort of iteration required.</p>
+
+<p>I think the hardest part is you’re trying to marry deterministic kind of software with probabilistic models, and we sit right at the middle of that.</p>
+
+<p>It is like quite an exciting thing to work with because in the past with programming, the computer really just followed your instructions to a T and you can expect the same results given the same inputs, now you put in the same inputs, you might get some variants.</p>
+
+<p>If we can actually introduce some Randomness into our outputs then we can explore our space bit better and our models will get better from learning from all of these other choices that we can make.</p>
+
+<p>It’s not reliable in the way that you expect it to be reliable, which is great for us, because for us we’re doing entertainment, so it’s like, as long as it’s funny, it doesn’t matter, but I guess if you’re operating a car, that seems more complicated.</p>
+
+<p>So it is a double-edged sword, sometimes it can hallucinate and make up something that wasn’t intended.</p>
+
+<p>I would define a hallucination as AI generating something that doesn’t exist, but looks like it might or should exist.</p>
+
+<p>They’re still really bad at distinguishing fact from fiction, so they’re good creative storytellers, but they’re surprisingly bad at knowing the difference between what’s true and false.</p>
+
+<p>If you’re a doctor, finding out what GPT decided was the diagnosis for this patient probably takes a ton of time to verify, and if there’s any mistake then you’re in a lot of trouble.</p>
+
+<p>At what point do you trust the AI over the doctor?</p>
+
+<p>There’s been a lot of effort in the industry recently to sort of prevent these hallucinations, but that’s created this opposite problem, which is now it will often think things aren’t real or pretend, that it doesn’t know things that it really should do, right? It will tell you it’s like never heard of that article, even though it’s definitely in the training set, right? Like it’s going to be there.</p>
+
+<p>A bit like a human, you know, when you read things and you take something away from that and internalize it, you can’t necessarily exactly remember where you read it, and so when you’re using these models with real world data, it’s actually even harder to disambiguate what’s a hallucination versus something that was a nuanced piece of data, you can’t ask it for citations consistently, that’s still a challenge. And so the trustworthiness there has some way to go.</p>
+
+<p>It’s not enough just to say like, hey, the accuracy metrics are better, you have to understand that there’s more at play especially for, you know, human trust, and that is a key component if you’re going to develop a technology that people are going to use at the end of the day.</p>
+
+<p>There’s still a lot of nuance where we have to like steer them, and that’s why you’ll hear a lot about this human-in-the-loop.</p>
+
+<p>It’s really important to still have a human in the loop.</p>
+
+<p>Having humans in the loop ti initially assess whether the corrections that were needed to be made were accurate or not.</p>
+
+<p>There needs to be someone supervising now, but making sure that there are no hallucinations.</p>
+
+<p>So there are a lot of pros and cons, It’s really about figuring out the right ways to steer it, and that’s the challenge that I think like all the YC companies working on AI are facing. We’re given this new tool to work with, and we’re all really just trying to figure it out.</p>
+
+<p>I never want to lose sight of the fact that ultimately this is technology is service of humans, and we get to keep humans to say the “so what”.</p>
+
+<p>Ideally it’s actually like deepening human connection where it’s a lot more about, you knoe, interacting with people and figure out what’s actually valuable to them.</p>]]></content><author><name></name></author><category term="新闻" /><category term="AI" /><category term="LLM" /><category term="科技" /><summary type="html"><![CDATA[这个视频采访了 40 位 AI 初创公司创始人，他们分享了在日常生活中的 AI 使用经验，这里是文字版。]]></summary></entry><entry><title type="html">Wireshark 使用手册</title><link href="https://algony-tony.github.io/wireshark-cheat-sheet/" rel="alternate" type="text/html" title="Wireshark 使用手册" /><published>2023-09-12T00:00:00+08:00</published><updated>2023-09-12T00:00:00+08:00</updated><id>https://algony-tony.github.io/wireshark-cheat-sheet</id><content type="html" xml:base="https://algony-tony.github.io/wireshark-cheat-sheet/"><![CDATA[<p>Wireshark 是一个强大的开源抓包工具。</p>
+
+<h2 id="过滤">过滤</h2>
+
+<p>Wireshark 有两种过滤器，第一种过滤器是捕获过滤器（Capture Filters），它只能在抓包前设置，Wireshark 只捕获满足条件的包，这种过滤器可以减少抓包的数量，但是在抓包过程中不能更改，可以参考这个文档 <a href="https://wiki.wireshark.org/CaptureFilters">CaptureFilters</a> 或者这个<a href="https://www.wireshark.org/docs/wsug_html_chunked/ChCapCaptureFilterSection.html">用户手册</a>。另一种是显示过滤器（Display Filters），顾名思义，它就是在包的列表页里做筛选显示，它可以在抓包过程中随时更改显示内容，日常使用过程中更方便一些，可以参考文档 <a href="https://wiki.wireshark.org/DisplayFilters">DisplayFilters</a> 或者<a href="https://www.wireshark.org/docs/wsug_html_chunked/ChWorkBuildDisplayFilterSection.html">用户手册</a>中的介绍。两种过滤器语法略有差别，下面简单介绍。</p>
+
+<p><img src="/assets/img/post/wireshark01.png" alt="&quot;捕获过滤器和显示过滤器&quot;" /></p>
+
+<h3 id="捕获过滤器">捕获过滤器</h3>
+
+<p>捕获过滤器由一些本原表达式组合而成，形式如下</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[not] primitive [and|or [not] primitive ...]
+</code></pre></div></div>
+
+<p>过滤 IP 相关内容</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-- 过滤 IP 为 172.18.5.4 的进出流量
+host 172.18.5.4
+
+-- 过滤 IP 范围为 192.168.0.0/24 的进出流量
+net 192.168.0.0/24
+net 192.168.0.0 mask 255.255.255.0
+
+-- 过滤一段 IP 范围主机发出的流量
+src net 192.168.0.0/24
+src net 192.168.0.0 mask 255.255.255.0
+
+-- 过滤一段 IP 范围主机收到的流量
+dst net 192.168.0.0/24
+dst net 192.168.0.0 mask 255.255.255.0
+</code></pre></div></div>
+
+<p>过滤端口</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-- 只筛选 DNS 流量（端口 53）
+port 53
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-- 过滤主机 www.example.com 的 non-HTTP 和 non-SMTP 流量
+host www.example.com and not (port 80 or port 25)
+host www.example.com and not port 80 and not port 25
+</code></pre></div></div>
+
+<h3 id="显示过滤器">显示过滤器</h3>
+
+<p>过滤条件中可以使用这些逻辑运算符：<code class="language-plaintext highlighter-rouge">and</code>, <code class="language-plaintext highlighter-rouge">or</code>, <code class="language-plaintext highlighter-rouge">not</code> 以及组合符号 <code class="language-plaintext highlighter-rouge">()</code>，比较符号 <code class="language-plaintext highlighter-rouge">eq</code>(<code class="language-plaintext highlighter-rouge">==</code>), <code class="language-plaintext highlighter-rouge">ne</code>(<code class="language-plaintext highlighter-rouge">!=</code>), <code class="language-plaintext highlighter-rouge">gt</code>(<code class="language-plaintext highlighter-rouge">&gt;</code>), <code class="language-plaintext highlighter-rouge">lt</code>(<code class="language-plaintext highlighter-rouge">&lt;</code>), <code class="language-plaintext highlighter-rouge">ge</code>(<code class="language-plaintext highlighter-rouge">&gt;=</code>), <code class="language-plaintext highlighter-rouge">le</code>(<code class="language-plaintext highlighter-rouge">&lt;=</code>),
+还有包含符号 <code class="language-plaintext highlighter-rouge">contains</code>, 搜索符号 <code class="language-plaintext highlighter-rouge">matches</code>(<code class="language-plaintext highlighter-rouge">~</code>) 以大小写不敏感的方式匹配正则表达式，函数 <code class="language-plaintext highlighter-rouge">upper</code>, <code class="language-plaintext highlighter-rouge">lower</code>, <code class="language-plaintext highlighter-rouge">len</code>, <code class="language-plaintext highlighter-rouge">count</code>, <code class="language-plaintext highlighter-rouge">string</code>, <code class="language-plaintext highlighter-rouge">max</code>, <code class="language-plaintext highlighter-rouge">min</code>, <code class="language-plaintext highlighter-rouge">abs</code>,
+以及常用的加减乘除模和位运算符。还可以使用字符的切片操作，下面是切片的语法：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[i:j]    i = start_offset, j = length
+[i-j]    i = start_offset, j = end_offset, inclusive.
+[i]      i = start_offset, length = 1
+[:j]     start_offset = 0, length = j
+[i:]     start_offset = i, end_offset = end_of_field
+</code></pre></div></div>
+
+<p>这是显示过滤器各网络协议的<a href="https://www.wireshark.org/docs/dfref/">字段参考列表</a>。下面是一些常用的过滤条件。</p>
+
+<p>只显示局域网（192.168.x.x）的流量：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ip.src==192.168.0.0/16 and ip.dst==192.168.0.0/16
+或者
+ip.addr == 192.168.0.0/16
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">ip.addr</code> 表示的是 IPv4 的地址，IPv6 的是 <code class="language-plaintext highlighter-rouge">ipv6.addr</code>。</p>
+
+<p>筛选一般的 HTTP/HTTPS 端口流量（大括号是集合符号）：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tcp.port in {80,443,8080}
+或者
+tcp.port == 80 or tcp.port == 443 or tcp.port == 8080
+</code></pre></div></div>
+
+<p>搜索包含某个网址的 HTTP URL:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http contains "https://www.wireshark.org"
+</code></pre></div></div>
+
+<h2 id="参考链接">参考链接</h2>
+
+<p><a href="https://www.wireshark.org/docs/wsug_html_chunked/">Wireshark User’s Guide</a></p>
+
+<p><a href="https://wiki.wireshark.org">Wireshark Wiki</a></p>
+
+<p><a href="https://www.wireshark.org/docs/man-pages/">Wireshark Manual Pages</a></p>]]></content><author><name></name></author><category term="软件技术" /><category term="网络" /><summary type="html"><![CDATA[Wireshark 是一个强大的开源抓包工具。]]></summary></entry><entry><title type="html">编写 Prompt 的几种通用框架和方法</title><link href="https://algony-tony.github.io/prompt-engineering/" rel="alternate" type="text/html" title="编写 Prompt 的几种通用框架和方法" /><published>2023-08-21T00:00:00+08:00</published><updated>2023-08-21T00:00:00+08:00</updated><id>https://algony-tony.github.io/prompt-engineering</id><content type="html" xml:base="https://algony-tony.github.io/prompt-engineering/"><![CDATA[<p>对于大模型（LLM）来说，输入和输出都是文本字符串，输入部分的文本就叫做 Prompt，它是用户的输入，prompt 和 LLM 一起决定了输出的内容和质量。对于一般用户来说，LLM 是相对固定的部分，能发挥主观能动性决定输出内容的部分就是 prompt 了，这也是最近 Prompt 工程比较火的原因。</p>
+
+<p>有一种观点认为 prompt 只是目前 LLM 能力还有短板时的短期方案，是个人用户对 LLM 打的一次补丁，后面 LLM 相对强大后就会逐渐弱化 prompt 的重要性，这个观点是否成立只能拭目以待了。</p>
+
+<p>目前想用大模型技术来开发某些场景应用，除了软件工程上的开发部分，很大一块内容就在于编写一系列场景下的 prompts，以及对不同 prompt 的效果评估和选取，这是目前大模型应用中变量最大的部分，也是决定大模型应用成功的关键。</p>
+
+<p>下面就介绍几个编写 prompt 的通用框架和一些方法，包含吴恩达教授的 9 集 <a href="https://www.bilibili.com/video/BV1Mo4y157iF">ChatGPT 提示词工程课程</a>，ICIO 框架，CRISPE 框架。</p>
+
+<h2 id="吴恩达chatgpt-提示词工程课程">吴恩达《ChatGPT 提示词工程课程》</h2>
+
+<p>下面是课程的主要内容提炼。</p>
+
+<p>创建 prompt 的<strong>两个原则</strong>：</p>
+<ol>
+  <li>编写清晰、具体的指令；
+    <ul>
+      <li>使用分隔符清晰地表示输入的不同部分，分隔符可以是：```，”“，&lt;&gt;，:，&lt;tag&gt; &lt;/tag&gt;等；</li>
+      <li>寻求结构化的输出，输出可以是 JSON, HTML 等格式；</li>
+      <li>要求模型检查是否满足条件，如果任务包含不一定能满足的假设（条件），我们可以告诉模型先检查这些假设；</li>
+      <li>提供少量示例，Few-shot prompting；</li>
+    </ul>
+  </li>
+  <li>给 LLM 时间去思考；要求模型在提供最终的答案之前开展<strong>思维链</strong>或进行<strong>一系列相关的推理</strong>。
+    <ul>
+      <li>指定完成任务所需的步骤；</li>
+      <li>指导模型在下结论之前找出一个自己的解法。对于需要判断一个已有的答案是否正确的情景，可以先让模型自行得出一个解法，再行比较两者来得出结论；</li>
+    </ul>
+  </li>
+</ol>
+
+<p>开发 prompt 的过程：<strong>不断的迭代优化</strong>。和机器学习模型的开发过程类似，开发 prompt 也是先产生想法，编写 prompt，查看实验效果并分析错误，改进 prompt 并继续验证结果直到产生满意的结果。</p>
+
+<p>4 种主要大模型应用场景的 prompt 编写举例：</p>
+<ol>
+  <li>文本概括总结（Summarizing）
+    <ul>
+      <li>限制输出文本长度；</li>
+      <li>通过提示词来设置对某个特定角度的侧重；</li>
+      <li>如果只想要某一方面的信息，可以进行信息提取（Extract）而不是总结（Summarize）；</li>
+    </ul>
+  </li>
+  <li>推理（inferring）
+    <ul>
+      <li>识别文本的情感和类别；</li>
+      <li>商品信息提取；</li>
+      <li>主题推断；</li>
+    </ul>
+  </li>
+  <li>文本转换（Transforming）
+    <ul>
+      <li>语言翻译；</li>
+      <li>语气转换；</li>
+      <li>文件格式转换；</li>
+      <li>拼写及语法纠正；</li>
+    </ul>
+  </li>
+  <li>文本扩展（Expanding）。输入短文本（一个主题或者一组说明）让模型生成更长的文本。可以定制邮件或者写一些议论段落。</li>
+</ol>
+
+<h2 id="icio-框架">ICIO 框架</h2>
+
+<p>ICIO 框架模型来自 Elvis Saravia 的<a href="https://www.promptingguide.ai/introduction/elements">提示词工程指南</a>。这个框架的 prompt 包含下面四个组成部分：</p>
+
+<ul>
+  <li><strong>Instruction</strong> - 您希望模型执行的特定任务或指令</li>
+  <li><strong>Context</strong> - 可以引导模型做出更好响应的外部信息或附加上下文</li>
+  <li><strong>Input Data</strong> - 我们有兴趣寻找答案的输入或问题</li>
+  <li><strong>Output Indicator</strong> - 输出的类型或格式</li>
+</ul>
+
+<h2 id="crispe-框架">CRISPE 框架</h2>
+
+<p>CRISPE 框架来自 Matt Nigh 的<a href="https://github.com/mattnigh/ChatGPT3-Free-Prompt-List">免费提示词列表</a>，这个框架的 prompt 包含如下五个部分：</p>
+
+<ul>
+  <li><strong>Capacity and Role</strong>: ChatGPT 应该扮演什么角色？</li>
+  <li><strong>Insight</strong>: 为您的请求提供幕后洞察力、上下文和背景。</li>
+  <li><strong>Statement</strong>: 您要求 ChatGPT 做什么。</li>
+  <li><strong>Personality</strong>: 您希望 ChatGPT 做出响应的风格、个性或方式。</li>
+  <li><strong>Experiment</strong>: 要求 ChatGPT 为您提供多个示例。</li>
+</ul>
+
+<h2 id="参考资料">参考资料</h2>
+
+<p><a href="https://www.bilibili.com/video/BV1Mo4y157iF">ChatGPT 提示词工程课程</a></p>
+
+<p><a href="https://github.com/datawhalechina/prompt-engineering-for-developers/tree/main/content/Prompt%20Engineering%20for%20Developer">ChatGPT 提示词工程课程（中文文字版）</a></p>
+
+<p><a href="https://github.com/dair-ai/Prompt-Engineering-Guide">Prompt-Engineering-Guide</a></p>
+
+<p><a href="https://www.promptingguide.ai/zh">提示词工程指南</a></p>
+
+<p><a href="https://github.com/mattnigh/ChatGPT3-Free-Prompt-List">免费提示词列表</a></p>
+
+<p><a href="https://sourcingdenis.medium.com/crispe-prompt-engineering-framework-e47eaaf83611">CRISPE — ChatGPT 提示工程框架</a></p>
+
+<p><a href="https://mp.weixin.qq.com/s/N8XnSSdXlIITSig5z1oZCw">GPT Prompt编写的艺术：如何提高AI模型的表现力</a></p>]]></content><author><name></name></author><category term="软件技术" /><category term="prompt" /><category term="LLM" /><summary type="html"><![CDATA[对于大模型（LLM）来说，输入和输出都是文本字符串，输入部分的文本就叫做 Prompt，它是用户的输入，prompt 和 LLM 一起决定了输出的内容和质量。对于一般用户来说，LLM 是相对固定的部分，能发挥主观能动性决定输出内容的部分就是 prompt 了，这也是最近 Prompt 工程比较火的原因。]]></summary></entry><entry><title type="html">中国证券行业相关的主要法律法规</title><link href="https://algony-tony.github.io/security-laws/" rel="alternate" type="text/html" title="中国证券行业相关的主要法律法规" /><published>2023-07-25T00:00:00+08:00</published><updated>2023-07-25T00:00:00+08:00</updated><id>https://algony-tony.github.io/security-laws</id><content type="html" xml:base="https://algony-tony.github.io/security-laws/"><![CDATA[<p>以下是中国证券行业相关的主要法律法规：</p>
+
+<h2 id="中华人民共和国证券法"><a href="https://www.gov.cn/xinwen/2019-12/29/content_5464866.htm"><strong>《中华人民共和国证券法》</strong></a></h2>
+
+<p>该法律是中国证券市场的基本法律，是证券市场的核心法律依据。证券法最近一次修订是 2019 年 12 月 28 日第十三届全国人民代表大会常务委员会第十五次会议第二次修订。</p>
+
+<p>证券法包含十四章内容：</p>
+
+<ul>
+  <li>第一章 总则：包含 8 条法律条款，这些条款分别说明制定本法律的缘由，证券法的适用范围，证券法主要关注的是证券的发行和交易活动，这些证券行为必须遵循的几个原则，以及指定的监督管理机构和审计机关。</li>
+  <li>第二章 证券发行：包含从第九条到三十四共 26 条法律条款，说明了公开发行股票、债券的过程中的相关要求。</li>
+  <li>第三章 证券交易：包含从三十五到六十一共 27 条法律条款，包含第一节的一般规定，第二节的证券上市，以及第三节的禁止的交易行为。</li>
+  <li>第四章 上市公司的收购：包含从六十二到七十七共 16 条法律条款，对持股达到百分之五后进一步交易的规定，以及要约收购，协议收购行为的规定。</li>
+  <li>第五章 信息披露：包含从七十八到八十七共 10 条法律条款，规定了对需要信息披露的重大事项的说明，信息披露的要求。</li>
+  <li>第六章 投资者保护：包含从八十八到九十五共 8 条法律条款。</li>
+  <li>第七章 证券交易所：包含从九十六到一百一十七共 22 条法律条款，规定证券交易所的设立，性质，职能，收入分配，从业人员和负责人的要求，以及交易等相关规定。</li>
+  <li>第八章 证券公司：包含从一百一十八到一百四十四条共 27 条法律条款。</li>
+  <li>第九章 证券登记结算公司：包含从一百四十五到一百五十九共 15 条法律条款。</li>
+  <li>第十章 证券服务机构：包含从一百六十到一百六十三共 4 条法律条款。</li>
+  <li>第十一章 证券业协会：包含从一百六十四到一百六十七共 4 条法律条款。</li>
+  <li>第十二章 证券监督管理机构：包含从一百六十八到一百七十九共 12 条法律条款。</li>
+  <li>第十三章 法律责任：包含从一百八十到二百二十三共 44 条法律条款。</li>
+  <li>第十四章 附则：包含从二百二十四到二百二十六共 3 条法律条款。</li>
+</ul>
+
+<h2 id="中华人民共和国公司法"><a href="http://www.npc.gov.cn/zgrdw/npc/xinwen/2018-11/05/content_2065671.htm">《中华人民共和国公司法》</a></h2>
+
+<p>公司法规定了公司的组织形式、股东权益、公司治理结构等内容，与证券市场紧密相关。</p>
+
+<p>公司法包含十三章内容：</p>
+
+<ul>
+  <li>第一章 总则</li>
+  <li>第二章 有限责任公司的设立和组织机构</li>
+  <li>第三章 有限责任公司的股权转让</li>
+  <li>第四章 股份有限公司的设立和组织机构</li>
+  <li>第五章 股份有限公司的股份发行和转让</li>
+  <li>第六章 公司董事、监事、高级管理人员的资格和义务</li>
+  <li>第七章 公司债券</li>
+  <li>第八章 公司财务、会计</li>
+  <li>第九章 公司合并、分立、增资、减资</li>
+  <li>第十章 公司解散和清算</li>
+  <li>第十一章 外国公司的分支机构</li>
+  <li>第十二章 法律责任</li>
+  <li>第十三章 附则</li>
+</ul>
+
+<h2 id="中华人民共和国证券投资基金法"><a href="https://flk.npc.gov.cn/detail2.html?MmM5MDlmZGQ2NzhiZjE3OTAxNjc4YmY3OTU4MDA3OTk">《中华人民共和国证券投资基金法》</a></h2>
+
+<p>该法规定了证券投资基金的设立、运作和管理规定，投资者权益保护，基金监管等。</p>
+
+<h2 id="中华人民共和国企业会计准则"><a href="http://kjs.mof.gov.cn/zt/kjzzss/kuaijizhunzeshishi/">《中华人民共和国企业会计准则》</a></h2>
+
+<p>企业会计准则规定了企业的会计核算和财务报告编制等事项，对上市公司的财务报告具有重要影响。还有<a href="https://www.gov.cn/gongbao/content/2007/content_549050.htm?eqid=fe7bd5340000692b00000003646717a1">企业会计准则——基本准则</a>。</p>
+
+<h2 id="证券交易所管理办法"><a href="http://www.csrc.gov.cn/csrc/c101834/c1496641/content.shtml">《证券交易所管理办法》</a></h2>
+
+<p>该条例规定了证券交易所的组织、运行、监管等方面的内容，监管机构为证监会。</p>
+
+<h2 id="上市公司收购管理办法"><a href="http://www.csrc.gov.cn/csrc/c106256/c1653983/1653983/files/166-7%E3%80%8A%E4%B8%8A%E5%B8%82%E5%85%AC%E5%8F%B8%E6%94%B6%E8%B4%AD%E7%AE%A1%E7%90%86%E5%8A%9E%E6%B3%95%E3%80%8B.pdf">《上市公司收购管理办法》</a></h2>
+
+<p>该办法规定了上市公司的股权收购行为管理的相关规定，监管机构为证监会。</p>
+
+<h2 id="上市公司信息披露管理办法"><a href="http://www.csrc.gov.cn/csrc/c106256/c1653948/1653948/files/317acd342b4a437596920f576209385f.pdf">《上市公司信息披露管理办法》</a></h2>
+
+<p>该办法规定了上市公司信息披露的内容、要求和披露义务等事项，监管机构为证监会。</p>
+
+<h2 id="深圳证券交易所交易规则">《深圳证券交易所交易规则》</h2>
+
+<p><a href="http://www.szse.cn/lawrules/rule/stock/trade/t20230217_598773.html">关于发布《深圳证券交易所交易规则（2023年修订）》的通知</a></p>
+
+<h2 id="上海证券交易所交易规则">《上海证券交易所交易规则》</h2>
+
+<p><a href="http://www.sse.com.cn/lawandrules/sselawsrules/trade/universal/c/c_20230216_5716382.shtml">关于发布《上海证券交易所交易规则（2023年修订）》的通知</a></p>
+
+<p><a href="http://www.sse.com.cn/lawandrules/sselawsrules/stocks/staripo/c/c_20230804_5724640.shtml">关于发布《上海证券交易所科创板股票上市规则（2023年8月修订）》的通知</a></p>
+
+<h2 id="深圳证券交易所股票上市规则">《深圳证券交易所股票上市规则》</h2>
+
+<p><a href="https://www.szse.cn/lawrules/rule/stock/supervision/mb/t20230804_602477.html">（9月4日施行）关于发布《深圳证券交易所股票上市规则（2023年8月修订）》的通知</a></p>
+
+<p><a href="https://www.szse.cn/disclosure/notice/general/t20230804_602478.html">（9月4日施行）关于发布《深圳证券交易所创业板股票上市规则（2023年8月修订）》的通知</a></p>
+
+<h2 id="上海证券交易所股票上市规则">《上海证券交易所股票上市规则》</h2>
+
+<p><a href="http://www.sse.com.cn/lawandrules/sselawsrules/stocks/mainipo/c/c_20230804_5724639.shtml">关于发布《上海证券交易所股票上市规则（2023年8月修订）》的通知</a></p>
+
+<h2 id="企业集团财务公司管理办法"><a href="https://www.gov.cn/zhengce/2022-10/14/content_5725782.htm">《企业集团财务公司管理办法》</a></h2>
+
+<h2 id="企业资产损失所得税税前扣除管理办法"><a href="https://www.gov.cn/gongbao/content/2011/content_1967429.htm">《企业资产损失所得税税前扣除管理办法》</a></h2>]]></content><author><name></name></author><category term="金融" /><category term="投资" /><category term="法律" /><summary type="html"><![CDATA[以下是中国证券行业相关的主要法律法规：]]></summary></entry></feed>
