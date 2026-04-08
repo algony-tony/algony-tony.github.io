@@ -362,7 +362,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <h3 id="lister-plugins">Lister Plugins</h3>
 
-<p>Lister Plugins 是通过 TC 的 F3 来查看文件，可以配置对一些文件格式自动使用对应的插件，对应配置文件 ListerPlugins 子项，如下是我安装的七个查看插件的配置，也可以在查看器的 Plugins 菜单下手动选择。</p>
+<p>Lister Plugins 是通过 TC 的 F3 来查看文件，可以配置对一些文件格式自动使用对应的插件，对应配置文件 ListerPlugins 子项，如下是我安装的八个查看插件的配置，也可以在查看器的 Plugins 菜单下手动选择。</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ListerPlugins]
 0=%COMMANDER_PATH%\plugins\wlx\sumatrapdf\sumatrapdf.wlx
@@ -373,11 +373,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 2_detect="MULTIMEDIA | EXT="MP3" | EXT="WAV" | EXT="WMA" |EXT="OGG" | EXT="CDA" | EXT="MO3" | EXT="IT" |EXT="XM" | EXT="S3M" | EXT="MOD" | EXT="M3U" | EXT="PLS" | EXT="MID"| EXT="MIDI" | EXT="KAR""
 3=%COMMANDER_PATH%\plugins\wlx\wlx_anytag\anytag.wlx
 3_detect="force | (EXT="AAC" | EXT="APE" | EXT=" FLAC" | EXT=" MP3" | EXT="MP4" | EXT=" M4A" | EXT=" M4B" | EXT=" MPC" | EXT="OFR" | EXT=" OFS" | EXT="OGG" | EXT=" SPX" | EXT="TTA" | EXT="WMA" | EXT="WV")"
-4=%Commander_Path%\plugins\wlx\CudaLister\cudalister.wlx
-5=%Commander_Path%\plugins\wlx\Imagine\Imagine.wlx
-5_detect="MULTIMEDIA"
-6=%COMMANDER_PATH%\plugins\wlx\wlx_pdfview\pdfview.wlx
-6_detect="ext="PDF" | ext="PS" | ext="EPS" | ([0]="%" &amp; [1]="!" &amp; [2]="P" &amp; [3]="S") | ([0]="%" &amp; [1]="P" &amp; [2]="D" &amp; [3]="F" &amp; [4]="-")"
+4=%Commander_Path%\plugins\wlx\Imagine\Imagine.wlx
+4_detect="MULTIMEDIA"
+5=%COMMANDER_PATH%\plugins\wlx\wlx_pdfview\pdfview.wlx
+5_detect="ext="PDF" | ext="PS" | ext="EPS" | ([0]="%" &amp; [1]="!" &amp; [2]="P" &amp; [3]="S") | ([0]="%" &amp; [1]="P" &amp; [2]="D" &amp; [3]="F" &amp; [4]="-")"
+6=%COMMANDER_PATH%\plugins\wlx\wlx_csv_0_6_1\wlx_csv.wlx
+6_detect="ext="CCCSV""
+7=%Commander_Path%\plugins\wlx\MarkdownView\MarkdownView.wlx
+7_detect="ext="MD""
 </code></pre></div></div>
 
 <h3 id="file-system-plugins">File System Plugins</h3>
