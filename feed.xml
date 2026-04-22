@@ -1,4 +1,442 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://algony-tony.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://algony-tony.github.io/" rel="alternate" type="text/html" /><updated>2026-04-09T03:14:21+08:00</updated><id>https://algony-tony.github.io/feed.xml</id><title type="html">Algony Tony</title><subtitle>etvdyn</subtitle><entry><title type="html">Claude Code 的插件以及 superpowers 介绍</title><link href="https://algony-tony.github.io/cc-plugin-superpowers/" rel="alternate" type="text/html" title="Claude Code 的插件以及 superpowers 介绍" /><published>2026-04-02T00:00:00+08:00</published><updated>2026-04-02T00:00:00+08:00</updated><id>https://algony-tony.github.io/cc-plugin-superpowers</id><content type="html" xml:base="https://algony-tony.github.io/cc-plugin-superpowers/"><![CDATA[<ul id="markdown-toc">
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://algony-tony.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://algony-tony.github.io/" rel="alternate" type="text/html" /><updated>2026-04-23T02:55:41+08:00</updated><id>https://algony-tony.github.io/feed.xml</id><title type="html">Algony Tony</title><subtitle>etvdyn</subtitle><entry><title type="html">一个简单但却强大的 MCP Server</title><link href="https://algony-tony.github.io/mymcp-server/" rel="alternate" type="text/html" title="一个简单但却强大的 MCP Server" /><published>2026-04-22T00:00:00+08:00</published><updated>2026-04-22T00:00:00+08:00</updated><id>https://algony-tony.github.io/mymcp-server</id><content type="html" xml:base="https://algony-tony.github.io/mymcp-server/"><![CDATA[<p>介绍一个有意思的项目：<a href="https://github.com/algony-tony/mymcp">algony-tony/mymcp</a>。</p>
+
+<ul>
+  <li><a href="https://github.com/algony-tony/mymcp">Github 地址</a></li>
+  <li><a href="https://github.com/algony-tony/mymcp/blob/master/README.md">README 介绍页面</a></li>
+</ul>
+
+<p>它不是那种一上来就塞几十个 tool、再配一堆复杂编排的 MCP server，而是走了另一条路：<strong>能力面非常克制，但真正把“让 AI 安全地操作一台 Linux 机器”这件事做成了。</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">mymcp</code> 是一个用 Python 写的 MCP server，面向 Claude Desktop、Claude Code、Cursor、Gemini CLI 这类 AI client，通过 <strong>Streamable HTTP</strong> 暴露 Linux 系统操作能力。</p>
+
+<p>它的定位其实非常直接：</p>
+
+<blockquote>
+  <p>给 AI 一个受控的 Linux 操作入口。</p>
+</blockquote>
+
+<h2 id="为什么说它简单">为什么说它“简单”</h2>
+
+<p>这个项目最打动我的一点，就是它没有把自己做成一个“大而全平台”。</p>
+
+<p>它默认只暴露 6 个 MCP tools：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>tool</th>
+      <th>作用</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">bash_execute</code></td>
+      <td>执行 shell 命令</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">read_file</code></td>
+      <td>读文件</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">write_file</code></td>
+      <td>写文件</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">edit_file</code></td>
+      <td>按字符串替换编辑文件</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">glob</code></td>
+      <td>按模式找文件</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">grep</code></td>
+      <td>按内容搜索</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>你会发现，这 6 个工具本身都不花哨，甚至可以说非常朴素。</p>
+
+<p>但问题在于：<strong>对于“让 AI 在 Linux 上完成实际任务”来说，这 6 个已经足够形成闭环了。</strong></p>
+
+<p>比如一个 agent 想排查线上服务问题，大概率就是下面这条链路：</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">grep</code> 搜日志或配置；</li>
+  <li><code class="language-plaintext highlighter-rouge">glob</code> 找到相关文件；</li>
+  <li><code class="language-plaintext highlighter-rouge">read_file</code> 看内容；</li>
+  <li>必要时 <code class="language-plaintext highlighter-rouge">edit_file</code> 或 <code class="language-plaintext highlighter-rouge">write_file</code> 改配置；</li>
+  <li><code class="language-plaintext highlighter-rouge">bash_execute</code> 重启服务、跑检查命令、看系统状态；</li>
+</ol>
+
+<p>也就是说，<code class="language-plaintext highlighter-rouge">mymcp</code> 的“简单”不是功能弱，而是<strong>接口面很小，但组合起来很完整</strong>。</p>
+
+<h2 id="为什么说它强大">为什么说它“强大”</h2>
+
+<h3 id="1-真正把-linux-控制面开放给了-ai">1. 真正把 Linux 控制面开放给了 AI</h3>
+
+<p>很多 MCP server 看起来功能不少，但真正能“干活”的闭环并不完整。</p>
+
+<p><code class="language-plaintext highlighter-rouge">mymcp</code> 不一样。只要你给的是 <code class="language-plaintext highlighter-rouge">rw</code> 权限 token，AI 基本就拿到了一个可控的 Linux 运维与自动化入口：</p>
+
+<ul>
+  <li>查文件；</li>
+  <li>改文件；</li>
+  <li>跑命令；</li>
+  <li>搜代码；</li>
+  <li>搜日志；</li>
+  <li>做批量操作；</li>
+</ul>
+
+<p>这个能力面其实已经足够覆盖很多真实场景：</p>
+
+<ul>
+  <li>远程运维一台轻量 Linux 主机；</li>
+  <li>让 Claude Code 在另一台机器上做只读巡检；</li>
+  <li>给 agent 一个受控的“远程 shell + 文件系统”能力；</li>
+  <li>做部署前后的检查、配置修改、日志定位；</li>
+</ul>
+
+<h3 id="2-权限模型足够实用">2. 权限模型足够实用</h3>
+
+<p>这个项目不是“有认证就算安全”，而是把权限做到了 token 粒度。</p>
+
+<p>它支持两种角色：</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ro</code>：只读；</li>
+  <li><code class="language-plaintext highlighter-rouge">rw</code>：可读可写；</li>
+</ul>
+
+<p>这点非常重要，因为 MCP 真正危险的地方从来不是“能不能连上”，而是<strong>一旦连上以后，agent 能改到什么程度</strong>。</p>
+
+<p>默认给只读 token，只有明确可信的客户端才给 <code class="language-plaintext highlighter-rouge">rw</code>，这个设计很务实。</p>
+
+<h3 id="3-有-protected-paths不让-ai-直接改自己的命门">3. 有 protected paths，不让 AI 直接改自己的命门</h3>
+
+<p><code class="language-plaintext highlighter-rouge">mymcp</code> 会自动保护自己的安装目录和 audit log 目录，不允许通过文件类工具去读写这些路径。</p>
+
+<p>这意味着 AI 不能直接：</p>
+
+<ul>
+  <li>读取 token 存储；</li>
+  <li>修改 MCP server 自己的代码；</li>
+  <li>篡改审计日志；</li>
+</ul>
+
+<p>这种设计很关键。因为很多“给 AI 系统权限”的方案，问题不在功能不够，而在<strong>没有把最危险的那部分先隔离出来</strong>。</p>
+
+<h3 id="4-有-audit-log出了问题能回看">4. 有 audit log，出了问题能回看</h3>
+
+<p>项目支持 JSON Lines 格式的 audit log，记录每次 tool 调用的结果、耗时，出错时还会记错误码和错误信息。</p>
+
+<p>这件事对 MCP server 尤其重要。因为一旦 AI 能执行命令、改文件，没有审计，后面很多问题都会变成“好像出过事，但不知道是谁、什么时候、用什么参数做的”。</p>
+
+<p><code class="language-plaintext highlighter-rouge">mymcp</code> 至少把这条线补上了。</p>
+
+<h3 id="5-它连升级链路都想到了">5. 它连升级链路都想到了</h3>
+
+<p>这个项目不只是“能跑起来”，还认真做了部署和升级：</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">deploy/install.sh</code> 一把安装；</li>
+  <li>自动建 venv；</li>
+  <li>自动注册 systemd 服务；</li>
+  <li><code class="language-plaintext highlighter-rouge">deploy/upgrade.sh</code> 支持查看版本、升级、dry-run、rollback；</li>
+  <li>还支持离线 wheels 升级；</li>
+</ul>
+
+<p>这一点很像真正面向“放到服务器上长期跑”的项目，而不是一个停留在 demo 阶段的 MCP server。</p>
+
+<p>更有意思的是，它还专门考虑了<strong>从 MCP client 自己触发升级</strong>这种场景：也就是让 agent 通过 <code class="language-plaintext highlighter-rouge">bash_execute</code> 调用升级脚本，升级过程自动 detach，服务短暂重启后再连回来。</p>
+
+<p>这就不是“玩具式 MCP”了，而是已经开始考虑真实运维过程里的自举问题。</p>
+
+<h2 id="这个项目有一个很好的取舍">这个项目有一个很好的取舍</h2>
+
+<p>我觉得 <code class="language-plaintext highlighter-rouge">mymcp</code> 最值得学的地方，不是某个单点功能，而是它做了一个很好的取舍：</p>
+
+<p><strong>把 MCP server 的职责控制在一个非常清晰的边界内：</strong></p>
+
+<ul>
+  <li>不去做复杂工作流编排；</li>
+  <li>不去堆很多业务 tool；</li>
+  <li>不去绑定某个单独 AI 产品；</li>
+  <li>就专注做“受控的 Linux 能力暴露层”；</li>
+</ul>
+
+<p>这使得它有几个优点：</p>
+
+<ol>
+  <li>容易理解；</li>
+  <li>容易部署；</li>
+  <li>容易审计；</li>
+  <li>容易和不同 client 组合；</li>
+  <li>容易做权限分层；</li>
+</ol>
+
+<p>很多时候，工程上真正强的东西，不是“功能特别多”，而是<strong>边界清楚、默认可用、风险点提前处理过</strong>。</p>
+
+<h2 id="一个很现实的提醒">一个很现实的提醒</h2>
+
+<p>当然，这类项目的前提永远都是：<strong>它很强，所以你必须认真对待安全。</strong></p>
+
+<p>README 里也明确提醒了几件事：</p>
+
+<ul>
+  <li>新 token 默认应该优先只给 <code class="language-plaintext highlighter-rouge">ro</code>；</li>
+  <li><code class="language-plaintext highlighter-rouge">rw</code> 只给可信 client；</li>
+  <li>最好开 audit；</li>
+  <li>网络侧要放在防火墙后面，必要时再加 TLS / 反向代理；</li>
+</ul>
+
+<p>尤其要注意一点：<code class="language-plaintext highlighter-rouge">bash_execute</code> 本身不受 protected paths 机制约束。</p>
+
+<p>所以这类 MCP server 的安全，不是“装上就安全”，而是“<strong>默认给最小权限，再逐步放开</strong>”。</p>
+
+<h2 id="我是怎么用的">我是怎么用的</h2>
+
+<p>我自己的用法，基本分成两类：</p>
+
+<ul>
+  <li>对于生产环境，或者比较重要的服务器，我只给大模型开只读权限，让它帮我做信息摸排、问题排查和应用观测。这样可以快速把现场情况摸清楚，但不会让它直接动系统。</li>
+  <li>对于自己拿来折腾、试验的服务器，我会放得更开一点，直接把运维动作几乎都交给大模型。一句话让它安装一个开源项目、跑起一个应用，甚至开发完以后顺手部署上去，能省掉不少重复又琐碎的部署运维操作。</li>
+</ul>
+
+<p>说白了就是：<strong>重要环境让它看，实验环境让它干。</strong></p>]]></content><author><name></name></author><category term="软件技术" /><category term="AI" /><category term="MCP" /><category term="Linux" /><category term="LLM" /><summary type="html"><![CDATA[介绍一个有意思的项目：algony-tony/mymcp。]]></summary></entry><entry><title type="html">Claude Code 的 Context7 插件介绍</title><link href="https://algony-tony.github.io/cc-plugin-context7/" rel="alternate" type="text/html" title="Claude Code 的 Context7 插件介绍" /><published>2026-04-14T00:00:00+08:00</published><updated>2026-04-14T00:00:00+08:00</updated><id>https://algony-tony.github.io/cc-plugin-context7</id><content type="html" xml:base="https://algony-tony.github.io/cc-plugin-context7/"><![CDATA[<ul>
+  <li><a href="https://claude.com/plugins/context7">Claude Context7 官方插件页</a></li>
+  <li><a href="https://github.com/upstash/context7/tree/master">context7 Github 地址</a></li>
+  <li><a href="https://github.com/upstash/context7/tree/master/plugins/claude/context7">Claude Context7 源码地址</a></li>
+</ul>
+
+<p>官方页是这样描述的：</p>
+
+<blockquote>
+  <p>Upstash Context7 MCP server for live docs lookup. Pull version-specific docs and code examples from source repos into LLM context.</p>
+</blockquote>
+
+<blockquote>
+  <p>Upstash Context7 MCP 服务器，用于实时检索文档。可将特定版本的文档与代码示例从源码仓库提取至大语言模型（LLM）的上下文中。</p>
+</blockquote>
+
+<p>Context7 就是一个文档查询工具，它的插件结构如下：</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text"><div class="line-1">context7/
+</div><div class="line-2">├── .claude-plugin/
+</div><div class="line-3">│   └── plugin.json
+</div><div class="line-4">├── agents/
+</div><div class="line-5">│   └── docs-researcher.md
+</div><div class="line-6">├── commands/
+</div><div class="line-7">│   └── docs.md
+</div><div class="line-8">├── skills/
+</div><div class="line-9">│   └── context7-mcp/
+</div><div class="line-10">│       └── SKILL.md
+</div><div class="line-11">├── .mcp.json
+</div><div class="line-12">└── README.md
+</div></code></pre></figure>
+
+<p><strong>plugin.json</strong> 是插件身份证，包含名字、描述、作者。</p>
+
+<p><strong>.mcp.json</strong> 是这个插件的核心，Context7 插件的真正核心就是一个 <strong>remote MCP server</strong>，这个 json 文件非常短：</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><div class="line-1"><span class="p">{</span>
+</div><div class="line-2"><span class="w">  </span><span class="nl">"context7"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</div><div class="line-3"><span class="w">    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http"</span><span class="p">,</span>
+</div><div class="line-4"><span class="w">    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mcp.context7.com/mcp"</span>
+</div><div class="line-5"><span class="w">  </span><span class="p">}</span>
+</div><div class="line-6"><span class="p">}</span>
+</div></code></pre></figure>
+
+<p>技能 <strong>skills/context7-mcp</strong> 的文件地址是 <a href="https://github.com/upstash/context7/blob/master/plugins/claude/context7/skills/context7-mcp/SKILL.md"><code class="language-plaintext highlighter-rouge">plugins/claude/context7/skills/context7-mcp/SKILL.md</code></a>，这个 skill 指出使用场景：</p>
+
+<blockquote>
+  <p>This skill should be used when the user asks about libraries, frameworks, API references, or needs code examples.</p>
+</blockquote>
+
+<p>以及给出了获取文档的步骤：</p>
+
+<ol>
+  <li>先调用 <code class="language-plaintext highlighter-rouge">resolve-library-id</code></li>
+  <li>选最合适的库 ID</li>
+  <li>再调用 <code class="language-plaintext highlighter-rouge">query-docs</code></li>
+  <li>用拉回来的资料回答问题</li>
+</ol>
+
+<p><strong>agents/docs-researcher.md</strong> 的文件地址是 <a href="https://github.com/upstash/context7/blob/master/plugins/claude/context7/agents/docs-researcher.md"><code class="language-plaintext highlighter-rouge">plugins/claude/context7/agents/docs-researcher.md</code></a>，这个 agent 的定位是轻量文档研究员，它的内容和 context7-mcp skill 类似。Claude Code 里对 subagent 的一个典型用途就是“<strong>让主线程继续处理任务，让 subagent 专门去查资料。</strong></p>
+
+<p>命令 <strong>/context7:docs</strong> 的文件地址是 <a href="https://github.com/upstash/context7/blob/master/plugins/claude/context7/commands/docs.md"><code class="language-plaintext highlighter-rouge">plugins/claude/context7/commands/docs.md</code></a>，这个插件就只有这一个命令，这个命令是给你一个显示地执行查询地手动入口。</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text"><div class="line-1">/context7:docs &lt;library&gt; [query]
+</div></code></pre></figure>
+
+<p>命令里 <code class="language-plaintext highlighter-rouge">library</code> 参数提供库名，<code class="language-plaintext highlighter-rouge">query</code> 是从这个库里你想要查的东西，类似下面的使用方式。</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text"><div class="line-1">/context7:docs react hooks
+</div><div class="line-2">/context7:docs next.js authentication
+</div><div class="line-3">/context7:docs prisma relations
+</div><div class="line-4">/context7:docs /vercel/next.js/v15.1.8 app router
+</div></code></pre></figure>]]></content><author><name></name></author><category term="软件技术" /><category term="AI" /><category term="Claude" /><category term="编程工具" /><category term="LLM" /><category term="MCP" /><category term="Context7" /><summary type="html"><![CDATA[Claude Context7 官方插件页 context7 Github 地址 Claude Context7 源码地址]]></summary></entry><entry><title type="html">Claude Code 的 4 个流行官方插件介绍</title><link href="https://algony-tony.github.io/cc-plugin-official-top/" rel="alternate" type="text/html" title="Claude Code 的 4 个流行官方插件介绍" /><published>2026-04-03T00:00:00+08:00</published><updated>2026-04-03T00:00:00+08:00</updated><id>https://algony-tony.github.io/cc-plugin-official-top</id><content type="html" xml:base="https://algony-tony.github.io/cc-plugin-official-top/"><![CDATA[<p>Anthropic 在 <a href="https://claude.com/plugins">claude.com/plugins</a> 提供了官方插件目录，安装量前几名的官方插件依次是：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>排名</th>
+      <th>插件</th>
+      <th>作者</th>
+      <th>插件构成</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Frontend Design</td>
+      <td>Anthropic</td>
+      <td>1 个 skill</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Superpowers</td>
+      <td><a href="https://github.com/obra">Jesse Vincent</a></td>
+      <td>一组 skill</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Context7</td>
+      <td>Upstash</td>
+      <td>MCP 为主，还包含 skill, agent, command</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Code Review</td>
+      <td>Anthropic</td>
+      <td>1 个 command</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Code Simplifier</td>
+      <td>Anthropic</td>
+      <td>1 个 agent</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Feature Dev</td>
+      <td>Anthropic</td>
+      <td>1 个 command，3 个 agent</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>这篇介绍 Anthropic 官方做的四个插件，Superpowers 可以参考<a href="/cc-plugin-superpowers/">这篇</a>。</p>
+
+<h2 id="frontend-design">Frontend Design</h2>
+
+<ul>
+  <li>官方插件页：<a href="https://claude.com/plugins/frontend-design">claude.com/plugins/frontend-design</a></li>
+  <li>插件 README：<a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/frontend-design/README.md"><code class="language-plaintext highlighter-rouge">plugins/frontend-design/README.md</code></a></li>
+  <li>核心 skill：<a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/frontend-design/skills/frontend-design/SKILL.md"><code class="language-plaintext highlighter-rouge">plugins/frontend-design/skills/frontend-design/SKILL.md</code></a></li>
+</ul>
+
+<p>这个插件的目标是让 Claude 写出来的前端，不要一眼看上去就是”标准 AI 味”的页面。只需让 Claude 构建前端界面，此技能就会自动激活。想让效果更好，最好给这几类信息：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">信息</th>
+      <th style="text-align: left">例子</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">产品类型</td>
+      <td style="text-align: left">AI 安全公司、音乐 App、设计工具、消费品牌</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">目标用户</td>
+      <td style="text-align: left">开发者、设计师、B 端管理者、年轻消费者</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">技术约束</td>
+      <td style="text-align: left">React / Vue / Tailwind / 纯 HTML</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">风格方向</td>
+      <td style="text-align: left">brutalist、maximalist、luxury、playful、retro-futuristic</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">重点区域</td>
+      <td style="text-align: left">hero、定价区、数据表、导航、卡片、动效</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Frontend Design 是一个非常轻的 skill 型插件，它就一个 skill 文件 <a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/frontend-design/skills/frontend-design/SKILL.md"><code class="language-plaintext highlighter-rouge">skills/frontend-design/SKILL.md</code></a> 。</p>
+
+<p>SKILL.md 里做了几件事：</p>
+
+<p><strong>先定设计方向，再写代码。</strong> 它要求 Claude 在编码前先确认四件事：Purpose（目的）、Tone（风格）、Constraints（限制条件）、Differentiation（差异化），避免模型直接退回安全模板；</p>
+
+<p><strong>强制做有风格的选择。</strong> skill 要求 Claude 必须选定一个明确的审美方向，给出了很多极端风格供参考：brutally minimal、maximalist chaos、retro-futuristic、luxury/refined、editorial/magazine 等；</p>
+
+<p><strong>明确列出不要做什么。</strong> 这是最有效的部分：直接点名禁止一些高频 AI 默认项——Inter、Roboto、Arial 字体、紫色渐变白底配色、predictable layouts、cookie-cutter components。</p>
+
+<p>它不是给 Claude 新增”设计能力”，而是通过 skill prompt 改变 Claude 在做前端时的默认审美偏好。</p>
+
+<h2 id="code-review">Code Review</h2>
+
+<ul>
+  <li>官方插件页：<a href="https://claude.com/plugins/code-review">claude.com/plugins/code-review</a></li>
+  <li>插件 README：<a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/code-review/README.md">plugins/code-review/README.md</a></li>
+  <li>命令实现：<a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/code-review/commands/code-review.md">plugins/code-review/commands/code-review.md</a></li>
+</ul>
+
+<p>Code Review 这个插件只有一个命令，没有其他组件，它的作用是<strong>把 Github pull request 的代码审查流程自动化</strong>。它不是”帮你看看代码有没有问题”，而是一个工程化的 reviewer pipeline：会判断 PR 是否值得审查，会找相关 <code class="language-plaintext highlighter-rouge">CLAUDE.md</code> 规范，会总结变更，然后拉起多路 reviewer agents 并行审查，最后对每条 issue 做 confidence scoring，只把高置信度的问题发回 GitHub。</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1"><span class="c"># On a PR branch, run:</span>
+</div><div class="line-2">/code-review
+</div><div class="line-3">
+</div><div class="line-4"><span class="c"># Claude will:</span>
+</div><div class="line-5"><span class="c"># - Launch 4 review agents in parallel</span>
+</div><div class="line-6"><span class="c"># - Score each issue for confidence</span>
+</div><div class="line-7"><span class="c"># - Post comment with issues ≥80 confidence</span>
+</div><div class="line-8"><span class="c"># - Skip posting if no high-confidence issues found</span>
+</div></code></pre></figure>
+
+<h2 id="code-simplifier">Code Simplifier</h2>
+
+<ul>
+  <li>官方插件页：<a href="https://claude.com/plugins/code-simplifier">claude.com/plugins/code-simplifier</a></li>
+  <li>核心 agent：<a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/code-simplifier/agents/code-simplifier.md"><code class="language-plaintext highlighter-rouge">agents/code-simplifier.md</code></a></li>
+</ul>
+
+<p>这个插件只有一个 agent，没有其他组件，它的作用是<strong>在不改变功能的前提下，把刚刚改过的代码再收拾一遍，让它更清晰、更一致、更容易维护，</strong>这些要求都是在 agent 文件里列出的。安装这个插件后，它会主动处理你最近修改的代码，或者也可以直接指明使用这个插件“请用 code-simplifier 把我刚刚改过的代码再精简一下，前提是不改变任何行为。”</p>
+
+<h2 id="feature-dev">Feature Dev</h2>
+
+<ul>
+  <li>官方插件页：<a href="https://claude.com/plugins/feature-dev">claude.com/plugins/feature-dev</a></li>
+  <li>插件 README：<a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/feature-dev/README.md">plugins/feature-dev/README.md</a></li>
+  <li>命令实现：<a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/feature-dev/commands/feature-dev.md">plugins/feature-dev/commands/feature-dev.md</a></li>
+</ul>
+
+<p>这个插件类似一个轻量版的 superpowers，它用七阶段方法来构建新功能，它引导您理解代码库、提出澄清问题、设计架构并确保质量——最终打造出设计更完善、与现有代码无缝集成的功能。</p>
+
+<p>Feature Dev 有三个 agent 文件和一个命令文件，命令文件是入口，类似这样使用：</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text"><div class="line-1">/feature-dev Add user authentication with OAuth
+</div></code></pre></figure>
+
+<p>Feature Dev 定义的 7 个阶段如下：</p>
+
+<ol>
+  <li>Discovery。了解需求，对于用户不清晰的描述会向用户询问；</li>
+  <li>Codebase Exploration。启动 2-3 个 <code class="language-plaintext highlighter-rouge">code-explorer</code> agents 并行探索：有没有类似功能、当前架构怎么分层、有没有相关抽象和 extension points、现有代码是怎么流转的；</li>
+  <li>Clarifying Questions。理解代码库之后，把还不明确的地方继续提问澄清问题；</li>
+  <li>Architecture Design。启动 2-3 个 <code class="language-plaintext highlighter-rouge">code-architect</code> agents，从不同视角给出实现思路（最小改动、更干净的架构、pragmatic balance），对比 trade-off，再给出建议，询问用户选择；</li>
+  <li>Implementation。这里才开始真正写代码。命令实现里写得非常明确：<strong>没有用户批准，不要开始实现</strong>；</li>
+  <li>Quality Review。代码完成后启动 3 个 <code class="language-plaintext highlighter-rouge">code-reviewer</code> agents 并行从不同角度看（simplicity/DRY/elegance、bugs/correctness、conventions/abstractions），汇总结果后问你：现在修、以后修、还是就这样继续；</li>
+  <li>Summary。最后收尾：总结做了什么、记录关键决策、列出改动文件、给出后续步骤建议。</li>
+</ol>]]></content><author><name></name></author><category term="软件技术" /><category term="AI" /><category term="Claude" /><category term="编程工具" /><category term="LLM" /><summary type="html"><![CDATA[Anthropic 在 claude.com/plugins 提供了官方插件目录，安装量前几名的官方插件依次是：]]></summary></entry><entry><title type="html">Claude Code 的插件以及 superpowers 介绍</title><link href="https://algony-tony.github.io/cc-plugin-superpowers/" rel="alternate" type="text/html" title="Claude Code 的插件以及 superpowers 介绍" /><published>2026-04-02T00:00:00+08:00</published><updated>2026-04-02T00:00:00+08:00</updated><id>https://algony-tony.github.io/cc-plugin-superpowers</id><content type="html" xml:base="https://algony-tony.github.io/cc-plugin-superpowers/"><![CDATA[<ul id="markdown-toc">
   <li><a href="#superpowers-介绍" id="markdown-toc-superpowers-介绍">Superpowers 介绍</a>    <ul>
       <li><a href="#superpowers-的工作流程" id="markdown-toc-superpowers-的工作流程">superpowers 的工作流程</a></li>
       <li><a href="#pluginjson-插件身份证" id="markdown-toc-pluginjson-插件身份证"><code class="language-plaintext highlighter-rouge">plugin.json</code> 插件身份证</a></li>
@@ -4130,272 +4568,4 @@ $中欧预见养老目标日期2035三年持有期混合型(F017277)$</p>
 
 <p>I never want to lose sight of the fact that ultimately this is technology is service of humans, and we get to keep humans to say the “so what”.</p>
 
-<p>Ideally it’s actually like deepening human connection where it’s a lot more about, you knoe, interacting with people and figure out what’s actually valuable to them.</p>]]></content><author><name></name></author><category term="新闻" /><category term="AI" /><category term="LLM" /><category term="科技" /><summary type="html"><![CDATA[这个视频采访了 40 位 AI 初创公司创始人，他们分享了在日常生活中的 AI 使用经验，这里是文字版。]]></summary></entry><entry><title type="html">Wireshark 使用手册</title><link href="https://algony-tony.github.io/wireshark-cheat-sheet/" rel="alternate" type="text/html" title="Wireshark 使用手册" /><published>2023-09-12T00:00:00+08:00</published><updated>2023-09-12T00:00:00+08:00</updated><id>https://algony-tony.github.io/wireshark-cheat-sheet</id><content type="html" xml:base="https://algony-tony.github.io/wireshark-cheat-sheet/"><![CDATA[<p>Wireshark 是一个强大的开源抓包工具。</p>
-
-<h2 id="过滤">过滤</h2>
-
-<p>Wireshark 有两种过滤器，第一种过滤器是捕获过滤器（Capture Filters），它只能在抓包前设置，Wireshark 只捕获满足条件的包，这种过滤器可以减少抓包的数量，但是在抓包过程中不能更改，可以参考这个文档 <a href="https://wiki.wireshark.org/CaptureFilters">CaptureFilters</a> 或者这个<a href="https://www.wireshark.org/docs/wsug_html_chunked/ChCapCaptureFilterSection.html">用户手册</a>。另一种是显示过滤器（Display Filters），顾名思义，它就是在包的列表页里做筛选显示，它可以在抓包过程中随时更改显示内容，日常使用过程中更方便一些，可以参考文档 <a href="https://wiki.wireshark.org/DisplayFilters">DisplayFilters</a> 或者<a href="https://www.wireshark.org/docs/wsug_html_chunked/ChWorkBuildDisplayFilterSection.html">用户手册</a>中的介绍。两种过滤器语法略有差别，下面简单介绍。</p>
-
-<p><img src="/assets/img/post/wireshark01.png" alt="&quot;捕获过滤器和显示过滤器&quot;" /></p>
-
-<h3 id="捕获过滤器">捕获过滤器</h3>
-
-<p>捕获过滤器由一些本原表达式组合而成，形式如下</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[not] primitive [and|or [not] primitive ...]
-</code></pre></div></div>
-
-<p>过滤 IP 相关内容</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-- 过滤 IP 为 172.18.5.4 的进出流量
-host 172.18.5.4
-
--- 过滤 IP 范围为 192.168.0.0/24 的进出流量
-net 192.168.0.0/24
-net 192.168.0.0 mask 255.255.255.0
-
--- 过滤一段 IP 范围主机发出的流量
-src net 192.168.0.0/24
-src net 192.168.0.0 mask 255.255.255.0
-
--- 过滤一段 IP 范围主机收到的流量
-dst net 192.168.0.0/24
-dst net 192.168.0.0 mask 255.255.255.0
-</code></pre></div></div>
-
-<p>过滤端口</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-- 只筛选 DNS 流量（端口 53）
-port 53
-</code></pre></div></div>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-- 过滤主机 www.example.com 的 non-HTTP 和 non-SMTP 流量
-host www.example.com and not (port 80 or port 25)
-host www.example.com and not port 80 and not port 25
-</code></pre></div></div>
-
-<h3 id="显示过滤器">显示过滤器</h3>
-
-<p>过滤条件中可以使用这些逻辑运算符：<code class="language-plaintext highlighter-rouge">and</code>, <code class="language-plaintext highlighter-rouge">or</code>, <code class="language-plaintext highlighter-rouge">not</code> 以及组合符号 <code class="language-plaintext highlighter-rouge">()</code>，比较符号 <code class="language-plaintext highlighter-rouge">eq</code>(<code class="language-plaintext highlighter-rouge">==</code>), <code class="language-plaintext highlighter-rouge">ne</code>(<code class="language-plaintext highlighter-rouge">!=</code>), <code class="language-plaintext highlighter-rouge">gt</code>(<code class="language-plaintext highlighter-rouge">&gt;</code>), <code class="language-plaintext highlighter-rouge">lt</code>(<code class="language-plaintext highlighter-rouge">&lt;</code>), <code class="language-plaintext highlighter-rouge">ge</code>(<code class="language-plaintext highlighter-rouge">&gt;=</code>), <code class="language-plaintext highlighter-rouge">le</code>(<code class="language-plaintext highlighter-rouge">&lt;=</code>),
-还有包含符号 <code class="language-plaintext highlighter-rouge">contains</code>, 搜索符号 <code class="language-plaintext highlighter-rouge">matches</code>(<code class="language-plaintext highlighter-rouge">~</code>) 以大小写不敏感的方式匹配正则表达式，函数 <code class="language-plaintext highlighter-rouge">upper</code>, <code class="language-plaintext highlighter-rouge">lower</code>, <code class="language-plaintext highlighter-rouge">len</code>, <code class="language-plaintext highlighter-rouge">count</code>, <code class="language-plaintext highlighter-rouge">string</code>, <code class="language-plaintext highlighter-rouge">max</code>, <code class="language-plaintext highlighter-rouge">min</code>, <code class="language-plaintext highlighter-rouge">abs</code>,
-以及常用的加减乘除模和位运算符。还可以使用字符的切片操作，下面是切片的语法：</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[i:j]    i = start_offset, j = length
-[i-j]    i = start_offset, j = end_offset, inclusive.
-[i]      i = start_offset, length = 1
-[:j]     start_offset = 0, length = j
-[i:]     start_offset = i, end_offset = end_of_field
-</code></pre></div></div>
-
-<p>这是显示过滤器各网络协议的<a href="https://www.wireshark.org/docs/dfref/">字段参考列表</a>。下面是一些常用的过滤条件。</p>
-
-<p>只显示局域网（192.168.x.x）的流量：</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ip.src==192.168.0.0/16 and ip.dst==192.168.0.0/16
-或者
-ip.addr == 192.168.0.0/16
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">ip.addr</code> 表示的是 IPv4 的地址，IPv6 的是 <code class="language-plaintext highlighter-rouge">ipv6.addr</code>。</p>
-
-<p>筛选一般的 HTTP/HTTPS 端口流量（大括号是集合符号）：</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tcp.port in {80,443,8080}
-或者
-tcp.port == 80 or tcp.port == 443 or tcp.port == 8080
-</code></pre></div></div>
-
-<p>搜索包含某个网址的 HTTP URL:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http contains "https://www.wireshark.org"
-</code></pre></div></div>
-
-<h2 id="参考链接">参考链接</h2>
-
-<p><a href="https://www.wireshark.org/docs/wsug_html_chunked/">Wireshark User’s Guide</a></p>
-
-<p><a href="https://wiki.wireshark.org">Wireshark Wiki</a></p>
-
-<p><a href="https://www.wireshark.org/docs/man-pages/">Wireshark Manual Pages</a></p>]]></content><author><name></name></author><category term="软件技术" /><category term="网络" /><summary type="html"><![CDATA[Wireshark 是一个强大的开源抓包工具。]]></summary></entry><entry><title type="html">编写 Prompt 的几种通用框架和方法</title><link href="https://algony-tony.github.io/prompt-engineering/" rel="alternate" type="text/html" title="编写 Prompt 的几种通用框架和方法" /><published>2023-08-21T00:00:00+08:00</published><updated>2023-08-21T00:00:00+08:00</updated><id>https://algony-tony.github.io/prompt-engineering</id><content type="html" xml:base="https://algony-tony.github.io/prompt-engineering/"><![CDATA[<p>对于大模型（LLM）来说，输入和输出都是文本字符串，输入部分的文本就叫做 Prompt，它是用户的输入，prompt 和 LLM 一起决定了输出的内容和质量。对于一般用户来说，LLM 是相对固定的部分，能发挥主观能动性决定输出内容的部分就是 prompt 了，这也是最近 Prompt 工程比较火的原因。</p>
-
-<p>有一种观点认为 prompt 只是目前 LLM 能力还有短板时的短期方案，是个人用户对 LLM 打的一次补丁，后面 LLM 相对强大后就会逐渐弱化 prompt 的重要性，这个观点是否成立只能拭目以待了。</p>
-
-<p>目前想用大模型技术来开发某些场景应用，除了软件工程上的开发部分，很大一块内容就在于编写一系列场景下的 prompts，以及对不同 prompt 的效果评估和选取，这是目前大模型应用中变量最大的部分，也是决定大模型应用成功的关键。</p>
-
-<p>下面就介绍几个编写 prompt 的通用框架和一些方法，包含吴恩达教授的 9 集 <a href="https://www.bilibili.com/video/BV1Mo4y157iF">ChatGPT 提示词工程课程</a>，ICIO 框架，CRISPE 框架。</p>
-
-<h2 id="吴恩达chatgpt-提示词工程课程">吴恩达《ChatGPT 提示词工程课程》</h2>
-
-<p>下面是课程的主要内容提炼。</p>
-
-<p>创建 prompt 的<strong>两个原则</strong>：</p>
-<ol>
-  <li>编写清晰、具体的指令；
-    <ul>
-      <li>使用分隔符清晰地表示输入的不同部分，分隔符可以是：```，”“，&lt;&gt;，:，&lt;tag&gt; &lt;/tag&gt;等；</li>
-      <li>寻求结构化的输出，输出可以是 JSON, HTML 等格式；</li>
-      <li>要求模型检查是否满足条件，如果任务包含不一定能满足的假设（条件），我们可以告诉模型先检查这些假设；</li>
-      <li>提供少量示例，Few-shot prompting；</li>
-    </ul>
-  </li>
-  <li>给 LLM 时间去思考；要求模型在提供最终的答案之前开展<strong>思维链</strong>或进行<strong>一系列相关的推理</strong>。
-    <ul>
-      <li>指定完成任务所需的步骤；</li>
-      <li>指导模型在下结论之前找出一个自己的解法。对于需要判断一个已有的答案是否正确的情景，可以先让模型自行得出一个解法，再行比较两者来得出结论；</li>
-    </ul>
-  </li>
-</ol>
-
-<p>开发 prompt 的过程：<strong>不断的迭代优化</strong>。和机器学习模型的开发过程类似，开发 prompt 也是先产生想法，编写 prompt，查看实验效果并分析错误，改进 prompt 并继续验证结果直到产生满意的结果。</p>
-
-<p>4 种主要大模型应用场景的 prompt 编写举例：</p>
-<ol>
-  <li>文本概括总结（Summarizing）
-    <ul>
-      <li>限制输出文本长度；</li>
-      <li>通过提示词来设置对某个特定角度的侧重；</li>
-      <li>如果只想要某一方面的信息，可以进行信息提取（Extract）而不是总结（Summarize）；</li>
-    </ul>
-  </li>
-  <li>推理（inferring）
-    <ul>
-      <li>识别文本的情感和类别；</li>
-      <li>商品信息提取；</li>
-      <li>主题推断；</li>
-    </ul>
-  </li>
-  <li>文本转换（Transforming）
-    <ul>
-      <li>语言翻译；</li>
-      <li>语气转换；</li>
-      <li>文件格式转换；</li>
-      <li>拼写及语法纠正；</li>
-    </ul>
-  </li>
-  <li>文本扩展（Expanding）。输入短文本（一个主题或者一组说明）让模型生成更长的文本。可以定制邮件或者写一些议论段落。</li>
-</ol>
-
-<h2 id="icio-框架">ICIO 框架</h2>
-
-<p>ICIO 框架模型来自 Elvis Saravia 的<a href="https://www.promptingguide.ai/introduction/elements">提示词工程指南</a>。这个框架的 prompt 包含下面四个组成部分：</p>
-
-<ul>
-  <li><strong>Instruction</strong> - 您希望模型执行的特定任务或指令</li>
-  <li><strong>Context</strong> - 可以引导模型做出更好响应的外部信息或附加上下文</li>
-  <li><strong>Input Data</strong> - 我们有兴趣寻找答案的输入或问题</li>
-  <li><strong>Output Indicator</strong> - 输出的类型或格式</li>
-</ul>
-
-<h2 id="crispe-框架">CRISPE 框架</h2>
-
-<p>CRISPE 框架来自 Matt Nigh 的<a href="https://github.com/mattnigh/ChatGPT3-Free-Prompt-List">免费提示词列表</a>，这个框架的 prompt 包含如下五个部分：</p>
-
-<ul>
-  <li><strong>Capacity and Role</strong>: ChatGPT 应该扮演什么角色？</li>
-  <li><strong>Insight</strong>: 为您的请求提供幕后洞察力、上下文和背景。</li>
-  <li><strong>Statement</strong>: 您要求 ChatGPT 做什么。</li>
-  <li><strong>Personality</strong>: 您希望 ChatGPT 做出响应的风格、个性或方式。</li>
-  <li><strong>Experiment</strong>: 要求 ChatGPT 为您提供多个示例。</li>
-</ul>
-
-<h2 id="参考资料">参考资料</h2>
-
-<p><a href="https://www.bilibili.com/video/BV1Mo4y157iF">ChatGPT 提示词工程课程</a></p>
-
-<p><a href="https://github.com/datawhalechina/prompt-engineering-for-developers/tree/main/content/Prompt%20Engineering%20for%20Developer">ChatGPT 提示词工程课程（中文文字版）</a></p>
-
-<p><a href="https://github.com/dair-ai/Prompt-Engineering-Guide">Prompt-Engineering-Guide</a></p>
-
-<p><a href="https://www.promptingguide.ai/zh">提示词工程指南</a></p>
-
-<p><a href="https://github.com/mattnigh/ChatGPT3-Free-Prompt-List">免费提示词列表</a></p>
-
-<p><a href="https://sourcingdenis.medium.com/crispe-prompt-engineering-framework-e47eaaf83611">CRISPE — ChatGPT 提示工程框架</a></p>
-
-<p><a href="https://mp.weixin.qq.com/s/N8XnSSdXlIITSig5z1oZCw">GPT Prompt编写的艺术：如何提高AI模型的表现力</a></p>]]></content><author><name></name></author><category term="软件技术" /><category term="prompt" /><category term="LLM" /><summary type="html"><![CDATA[对于大模型（LLM）来说，输入和输出都是文本字符串，输入部分的文本就叫做 Prompt，它是用户的输入，prompt 和 LLM 一起决定了输出的内容和质量。对于一般用户来说，LLM 是相对固定的部分，能发挥主观能动性决定输出内容的部分就是 prompt 了，这也是最近 Prompt 工程比较火的原因。]]></summary></entry><entry><title type="html">中国证券行业相关的主要法律法规</title><link href="https://algony-tony.github.io/security-laws/" rel="alternate" type="text/html" title="中国证券行业相关的主要法律法规" /><published>2023-07-25T00:00:00+08:00</published><updated>2023-07-25T00:00:00+08:00</updated><id>https://algony-tony.github.io/security-laws</id><content type="html" xml:base="https://algony-tony.github.io/security-laws/"><![CDATA[<p>以下是中国证券行业相关的主要法律法规：</p>
-
-<h2 id="中华人民共和国证券法"><a href="https://www.gov.cn/xinwen/2019-12/29/content_5464866.htm"><strong>《中华人民共和国证券法》</strong></a></h2>
-
-<p>该法律是中国证券市场的基本法律，是证券市场的核心法律依据。证券法最近一次修订是 2019 年 12 月 28 日第十三届全国人民代表大会常务委员会第十五次会议第二次修订。</p>
-
-<p>证券法包含十四章内容：</p>
-
-<ul>
-  <li>第一章 总则：包含 8 条法律条款，这些条款分别说明制定本法律的缘由，证券法的适用范围，证券法主要关注的是证券的发行和交易活动，这些证券行为必须遵循的几个原则，以及指定的监督管理机构和审计机关。</li>
-  <li>第二章 证券发行：包含从第九条到三十四共 26 条法律条款，说明了公开发行股票、债券的过程中的相关要求。</li>
-  <li>第三章 证券交易：包含从三十五到六十一共 27 条法律条款，包含第一节的一般规定，第二节的证券上市，以及第三节的禁止的交易行为。</li>
-  <li>第四章 上市公司的收购：包含从六十二到七十七共 16 条法律条款，对持股达到百分之五后进一步交易的规定，以及要约收购，协议收购行为的规定。</li>
-  <li>第五章 信息披露：包含从七十八到八十七共 10 条法律条款，规定了对需要信息披露的重大事项的说明，信息披露的要求。</li>
-  <li>第六章 投资者保护：包含从八十八到九十五共 8 条法律条款。</li>
-  <li>第七章 证券交易所：包含从九十六到一百一十七共 22 条法律条款，规定证券交易所的设立，性质，职能，收入分配，从业人员和负责人的要求，以及交易等相关规定。</li>
-  <li>第八章 证券公司：包含从一百一十八到一百四十四条共 27 条法律条款。</li>
-  <li>第九章 证券登记结算公司：包含从一百四十五到一百五十九共 15 条法律条款。</li>
-  <li>第十章 证券服务机构：包含从一百六十到一百六十三共 4 条法律条款。</li>
-  <li>第十一章 证券业协会：包含从一百六十四到一百六十七共 4 条法律条款。</li>
-  <li>第十二章 证券监督管理机构：包含从一百六十八到一百七十九共 12 条法律条款。</li>
-  <li>第十三章 法律责任：包含从一百八十到二百二十三共 44 条法律条款。</li>
-  <li>第十四章 附则：包含从二百二十四到二百二十六共 3 条法律条款。</li>
-</ul>
-
-<h2 id="中华人民共和国公司法"><a href="http://www.npc.gov.cn/zgrdw/npc/xinwen/2018-11/05/content_2065671.htm">《中华人民共和国公司法》</a></h2>
-
-<p>公司法规定了公司的组织形式、股东权益、公司治理结构等内容，与证券市场紧密相关。</p>
-
-<p>公司法包含十三章内容：</p>
-
-<ul>
-  <li>第一章 总则</li>
-  <li>第二章 有限责任公司的设立和组织机构</li>
-  <li>第三章 有限责任公司的股权转让</li>
-  <li>第四章 股份有限公司的设立和组织机构</li>
-  <li>第五章 股份有限公司的股份发行和转让</li>
-  <li>第六章 公司董事、监事、高级管理人员的资格和义务</li>
-  <li>第七章 公司债券</li>
-  <li>第八章 公司财务、会计</li>
-  <li>第九章 公司合并、分立、增资、减资</li>
-  <li>第十章 公司解散和清算</li>
-  <li>第十一章 外国公司的分支机构</li>
-  <li>第十二章 法律责任</li>
-  <li>第十三章 附则</li>
-</ul>
-
-<h2 id="中华人民共和国证券投资基金法"><a href="https://flk.npc.gov.cn/detail2.html?MmM5MDlmZGQ2NzhiZjE3OTAxNjc4YmY3OTU4MDA3OTk">《中华人民共和国证券投资基金法》</a></h2>
-
-<p>该法规定了证券投资基金的设立、运作和管理规定，投资者权益保护，基金监管等。</p>
-
-<h2 id="中华人民共和国企业会计准则"><a href="http://kjs.mof.gov.cn/zt/kjzzss/kuaijizhunzeshishi/">《中华人民共和国企业会计准则》</a></h2>
-
-<p>企业会计准则规定了企业的会计核算和财务报告编制等事项，对上市公司的财务报告具有重要影响。还有<a href="https://www.gov.cn/gongbao/content/2007/content_549050.htm?eqid=fe7bd5340000692b00000003646717a1">企业会计准则——基本准则</a>。</p>
-
-<h2 id="证券交易所管理办法"><a href="http://www.csrc.gov.cn/csrc/c101834/c1496641/content.shtml">《证券交易所管理办法》</a></h2>
-
-<p>该条例规定了证券交易所的组织、运行、监管等方面的内容，监管机构为证监会。</p>
-
-<h2 id="上市公司收购管理办法"><a href="http://www.csrc.gov.cn/csrc/c106256/c1653983/1653983/files/166-7%E3%80%8A%E4%B8%8A%E5%B8%82%E5%85%AC%E5%8F%B8%E6%94%B6%E8%B4%AD%E7%AE%A1%E7%90%86%E5%8A%9E%E6%B3%95%E3%80%8B.pdf">《上市公司收购管理办法》</a></h2>
-
-<p>该办法规定了上市公司的股权收购行为管理的相关规定，监管机构为证监会。</p>
-
-<h2 id="上市公司信息披露管理办法"><a href="http://www.csrc.gov.cn/csrc/c106256/c1653948/1653948/files/317acd342b4a437596920f576209385f.pdf">《上市公司信息披露管理办法》</a></h2>
-
-<p>该办法规定了上市公司信息披露的内容、要求和披露义务等事项，监管机构为证监会。</p>
-
-<h2 id="深圳证券交易所交易规则">《深圳证券交易所交易规则》</h2>
-
-<p><a href="http://www.szse.cn/lawrules/rule/stock/trade/t20230217_598773.html">关于发布《深圳证券交易所交易规则（2023年修订）》的通知</a></p>
-
-<h2 id="上海证券交易所交易规则">《上海证券交易所交易规则》</h2>
-
-<p><a href="http://www.sse.com.cn/lawandrules/sselawsrules/trade/universal/c/c_20230216_5716382.shtml">关于发布《上海证券交易所交易规则（2023年修订）》的通知</a></p>
-
-<p><a href="http://www.sse.com.cn/lawandrules/sselawsrules/stocks/staripo/c/c_20230804_5724640.shtml">关于发布《上海证券交易所科创板股票上市规则（2023年8月修订）》的通知</a></p>
-
-<h2 id="深圳证券交易所股票上市规则">《深圳证券交易所股票上市规则》</h2>
-
-<p><a href="https://www.szse.cn/lawrules/rule/stock/supervision/mb/t20230804_602477.html">（9月4日施行）关于发布《深圳证券交易所股票上市规则（2023年8月修订）》的通知</a></p>
-
-<p><a href="https://www.szse.cn/disclosure/notice/general/t20230804_602478.html">（9月4日施行）关于发布《深圳证券交易所创业板股票上市规则（2023年8月修订）》的通知</a></p>
-
-<h2 id="上海证券交易所股票上市规则">《上海证券交易所股票上市规则》</h2>
-
-<p><a href="http://www.sse.com.cn/lawandrules/sselawsrules/stocks/mainipo/c/c_20230804_5724639.shtml">关于发布《上海证券交易所股票上市规则（2023年8月修订）》的通知</a></p>
-
-<h2 id="企业集团财务公司管理办法"><a href="https://www.gov.cn/zhengce/2022-10/14/content_5725782.htm">《企业集团财务公司管理办法》</a></h2>
-
-<h2 id="企业资产损失所得税税前扣除管理办法"><a href="https://www.gov.cn/gongbao/content/2011/content_1967429.htm">《企业资产损失所得税税前扣除管理办法》</a></h2>]]></content><author><name></name></author><category term="金融" /><category term="投资" /><category term="法律" /><summary type="html"><![CDATA[以下是中国证券行业相关的主要法律法规：]]></summary></entry></feed>
+<p>Ideally it’s actually like deepening human connection where it’s a lot more about, you knoe, interacting with people and figure out what’s actually valuable to them.</p>]]></content><author><name></name></author><category term="新闻" /><category term="AI" /><category term="LLM" /><category term="科技" /><summary type="html"><![CDATA[这个视频采访了 40 位 AI 初创公司创始人，他们分享了在日常生活中的 AI 使用经验，这里是文字版。]]></summary></entry></feed>
