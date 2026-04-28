@@ -3,7 +3,7 @@ layout: post
 title: 用 git daemon 在局域网里快速共享 Git 仓库
 categories: 软件技术
 tags: git
-toc: true
+toc: false
 ---
 
 在局域网里，如果想把当前电脑上的 Git 仓库临时共享给另一台电脑拉代码，直接用 Git 自带的 `git daemon` 命令就行。
