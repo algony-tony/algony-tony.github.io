@@ -1,0 +1,46 @@
+<div class="taxonomy-page" id="top">
+  <header class="taxonomy-page__header">
+    <h1 class="taxonomy-page__title">{{ include.taxonomy_name }}</h1>
+    <p class="taxonomy-page__meta">{{ include.terms | size }} 个{{ include.taxonomy_name }} · {{ site.posts | size }} 篇文章</p>
+  </header>
+
+  <nav class="taxonomy-index" aria-label="{{ include.taxonomy_name }}索引">
+    {% for term in include.terms %}
+      {% assign term_name = term[0] | escape %}
+      {% assign term_posts = term[1] %}
+      <a class="taxonomy-chip {{ include.taxonomy_type }}-link" href="#{{ term_name }}">
+        <span class="taxonomy-chip__name">{{ term_name }}</span>
+        <span class="taxonomy-chip__count">{{ term_posts | size }}</span>
+      </a>
+    {% endfor %}
+  </nav>
+
+  <div class="taxonomy-sections">
+    {% for term in include.terms %}
+      {% assign term_name = term[0] | escape %}
+      {% assign term_posts = term[1] %}
+      <section class="taxonomy-section" aria-labelledby="{{ include.taxonomy_type }}-{{ forloop.index0 }}-title">
+        <header class="taxonomy-section__header">
+          <div class="taxonomy-section__heading">
+            <h2 class="taxonomy-section__title" id="{{ term_name }}">{{ term_name }}</h2>
+            <p class="taxonomy-section__count">{{ term_posts | size }} 篇文章</p>
+          </div>
+          <a class="taxonomy-section__top" href="#top">返回顶部</a>
+        </header>
+
+        <ul class="taxonomy-post-list">
+          {% for post in term_posts %}
+            {% if post.url %}
+            <li class="taxonomy-post-item">
+              <a class="taxonomy-post-link" href="{{ site.baseurl }}{{ post.url }}">
+                <span class="taxonomy-post-link__date code">{{ post.date | date: "%F" }}</span>
+                <span class="taxonomy-post-link__title">{{ post.title }}</span>
+              </a>
+            </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </section>
+    {% endfor %}
+  </div>
+</div>
