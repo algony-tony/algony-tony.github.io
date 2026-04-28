@@ -1,10 +1,13 @@
 <div class="right">
     <div class="side-wrap">
-        <!-- Content -->
         <nav class="side-content">
-            <ul id="content-side" class="content-ul">
-                <li><a href="#comments">评论区</a></li>
-            </ul>
+            <div class="side-content-title">{{ include.display | default: "目录" }}</div>
+            <div class="side-content-body">
+                <ul id="content-side" class="content-ul"></ul>
+                <div class="side-content-footer">
+                    <a class="side-comments-link" href="#comments">评论区</a>
+                </div>
+            </div>
         </nav>
     </div>
 </div>

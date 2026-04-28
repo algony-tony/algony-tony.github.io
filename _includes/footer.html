@@ -1,6 +1,6 @@
 <footer class="site-footer">
 
-  <div class="wrapper-footer">
+  <div class="{% if page.toc %}wrapper-footer-with-side{% else %}wrapper-footer{% endif %}">
     <div class="social-wrapper">
       {% include svg-icons.html %}
     </div>
