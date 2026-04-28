@@ -1,12 +1,22 @@
-<div class="tags-cloud">
-
+<div class="archive-tag-flow" aria-label="标签云">
   {% for tag in site.tags %}
-  {% assign site_tag_name = tag[0] | escape %}
-  {% assign tag_posts = tag[1] | size %}
+    {% assign site_tag_name = tag[0] | escape %}
+    {% assign tag_posts = tag[1] | size %}
+    {% assign tag_order = 100 | minus: tag_posts %}
+    {% assign tag_hue = forloop.index0 | modulo: 6 | times: 12 | plus: 210 %}
+    {% capture tag_posts_urls %}{% for tag_post in tag[1] %}{% unless forloop.first %}|{% endunless %}{{ tag_post.url }}{% endfor %}{% endcapture %}
 
-  <a class="tag-link" href="{{ site.url | append: '/tag' | append: '/#' | append: site_tag_name }}">
-    {{ site_tag_name }}</a>
-    <span class="tag-count">({{ tag_posts }})</span>
-
+    <a
+      class="archive-tag-badge tag-link"
+      href="{{ site.url | append: '/tag' | append: '/#' | append: site_tag_name }}"
+      title="标签 {{ site_tag_name }}：共 {{ tag_posts }} 篇"
+      data-tag="{{ site_tag_name }}"
+      data-count="{{ tag_posts }}"
+      data-posts="{{ tag_posts_urls | strip }}"
+      style="--tag-order: {{ tag_order }}; --tag-count: {{ tag_posts }}; --tag-hue: {{ tag_hue }};"
+    >
+      <span class="archive-tag-badge__name">{{ site_tag_name }}</span>
+      <span class="archive-tag-badge__count">{{ tag_posts }}</span>
+    </a>
   {% endfor %}
 </div>

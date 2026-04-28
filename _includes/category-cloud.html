@@ -1,13 +1,21 @@
-
-<div class="categories-cloud">
-
+<div class="archive-category-grid" aria-label="类目气泡图">
   {% for category in site.categories %}
-  {% assign site_category_name = category[0] | escape %}
-  {% assign category_posts = category[1] | size %}
+    {% assign site_category_name = category[0] | escape %}
+    {% assign category_posts = category[1] | size %}
+    {% assign bubble_size = category_posts | times: 4 | plus: 96 %}
+    {% assign bubble_order = 100 | minus: category_posts %}
+    {% assign bubble_hue = forloop.index0 | times: 43 %}
+    {% assign category_share = category_posts | times: 100 | divided_by: site.posts.size %}
 
-  <a class="category-link" href="{{ site.url | append: '/category' | append: '/#' | append: site_category_name }}">
-    {{ site_category_name }}</a>
-    <span class="category-count">({{ category_posts }})</span>
-
+    <a
+      class="archive-category-bubble category-link"
+      href="{{ site.url | append: '/category' | append: '/#' | append: site_category_name }}"
+      style="--bubble-size: {{ bubble_size }}px; --bubble-order: {{ bubble_order }}; --bubble-hue: {{ bubble_hue }};"
+      aria-label="类目 {{ site_category_name }}，共 {{ category_posts }} 篇文章"
+    >
+      <span class="archive-category-bubble__name">{{ site_category_name }}</span>
+      <span class="archive-category-bubble__count">{{ category_posts }}</span>
+      <span class="archive-category-bubble__meta">占全部文章 {{ category_share }}%</span>
+    </a>
   {% endfor %}
 </div>
