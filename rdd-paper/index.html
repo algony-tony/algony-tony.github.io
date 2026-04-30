@@ -78,7 +78,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <header class="site-header">
 
-    <div class="wrapper-header">
+    <div class="wrapper-header-with-side">
       <div class="header-left">
         <!-- <a href="/" class="site-avatar"><img src="/assets/img/sys/jekyll-logo.png" alt="avatar" /></a> -->
 
@@ -114,9 +114,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
     <main class="default-content" aria-label="内容区">
-  <div class="wrapper-content">
+  <div class="wrapper-content-with-side">
 
-    <article class="post">
+    <article class="post post-with-toc">
       <div class="left">
         <h1>《弹性分布式数据集：集群内存计算的一种容错抽象》 论文</h1>
         <div class="label">
@@ -675,16 +675,20 @@ RDDs 在概念上类似于数据库中的视图，而持久的 RDDs 类似于物
       
       <div class="right">
     <div class="side-wrap">
-        <!-- Content -->
         <nav class="side-content">
-            <ul id="content-side" class="content-ul">
-                <li><a href="#comments">评论区</a></li>
-            </ul>
+            <div class="side-content-title">目录</div>
+            <div class="side-content-body">
+                <ul id="content-side" class="content-ul"></ul>
+                <div class="side-content-footer">
+                    <a class="side-comments-link" href="#comments">评论区</a>
+                </div>
+            </div>
         </nav>
     </div>
 </div>
 
 <script src="/assets/js/postContent.js" charset="utf-8"></script>
+
       
 
       
@@ -694,10 +698,11 @@ RDDs 在概念上类似于数据库中的视图，而持久的 RDDs 类似于物
   </div>
 </main>
 
+
     
       <footer class="site-footer">
 
-  <div class="wrapper-footer">
+  <div class="wrapper-footer-with-side">
     <div class="social-wrapper">
       
 
