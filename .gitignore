@@ -19,3 +19,4 @@ temp_data
 # Vendor submodule build artifacts
 vendor/*/node_modules
 vendor/*/dist
+/tools/raphael-publish
