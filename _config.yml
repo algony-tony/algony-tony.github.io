@@ -126,3 +126,4 @@ exclude:
   - TODO
   - CLAUDE.md
   - _site
+  - "vendor"

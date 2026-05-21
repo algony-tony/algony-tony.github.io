@@ -3,6 +3,10 @@
 project_dir=$(dirname "$(dirname "$(readlink -f "$0")")")
 site_dir="${project_dir}_site"
 
+# Check required tools
+command -v pnpm >/dev/null 2>&1 || { echo "Error: pnpm is required but not installed."; exit 1; }
+command -v node >/dev/null 2>&1 || { echo "Error: node is required but not installed."; exit 1; }
+
 
 if [ ! -d "$site_dir" ]; then
     echo "create directory ${site_dir}"
@@ -15,10 +19,21 @@ if [ ! -d "$site_dir" ]; then
 fi
 
 
-# build
+# build Jekyll
 cd "${project_dir}"
 git checkout master || { echo "checkout master failed"; exit 1; }
 bundle exec jekyll build --future --trace
+
+# build raphael-publish
+echo "Building raphael-publish..."
+cd "${project_dir}/vendor/raphael-publish"
+pnpm install --frozen-lockfile
+pnpm build
+echo "raphael-publish build complete."
+
+# copy raphael-publish dist into Jekyll _site
+mkdir -p "${project_dir}/_site/tools/raphael-publish"
+cp -rf "${project_dir}/vendor/raphael-publish/dist/"* "${project_dir}/_site/tools/raphael-publish/"
 
 # deploy
 rm -rf ${site_dir}/*
@@ -30,4 +45,3 @@ git add -A
 git commit -m "Deploy to gh-pages"
 
 git push --force origin master:gh-pages
-
