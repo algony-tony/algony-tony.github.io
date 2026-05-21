@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PQ63V8S');</script>
+<!-- End Google Tag Manager -->
+
+    
+
+
+    <title>mymcp server 的 2.x 进展 – Algony Tony – etvdyn</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="之前介绍过的 mymcp server 最近 2.x 版本里有几个变化：安装方式变了，可观测性补齐了，文件传输也从“文本工具”扩展到了大文件和二进制文件。
+" />
+    <meta property="og:description" content="之前介绍过的 mymcp server 最近 2.x 版本里有几个变化：安装方式变了，可观测性补齐了，文件传输也从“文本工具”扩展到了大文件和二进制文件。
+" />
+    
+    <meta name="author" content="Algony Tony" />
+
+    
+    <meta property="og:title" content="mymcp server 的 2.x 进展" />
+    <meta property="twitter:title" content="mymcp server 的 2.x 进展" />
+    
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+    <link rel="alternate" type="application/rss+xml" title="Algony Tony - etvdyn" href="/feed.xml" />
+
+    
+
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3291441471504209"
+     crossorigin="anonymous"></script>
+
+
+    <link type="application/atom+xml" rel="alternate" href="https://algony-tony.github.io/feed.xml" title="Algony Tony" />
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>mymcp server 的 2.x 进展 | Algony Tony</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="mymcp server 的 2.x 进展" />
+<meta property="og:locale" content="zh_CN" />
+<meta name="description" content="之前介绍过的 mymcp server 最近 2.x 版本里有几个变化：安装方式变了，可观测性补齐了，文件传输也从“文本工具”扩展到了大文件和二进制文件。" />
+<meta property="og:description" content="之前介绍过的 mymcp server 最近 2.x 版本里有几个变化：安装方式变了，可观测性补齐了，文件传输也从“文本工具”扩展到了大文件和二进制文件。" />
+<link rel="canonical" href="https://algony-tony.github.io/mymcp-server-update/" />
+<meta property="og:url" content="https://algony-tony.github.io/mymcp-server-update/" />
+<meta property="og:site_name" content="Algony Tony" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-05-19T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="mymcp server 的 2.x 进展" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-05-19T00:00:00+08:00","datePublished":"2026-05-19T00:00:00+08:00","description":"之前介绍过的 mymcp server 最近 2.x 版本里有几个变化：安装方式变了，可观测性补齐了，文件传输也从“文本工具”扩展到了大文件和二进制文件。","headline":"mymcp server 的 2.x 进展","mainEntityOfPage":{"@type":"WebPage","@id":"https://algony-tony.github.io/mymcp-server-update/"},"url":"https://algony-tony.github.io/mymcp-server-update/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  </head>
+
+  <body>
+
+    
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQ63V8S"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+    <header class="site-header">
+
+    <div class="wrapper-header">
+      <div class="header-left">
+        <!-- <a href="/" class="site-avatar"><img src="/assets/img/sys/jekyll-logo.png" alt="avatar" /></a> -->
+
+        <a class="site-info" href="/">
+          <span class="site-name">Algony Tony</span>
+          <span class="site-description">etvdyn</span>
+        </a>
+
+      </div>
+
+      <nav class="header-right">
+        
+        <a href="/"  class="page-link"  >
+          首页
+        </a>
+        
+        <a href="/WebMap/"  class="page-link"  >
+          导航
+        </a>
+        
+        <a href="/tools/"  class="page-link"  >
+          工具
+        </a>
+        
+        <a href="/collections/"  class="page-link"  >
+          归档
+        </a>
+        
+      </nav>
+    </div>
+
+</header>
+
+
+    <main class="default-content" aria-label="内容区">
+  <div class="wrapper-content">
+
+    <article class="post">
+      <div class="left">
+        <h1>mymcp server 的 2.x 进展</h1>
+        <div class="label">
+
+          <div class="label-date">
+            2026-05-19
+          </div>
+
+          <div class="label-category">
+            <span >类别:</span>
+
+<a class="category-link" href="https://algony-tony.github.io/category/#软件技术" title="Category: 软件技术">
+  软件技术
+</a>
+
+
+          </div>
+
+          <div class="label-tag">
+            <span >标签:</span>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#AI" title="Tag: AI">
+  AI
+</a>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#MCP" title="Tag: MCP">
+  MCP
+</a>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#Linux" title="Tag: Linux">
+  Linux
+</a>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#LLM" title="Tag: LLM">
+  LLM
+</a>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#OpenTelemetry" title="Tag: OpenTelemetry">
+  OpenTelemetry
+</a>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#Observability" title="Tag: Observability">
+  Observability
+</a>
+
+          </div>
+
+        </div>
+
+        <div class="entry">
+          <p>之前介绍过的 <a href="/mymcp-server/">mymcp server</a> 最近 2.x 版本里有几个变化：<strong>安装方式变了，可观测性补齐了，文件传输也从“文本工具”扩展到了大文件和二进制文件。</strong></p>
+
+<h2 id="从脚本安装变成-pipx-安装">从脚本安装变成 pipx 安装</h2>
+
+<p>之前 <code class="language-plaintext highlighter-rouge">mymcp</code> 更像一个可以部署到服务器上的源码项目：clone 代码，跑 <code class="language-plaintext highlighter-rouge">deploy/install.sh</code>，再由脚本创建 venv、写 systemd service、设置目录。</p>
+
+<p>现在 2.x 之后，它已经更接近一个正常 Python 命令行工具了：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pipx <span class="nb">install </span>algony-mymcp
+</code></pre></div></div>
+
+<p>PyPI 上的发行包名字是 <code class="language-plaintext highlighter-rouge">algony-mymcp</code>，但安装以后命令仍然是 <code class="language-plaintext highlighter-rouge">mymcp</code>:</p>
+
+<ul>
+  <li>代码由 pipx 管理；</li>
+  <li>配置目录迁到 <code class="language-plaintext highlighter-rouge">/etc/mymcp</code>；</li>
+  <li>日志目录默认在 <code class="language-plaintext highlighter-rouge">/var/log/mymcp</code>；</li>
+  <li>systemd service 可以通过 CLI 生成；</li>
+  <li>升级变成常规的 <code class="language-plaintext highlighter-rouge">pipx upgrade algony-mymcp</code>。</li>
+</ul>
+
+<p>最小试用可以直接前台启动：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mymcp serve
+</code></pre></div></div>
+
+<p>生产环境则是：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>mymcp install-service <span class="nt">--yes</span>
+<span class="nb">sudo </span>systemctl start mymcp
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">install-service</code> 会生成 admin token、可选的 metrics token，写入 <code class="language-plaintext highlighter-rouge">/etc/mymcp/.env</code>，再安装 systemd unit。</p>
+
+<h2 id="cli-变成了运维入口">CLI 变成了运维入口</h2>
+
+<p>另一个变化是，很多原来散在脚本里的动作，现在被收进了 <code class="language-plaintext highlighter-rouge">mymcp</code> CLI：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>命令</th>
+      <th>作用</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mymcp serve</code></td>
+      <td>前台运行 MCP server</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mymcp install-service</code></td>
+      <td>安装 systemd 服务</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mymcp uninstall-service</code></td>
+      <td>卸载 systemd 服务</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mymcp token list/add/revoke</code></td>
+      <td>管理 ro/rw token</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mymcp token rotate-admin</code></td>
+      <td>轮换 admin token</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mymcp token rotate-metrics</code></td>
+      <td>轮换 metrics token</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mymcp doctor</code></td>
+      <td>诊断环境、依赖和可观测性状态</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mymcp version</code></td>
+      <td>查看版本</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>这个变化背后的意义是：<code class="language-plaintext highlighter-rouge">mymcp</code> 不只是一个 HTTP server，而是开始有了自己的“生命周期管理界面”。</p>
+
+<p>2.x 里环境变量前缀也统一成了 <code class="language-plaintext highlighter-rouge">MYMCP_*</code>。例如以前的 <code class="language-plaintext highlighter-rouge">MCP_TOKEN_FILE</code> 这类配置，现在对应到 <code class="language-plaintext highlighter-rouge">MYMCP_TOKEN_FILE</code>。</p>
+
+<h2 id="可观测性从-audit-log-到-opentelemetry">可观测性：从 audit log 到 OpenTelemetry</h2>
+
+<p>上一篇已经提过 audit log。那时的重点是：AI 调了什么 tool、参数是什么、成功还是失败、耗时多久，至少要能回看。</p>
+
+<p>现在 2.x 的可观测性明显往前走了一步：<code class="language-plaintext highlighter-rouge">mymcp</code> 开始支持 OpenTelemetry 的三件套：</p>
+
+<ul>
+  <li>metrics；</li>
+  <li>traces；</li>
+  <li>logs。</li>
+</ul>
+
+<p>默认安装就支持 Prometheus pull：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$MYMCP_METRICS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+  http://your-server:8765/metrics
+</code></pre></div></div>
+
+<p>如果从一开始就要启用 OTLP extra，可以这样安装：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pipx <span class="nb">install</span> <span class="s1">'algony-mymcp[otlp]'</span>
+</code></pre></div></div>
+
+<p>如果你已经用 pipx 安装过 mymcp：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pipx <span class="nb">install </span>algony-mymcp
+</code></pre></div></div>
+
+<p>后来才发现还想给这个已安装的 mymcp 补装可选依赖，比如 OTLP 相关依赖，那么可以用：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pipx inject algony-mymcp <span class="s1">'algony-mymcp[otlp]'</span>
+</code></pre></div></div>
+
+<p>pipx inject 的作用是：往某个 pipx 已创建的隔离虚拟环境里，再安装额外的 Python 包或 extra 依赖。</p>
+
+<p>再配置标准 OTel 环境变量，就可以把指标、链路和日志推到 Grafana Cloud、OpenTelemetry Collector、Tempo、Loki、Mimir 等后端：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OTEL_EXPORTER_OTLP_ENDPOINT</span><span class="o">=</span><span class="s2">"https://your-otlp-endpoint/otlp"</span>
+<span class="nb">export </span><span class="nv">OTEL_EXPORTER_OTLP_HEADERS</span><span class="o">=</span><span class="s2">"Authorization=Basic ..."</span>
+<span class="nb">export </span><span class="nv">OTEL_SERVICE_NAME</span><span class="o">=</span>mymcp
+
+mymcp serve
+</code></pre></div></div>
+
+<p>这跟 audit log 是两层东西：</p>
+
+<ul>
+  <li>audit log 解决“谁用哪个 token 调了哪个 tool”这种安全审计问题；</li>
+  <li>OpenTelemetry 解决“服务是否健康、哪个 tool 慢、错误率多少、某个请求在哪一步出问题”这种运行观测问题。</li>
+</ul>
+
+<p>还有 <code class="language-plaintext highlighter-rouge">/metrics</code> 不是直接裸奔的公开端点，而是需要 metrics token。</p>
+
+<h2 id="grafana-面板也准备好了">Grafana 面板也准备好了</h2>
+
+<p>源码里已经带了 Grafana dashboard，例如：</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">deploy/observability/dashboard.json</code></li>
+  <li><code class="language-plaintext highlighter-rouge">deploy/grafana/mymcp-dashboard.json</code></li>
+  <li><code class="language-plaintext highlighter-rouge">deploy/grafana/mymcp-logs-dashboard.json</code></li>
+</ul>
+
+<p>指标面板主要看这些内容：</p>
+
+<ul>
+  <li>tool call rate；</li>
+  <li>tool latency percentiles；</li>
+  <li>error rate；</li>
+  <li>HTTP request rate；</li>
+  <li>process RSS / CPU / open file descriptors。</li>
+</ul>
+
+<p>日志和 trace 面板则重点围绕 <code class="language-plaintext highlighter-rouge">request_id</code>、<code class="language-plaintext highlighter-rouge">trace_id</code>、<code class="language-plaintext highlighter-rouge">span_id</code> 做关联。这样从一个慢请求跳到对应日志，再从日志跳到 trace，会比单纯翻 <code class="language-plaintext highlighter-rouge">journalctl</code> 清楚很多。</p>
+
+<p>这也说明 <code class="language-plaintext highlighter-rouge">mymcp</code> 的定位在变：它不是只考虑“能不能连上 Claude / Cursor”，而是在考虑“长期跑在一台机器上，出了问题怎么定位”。</p>
+
+<h2 id="大文件和二进制传输">大文件和二进制传输</h2>
+
+<p>还有一个很实用的变化：MCP tools 从原来的文本文件读写，扩展出了两个文件传输工具：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>tool</th>
+      <th>权限</th>
+      <th>作用</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">prepare_upload</code></td>
+      <td>rw</td>
+      <td>生成一次性上传 URL</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">prepare_download</code></td>
+      <td>ro</td>
+      <td>生成一次性下载 URL</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>这个设计不是把文件内容 base64 塞进 MCP 消息里，而是让 tool 返回一个短小的签名 URL，然后客户端用普通 HTTP 上传或下载。</p>
+
+<p>好处很明显：</p>
+
+<ul>
+  <li>二进制文件不会进入 LLM context；</li>
+  <li>大文件不会把上下文撑爆；</li>
+  <li>URL 是一次性的；</li>
+  <li>ticket 有过期时间；</li>
+  <li>路径、字节数、权限都可以约束；</li>
+  <li>仍然复用 protected paths 和 audit log。</li>
+</ul>
+
+<p>这让 <code class="language-plaintext highlighter-rouge">mymcp</code> 从“文本级文件操作”往“真实远程机器操作”又走了一步。比如上传一个安装包、下载一份日志归档、取回生成的报告，都不再需要绕道让大模型读写一大坨文本。</p>
+
+        </div>
+
+        
+<div class="comments" id="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+
+	    var disqus_shortname = 'https-algony-tony-github-io';
+
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+      </div>
+
+      
+
+      
+
+    </article>
+
+  </div>
+</main>
+
+
+    
+      <footer class="site-footer">
+
+  <div class="wrapper-footer">
+    <div class="social-wrapper">
+      
+
+
+
+
+
+
+
+<a href="/feed.xml"><i class="svg-icon rss"></i></a>
+
+
+
+
+    </div>
+
+    <div>
+      <p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+    </div>
+
+    <div>Site powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://pages.github.com/">Github Pages</a>.</div>
+  </div>
+
+</footer>
+
+    
+
+  </body>
+</html>
+

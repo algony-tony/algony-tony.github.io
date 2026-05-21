@@ -1,4 +1,578 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://algony-tony.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://algony-tony.github.io/" rel="alternate" type="text/html" /><updated>2026-05-01T00:24:36+08:00</updated><id>https://algony-tony.github.io/feed.xml</id><title type="html">Algony Tony</title><subtitle>etvdyn</subtitle><entry><title type="html">一个简单但却强大的 MCP Server</title><link href="https://algony-tony.github.io/mymcp-server/" rel="alternate" type="text/html" title="一个简单但却强大的 MCP Server" /><published>2026-04-22T00:00:00+08:00</published><updated>2026-04-22T00:00:00+08:00</updated><id>https://algony-tony.github.io/mymcp-server</id><content type="html" xml:base="https://algony-tony.github.io/mymcp-server/"><![CDATA[<p>介绍一个有意思的项目：<a href="https://github.com/algony-tony/mymcp">algony-tony/mymcp</a>。</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://algony-tony.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://algony-tony.github.io/" rel="alternate" type="text/html" /><updated>2026-05-22T01:48:55+08:00</updated><id>https://algony-tony.github.io/feed.xml</id><title type="html">Algony Tony</title><subtitle>etvdyn</subtitle><entry><title type="html">mymcp server 的 2.x 进展</title><link href="https://algony-tony.github.io/mymcp-server-update/" rel="alternate" type="text/html" title="mymcp server 的 2.x 进展" /><published>2026-05-19T00:00:00+08:00</published><updated>2026-05-19T00:00:00+08:00</updated><id>https://algony-tony.github.io/mymcp-server-update</id><content type="html" xml:base="https://algony-tony.github.io/mymcp-server-update/"><![CDATA[<p>之前介绍过的 <a href="/mymcp-server/">mymcp server</a> 最近 2.x 版本里有几个变化：<strong>安装方式变了，可观测性补齐了，文件传输也从“文本工具”扩展到了大文件和二进制文件。</strong></p>
+
+<h2 id="从脚本安装变成-pipx-安装">从脚本安装变成 pipx 安装</h2>
+
+<p>之前 <code class="language-plaintext highlighter-rouge">mymcp</code> 更像一个可以部署到服务器上的源码项目：clone 代码，跑 <code class="language-plaintext highlighter-rouge">deploy/install.sh</code>，再由脚本创建 venv、写 systemd service、设置目录。</p>
+
+<p>现在 2.x 之后，它已经更接近一个正常 Python 命令行工具了：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pipx <span class="nb">install </span>algony-mymcp
+</code></pre></div></div>
+
+<p>PyPI 上的发行包名字是 <code class="language-plaintext highlighter-rouge">algony-mymcp</code>，但安装以后命令仍然是 <code class="language-plaintext highlighter-rouge">mymcp</code>:</p>
+
+<ul>
+  <li>代码由 pipx 管理；</li>
+  <li>配置目录迁到 <code class="language-plaintext highlighter-rouge">/etc/mymcp</code>；</li>
+  <li>日志目录默认在 <code class="language-plaintext highlighter-rouge">/var/log/mymcp</code>；</li>
+  <li>systemd service 可以通过 CLI 生成；</li>
+  <li>升级变成常规的 <code class="language-plaintext highlighter-rouge">pipx upgrade algony-mymcp</code>。</li>
+</ul>
+
+<p>最小试用可以直接前台启动：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mymcp serve
+</code></pre></div></div>
+
+<p>生产环境则是：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>mymcp install-service <span class="nt">--yes</span>
+<span class="nb">sudo </span>systemctl start mymcp
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">install-service</code> 会生成 admin token、可选的 metrics token，写入 <code class="language-plaintext highlighter-rouge">/etc/mymcp/.env</code>，再安装 systemd unit。</p>
+
+<h2 id="cli-变成了运维入口">CLI 变成了运维入口</h2>
+
+<p>另一个变化是，很多原来散在脚本里的动作，现在被收进了 <code class="language-plaintext highlighter-rouge">mymcp</code> CLI：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>命令</th>
+      <th>作用</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mymcp serve</code></td>
+      <td>前台运行 MCP server</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mymcp install-service</code></td>
+      <td>安装 systemd 服务</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mymcp uninstall-service</code></td>
+      <td>卸载 systemd 服务</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mymcp token list/add/revoke</code></td>
+      <td>管理 ro/rw token</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mymcp token rotate-admin</code></td>
+      <td>轮换 admin token</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mymcp token rotate-metrics</code></td>
+      <td>轮换 metrics token</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mymcp doctor</code></td>
+      <td>诊断环境、依赖和可观测性状态</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mymcp version</code></td>
+      <td>查看版本</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>这个变化背后的意义是：<code class="language-plaintext highlighter-rouge">mymcp</code> 不只是一个 HTTP server，而是开始有了自己的“生命周期管理界面”。</p>
+
+<p>2.x 里环境变量前缀也统一成了 <code class="language-plaintext highlighter-rouge">MYMCP_*</code>。例如以前的 <code class="language-plaintext highlighter-rouge">MCP_TOKEN_FILE</code> 这类配置，现在对应到 <code class="language-plaintext highlighter-rouge">MYMCP_TOKEN_FILE</code>。</p>
+
+<h2 id="可观测性从-audit-log-到-opentelemetry">可观测性：从 audit log 到 OpenTelemetry</h2>
+
+<p>上一篇已经提过 audit log。那时的重点是：AI 调了什么 tool、参数是什么、成功还是失败、耗时多久，至少要能回看。</p>
+
+<p>现在 2.x 的可观测性明显往前走了一步：<code class="language-plaintext highlighter-rouge">mymcp</code> 开始支持 OpenTelemetry 的三件套：</p>
+
+<ul>
+  <li>metrics；</li>
+  <li>traces；</li>
+  <li>logs。</li>
+</ul>
+
+<p>默认安装就支持 Prometheus pull：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$MYMCP_METRICS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+  http://your-server:8765/metrics
+</code></pre></div></div>
+
+<p>如果从一开始就要启用 OTLP extra，可以这样安装：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pipx <span class="nb">install</span> <span class="s1">'algony-mymcp[otlp]'</span>
+</code></pre></div></div>
+
+<p>如果你已经用 pipx 安装过 mymcp：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pipx <span class="nb">install </span>algony-mymcp
+</code></pre></div></div>
+
+<p>后来才发现还想给这个已安装的 mymcp 补装可选依赖，比如 OTLP 相关依赖，那么可以用：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pipx inject algony-mymcp <span class="s1">'algony-mymcp[otlp]'</span>
+</code></pre></div></div>
+
+<p>pipx inject 的作用是：往某个 pipx 已创建的隔离虚拟环境里，再安装额外的 Python 包或 extra 依赖。</p>
+
+<p>再配置标准 OTel 环境变量，就可以把指标、链路和日志推到 Grafana Cloud、OpenTelemetry Collector、Tempo、Loki、Mimir 等后端：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OTEL_EXPORTER_OTLP_ENDPOINT</span><span class="o">=</span><span class="s2">"https://your-otlp-endpoint/otlp"</span>
+<span class="nb">export </span><span class="nv">OTEL_EXPORTER_OTLP_HEADERS</span><span class="o">=</span><span class="s2">"Authorization=Basic ..."</span>
+<span class="nb">export </span><span class="nv">OTEL_SERVICE_NAME</span><span class="o">=</span>mymcp
+
+mymcp serve
+</code></pre></div></div>
+
+<p>这跟 audit log 是两层东西：</p>
+
+<ul>
+  <li>audit log 解决“谁用哪个 token 调了哪个 tool”这种安全审计问题；</li>
+  <li>OpenTelemetry 解决“服务是否健康、哪个 tool 慢、错误率多少、某个请求在哪一步出问题”这种运行观测问题。</li>
+</ul>
+
+<p>还有 <code class="language-plaintext highlighter-rouge">/metrics</code> 不是直接裸奔的公开端点，而是需要 metrics token。</p>
+
+<h2 id="grafana-面板也准备好了">Grafana 面板也准备好了</h2>
+
+<p>源码里已经带了 Grafana dashboard，例如：</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">deploy/observability/dashboard.json</code></li>
+  <li><code class="language-plaintext highlighter-rouge">deploy/grafana/mymcp-dashboard.json</code></li>
+  <li><code class="language-plaintext highlighter-rouge">deploy/grafana/mymcp-logs-dashboard.json</code></li>
+</ul>
+
+<p>指标面板主要看这些内容：</p>
+
+<ul>
+  <li>tool call rate；</li>
+  <li>tool latency percentiles；</li>
+  <li>error rate；</li>
+  <li>HTTP request rate；</li>
+  <li>process RSS / CPU / open file descriptors。</li>
+</ul>
+
+<p>日志和 trace 面板则重点围绕 <code class="language-plaintext highlighter-rouge">request_id</code>、<code class="language-plaintext highlighter-rouge">trace_id</code>、<code class="language-plaintext highlighter-rouge">span_id</code> 做关联。这样从一个慢请求跳到对应日志，再从日志跳到 trace，会比单纯翻 <code class="language-plaintext highlighter-rouge">journalctl</code> 清楚很多。</p>
+
+<p>这也说明 <code class="language-plaintext highlighter-rouge">mymcp</code> 的定位在变：它不是只考虑“能不能连上 Claude / Cursor”，而是在考虑“长期跑在一台机器上，出了问题怎么定位”。</p>
+
+<h2 id="大文件和二进制传输">大文件和二进制传输</h2>
+
+<p>还有一个很实用的变化：MCP tools 从原来的文本文件读写，扩展出了两个文件传输工具：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>tool</th>
+      <th>权限</th>
+      <th>作用</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">prepare_upload</code></td>
+      <td>rw</td>
+      <td>生成一次性上传 URL</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">prepare_download</code></td>
+      <td>ro</td>
+      <td>生成一次性下载 URL</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>这个设计不是把文件内容 base64 塞进 MCP 消息里，而是让 tool 返回一个短小的签名 URL，然后客户端用普通 HTTP 上传或下载。</p>
+
+<p>好处很明显：</p>
+
+<ul>
+  <li>二进制文件不会进入 LLM context；</li>
+  <li>大文件不会把上下文撑爆；</li>
+  <li>URL 是一次性的；</li>
+  <li>ticket 有过期时间；</li>
+  <li>路径、字节数、权限都可以约束；</li>
+  <li>仍然复用 protected paths 和 audit log。</li>
+</ul>
+
+<p>这让 <code class="language-plaintext highlighter-rouge">mymcp</code> 从“文本级文件操作”往“真实远程机器操作”又走了一步。比如上传一个安装包、下载一份日志归档、取回生成的报告，都不再需要绕道让大模型读写一大坨文本。</p>]]></content><author><name></name></author><category term="软件技术" /><category term="AI" /><category term="MCP" /><category term="Linux" /><category term="LLM" /><category term="OpenTelemetry" /><category term="Observability" /><summary type="html"><![CDATA[之前介绍过的 mymcp server 最近 2.x 版本里有几个变化：安装方式变了，可观测性补齐了，文件传输也从“文本工具”扩展到了大文件和二进制文件。]]></summary></entry><entry><title type="html">12-Factor App 介绍</title><link href="https://algony-tony.github.io/12-factor-app/" rel="alternate" type="text/html" title="12-Factor App 介绍" /><published>2026-05-08T00:00:00+08:00</published><updated>2026-05-08T00:00:00+08:00</updated><id>https://algony-tony.github.io/12-factor-app</id><content type="html" xml:base="https://algony-tony.github.io/12-factor-app/"><![CDATA[<ul id="markdown-toc">
+  <li><a href="#12-factor-app-解决什么问题" id="markdown-toc-12-factor-app-解决什么问题">12-Factor App 解决什么问题</a></li>
+  <li><a href="#一句话概括-12-个原则" id="markdown-toc-一句话概括-12-个原则">一句话概括 12 个原则</a></li>
+  <li><a href="#1-codebase一份代码库多份部署" id="markdown-toc-1-codebase一份代码库多份部署">1. Codebase：一份代码库，多份部署</a></li>
+  <li><a href="#2-dependencies显式声明并隔离依赖" id="markdown-toc-2-dependencies显式声明并隔离依赖">2. Dependencies：显式声明并隔离依赖</a></li>
+  <li><a href="#3-config配置存放在环境中" id="markdown-toc-3-config配置存放在环境中">3. Config：配置存放在环境中</a></li>
+  <li><a href="#4-backing-services后端服务都是可替换资源" id="markdown-toc-4-backing-services后端服务都是可替换资源">4. Backing services：后端服务都是可替换资源</a></li>
+  <li><a href="#5-build-release-run分离构建发布和运行" id="markdown-toc-5-build-release-run分离构建发布和运行">5. Build, release, run：分离构建、发布和运行</a></li>
+  <li><a href="#6-processes应用以无状态进程运行" id="markdown-toc-6-processes应用以无状态进程运行">6. Processes：应用以无状态进程运行</a></li>
+  <li><a href="#7-port-binding通过端口绑定提供服务" id="markdown-toc-7-port-binding通过端口绑定提供服务">7. Port binding：通过端口绑定提供服务</a></li>
+  <li><a href="#8-concurrency通过进程模型水平扩展" id="markdown-toc-8-concurrency通过进程模型水平扩展">8. Concurrency：通过进程模型水平扩展</a></li>
+  <li><a href="#9-disposability快速启动优雅终止" id="markdown-toc-9-disposability快速启动优雅终止">9. Disposability：快速启动，优雅终止</a></li>
+  <li><a href="#10-devprod-parity开发预发生产尽量一致" id="markdown-toc-10-devprod-parity开发预发生产尽量一致">10. Dev/prod parity：开发、预发、生产尽量一致</a></li>
+  <li><a href="#11-logs日志作为事件流输出" id="markdown-toc-11-logs日志作为事件流输出">11. Logs：日志作为事件流输出</a></li>
+  <li><a href="#12-admin-processes管理任务作为一次性进程运行" id="markdown-toc-12-admin-processes管理任务作为一次性进程运行">12. Admin processes：管理任务作为一次性进程运行</a></li>
+  <li><a href="#12-factor-app-和云原生的关系" id="markdown-toc-12-factor-app-和云原生的关系">12-Factor App 和云原生的关系</a></li>
+  <li><a href="#实践时不要教条化" id="markdown-toc-实践时不要教条化">实践时不要教条化</a></li>
+</ul>
+
+<p>12-Factor App，也常写作 <strong>The Twelve-Factor App</strong>，是一套面向现代 Web 应用和 SaaS 应用的工程方法论。它最早由 Heroku 总结出来，目标是让应用更容易部署、更容易扩缩容，也更适合在云环境中运行。</p>
+
+<p>它并不是某一种框架，也不是某一种具体技术，而是一组设计原则。今天我们常说的云原生、容器化、持续交付、基础设施即代码、平台工程，很多实践都能在 12-Factor App 里找到影子。</p>
+
+<p>官方站点在这里：<a href="https://12factor.net/">12factor.net</a>。</p>
+
+<h2 id="12-factor-app-解决什么问题">12-Factor App 解决什么问题</h2>
+
+<p>一个应用刚开始通常很简单：开发者在本地写代码，连一个本地数据库，启动一个进程，手动改配置，手动部署。</p>
+
+<p>但应用一旦进入真实生产环境，问题就会变多：</p>
+
+<ul>
+  <li>同一套代码要部署到开发、测试、预发、生产多个环境；</li>
+  <li>数据库、缓存、消息队列、对象存储等外部依赖越来越多；</li>
+  <li>配置、密钥、连接串不能写死在代码里；</li>
+  <li>应用需要水平扩容；</li>
+  <li>发布要可回滚；</li>
+  <li>日志要能被统一采集；</li>
+  <li>线上进程要能快速启动、优雅退出；</li>
+  <li>临时脚本、数据库迁移、管理任务也要可控执行。</li>
+</ul>
+
+<p>12-Factor App 的核心就是：<strong>把应用设计成一个可移植、可配置、可扩展、易部署的服务单元。</strong></p>
+
+<h2 id="一句话概括-12-个原则">一句话概括 12 个原则</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>序号</th>
+      <th>Factor</th>
+      <th>核心含义</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Codebase</td>
+      <td>一份代码库，多份部署</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Dependencies</td>
+      <td>显式声明并隔离依赖</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Config</td>
+      <td>配置存放在环境中</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Backing services</td>
+      <td>后端服务都当作可替换资源</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Build, release, run</td>
+      <td>严格分离构建、发布、运行</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Processes</td>
+      <td>应用以无状态进程运行</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Port binding</td>
+      <td>通过端口绑定对外提供服务</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Concurrency</td>
+      <td>通过进程模型水平扩展</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>Disposability</td>
+      <td>快速启动，优雅终止</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>Dev/prod parity</td>
+      <td>尽量保持开发、预发、生产一致</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>Logs</td>
+      <td>日志作为事件流输出</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>Admin processes</td>
+      <td>管理任务作为一次性进程运行</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>下面逐个展开。</p>
+
+<h2 id="1-codebase一份代码库多份部署">1. Codebase：一份代码库，多份部署</h2>
+
+<p>一个应用应该对应一个代码库，这份代码库通过 Git 之类的版本控制系统管理。</p>
+
+<p>同一份代码可以部署到多个环境，比如：</p>
+
+<ul>
+  <li>本地开发环境；</li>
+  <li>测试环境；</li>
+  <li>预发环境；</li>
+  <li>生产环境；</li>
+  <li>不同客户的私有化环境。</li>
+</ul>
+
+<p>这些环境不应该靠维护多份代码来区分，而应该通过不同配置、不同发布版本来区分。</p>
+
+<p>这条原则看似简单，但它能避免很多混乱：生产环境临时改了一份代码、本地分支和线上不一致、某个客户版本长期游离在主线之外，这些都会让系统越来越难维护。</p>
+
+<h2 id="2-dependencies显式声明并隔离依赖">2. Dependencies：显式声明并隔离依赖</h2>
+
+<p>应用依赖什么，就应该明确写出来，而不是依赖机器上“刚好装了什么”。</p>
+
+<p>比如：</p>
+
+<ul>
+  <li>Java 用 <code class="language-plaintext highlighter-rouge">pom.xml</code>、<code class="language-plaintext highlighter-rouge">build.gradle</code>；</li>
+  <li>Node.js 用 <code class="language-plaintext highlighter-rouge">package.json</code>、<code class="language-plaintext highlighter-rouge">package-lock.json</code>；</li>
+  <li>Python 用 <code class="language-plaintext highlighter-rouge">requirements.txt</code>、<code class="language-plaintext highlighter-rouge">pyproject.toml</code>、<code class="language-plaintext highlighter-rouge">uv.lock</code>；</li>
+  <li>Ruby 用 <code class="language-plaintext highlighter-rouge">Gemfile</code>、<code class="language-plaintext highlighter-rouge">Gemfile.lock</code>。</li>
+</ul>
+
+<p>同时，依赖还应该被隔离。不同应用之间不应该共享一套不可控的全局依赖。</p>
+
+<p>容器、虚拟环境、语言自带的依赖管理工具，都是在帮我们实现这一点。这样做的结果是：新机器、新环境、CI/CD 流水线都能根据声明文件稳定地安装依赖，而不是靠口口相传的部署文档。</p>
+
+<h2 id="3-config配置存放在环境中">3. Config：配置存放在环境中</h2>
+
+<p>配置是指不同部署环境之间会变化的内容，例如：</p>
+
+<ul>
+  <li>数据库连接串；</li>
+  <li>Redis 地址；</li>
+  <li>API Key；</li>
+  <li>第三方服务地址；</li>
+  <li>日志级别；</li>
+  <li>功能开关；</li>
+  <li>密钥和证书路径。</li>
+</ul>
+
+<p>12-Factor App 主张把这些配置从代码中分离出来，放到环境变量中。</p>
+
+<p>核心思想不是“环境变量本身最完美”，而是：<strong>代码和配置必须分离。</strong></p>
+
+<p>在 Kubernetes 中，配置可能来自 <code class="language-plaintext highlighter-rouge">ConfigMap</code>、<code class="language-plaintext highlighter-rouge">Secret</code>；在云平台中，可能来自参数管理、密钥管理服务；在传统部署中，也可能来自 <code class="language-plaintext highlighter-rouge">.env</code> 文件或启动脚本。无论具体形式如何，都不应该把生产数据库密码写进代码仓库。</p>
+
+<h2 id="4-backing-services后端服务都是可替换资源">4. Backing services：后端服务都是可替换资源</h2>
+
+<p>应用通常会依赖很多外部服务：</p>
+
+<ul>
+  <li>数据库；</li>
+  <li>缓存；</li>
+  <li>消息队列；</li>
+  <li>对象存储；</li>
+  <li>邮件服务；</li>
+  <li>搜索引擎；</li>
+  <li>第三方 API。</li>
+</ul>
+
+<p>12-Factor App 把这些都称为 backing services，也就是应用背后的支撑服务。</p>
+
+<p>重点是：应用不应该假设这些服务一定部署在哪里，或者一定是某个固定实例。它们应该像资源一样被“挂载”到应用上。</p>
+
+<p>比如，应用只需要知道数据库 URL，而不需要知道数据库是本机进程、Docker 容器、云数据库，还是临时测试库。只要连接信息变化，应用就能切换到新的后端服务。</p>
+
+<p>这让故障迁移、环境切换、云服务替换都变得更容易。</p>
+
+<h2 id="5-build-release-run分离构建发布和运行">5. Build, release, run：分离构建、发布和运行</h2>
+
+<p>12-Factor App 把应用生命周期分成三个阶段：</p>
+
+<ol>
+  <li><strong>Build</strong>：把代码转换成可运行制品，例如 jar 包、镜像、静态文件；</li>
+  <li><strong>Release</strong>：把构建产物和环境配置组合起来，形成某一次可部署发布；</li>
+  <li><strong>Run</strong>：在目标环境中启动发布版本。</li>
+</ol>
+
+<p>这三个阶段应该严格分离。</p>
+
+<p>一个常见的反例是：生产环境启动时再拉代码、编译、打包、修改配置、直接运行。这样做的问题是不可重复，也很难回滚。</p>
+
+<p>更好的方式是：CI 里完成构建，生成不可变制品；发布系统把制品和配置组合成一个版本；运行环境只负责启动这个版本。如果出现问题，就回滚到上一个 release。</p>
+
+<h2 id="6-processes应用以无状态进程运行">6. Processes：应用以无状态进程运行</h2>
+
+<p>12-Factor App 要求应用进程是无状态的。</p>
+
+<p>所谓无状态，不是说应用不能有数据，而是说：<strong>进程本身不应该保存必须长期存在的状态。</strong></p>
+
+<p>长期状态应该放在数据库、缓存、对象存储等外部服务里。应用进程可以随时被杀掉、重启、替换，用户请求不应该依赖某个固定进程才能继续。</p>
+
+<p>这条原则是水平扩容的基础。如果应用状态绑定在单个进程上，那么负载均衡、滚动发布、自动伸缩都会变得麻烦。</p>
+
+<p>当然，现实中仍然会有一些内存缓存、连接池、本地临时文件，但这些都应该被视为可丢弃的运行时状态，而不是核心业务状态。</p>
+
+<h2 id="7-port-binding通过端口绑定提供服务">7. Port binding：通过端口绑定提供服务</h2>
+
+<p>一个 12-Factor App 应该自包含地启动服务，并通过端口对外提供能力。</p>
+
+<p>例如，一个 Web 应用启动后监听 <code class="language-plaintext highlighter-rouge">8080</code> 端口，平台或反向代理再把外部流量转发过来。</p>
+
+<p>这和早期把应用打成 war 包丢进外部应用服务器的模式不同。12-Factor App 更倾向于让应用自己包含运行时，自己监听端口，对平台暴露一个清晰的服务入口。</p>
+
+<p>这也是为什么 Spring Boot、Express、FastAPI、Go HTTP Server 这类自启动服务模型在云环境中很常见。</p>
+
+<h2 id="8-concurrency通过进程模型水平扩展">8. Concurrency：通过进程模型水平扩展</h2>
+
+<p>当访问量变大时，不应该只想着把单个进程做得越来越复杂，而应该通过增加进程数量来扩展。</p>
+
+<p>例如：</p>
+
+<ul>
+  <li>增加更多 Web 进程处理 HTTP 请求；</li>
+  <li>增加更多 Worker 进程处理异步任务；</li>
+  <li>增加更多 Consumer 进程消费消息队列；</li>
+  <li>为不同任务类型使用不同进程模型。</li>
+</ul>
+
+<p>在 Kubernetes 里，这通常对应增加 Pod 副本数；在传统进程管理中，可能对应增加进程数或机器数。</p>
+
+<p>这条原则的重点是：应用架构要允许横向扩展，而不是只能依赖一台更大的机器。</p>
+
+<h2 id="9-disposability快速启动优雅终止">9. Disposability：快速启动，优雅终止</h2>
+
+<p>云环境里的进程随时可能被调度、重启、替换、扩容、缩容。</p>
+
+<p>所以应用应该做到两点：</p>
+
+<ul>
+  <li><strong>快速启动</strong>：新实例可以尽快加入服务；</li>
+  <li><strong>优雅终止</strong>：收到退出信号后，停止接收新请求，处理完当前请求，释放资源，然后退出。</li>
+</ul>
+
+<p>这对滚动发布、自动扩缩容、故障恢复都很重要。</p>
+
+<p>比如，在 Kubernetes 中，应用应该正确处理 <code class="language-plaintext highlighter-rouge">SIGTERM</code>，配合 readiness probe、liveness probe、preStop hook 等机制，避免流量还没摘除就被强制杀掉。</p>
+
+<h2 id="10-devprod-parity开发预发生产尽量一致">10. Dev/prod parity：开发、预发、生产尽量一致</h2>
+
+<p>很多线上问题来自环境不一致：</p>
+
+<ul>
+  <li>本地用 SQLite，生产用 PostgreSQL；</li>
+  <li>本地没有消息队列，生产有消息队列；</li>
+  <li>开发环境版本很旧，生产环境版本很新；</li>
+  <li>测试数据和真实数据形态差异太大；</li>
+  <li>部署流程在不同环境里完全不同。</li>
+</ul>
+
+<p>12-Factor App 主张尽量缩小开发、预发、生产之间的差距。</p>
+
+<p>这并不是说所有环境都要完全一样，而是说关键依赖、运行方式、发布流程应该尽量一致。Docker Compose、Dev Container、测试环境自动化、基础设施即代码，都是在降低这种差距。</p>
+
+<p>环境越接近，问题越早暴露；问题越早暴露，修复成本越低。</p>
+
+<h2 id="11-logs日志作为事件流输出">11. Logs：日志作为事件流输出</h2>
+
+<p>应用不应该自己负责管理日志文件的生命周期，比如切割、压缩、归档、上传。</p>
+
+<p>12-Factor App 的建议是：应用把日志当作事件流，直接输出到标准输出或标准错误。</p>
+
+<p>日志的采集、存储、搜索、分析，交给运行平台处理，例如：</p>
+
+<ul>
+  <li>Docker logging driver；</li>
+  <li>Kubernetes 日志采集；</li>
+  <li>Fluent Bit / Fluentd；</li>
+  <li>Elasticsearch / OpenSearch；</li>
+  <li>Loki；</li>
+  <li>云厂商日志服务。</li>
+</ul>
+
+<p>这样做的好处是应用更简单，平台也更容易统一管理日志。</p>
+
+<h2 id="12-admin-processes管理任务作为一次性进程运行">12. Admin processes：管理任务作为一次性进程运行</h2>
+
+<p>应用除了正常处理请求，还经常需要执行一些管理任务：</p>
+
+<ul>
+  <li>数据库迁移；</li>
+  <li>数据修复；</li>
+  <li>创建管理员账号；</li>
+  <li>批量导入数据；</li>
+  <li>临时统计脚本；</li>
+  <li>清理历史数据。</li>
+</ul>
+
+<p>这些任务不应该靠开发者 SSH 到服务器上手工执行一段不受版本控制的脚本。</p>
+
+<p>更好的方式是：管理任务和应用代码一起纳入版本控制，使用和应用相同的依赖、相同的配置、相同的发布环境，以一次性进程的方式执行。</p>
+
+<p>比如：</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1"><span class="c"># Rails</span>
+</div><div class="line-2">rails db:migrate
+</div><div class="line-3">
+</div><div class="line-4"><span class="c"># Django</span>
+</div><div class="line-5">python manage.py migrate
+</div><div class="line-6">
+</div><div class="line-7"><span class="c"># Spring Boot</span>
+</div><div class="line-8">java <span class="nt">-jar</span> app.jar migrate
+</div><div class="line-9">
+</div><div class="line-10"><span class="c"># Kubernetes Job</span>
+</div><div class="line-11">kubectl apply <span class="nt">-f</span> migration-job.yaml
+</div></code></pre></figure>
+
+<p>这样管理任务也变成了可审计、可重复、可回滚的发布体系的一部分。</p>
+
+<h2 id="12-factor-app-和云原生的关系">12-Factor App 和云原生的关系</h2>
+
+<p>12-Factor App 出现得比今天很多云原生概念更早，但它和云原生非常契合。</p>
+
+<p>如果把一个应用按照 12-Factor App 的方式设计，那么它通常会比较容易迁移到：</p>
+
+<ul>
+  <li>Docker；</li>
+  <li>Kubernetes；</li>
+  <li>PaaS 平台；</li>
+  <li>Serverless 平台；</li>
+  <li>CI/CD 流水线；</li>
+  <li>自动扩缩容环境。</li>
+</ul>
+
+<p>可以这样理解：</p>
+
+<ul>
+  <li>12-Factor App 关注的是<strong>应用应该怎么写</strong>；</li>
+  <li>容器关注的是<strong>应用怎么打包</strong>；</li>
+  <li>Kubernetes 关注的是<strong>应用怎么调度和运行</strong>；</li>
+  <li>CI/CD 关注的是<strong>应用怎么构建、测试和发布</strong>；</li>
+  <li>可观测性平台关注的是<strong>运行后怎么监控和排障</strong>。</li>
+</ul>
+
+<p>这些东西组合起来，才是一套完整的现代应用交付体系。</p>
+
+<h2 id="实践时不要教条化">实践时不要教条化</h2>
+
+<p>12-Factor App 很有价值，但也不需要机械照搬。</p>
+
+<p>比如“配置放环境变量”这条，在小应用里很方便，但在复杂企业系统里，配置中心、密钥管理、动态配置也许更合适。关键不是必须用环境变量，而是要做到配置和代码分离。</p>
+
+<p>再比如“无状态进程”，对于普通 Web API 很自然，但对于实时协作、游戏服务器、流处理任务、长连接服务，就需要更精细的状态设计。</p>
+
+<p>所以更合理的态度是：把 12-Factor App 当作一组架构检查清单，而不是宗教戒律。</p>]]></content><author><name></name></author><category term="软件技术" /><category term="架构" /><category term="云原生" /><category term="DevOps" /><category term="SaaS" /></entry><entry><title type="html">一个简单但却强大的 MCP Server</title><link href="https://algony-tony.github.io/mymcp-server/" rel="alternate" type="text/html" title="一个简单但却强大的 MCP Server" /><published>2026-04-22T00:00:00+08:00</published><updated>2026-04-22T00:00:00+08:00</updated><id>https://algony-tony.github.io/mymcp-server</id><content type="html" xml:base="https://algony-tony.github.io/mymcp-server/"><![CDATA[<p>介绍一个有意思的项目：<a href="https://github.com/algony-tony/mymcp">algony-tony/mymcp</a>。</p>
 
 <ul>
   <li><a href="https://github.com/algony-tony/mymcp">Github 地址</a></li>
@@ -4311,261 +4885,4 @@ $中欧预见养老目标日期2035三年持有期混合型(F017277)$</p>
 
 <blockquote>
   <p>本基金业绩比较基准：中证偏股型基金指数收益率×50％＋中债综合（全价）指数收益率×50％。</p>
-</blockquote>]]></content><author><name></name></author><category term="金融" /><category term="基金" /><category term="FOF" /><category term="养老" /></entry><entry><title type="html">用 Vim 查找重复行的几种办法</title><link href="https://algony-tony.github.io/vi-find-duplicate-lines/" rel="alternate" type="text/html" title="用 Vim 查找重复行的几种办法" /><published>2023-10-24T00:00:00+08:00</published><updated>2023-10-24T00:00:00+08:00</updated><id>https://algony-tony.github.io/vi-find-duplicate-lines</id><content type="html" xml:base="https://algony-tony.github.io/vi-find-duplicate-lines/"><![CDATA[<p>如果你有一个文本文件，现在想看下里面有没有重复内容的行，最简单的一个思路就是先用 vim 对文本排序，再直接正则匹配前后两个内容相同的行，代码如下（下面假设已经通过 <code class="language-plaintext highlighter-rouge">ESC</code> 键进入了命令模式）：</p>
-
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><div class="line-1"><span class="p">:</span><span class="k">sort</span>
-</div><div class="line-2"><span class="p">:</span><span class="k">g</span><span class="sr">/^\(.*\)$\n\1$/</span><span class="k">p</span>
-</div></code></pre></figure>
-
-<p>上面第一行就是对文本排序，再解释下第二行的正则匹配内容，就是匹配一行行首 <code class="language-plaintext highlighter-rouge">^</code> 和行尾 <code class="language-plaintext highlighter-rouge">$</code> 中的所有内容 <code class="language-plaintext highlighter-rouge">.*</code> 放入第一组中 <code class="language-plaintext highlighter-rouge">\(\)</code>，接着匹配一个换行符 <code class="language-plaintext highlighter-rouge">\n</code>，紧接着把上面匹配到的第一组内容拿出来继续匹配 <code class="language-plaintext highlighter-rouge">\1</code>，最后的一个 <code class="language-plaintext highlighter-rouge">p</code> 就是把满足这个正则模式的内容高亮出来。</p>
-
-<p>上面的正则只能匹配连续两行内容相同的行，如果有三行或者多行内容相同的情况只会高亮出前两行，问了下 ChatGPT 得到了一个匹配多行的代码，略复杂了一些：</p>
-
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><div class="line-1"><span class="p">:</span><span class="k">g</span><span class="sr">/^\(.*\)$\n\(\(.*\n\)*\)\1$/</span><span class="k">p</span>
-</div></code></pre></figure>
-
-<p>这个改进版的代码前面和前面一样，在匹配好第一行之后加了一个匹配任意内容的多行 <code class="language-plaintext highlighter-rouge">\(\(.*\n\)*\)</code>，再紧接着匹配与第一组内容完全相同的行 <code class="language-plaintext highlighter-rouge">\1</code>，这样就可以匹配多行内容了。但是这里对中间行是不做校验的，在这个问题里因为前面加了 <code class="language-plaintext highlighter-rouge">:sort</code> 排序所以是没有问题的。自己修改了下把中间行的内容也加上匹配校验也是可以的，如下：</p>
-
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><div class="line-1"><span class="p">:</span><span class="k">g</span><span class="sr">/^\(.*\)$\n\(\(\1\n\)*\)\1$/</span><span class="k">p</span>
-</div></code></pre></figure>
-
-<p>上面给的都是通过 Vim 的一次性的快捷操作，知道了思路后正则匹配命令基本现场就能写出来，下面是 <a href="https://stackoverflow.com/questions/1268032/how-can-i-mark-highlight-duplicate-lines-in-vi-editor">StackOverflow</a> 上网友给出的高级玩法：</p>
-
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><div class="line-1"><span class="p">:</span><span class="k">syn</span> clear Repeat <span class="p">|</span> <span class="k">g</span><span class="sr">/^\(.*\)\n\ze\%(.*\n\)*\1$/</span>exe <span class="s1">'syn match Repeat "^'</span> <span class="p">.</span> <span class="nb">escape</span><span class="p">(</span><span class="nb">getline</span><span class="p">(</span><span class="s1">'.'</span><span class="p">),</span> <span class="s1">'".\^$*[]'</span><span class="p">)</span> <span class="p">.</span> <span class="s1">'$"'</span> <span class="p">|</span> <span class="k">nohlsearch</span>
-</div></code></pre></figure>
-
-<p>如果需要经常匹配相同的行，也可以在 vimrc 文件中写成一个函数通过快捷键去调用。</p>
-
-<p>换种思路，用着 Vim 应该离 Linux 也不远，那就直接用 shell 命令也一样实现起来：</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><div class="line-1"><span class="nb">sort</span> &lt;file&gt; | <span class="nb">uniq</span> <span class="nt">-c</span>
-</div></code></pre></figure>
-
-<p>上面命令会把文件中每个行和它在文件中出现的次数打印出来，如果只需要打印出重复的行就再加个参数 <code class="language-plaintext highlighter-rouge">sort &lt;file&gt; | uniq -cd</code>。</p>
-
-<h2 id="参考链接">参考链接</h2>
-
-<p><a href="https://stackoverflow.com/questions/1268032/how-can-i-mark-highlight-duplicate-lines-in-vi-editor">How can I mark/highlight duplicate lines in VI editor?</a></p>]]></content><author><name></name></author><category term="软件技术" /><category term="Vim" /><category term="Linux" /><category term="shell" /><summary type="html"><![CDATA[如果你有一个文本文件，现在想看下里面有没有重复内容的行，最简单的一个思路就是先用 vim 对文本排序，再直接正则匹配前后两个内容相同的行，代码如下（下面假设已经通过 ESC 键进入了命令模式）：]]></summary></entry><entry><title type="html">40 位 AI 公司创始人谈论目前的 AI 技术</title><link href="https://algony-tony.github.io/ai-founder-talk/" rel="alternate" type="text/html" title="40 位 AI 公司创始人谈论目前的 AI 技术" /><published>2023-09-29T00:00:00+08:00</published><updated>2023-09-29T00:00:00+08:00</updated><id>https://algony-tony.github.io/ai-founder-talk</id><content type="html" xml:base="https://algony-tony.github.io/ai-founder-talk/"><![CDATA[<p><a href="https://video.h5.weibo.cn/1034:4950435027419155/4950435657417037">这个视频</a>采访了 40 位 AI 初创公司创始人，他们分享了在日常生活中的 AI 使用经验，这里是文字版。</p>
-
-<p>这段采访主要介绍了近期基于大语言模型的 AI 典型应用场景，如写稿，语音机器人，用 AI 来编程，AI 生成图片等，以及目前 AI 的优势和典型问题，
-它可以做创造性的工作，擅长阅读和处理数据，但是它会有“幻觉”（hallucinate），无法保证结果的正确性。构建一个可靠的 AI 应用就需要在确定性的软件和不确定性的概率模型中间做好协同，常用的办法的包括拆解问题步骤，适当的引导，以及持续迭代和调试。</p>
-
-<p><strong>提问：在你的日常生活中，你以最意想不到的方式使用 AI 的方式是什么？</strong></p>
-
-<p>A: 是的，我不知道是否应该说这个，但是我用它来写婚礼的演讲稿。</p>
-
-<p>B: 是的，我们两个都把电话答录机设置成了我们的语音机器人。</p>
-
-<p>现场打电话。</p>
-<blockquote>
-  <p>人类：嗨，最近怎么样？</p>
-
-  <p>人工智能：部落很强大，Padawan。（前半句来源于《魔兽世界》，Padawan 指《星球大战》中未经训练的绝地武士）</p>
-
-  <p>不错。</p>
-</blockquote>
-
-<p>C: 我认为这个机器人被编程成谈论“部落”。</p>
-
-<p>D: 现在我们每天都打开它来帮助我们编程。</p>
-
-<p>E: 帮助我们编码。</p>
-
-<p>F: 它在编码方面非常出色。</p>
-
-<p>G: 它使我编码的速度加快了很多。</p>
-
-<p>A: 你可以告诉 AI 你想对用户界面进行什么样的更改，比如加入深色模式，它就能自动修改代码来实现这个功能。</p>
-
-<p>H: 这些工具将使人类越来越像解说员，告诉它们我们想要的，然后，模型实际上会创造出比人类自己做得还要好的东西。</p>
-
-<p>I: 我认为基本的问题解决技能始终会非常重要。了解这项技术及其限制，并充分利用它是至关重要的。</p>
-
-<p><strong>提问：从总体上看，当前的人工智能工具擅长做什么？</strong></p>
-
-<p>J: 是的，非常好的问题。有趣的是，生成式 AI 工具在我们原以为它们可能表现不佳的领域，例如讲创意的故事和创意 AI 的方面，实际上做得很好。</p>
-
-<p>K: 用于创造性的人工智能。</p>
-
-<p>L: 我们的目标是使任何人都可以在自己的卧室里制作像《南方公园》这样的作品。</p>
-
-<p>M: 例如，你可以制作一张我、Eric 和 Rihanna 在海滩上打排球的照片。</p>
-
-<p>看着人工智能生成的照片。</p>
-<blockquote>
-  <p>我喜欢这个。</p>
-
-  <p>这个是我最喜欢的，或者我喜欢这个。</p>
-
-  <p>我喜欢这个。</p>
-</blockquote>
-
-<p>H: 我们正在构建真正像人类一样的 AI 语音，对话能力很强，就像人类一样。</p>
-
-<p>O: 没有 AI 之前，声音听起来很差劲。现在它与人类声音几乎无法区分。</p>
-
-<p>P: 就我们个人而言，AI 在语义搜索方面非常出色，以前这方面的效果不尽人意。现在只需要输入一段随机文本，它就能找到相关内容。</p>
-
-<p>Q: LLMs 具有出色的阅读能力。</p>
-
-<p>R: 它们非常擅长能够处理任意数据并回答相关问题。</p>
-
-<p>S: 因为有很多新类型的数据，所以很难进行适应，因此我们目前正在对所有这些新类型的数据进行微调，以使其尽可能准确。</p>
-
-<p>T: 对于时尚来说，非常具体地说，每时每刻都会出现新的术语，你必须不断更新这些模型，知道，噢，这个月的潮流是“美人鱼裙”，但下个月可能是“芭蕾裙”。</p>
-
-<p>U: AI 工具在提供大约 85% 到 90% 的解决方案方面非常出色，但在其上需要进行更多的微调或更多的技巧来确保您可以提供真正的价值。</p>
-
-<p>V: 你可以使用一系列简单的操作来完成一些非常复杂的事情。</p>
-
-<p>W: 要为它们设定明确的结构和方向，只需要给它们一个明确的任务，它们就能做得很好。</p>
-
-<p>V: 如果你能够思考你经历的过程，那么你实际上可以设计一个提示或一系列步骤，以便整个过程更可靠，而不仅仅是依赖它们自己。</p>
-
-<p>A: 在你的流程中持续迭代和调试时很重要的。</p>
-
-<p>Y: 你认为的解决方案可能随着时间的变化而改变。你的数据可能会变，模型的质量也可能会变，所以这需要持续的迭代。</p>
-
-<p>Z: <strong>我认为最困难的部分是你试图将确定性的软件与不确定的概率模型相结合，而我们正处于其中间。</strong></p>
-
-<p>Q：这是一个令人兴奋的工作，因为过去，计算机只是严格按照你的指令执行，可以预期在给定相同输入的情况下获得相同的结果，现在，相同的输入可能会产生不同的结果。</p>
-
-<p>N：如果我们可以在输出中引入一些随机性，这有助于更好地探索并完善模型，我们的模型将会从众多选择中不断学习和进化。</p>
-
-<p>M：它不像你期望的那样可靠，这对我们做娱乐的来说是好事，因为只要内容有趣，其他都不重要。但如果你在操作汽车，情况就复杂了。</p>
-
-<p>Q：所以这是一把双刃剑，有时它会产生<strong>幻觉</strong>（hallucinate），创造出一些原本不存在的东西。</p>
-
-<p>A: 我会把“幻觉”定义为 AI 生成一些不存在的东西，但看起来像是可能存在或者应该存在的东西。</p>
-
-<p>J：它们在区分事实和虚构上仍然很差，虽然它们是好的创意故事编写者，但是知道什么是真实和虚假的区别上却令人意外地差。</p>
-
-<p>1：如果你是医生，你可能需要花很长时间来确认 GPT 的诊断，如果出现任何错误，那么你可能会陷入麻烦。</p>
-
-<p>X：在什么时候你会信任 AI 而不是专业医生呢？</p>
-
-<p>J：近期，业界付出了大量努力来避免这些幻觉，但这已经产生了相反的问题，现在它经常会认为事物不真实，或者假装不知道它真的应该知道的事情，对吧？它会告诉你它从未听说过那篇文章，尽管它明显在训练集中，对吧？它就是在那里。</p>
-
-<p>2: 有点像人类，你知道，当你阅读东西并从中得出一些结论并内化它时，你不能确切地记得你在哪里读到它，所以当你使用这些模型来处理现实世界的数据时，实际上更难区分什么是幻觉什么是真实的数据，你不能一直要求它提供一致的引用，这仍然是一个挑战。因此，在这方面的信任度还有一段路要走。</p>
-
-<p>X：仅仅说准确率提高了是不够的，这背后有更多因素需要考虑，特别是涉及人们的信任时。如果你想开发一种最终被大众接受和使用的技术，信任是关键。</p>
-
-<p>Q：我们仍然需要在细节上为它们提供指导，这就是为什么你会听到很多关于“人机协同”。</p>
-
-<p>N：保持人的参与是非常重要的。</p>
-
-<p>U：在 AI 修正过程中，始终需要有人参与以确保其准确性。</p>
-
-<p>N：现在，有人需要监督并确保没有产生错误的信息。</p>
-
-<p>Q：因此，有很多利弊，真正的挑战在于找到正确的引导方式，我认为所有在 AI 上工作的 YC 公司都面临这个挑战。我们得到了这个新工具，我们都在努力弄清楚。</p>
-
-<p>Z: 我永远不想忘记，最终这项技术是为人类服务的，我们不能忘记其核心意义。我们可以让人类说出“那又怎么样”。</p>
-
-<p>3：理想情况下，它实际上是在加深人与人之间的联系，更多地是与人互动，找出对他们来说实际上有价值的东西。</p>
-
-<p><strong>Question: What is the most unexpected way that you use AI in your regular life?</strong></p>
-
-<p>Yeah, I don’t know if I should say this, but writing speeches for weddings.</p>
-
-<p>Yeah, we both set our answering machines to our voice bot.</p>
-
-<p>Human: Hey, how’s it going?</p>
-
-<p>AI: The Horde is strong, Padawan.</p>
-
-<p>Nice.</p>
-
-<p>This was, I think, prgrammed to talk about Horde.</p>
-
-<p>Now we have it open every day to help us code.</p>
-
-<p>Helps us code. It’s great at coding.</p>
-
-<p>It’s just making me code infinitely faster.</p>
-
-<p>You can describe to the AI what change you want to make to your UI, like build dark mode, and it’ll edit all the code to implement that feature.</p>
-
-<p>These tools will make humans more and more like narrators, like people who are describing what they want. Then the models will actually create something that’s even better than what humans would do if they’re doing it themselves.</p>
-
-<p>And I think the fundamental problem-solving skills are always going to be really needed. And understanding the technology and its constraints and how to leverage it is going to be so important.</p>
-
-<p><strong>Question: What are the current AI tools good at in a general sense?</strong></p>
-
-<p>Yeah, really, really good questions. I think one of the things that’s really counterintuitive about generative AI tools is that they’re really good at what we thought they would be really bad at, which is sort of creative storytelling work.</p>
-
-<p>AI for creativity.</p>
-
-<p>The goal to make software so that anyone can make South Park from their bedroom.</p>
-
-<p>Example, you can make a photo of me, Eric and Rihanna playing volleyball on the beach.</p>
-
-<p>I like this.</p>
-
-<p>That one’s my favorite, or I like this one.</p>
-
-<p>I like this one.</p>
-
-<p>We are building truly human like AI voices, that’s very conversational, like humans.</p>
-
-<p>Without AI, the voices sounded horrible. Now it’s just indistinguishable from from a human voice.</p>
-
-<p>For us personally, what it’s amazing at is semantic search, that’s something that didn’t really work before. Just like taking a random piece of text and finding relevant things.</p>
-
-<p>LLM have great ability to read.</p>
-
-<p>They’re pretty good at being able to take arbitrary data and be able to answer questions about it.</p>
-
-<p>Because there’s so much new type of data, it’s really hard to adapt and so we are currently fine-tuning all of our models on these new types of data to make it as accurate as possible.</p>
-
-<p>For fashion, very specifically, there are new terms popping up all the time, you have to like keep updating these models to know, oh, for this month, the trend is mermaid court, but for next month, maybe it’s ballet courts.</p>
-
-<p>AI tools are pretty good in giving you around like an 85% to 90% solution, but there’s a lot more fine-tuning or a lot more hacks that you need to put in place on top of them to ensure that you can deliver genuine value.</p>
-
-<p>You can use a bunch of simple operations to actually do something really complicated.</p>
-
-<p>You need to really like give them structure about like how it should look like and give them one particular task to do and then they do it very well.</p>
-
-<p>If you’re able to think through the process that you go through, then you can actually engineer a prompt or engineer a sequence of steps so that you can have that entire process be even more reliable than you would be.</p>
-
-<p>It’s important to just be very iterative in your process and just debug and iterate on your prompts as you go.</p>
-
-<p>If you think you have a solution, it may not be the same solution over time, your data can change the actual underlying model quality can change with that, and so the biggest difference is just there’s this sort of iteration required.</p>
-
-<p>I think the hardest part is you’re trying to marry deterministic kind of software with probabilistic models, and we sit right at the middle of that.</p>
-
-<p>It is like quite an exciting thing to work with because in the past with programming, the computer really just followed your instructions to a T and you can expect the same results given the same inputs, now you put in the same inputs, you might get some variants.</p>
-
-<p>If we can actually introduce some Randomness into our outputs then we can explore our space bit better and our models will get better from learning from all of these other choices that we can make.</p>
-
-<p>It’s not reliable in the way that you expect it to be reliable, which is great for us, because for us we’re doing entertainment, so it’s like, as long as it’s funny, it doesn’t matter, but I guess if you’re operating a car, that seems more complicated.</p>
-
-<p>So it is a double-edged sword, sometimes it can hallucinate and make up something that wasn’t intended.</p>
-
-<p>I would define a hallucination as AI generating something that doesn’t exist, but looks like it might or should exist.</p>
-
-<p>They’re still really bad at distinguishing fact from fiction, so they’re good creative storytellers, but they’re surprisingly bad at knowing the difference between what’s true and false.</p>
-
-<p>If you’re a doctor, finding out what GPT decided was the diagnosis for this patient probably takes a ton of time to verify, and if there’s any mistake then you’re in a lot of trouble.</p>
-
-<p>At what point do you trust the AI over the doctor?</p>
-
-<p>There’s been a lot of effort in the industry recently to sort of prevent these hallucinations, but that’s created this opposite problem, which is now it will often think things aren’t real or pretend, that it doesn’t know things that it really should do, right? It will tell you it’s like never heard of that article, even though it’s definitely in the training set, right? Like it’s going to be there.</p>
-
-<p>A bit like a human, you know, when you read things and you take something away from that and internalize it, you can’t necessarily exactly remember where you read it, and so when you’re using these models with real world data, it’s actually even harder to disambiguate what’s a hallucination versus something that was a nuanced piece of data, you can’t ask it for citations consistently, that’s still a challenge. And so the trustworthiness there has some way to go.</p>
-
-<p>It’s not enough just to say like, hey, the accuracy metrics are better, you have to understand that there’s more at play especially for, you know, human trust, and that is a key component if you’re going to develop a technology that people are going to use at the end of the day.</p>
-
-<p>There’s still a lot of nuance where we have to like steer them, and that’s why you’ll hear a lot about this human-in-the-loop.</p>
-
-<p>It’s really important to still have a human in the loop.</p>
-
-<p>Having humans in the loop ti initially assess whether the corrections that were needed to be made were accurate or not.</p>
-
-<p>There needs to be someone supervising now, but making sure that there are no hallucinations.</p>
-
-<p>So there are a lot of pros and cons, It’s really about figuring out the right ways to steer it, and that’s the challenge that I think like all the YC companies working on AI are facing. We’re given this new tool to work with, and we’re all really just trying to figure it out.</p>
-
-<p>I never want to lose sight of the fact that ultimately this is technology is service of humans, and we get to keep humans to say the “so what”.</p>
-
-<p>Ideally it’s actually like deepening human connection where it’s a lot more about, you knoe, interacting with people and figure out what’s actually valuable to them.</p>]]></content><author><name></name></author><category term="新闻" /><category term="AI" /><category term="LLM" /><category term="科技" /><summary type="html"><![CDATA[这个视频采访了 40 位 AI 初创公司创始人，他们分享了在日常生活中的 AI 使用经验，这里是文字版。]]></summary></entry></feed>
+</blockquote>]]></content><author><name></name></author><category term="金融" /><category term="基金" /><category term="FOF" /><category term="养老" /></entry></feed>
