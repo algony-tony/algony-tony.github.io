@@ -4,7 +4,7 @@ name: TruffleHog Security Scan
 on:
   push:
     branches:
-      - main
+      - master
       - post
       - gh-pages
   pull_request:
