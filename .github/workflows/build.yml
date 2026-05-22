@@ -1,0 +1,27 @@
+name: Build
+
+# Build-only check. It validates that the site compiles (e.g. after a
+# dependabot gem bump); it does NOT deploy. Deployment stays manual via
+# script/deploy-push-gh-pages.sh, so a CI hiccup can never break the live site.
+
+on:
+  push:
+    branches:
+      - master
+      - post
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2.2'   # keep in sync with Gemfile
+          bundler-cache: true     # bundle install + cache from Gemfile.lock
+
+      - name: Build site
+        run: bundle exec jekyll build --trace
