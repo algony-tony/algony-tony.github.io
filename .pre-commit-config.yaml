@@ -22,4 +22,4 @@ repos:
         name: compress images
         entry: script/img_compress.sh
         language: system
-        stages: ["commit", "push"]
+        stages: ["pre-commit", "pre-push"]
