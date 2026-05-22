@@ -1,0 +1,4 @@
+[submodule "vendor/raphael-publish"]
+	path = vendor/raphael-publish
+	url = git@github.com:algony-tony/raphael-publish.git
+	branch = blog-integration

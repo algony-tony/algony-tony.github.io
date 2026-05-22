@@ -8,3 +8,5 @@
   link: /tools/unixtime.html
 - name: 文本转列表
   link: /tools/multilinetolist.html
+- name: 公众号排版助手
+  link: /tools/raphael-publish/
