@@ -86,7 +86,7 @@ kramdown:
     css_class: 'highlight'
 highlighter: rouge
 
-# Set the Sass partials directory, as we're using @imports
+# Sass output style (theme uses Dart Sass @use/@forward; see _sass/)
 sass:
   style: :compressed # :expanded
 
