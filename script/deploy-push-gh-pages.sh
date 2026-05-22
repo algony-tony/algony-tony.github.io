@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e # halt script on error
 
 project_dir=$(dirname "$(dirname "$(readlink -f "$0")")")
 site_dir="${project_dir}_site"
@@ -21,6 +22,13 @@ fi
 
 # build Jekyll
 cd "${project_dir}"
+
+# Refuse to deploy with uncommitted changes to tracked files (untracked drafts are fine).
+if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
+    echo "Error: you have uncommitted changes to tracked files. Commit or stash before deploying."
+    exit 1
+fi
+
 git checkout master || { echo "checkout master failed"; exit 1; }
 bundle exec jekyll build --future --trace
 
@@ -28,12 +36,12 @@ bundle exec jekyll build --future --trace
 "${project_dir}/script/build-raphael.sh" "${project_dir}/_site/tools/raphael-publish" --force
 
 # deploy
-rm -rf ${site_dir}/*
-cp -rf ${project_dir}/_site/* "${site_dir}/"
+rm -rf "${site_dir:?site_dir is empty}"/*
+cp -rf "${project_dir}/_site/"* "${site_dir}/"
 touch "${site_dir}/.nojekyll"
 
 cd "${site_dir}/"
 git add -A
-git commit -m "Deploy to gh-pages"
+git commit -m "Deploy to gh-pages" || echo "No changes to deploy"
 
 git push --force origin master:gh-pages
