@@ -17,11 +17,11 @@ rbenv install -l
 # Suggested build environment
 # https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
 
-# install
-rbenv install 3.1.4
+# install (keep in sync with the `ruby` pin in Gemfile)
+rbenv install 3.2.2
 
 # to activate this Ruby version as the new default
-rbenv global 3.1.4
+rbenv global 3.2.2
 
 gem install jekyll bundler
 
