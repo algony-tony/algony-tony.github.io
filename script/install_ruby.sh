@@ -1,3 +1,7 @@
+#!/usr/bin/env bash
+# One-time setup runbook for a fresh machine. Run steps as needed rather than
+# end-to-end; some commands (e.g. the initial `ruby -v`) are diagnostics that
+# may fail before Ruby is installed, so this intentionally does not use `set -e`.
 
 # 查看 ruby 版本
 ruby -v
