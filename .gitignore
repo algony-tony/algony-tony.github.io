@@ -14,4 +14,4 @@ temp_data
 # Local AI tooling / agent runtime state
 .omx/
 .claude/
-.codex
+.antigravitycli/
