@@ -4,10 +4,14 @@ title: 常用工具
 show_page_header: false
 ---
 
-{% include tool-sidebar.html %}
-
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-<div class="tool-content">
+<div class="tool-shell">
+
+  {% include tool-sidebar.html %}
+
+  <div class="tool-content">
     {{ content }}
+  </div>
+
 </div>

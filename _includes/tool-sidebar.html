@@ -1,15 +1,21 @@
-<div class="tool-sidebar">
+<aside class="tool-rail" aria-label="工具导航">
 
-  <div class="col">
-    <ul class="menu">
+  <p class="tool-rail__title">
+    工具箱<span class="tool-rail__en">toolkit</span>
+  </p>
+
+  <nav class="tool-rail__nav">
+    <ol>
       {% for item in site.data.tool-sidebar %}
       <li>
-        <a href="{{ item.link | prepend: site.baseurl }}" {% if page.url == item.link %} class="page-link active"
-          {% else %} class="page-link" {% endif %}>
-          {{ item.name }}
+        <a href="{{ item.link | prepend: site.baseurl }}"
+          class="tool-rail__link{% if page.url == item.link %} active{% endif %}"
+          {% if page.url == item.link %}aria-current="page"{% endif %}>
+          <span class="tool-rail__name">{{ item.name }}</span>
         </a>
       </li>
       {% endfor %}
-    </ul>
-  </div>
-</div>
+    </ol>
+  </nav>
+
+</aside>

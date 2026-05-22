@@ -370,106 +370,339 @@ section {
     }
 }
 
-/* tools page*/
-.tool-sidebar {
-    float: left;
-    width: calc($base-font-size * 8);
-    padding-right: calc($spacing-unit / 2);
+/* ===========================================================================
+   Tools — "Index": a quiet developer toolkit.
+   Monochrome paper/ink base; one accent (vermilion) that only surfaces on
+   interaction — active nav, focus, selection, checks, button hover.
+   =========================================================================== */
 
-    a {
-        color: $gray;
-    }
+.tool-shell {
+    --t-paper:        #{$white};
+    --t-ink:          #161616;
+    --t-muted:        #{$gray};
+    --t-faint:        #{$light-gray};
+    --t-line:         #ececec;
+    --t-line-strong:  #d8d8d8;
+    --t-wash:         #fbfbfa;
+    --t-accent:       #ec4f30;
+    --t-accent-soft:  rgba(236, 79, 48, 0.13);
 
-    a:hover {
-        text-decoration: underline;
-        color: $blue;
-    }
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-unit;
 
-    a.active {
-        text-decoration: underline;
-        color: $text-color;
-        // background-color: $header-background;
+    @include media-query($on-palm) {
+        flex-direction: column;
+        gap: calc($spacing-unit / 2);
     }
 }
+
+/* --- Navigation rail ----------------------------------------------------- */
+
+.tool-rail {
+    flex: 0 0 152px;
+    position: sticky;
+    top: calc($spacing-unit / 1.25);
+
+    @include media-query($on-palm) {
+        position: static;
+        flex-basis: auto;
+        width: 100%;
+    }
+}
+
+.tool-rail__title {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 0 0 calc($spacing-unit / 2) 2px;
+    font-size: $small-font-size;
+    font-weight: $bold-font-weight;
+    color: var(--t-ink);
+}
+
+.tool-rail__en {
+    font-family: $code-font-family;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--t-faint);
+}
+
+.tool-rail__nav ol {
+    counter-reset: tool;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li { margin: 0; }
+    li::before { content: none; }
+}
+
+.tool-rail__link {
+    counter-increment: tool;
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 7px 8px 7px 12px;
+    border-radius: 6px;
+    color: var(--t-muted);
+    font-size: $smaller-font-size;
+    line-height: 1.4;
+    transition: color .18s ease, background-color .18s ease;
+
+    /* index numeral — quiet, monospace */
+    &::before {
+        content: counter(tool, decimal-leading-zero);
+        font-family: $code-font-family;
+        font-size: 11px;
+        letter-spacing: 0.04em;
+        color: var(--t-faint);
+        transition: color .18s ease;
+    }
+
+    /* the accent marker — hidden until active/hover */
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        height: 0;
+        width: 2px;
+        background: var(--t-accent);
+        border-radius: 2px;
+        transform: translateY(-50%);
+        transition: height .18s ease;
+    }
+
+    &:hover {
+        text-decoration: none;
+        color: var(--t-ink);
+        background: var(--t-wash);
+        &::after { height: 14px; }
+    }
+
+    &.active {
+        color: var(--t-ink);
+        font-weight: $bold-font-weight;
+        background: var(--t-wash);
+        &::before { color: var(--t-accent); }
+        &::after { height: 22px; }
+    }
+}
+
+.tool-rail__name { word-break: break-word; }
+
+@include media-query($on-palm) {
+    .tool-rail__nav ol {
+        display: flex;
+        gap: 6px;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        -webkit-overflow-scrolling: touch;
+    }
+    .tool-rail__link {
+        white-space: nowrap;
+        padding: 6px 12px;
+        border: 1px solid var(--t-line);
+        &::after { display: none; }
+        &.active { border-color: var(--t-accent); }
+    }
+}
+
+/* --- Main panel ---------------------------------------------------------- */
 
 .tool-content {
-    float: left;
-    min-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2) - (#{$base-font-size} * 8) - (#{$spacing-unit} / 2));
-    min-width: calc(#{$content-width} - (#{$spacing-unit} * 2) - (#{$base-font-size} * 8) - (#{$spacing-unit} / 2));
-    @include media-query($on-palm) {
-        min-width: inherit;
-      }
+    flex: 1 1 auto;
+    min-width: 0;
 }
 
-.tool-md5, .tool-replacement, .tool-unixtime {
-    width: 100%;
-    .row {
-        padding-top: calc($spacing-unit / 2);
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        flex: 1 1 auto;
-        justify-content: space-around;
-    }
-    textarea.form-control {
-        height: calc($base-font-size * 15);
-        padding: calc($spacing-unit / 6) calc($spacing-unit / 3);
-        width: 100%;
-        display: block;
-        background-color: $white;
-        background-image: none;
-        border: 1px solid $gray;
-        border-radius: 4px;
-        box-shadow: 0 1px 1px $lighter-gray;
+/* per-tool header: kicker + title + note */
+.tool-head {
+    margin-bottom: calc($spacing-unit / 1.5);
+    padding-bottom: calc($spacing-unit / 2);
+    border-bottom: 1px solid var(--t-line);
+
+    h2 {
+        margin: 4px 0 0;
+        line-height: 1.25;
     }
 }
 
+.tool-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: $code-font-family;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--t-muted);
+
+    /* the accent tick — a single dot of colour */
+    &::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        background: var(--t-accent);
+        border-radius: 50%;
+    }
+}
+
+.tool-note {
+    margin: 8px 0 0;
+    color: var(--t-muted);
+    font-size: $small-font-size;
+    line-height: 1.6;
+}
+
+/* --- Form controls (shared across every tool) --------------------------- */
+
+.tool-md5, .tool-replacement, .tool-unixtime,
 .tool-pwd, .tool-tolist {
     width: 100%;
 
     .row {
-        padding-top: calc($spacing-unit / 2);
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        flex: 1 1 auto;
-        justify-content: center;
-
-            span,
-            label {
-                padding-left: calc($spacing-unit / 6);
-                padding-right: calc($spacing-unit / 6);
-                @include media-query($on-palm) {
-                    padding-left: none;
-                    padding-right: none;
-                }
-            }
-
+        gap: 10px 14px;
+        padding-top: calc($spacing-unit / 2);
     }
+
+    > label,
+    .row > label {
+        color: var(--t-muted);
+        font-size: $smaller-font-size;
+    }
+
+    /* checkbox / radio options grouped in spans */
+    .row span {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        color: var(--t-ink);
+        font-size: $smaller-font-size;
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+        accent-color: var(--t-accent);   /* the check itself pops accent */
+        width: 15px;
+        height: 15px;
+        margin: 0;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+        font-family: $code-font-family;
+        font-size: $smaller-font-size;
+        padding: 7px 10px;
+        border: 1px solid var(--t-line-strong);
+        border-radius: 5px;
+        background: var(--t-paper);
+        caret-color: var(--t-accent);
+        transition: border-color .15s ease, box-shadow .15s ease;
+
+        &:hover { box-shadow: none; border-color: var(--t-muted); }
+        &:focus {
+            border-color: var(--t-ink);
+            box-shadow: 0 0 0 3px var(--t-accent-soft);
+        }
+    }
+
+    input[type="number"] { width: 6em; }
+
     textarea.form-control {
-        height: calc($base-font-size * 15);
-        padding: calc($spacing-unit / 6) calc($spacing-unit / 3);
+        font-family: $code-font-family;
+        font-size: $code-font-size;
+        line-height: 1.6;
+        height: calc($base-font-size * 13);
         width: 100%;
         display: block;
-        background-color: $white;
-        background-image: none;
-        border: 1px solid $gray;
-        border-radius: 4px;
-        box-shadow: 0 1px 1px $lighter-gray;
+        padding: 12px 14px;
+        background: var(--t-paper);
+        border: 1px solid var(--t-line-strong);
+        border-radius: 6px;
+        box-shadow: none;
+        caret-color: var(--t-accent);
+        resize: vertical;
+        transition: border-color .15s ease, box-shadow .15s ease;
+
+        &:hover { box-shadow: none; border-color: var(--t-muted); }
+        &:focus {
+            border-color: var(--t-ink);
+            box-shadow: 0 0 0 3px var(--t-accent-soft);
+        }
+
+        /* read-only result fields wear a quiet accent edge */
+        &[readonly] {
+            background: var(--t-wash);
+            border-left: 2px solid var(--t-accent);
+        }
+    }
+
+    /* single-line read-only output (timestamp / password) */
+    input[readonly] {
+        background: var(--t-wash);
+        border-left: 2px solid var(--t-accent);
+        flex: 1 1 14em;
+        min-width: 0;
     }
 }
+
+/* --- Buttons: ghost at rest, accent on hover ---------------------------- */
+
+button.btn-try {
+    font-family: $code-font-family;
+    font-size: $smaller-font-size;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--t-ink);
+    background: transparent;
+    border: 1px solid var(--t-line-strong);
+    border-radius: 5px;
+    padding: 7px 16px;
+    cursor: pointer;
+    transition: color .15s ease, background-color .15s ease,
+                border-color .15s ease, transform .05s ease;
+
+    &:hover {
+        color: $white;
+        background: var(--t-accent);
+        border-color: var(--t-accent);
+        box-shadow: none;
+    }
+    &:active { transform: translateY(1px); }
+    &:focus { box-shadow: 0 0 0 3px var(--t-accent-soft); }
+}
+
+/* --- The inline hint note (replacement tool) --------------------------- */
 
 textarea.hidden {
     width: 100%;
     max-width: 100%;
+    margin-top: calc($spacing-unit / 4);
+    padding-left: 12px;
     border: none;
+    border-left: 2px solid var(--t-line-strong);
     outline: none;
-    color: $gray;
+    color: var(--t-muted);
+    font-size: $small-font-size;
+    line-height: 1.6;
     resize: none;
     overflow: hidden;
     white-space: pre-wrap;
     word-break: break-all;
     pointer-events: none;
+}
+
+/* accent text selection inside the toolkit */
+.tool-shell ::selection {
+    background: var(--t-accent);
+    color: $white;
 }
 
 /* collections archive */
