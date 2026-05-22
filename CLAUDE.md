@@ -6,7 +6,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 script/serve.sh        # Local dev server at http://127.0.0.1:2000 with drafts + livereload
-script/cibuild.sh      # Build + run htmlproofer (used in CI)
 script/clean.sh        # Clean the _site output directory
 script/deploy-push-gh-pages.sh  # Build and force-push to gh-pages branch
 ```
@@ -95,4 +94,4 @@ Configured in `.pre-commit-config.yaml`:
 
 ### Deployment
 
-`script/deploy-push-gh-pages.sh` builds the site and force-pushes the `_site/` output to the `gh-pages` branch of the repo from a sibling directory (`../algony-tony.github.io_site/`). This is only for manual deployment; CI uses GitHub Actions (`.github/workflows/`).
+`script/deploy-push-gh-pages.sh` builds the site and force-pushes the `_site/` output to the `gh-pages` branch of the repo from a sibling directory (`../algony-tony.github.io_site/`). Deployment is fully manual (build locally, then run this script). The only GitHub Actions workflow is TruffleHog secret scanning (`.github/workflows/`); there is no build/test CI.
