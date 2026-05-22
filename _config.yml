@@ -127,3 +127,4 @@ exclude:
   - CLAUDE.md
   - _site
   - "vendor"
+  - "GTM-*.json"   # GTM container exports kept locally for editing; never publish
