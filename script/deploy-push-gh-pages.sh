@@ -24,16 +24,8 @@ cd "${project_dir}"
 git checkout master || { echo "checkout master failed"; exit 1; }
 bundle exec jekyll build --future --trace
 
-# build raphael-publish
-echo "Building raphael-publish..."
-cd "${project_dir}/vendor/raphael-publish"
-pnpm install --frozen-lockfile
-pnpm build
-echo "raphael-publish build complete."
-
-# copy raphael-publish dist into Jekyll _site
-mkdir -p "${project_dir}/_site/tools/raphael-publish"
-cp -rf "${project_dir}/vendor/raphael-publish/dist/"* "${project_dir}/_site/tools/raphael-publish/"
+# build raphael-publish and copy its dist into the Jekyll _site
+"${project_dir}/script/build-raphael.sh" "${project_dir}/_site/tools/raphael-publish" --force
 
 # deploy
 rm -rf ${site_dir}/*
