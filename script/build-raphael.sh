@@ -25,3 +25,10 @@ fi
 echo "Syncing raphael-publish dist -> ${target_dir}"
 mkdir -p "${target_dir}"
 cp -rf "${vendor_dir}/dist/"* "${target_dir}/"
+
+# Drop raphael's bundled favicon link from the embedded copy so the tool page
+# inherits the blog's own favicon (/favicon.ico) instead of switching to
+# raphael's. raphael's standalone deploy keeps its favicon untouched.
+if [ -f "${target_dir}/index.html" ]; then
+    sed -i '/<link rel="icon"/d' "${target_dir}/index.html"
+fi
