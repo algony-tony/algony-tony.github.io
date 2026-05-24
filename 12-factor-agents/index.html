@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PQ63V8S');</script>
+<!-- End Google Tag Manager -->
+
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+    
+    <meta name="author" content="Algony Tony" />
+
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+    <link rel="alternate" type="application/rss+xml" title="Algony Tony - etvdyn" href="/feed.xml" />
+
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3291441471504209"
+     crossorigin="anonymous"></script>
+
+
+    <link type="application/atom+xml" rel="alternate" href="https://algony-tony.github.io/feed.xml" title="Algony Tony" />
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>12-Factor Agents 介绍 | Algony Tony</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="12-Factor Agents 介绍" />
+<meta property="og:locale" content="zh_CN" />
+<meta name="description" content="etvdyn" />
+<meta property="og:description" content="etvdyn" />
+<link rel="canonical" href="https://algony-tony.github.io/12-factor-agents/" />
+<meta property="og:url" content="https://algony-tony.github.io/12-factor-agents/" />
+<meta property="og:site_name" content="Algony Tony" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-05-24T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="12-Factor Agents 介绍" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-05-24T00:00:00+08:00","datePublished":"2026-05-24T00:00:00+08:00","description":"etvdyn","headline":"12-Factor Agents 介绍","mainEntityOfPage":{"@type":"WebPage","@id":"https://algony-tony.github.io/12-factor-agents/"},"url":"https://algony-tony.github.io/12-factor-agents/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  </head>
+
+  <body>
+
+    
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQ63V8S"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+    <header class="site-header">
+
+    <div class="wrapper-header-with-side">
+      <div class="header-left">
+        <!-- <a href="/" class="site-avatar"><img src="/assets/img/sys/jekyll-logo.png" alt="avatar" /></a> -->
+
+        <a class="site-info" href="/">
+          <span class="site-name">Algony Tony</span>
+          <span class="site-description">etvdyn</span>
+        </a>
+
+      </div>
+
+      <nav class="header-right">
+        
+        <a href="/"  class="page-link"  >
+          首页
+        </a>
+        
+        <a href="/WebMap/"  class="page-link"  >
+          导航
+        </a>
+        
+        <a href="/tools/"  class="page-link"  >
+          工具
+        </a>
+        
+        <a href="/collections/"  class="page-link"  >
+          归档
+        </a>
+        
+      </nav>
+    </div>
+
+</header>
+
+
+    <main class="default-content" aria-label="内容区">
+  <div class="wrapper-content-with-side">
+
+    <article class="post post-with-toc">
+      <div class="left">
+        <h1>12-Factor Agents 介绍</h1>
+        <div class="label">
+
+          <div class="label-date">
+            2026-05-24
+          </div>
+
+          <div class="label-category">
+            <span >类别:</span>
+
+<a class="category-link" href="https://algony-tony.github.io/category/#人工智能" title="Category: 人工智能">
+  人工智能
+</a>
+
+
+          </div>
+
+          <div class="label-tag">
+            <span >标签:</span>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#LLM" title="Tag: LLM">
+  LLM
+</a>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#Agent" title="Tag: Agent">
+  Agent
+</a>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#架构" title="Tag: 架构">
+  架构
+</a>
+
+<a class="tag-link" href="https://algony-tony.github.io/tag/#AI应用" title="Tag: AI应用">
+  AI应用
+</a>
+
+          </div>
+
+        </div>
+
+        <div class="entry">
+          <ul id="markdown-toc">
+  <li><a href="#12-factor-agents-解决什么问题" id="markdown-toc-12-factor-agents-解决什么问题">12-Factor Agents 解决什么问题</a></li>
+  <li><a href="#一句话概括-12-个原则" id="markdown-toc-一句话概括-12-个原则">一句话概括 12 个原则</a></li>
+  <li><a href="#1-natural-language-to-tool-calls自然语言转工具调用" id="markdown-toc-1-natural-language-to-tool-calls自然语言转工具调用">1. Natural Language to Tool Calls：自然语言转工具调用</a></li>
+  <li><a href="#2-own-your-prompts自己掌控-prompt" id="markdown-toc-2-own-your-prompts自己掌控-prompt">2. Own your prompts：自己掌控 prompt</a></li>
+  <li><a href="#3-own-your-context-window自己掌控上下文窗口" id="markdown-toc-3-own-your-context-window自己掌控上下文窗口">3. Own your context window：自己掌控上下文窗口</a></li>
+  <li><a href="#4-tools-are-just-structured-outputs工具只是结构化输出" id="markdown-toc-4-tools-are-just-structured-outputs工具只是结构化输出">4. Tools are just structured outputs：工具只是结构化输出</a></li>
+  <li><a href="#5-unify-execution-and-business-state统一执行状态和业务状态" id="markdown-toc-5-unify-execution-and-business-state统一执行状态和业务状态">5. Unify execution and business state：统一执行状态和业务状态</a></li>
+  <li><a href="#6-launchpauseresume-with-simple-apis启动暂停恢复" id="markdown-toc-6-launchpauseresume-with-simple-apis启动暂停恢复">6. Launch/Pause/Resume with simple APIs：启动、暂停、恢复</a></li>
+  <li><a href="#7-contact-humans-with-tool-calls通过工具调用联系人类" id="markdown-toc-7-contact-humans-with-tool-calls通过工具调用联系人类">7. Contact humans with tool calls：通过工具调用联系人类</a></li>
+  <li><a href="#8-own-your-control-flow自己掌控控制流" id="markdown-toc-8-own-your-control-flow自己掌控控制流">8. Own your control flow：自己掌控控制流</a></li>
+  <li><a href="#9-compact-errors-into-context-window把错误精简后写回上下文" id="markdown-toc-9-compact-errors-into-context-window把错误精简后写回上下文">9. Compact errors into context window：把错误精简后写回上下文</a></li>
+  <li><a href="#10-small-focused-agents小而专注的-agent" id="markdown-toc-10-small-focused-agents小而专注的-agent">10. Small, focused agents：小而专注的 Agent</a></li>
+  <li><a href="#11-trigger-from-anywhere从任何地方触发贴近用户" id="markdown-toc-11-trigger-from-anywhere从任何地方触发贴近用户">11. Trigger from anywhere：从任何地方触发，贴近用户</a></li>
+  <li><a href="#12-make-your-agent-a-stateless-reducer把-agent-设计成无状态-reducer" id="markdown-toc-12-make-your-agent-a-stateless-reducer把-agent-设计成无状态-reducer">12. Make your agent a stateless reducer：把 Agent 设计成无状态 reducer</a></li>
+  <li><a href="#12-factor-agents-和-12-factor-app-的关系" id="markdown-toc-12-factor-agents-和-12-factor-app-的关系">12-Factor Agents 和 12-Factor App 的关系</a></li>
+  <li><a href="#实践时不要教条化" id="markdown-toc-实践时不要教条化">实践时不要教条化</a></li>
+  <li><a href="#参考链接" id="markdown-toc-参考链接">参考链接</a></li>
+</ul>
+
+<p>12-Factor Agents，也常写作 <strong>The Twelve-Factor Agents</strong>，是一套面向 LLM 智能体（Agent）的工程方法论。它由 <strong>HumanLayer 的创始人 Dexter “Dex” Horthy</strong> 提出，并在 2025 年的 AI Engineer World’s Fair 大会上做了系统分享。</p>
+
+<p>这个名字明显是在致敬经典的 <a href="/12-factor-app/">12-Factor App</a>。当年 12-Factor App 把云应用的工程经验提炼成一组原则，而 12-Factor Agents 想做的，是把这些年大家踩坑踩出来的 Agent 工程经验，同样提炼成一组可落地的设计原则。</p>
+
+<p>它不是某个框架，也不是某个 SDK，而是一组构建可靠 LLM 应用的实践。官方资料都在这个开源仓库里：<a href="https://github.com/humanlayer/12-factor-agents">github.com/humanlayer/12-factor-agents</a>。</p>
+
+<h2 id="12-factor-agents-解决什么问题">12-Factor Agents 解决什么问题</h2>
+
+<p>Dex 在提出这套方法论之前，访谈了一百多位创业者和 AI 工程师。他发现一个很普遍的现象：</p>
+
+<p>团队往往会抓起一个 Agent 框架快速起步，很快就能做出一个看起来不错的 demo，完成大概 70%–80% 的功能。但接下来想把它真正交到生产环境的客户手里时，就撞上了天花板：</p>
+
+<ul>
+  <li>框架把 prompt、上下文、控制流都藏在抽象背后，出了问题很难调试；</li>
+  <li>Agent 在多轮循环里越跑越离谱，行为不可控；</li>
+  <li>上下文窗口被塞满了无关信息，效果反而下降；</li>
+  <li>出错以后没有干净的方式恢复，只能整段重来；</li>
+  <li>想加入人工审核环节，却发现框架没留口子；</li>
+  <li>真要排查问题，发现根本不知道模型到底看到了什么。</li>
+</ul>
+
+<p>于是大家不得不把框架拆开，自己重写大量逻辑。</p>
+
+<p>12-Factor Agents 的核心判断就是：<strong>真正可靠的 Agent，更多是“扎实的软件工程”，而不是“更聪明的框架”。</strong> 它主张工程师重新掌控 prompt、上下文、控制流和状态，把 LLM 当作整个系统里一个可控的组件，而不是把一切都交给框架的黑盒循环。</p>
+
+<h2 id="一句话概括-12-个原则">一句话概括 12 个原则</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>序号</th>
+      <th>Factor</th>
+      <th>核心含义</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Natural Language to Tool Calls</td>
+      <td>把自然语言转成结构化的工具调用</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Own your prompts</td>
+      <td>自己掌控 prompt，把它当代码管理</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Own your context window</td>
+      <td>自己掌控上下文窗口的构造</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Tools are just structured outputs</td>
+      <td>工具调用本质只是结构化输出</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Unify execution and business state</td>
+      <td>统一执行状态和业务状态</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Launch/Pause/Resume with simple APIs</td>
+      <td>用简单 API 支持启动、暂停、恢复</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Contact humans with tool calls</td>
+      <td>通过工具调用联系人类</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Own your control flow</td>
+      <td>自己掌控控制流</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>Compact errors into context window</td>
+      <td>把错误信息精简后写回上下文</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>Small, focused agents</td>
+      <td>用小而专注的 Agent</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>Trigger from anywhere</td>
+      <td>从任何地方触发，贴近用户</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>Make your agent a stateless reducer</td>
+      <td>把 Agent 设计成无状态的 reducer</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>下面逐个展开。</p>
+
+<h2 id="1-natural-language-to-tool-calls自然语言转工具调用">1. Natural Language to Tool Calls：自然语言转工具调用</h2>
+
+<p>Agent 最基本的能力，是把用户的自然语言意图，转换成结构化的、可执行的工具调用。</p>
+
+<p>比如用户说“给张三发一封会议邀请”，模型不应该直接输出一段散文，而应该输出一个明确的结构，例如：</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><div class="line-1"><span class="p">{</span>
+</div><div class="line-2"><span class="w">  </span><span class="nl">"tool"</span><span class="p">:</span><span class="w"> </span><span class="s2">"send_calendar_invite"</span><span class="p">,</span>
+</div><div class="line-3"><span class="w">  </span><span class="nl">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"zhangsan@example.com"</span><span class="p">,</span>
+</div><div class="line-4"><span class="w">  </span><span class="nl">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"项目同步会"</span><span class="p">,</span>
+</div><div class="line-5"><span class="w">  </span><span class="nl">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-05-26T15:00:00+08:00"</span>
+</div><div class="line-6"><span class="p">}</span>
+</div></code></pre></figure>
+
+<p>把“自然语言 → 结构化调用”这一步做清晰、做稳定，是后面一切的基础。这一步越确定，整个系统就越可控。</p>
+
+<h2 id="2-own-your-prompts自己掌控-prompt">2. Own your prompts：自己掌控 prompt</h2>
+
+<p>很多框架会替你“管理”prompt，把它包在一层层抽象后面，美其名曰开箱即用。</p>
+
+<p>但 Dex 的观点是：<strong>prompt 是影响 Agent 行为最关键的代码，必须由你自己掌控。</strong></p>
+
+<p>prompt 应该像普通代码一样：放进版本控制、能 diff、能 review、能测试、能针对效果反复迭代。当效果不好时，你要能直接看到、直接改到发给模型的每一个 token。</p>
+
+<p>把 prompt 藏在框架里，短期省事，长期会让你失去对系统行为最重要的那根调节杆。</p>
+
+<h2 id="3-own-your-context-window自己掌控上下文窗口">3. Own your context window：自己掌控上下文窗口</h2>
+
+<p>上下文窗口就是你最终发给模型的全部输入。模型表现好不好，很大程度上取决于这个窗口里装了什么。</p>
+
+<p>这条原则就是现在常说的 <strong>上下文工程（context engineering）</strong>：你要主动决定窗口里放什么、怎么组织、放多少，而不是被动地把所有历史记录一股脑塞进去。</p>
+
+<p>要点包括：</p>
+
+<ul>
+  <li>只放当前这一步真正需要的信息；</li>
+  <li>用自己设计的格式来表达历史和状态，而不是照搬框架的默认序列化；</li>
+  <li>控制窗口长度，避免无关内容稀释关键信号；</li>
+  <li>把工具结果、错误、状态都按对模型最友好的方式编排。</li>
+</ul>
+
+<p>上下文窗口是你和模型之间的唯一接口，把它牢牢握在手里。</p>
+
+<h2 id="4-tools-are-just-structured-outputs工具只是结构化输出">4. Tools are just structured outputs：工具只是结构化输出</h2>
+
+<p>“工具调用”听起来很玄，但本质上，它只是模型输出的一段结构化数据（通常是 JSON），然后由你的代码去解释和执行。</p>
+
+<p>这个视角很重要：<strong>模型并不会真的“执行”任何东西，它只是产出一段描述意图的结构化文本。</strong> 真正执行动作的，是你自己写的确定性代码。</p>
+
+<p>想通这一点，整个系统就清爽了：模型负责“决定做什么”，你的代码负责“怎么做、要不要做、做之前校验什么”。模型的输出只是输入到你程序里的一个数据结构，你完全可以校验它、拒绝它、改写它。</p>
+
+<h2 id="5-unify-execution-and-business-state统一执行状态和业务状态">5. Unify execution and business state：统一执行状态和业务状态</h2>
+
+<p>很多框架会把“执行状态”（当前在第几步、调用了哪些工具、等待什么）和“业务状态”（订单、工单、对话内容）分开存储，结果两边经常不同步。</p>
+
+<p>12-Factor Agents 主张尽量把两者统一。执行的进度本身就应该能从业务状态里推导出来，而不是另外维护一份脆弱的、藏在框架内存里的状态机。</p>
+
+<p>状态越统一、越显式，Agent 就越容易被持久化、被恢复、被审计，也越容易在出问题时弄清楚“它到底进行到哪一步了”。</p>
+
+<h2 id="6-launchpauseresume-with-simple-apis启动暂停恢复">6. Launch/Pause/Resume with simple APIs：启动、暂停、恢复</h2>
+
+<p>生产环境里的 Agent 不可能总是一口气跑完。它经常需要：</p>
+
+<ul>
+  <li>等待某个长耗时工具返回；</li>
+  <li>等待人工审批；</li>
+  <li>等待外部事件（比如用户回复、回调通知）；</li>
+  <li>跨越几分钟、几小时甚至几天继续执行。</li>
+</ul>
+
+<p>所以一个 Agent 应该能够被干净地启动、暂停、恢复，并且这些操作要有简单清晰的 API。</p>
+
+<p>暂停时，它的状态被持久化下来；恢复时，它能从断点继续，而不是从头再来。这条原则和无状态、状态统一是相互配合的。</p>
+
+<h2 id="7-contact-humans-with-tool-calls通过工具调用联系人类">7. Contact humans with tool calls：通过工具调用联系人类</h2>
+
+<p>Agent 不应该假设自己什么都能独立搞定。遇到拿不准、风险高、需要授权的情况，它应该把人类拉进来。</p>
+
+<p>巧妙之处在于：<strong>联系人类，也用工具调用这同一套机制。</strong></p>
+
+<p>比如模型可以调用一个 <code class="language-plaintext highlighter-rouge">request_human_approval</code> 工具，或者 <code class="language-plaintext highlighter-rouge">ask_human</code> 工具，把问题抛给人。在系统看来，这和调用数据库、调用 API 没有本质区别——都是一次结构化输出。</p>
+
+<p>这正是 HumanLayer 自己产品的核心理念：让 Agent 走出聊天框，进到 Slack、邮件这些人本来就在的地方，在关键节点请人介入。</p>
+
+<h2 id="8-own-your-control-flow自己掌控控制流">8. Own your control flow：自己掌控控制流</h2>
+
+<p>这可能是整套方法论里最核心的一条。</p>
+
+<p>很多框架提供一个“自动循环”：模型想下一步、执行、再想下一步，反复直到它认为完成。问题是，这个循环你控制不了，Agent 很容易跑飞、绕圈、做出意料之外的动作。</p>
+
+<p>12-Factor Agents 主张：<strong>控制流应该由你的代码显式决定，而不是交给框架的黑盒循环。</strong></p>
+
+<p>什么时候调用模型、什么时候执行工具、什么时候停下来、什么时候走人工分支、什么时候直接走确定性逻辑——这些都应该是你代码里清清楚楚的判断，而不是“让模型自己看着办”。</p>
+
+<p>把控制流握在手里，Agent 才能从“不可预测的玩具”变成“可预测的软件”。</p>
+
+<h2 id="9-compact-errors-into-context-window把错误精简后写回上下文">9. Compact errors into context window：把错误精简后写回上下文</h2>
+
+<p>工具会失败，API 会超时，输入会不合法。Agent 需要能从错误中恢复。</p>
+
+<p>常见做法是把完整的错误堆栈直接塞回上下文，让模型“看着办”。但这样会迅速塞满窗口，还可能让模型陷入反复重试的死循环。</p>
+
+<p>更好的做法是：<strong>把错误信息精简、提炼后再写回上下文。</strong> 只保留模型纠正行为真正需要的信息，并且对连续失败设上限——失败几次之后，就该交给人，而不是无脑重试。</p>
+
+<h2 id="10-small-focused-agents小而专注的-agent">10. Small, focused agents：小而专注的 Agent</h2>
+
+<p>不要追求一个无所不能的“超级 Agent”。</p>
+
+<p>LLM 的可靠性会随着任务复杂度、步骤数量的上升而快速下降。一个要处理几十步、覆盖十几种场景的大 Agent，几乎一定会在某处崩掉。</p>
+
+<p>12-Factor Agents 主张把系统拆成多个小而专注的 Agent，每个只负责一个范围明确、步骤可控的任务（经验上常说控制在 3–10 步左右）。</p>
+
+<p>小 Agent 更容易测试、更容易调试、行为也更可预测。复杂的业务流程，用确定性代码把这些小 Agent 编排起来，而不是寄希望于一个大模型一次想清楚所有事。</p>
+
+<h2 id="11-trigger-from-anywhere从任何地方触发贴近用户">11. Trigger from anywhere：从任何地方触发，贴近用户</h2>
+
+<p>Agent 不应该只能通过一个聊天界面来使用。它应该能被各种事件源触发，并且部署在用户本来就在的地方：</p>
+
+<ul>
+  <li>Slack / 飞书 / 钉钉消息；</li>
+  <li>邮件；</li>
+  <li>Webhook、定时任务；</li>
+  <li>CI/CD 流水线、监控告警；</li>
+  <li>其他系统的事件。</li>
+</ul>
+
+<p>同样，它的输出也应该回到用户所在的渠道，而不是逼着用户专门跑来一个网页对话框。</p>
+
+<p>这条和 12-Factor App 的“端口绑定”有点神似：让 Agent 成为一个能被任意系统接入、又能融入现有工作流的服务，而不是一个孤立的聊天玩具。</p>
+
+<h2 id="12-make-your-agent-a-stateless-reducer把-agent-设计成无状态-reducer">12. Make your agent a stateless reducer：把 Agent 设计成无状态 reducer</h2>
+
+<p>这条是对前面很多原则的总结性抽象。</p>
+
+<p>借用函数式编程里 reduce 的概念：一个 reducer 接收“当前状态”和“一个事件”，返回“新状态”，本身不保存任何内部状态。</p>
+
+<p>12-Factor Agents 主张把 Agent 设计成这样一个纯粹的状态转换函数：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>新状态 = agent(当前状态, 新事件)
+</code></pre></div></div>
+
+<p>Agent 本身无状态，所有状态都显式地存在外部。这样它就可以随时被启动、暂停、恢复、重放、并行运行，行为高度可预测——这和 12-Factor App 里“无状态进程”的思想一脉相承。</p>
+
+<h2 id="12-factor-agents-和-12-factor-app-的关系">12-Factor Agents 和 12-Factor App 的关系</h2>
+
+<p>两者的精神高度一致：<strong>用扎实的软件工程，驯服一个容易失控的新领域。</strong></p>
+
+<ul>
+  <li>12-Factor App 当年要驯服的，是难以部署、难以扩展的云应用；</li>
+  <li>12-Factor Agents 现在要驯服的，是难以预测、难以可靠化的 LLM 应用。</li>
+</ul>
+
+<p>很多原则甚至能一一对应：</p>
+
+<ul>
+  <li>无状态进程 ↔ 无状态 reducer；</li>
+  <li>端口绑定、对外提供服务 ↔ 从任何地方触发、贴近用户；</li>
+  <li>配置与代码分离 ↔ prompt 与上下文由你显式掌控；</li>
+  <li>一次性管理进程、可恢复发布 ↔ 启动/暂停/恢复、可恢复执行。</li>
+</ul>
+
+<p>可以这样理解：12-Factor App 回答“云应用应该怎么写”，12-Factor Agents 回答“LLM 应用应该怎么写”。底层的工程价值观是相通的——可控、可移植、可恢复、可观测。</p>
+
+<h2 id="实践时不要教条化">实践时不要教条化</h2>
+
+<p>和 12-Factor App 一样，这 12 条也不是必须逐条照搬的戒律。</p>
+
+<p>Dex 自己也强调，这些是“模式”，不是“规则”。有些场景下，成熟框架的自动循环已经够用；有些简单任务，未必需要拆成一堆小 Agent。关键不在于凑齐 12 条，而在于理解背后那条主线：</p>
+
+<p><strong>当你需要可靠性时，把 prompt、上下文、控制流和状态重新握回自己手里。</strong></p>
+
+<p>把它当作一份构建生产级 Agent 的检查清单，在自己的场景里灵活取舍，才是更合理的态度。</p>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ul>
+  <li>官方开源仓库（含全部 12 条详解）：<a href="https://github.com/humanlayer/12-factor-agents">github.com/humanlayer/12-factor-agents</a></li>
+  <li>作者 Dexter Horthy 的 GitHub：<a href="https://github.com/dexhorthy">github.com/dexhorthy</a></li>
+  <li>大会演讲视频《12-Factor Agents: Patterns of reliable LLM applications — Dex Horthy, HumanLayer》：<a href="https://www.youtube.com/watch?v=8kMaTybvDUw">YouTube</a></li>
+  <li>HumanLayer 官网：<a href="https://humanlayer.dev">humanlayer.dev</a></li>
+</ul>
+
+        </div>
+
+        
+<div class="comments" id="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+
+	    var disqus_shortname = 'https-algony-tony-github-io';
+
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+      </div>
+
+      
+      <div class="right">
+    <div class="side-wrap">
+        <nav class="side-content">
+            <div class="side-content-title">目录</div>
+            <div class="side-content-body">
+                <ul id="content-side" class="content-ul"></ul>
+                <div class="side-content-footer">
+                    <a class="side-comments-link" href="#comments">评论区</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<script src="/assets/js/postContent.js" charset="utf-8"></script>
+
+      
+
+      
+
+    </article>
+
+  </div>
+</main>
+
+
+    
+      <footer class="site-footer">
+
+  <div class="wrapper-footer-with-side">
+    <div class="social-wrapper">
+      
+
+
+
+
+
+
+
+<a href="/feed.xml"><i class="svg-icon rss"></i></a>
+
+
+
+
+    </div>
+
+    <div>
+      <p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+    </div>
+
+    <div>Site powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://pages.github.com/">Github Pages</a>.</div>
+  </div>
+
+</footer>
+
+    
+
+  </body>
+</html>
+
