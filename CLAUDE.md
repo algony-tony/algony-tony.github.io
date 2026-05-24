@@ -8,6 +8,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 script/serve.sh        # Local dev server at http://127.0.0.1:2000 with drafts + livereload
 script/clean.sh        # Clean the _site output directory
 script/deploy-push-gh-pages.sh  # Build and force-push to gh-pages branch
+script/build-raphael.sh    # Build the raphael-publish submodule, copy dist into tools/raphael-publish
+script/update-submodules.sh  # Bump submodule pointer(s) to latest on tracked branch, then stage
 ```
 
 Direct equivalents if needed:
@@ -91,6 +93,18 @@ Configured in `.pre-commit-config.yaml`:
 - YAML/JSON/XML validation, trailing whitespace, symlink checks
 - Secret scanning via `ripsecrets`
 - Image compression via `script/img_compress.sh` (requires `mozjpeg` and `pngquant` installed locally at `~/software/`)
+
+### Vendored Submodule (raphael-publish)
+
+`vendor/raphael-publish` is a git submodule (configured in `.gitmodules`, url `git@github.com:algony-tony/raphael-publish.git`, tracked branch `blog-integration`). It is a standalone React 18 + Vite + TypeScript app — a Markdown-to-公众号 typesetting tool — embedded as a tool page on the blog.
+
+Build flow:
+- `script/build-raphael.sh [target_dir] [--force]` runs `pnpm install --frozen-lockfile && pnpm build` inside the submodule (skipped if `vendor/raphael-publish/dist` already exists, unless `--force`), then copies `dist/*` into the target (default `tools/raphael-publish/`). Requires `pnpm`.
+- `tools/raphael-publish/` is a generated artifact and is gitignored (`.gitignore` line `/tools/raphael-publish`) — never edit it by hand.
+- `script/serve.sh` calls `build-raphael.sh` before serving; `deploy-push-gh-pages.sh` calls it with `--force` into `_site/tools/raphael-publish`.
+- The tool page is linked from `_data/tool-sidebar.yml`.
+
+Updating to a new raphael-publish version: run `script/update-submodules.sh` (or `script/update-submodules.sh vendor/raphael-publish`). It runs `git submodule update --remote` to advance the pointer to the latest commit on the tracked branch, then stages the bumped pointer. Review with `git diff --cached` and commit with a message like `Bump raphael-publish: <what changed>`.
 
 ### Deployment
 
