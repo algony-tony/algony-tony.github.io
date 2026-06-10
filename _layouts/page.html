@@ -16,5 +16,9 @@ show_page_header: true
       {{ content }}
     </div>
 
+    {% if content contains 'mermaid' %}
+    {% include mermaid.html %}
+    {% endif %}
+
   </div>
 </main>

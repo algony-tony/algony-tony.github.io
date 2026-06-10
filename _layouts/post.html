@@ -40,6 +40,10 @@ layout: default
       {% include mathjax.html %}
       {% endif %}
 
+      {% if content contains 'mermaid' %}
+      {% include mermaid.html %}
+      {% endif %}
+
     </article>
 
   </div>
